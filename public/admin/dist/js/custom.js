@@ -114,4 +114,5 @@ $(function() {
             $("#main-wrapper").attr("data-sidebartype", "full");
         }
     });
+
 });
