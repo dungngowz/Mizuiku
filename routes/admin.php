@@ -14,6 +14,7 @@
 //->middleware(['auth'])
 Route::name('admin.')->group(function () {
     Route::resource('/dashboard', 'DashBoardController');
+
+    Route::get('/contact-us/data', 'ContactUsController@data');
     Route::resource('/contact-us', 'ContactUsController');
-    Route::get('contact-us/data', 'ContactController@data');
 });

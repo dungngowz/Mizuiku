@@ -40,18 +40,14 @@
         $(function() {
             $('#datatables').DataTable({
                 ...optionDataTable,
-                ajax: '/{{$mod}}/data',
+                ajax: '/admin/{{$mod}}/data',
                 columns: [{
                         data: 'id',
                         name: 'id'
                     },
                     {
-                        data: 'name',
-                        name: 'name'
-                    },
-                    {
-                        data: 'staff',
-                        name: 'staff'
+                        data: 'fullname',
+                        name: 'fullname'
                     },
                     {
                         data: 'actions',
@@ -61,6 +57,7 @@
                     }
                 ],
             });
+            $(".preloader").fadeOut();
         });
     </script>
 @endpush

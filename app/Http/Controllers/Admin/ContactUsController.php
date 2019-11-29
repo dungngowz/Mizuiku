@@ -4,10 +4,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App\Models\Contact;
 
 class ContactUsController extends Controller
 {
     public $mod = 'contact-us';
+
+    public function __construct()
+    {
+        //$this->middleware('auth');
+    }
 
     /**
      * Display a listing of the resource.
@@ -16,16 +22,20 @@ class ContactUsController extends Controller
      */
     public function index()
     {
-        return view('admin.contact-us.index');
+        return view('admin.'.$this->mod . '.index', [
+            'mod' => $this->mod
+        ]);
     }
 
     public function data(Request $request) {
-        $items = \DB::table('companies')->select();
+        $records = Contact::all();
 
-        return DataTables::of($items)
+        return DataTables::of($records)
             ->RawColumns(['actions'])
             ->addColumn('actions', function($company) {
-                return view($this->mod . '.action_buttons', ['company' => $company, 'mod' => $this->mod]);
+                return view('admin.'.$this->mod . '.cols-actions', [
+                    'company' => $company, 'mod' => $this->mod
+                ]);
             })
             ->make(true);
     }

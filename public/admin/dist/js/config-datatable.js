@@ -2,7 +2,7 @@
 /* Datatable*/
 //****************************
 var optionDataTable = {
-    pageLength: 20,
+    pageLength: 10,
     lengthMenu: [[10, 20, 50], [10, 20, 50]],
     order: [
         [0, 'desc']
@@ -18,8 +18,5 @@ var optionDataTable = {
         } else {
             pagination.show();
         }
-    },
-    language: {
-        url: SITE_URL + "json/pagination"
     }
 };
