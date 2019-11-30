@@ -49,6 +49,24 @@
         @include('admin.components.sidebar')
 
         <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">@yield('title')</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                @section('breadcrumb-section')
+                                    {{ Breadcrumbs::render() }}
+                                @show
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
             @yield('content')
         </div>
     </div>

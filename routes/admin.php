@@ -12,12 +12,14 @@
 */
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
-
 Route::group(['middleware' => 'auth'], function(){
 
     Route::resource('/dashboard', 'DashBoardController');
-
+    Route::get('/logout', 'Auth\LoginController@logout');
     Route::get('/contact-us/data', 'ContactUsController@data');
     Route::resource('/contact-us', 'ContactUsController');
+    Route::get('/introduction', 'IntroductionController@index')->name('intro.index');
+    Route::get('/introduction/program', 'IntroductionController@program')->name('intro.program');
+    Route::get('/introduction/partner', 'IntroductionController@partner')->name('intro.partner');
+
 });
