@@ -49426,9 +49426,13 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -49457,6 +49461,8 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
 var app = new Vue({
   el: '#app'
 });
+
+window.$ = window.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;
 
 /***/ }),
 
@@ -49603,9 +49609,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/Origin/Mizuiku/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/Origin/Mizuiku/resources/sass/admin.scss */"./resources/sass/admin.scss");
-module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/Origin/Mizuiku/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\CongViec\Freelancer\Project\Mizuiku\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! E:\CongViec\Freelancer\Project\Mizuiku\resources\sass\admin.scss */"./resources/sass/admin.scss");
+module.exports = __webpack_require__(/*! E:\CongViec\Freelancer\Project\Mizuiku\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

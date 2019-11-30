@@ -12,10 +12,9 @@
 */
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-//->middleware(['auth'])
-Route::name('admin.')->group(function () {
+Route::group(['middleware' => 'auth'], function(){
 
     Route::resource('/dashboard', 'DashBoardController');
 
