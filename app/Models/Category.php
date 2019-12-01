@@ -33,6 +33,6 @@ class Category extends Model
      */
     public function article()
     {
-        return $this->belongsTo('App\Models\Article', 'id', 'category_id');
+        return $this->hasMany('App\Models\Article');
     }
 }

@@ -26,13 +26,13 @@
             <ul id="sidebarnav" class="p-t-30">
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark" href="{{ url('admin/dashboard') }}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">{{ trans('dashboard.dashboard_sidebar') }}</span></a></li>
                 
-                <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">{{ trans('introduction.introduction_sidebar') }} </span></a>
+                {{-- <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">{{ trans('introduction.introduction_sidebar') }} </span></a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item"><a href="{{ route('intro.index') }}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> {{ trans('introduction.all') }} </span></a></li>
                         <li class="sidebar-item"><a href="{{ route('intro.program') }}" class="sidebar-link"><i class="mdi mdi-note-outline"></i><span class="hide-menu"> {{ trans('introduction.program_sidebar') }} </span></a></li>
                         <li class="sidebar-item"><a href="{{ route('intro.partner') }}" class="sidebar-link"><i class="mdi mdi-note-plus"></i><span class="hide-menu"> {{ trans('introduction.partner_sidebar') }} </span></a></li>
                     </ul>
-                </li>
+                </li> --}}
 
                 <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">{{ trans('news.news_sidebar') }} </span></a>
                     <ul aria-expanded="false" class="collapse first-level">

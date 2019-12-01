@@ -319,8 +319,12 @@ ALTER TABLE `users`
 --
 -- Constraints for table `categories`
 --
-ALTER TABLE `categories`
-  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`id`) REFERENCES `articles` (`category_id`);
+-- ALTER TABLE `categories`
+--   ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`id`) REFERENCES `articles` (`category_id`);
+-- COMMIT;
+
+ALTER TABLE `articles`
+  ADD CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
