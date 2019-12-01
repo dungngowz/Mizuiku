@@ -95,7 +95,7 @@
     <script src="{{asset('admin/dist/js/config-datatable.js')}}"></script>
     
     <!--This page JavaScript -->
-    <!-- <script src="../../dist/js/pages/dashboards/dashboard1.js"></script> -->
+    {{-- <script src="{{asset('admin/dist/js/pages/dashboards/dashboard1.js' )}}"></script> --}}
 
     <!-- Charts js Files -->
     {{-- <script src="{{asset('admin/assets/libs/flot/excanvas.js')}}"></script>

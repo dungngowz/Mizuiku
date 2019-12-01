@@ -1,16 +1,8 @@
 @extends('layouts.admin.default')
+@section('title', trans('contact.titleList'))
 
 @section('content')
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body p-3">
-                        <b>{{__('Contact Us')}}</b>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="row">
             <div class="col-12">

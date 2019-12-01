@@ -1,5 +1,5 @@
 @extends('layouts.admin.default')
-@section('title', trans('news.titleList'))
+@section('title', trans('eLearning.titleList'))
 
 @section('content')
 
