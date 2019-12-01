@@ -56,43 +56,59 @@
                      <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>   
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modal-create-news">News</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#" id="create-news-btn" data-toggle="modal" data-target="#modal-create-news">News</a>
+                        <a class="dropdown-item" href="#">Category</a>
                     </div>
                 </li>
-
+                
                 {{-- Modal Create News --}}
-                <div class="modal fade" id="modal-create-news" role="dialog" aria-labelledby="modal-create-news" aria-hidden="true">
+                <div class="modal fade" id="modal-create-news" data-backdrop="static" role="dialog" aria-labelledby="modal-create-news" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modal-create-news">New message</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                            <div class="modal-header">
+                                <h5 class="modal-title">New news</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <div class="form-group">
-                                <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="title-create" class="col-form-label">Title:</label>
+                                        <input type="text" class="form-control" id="title-create">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="slug-create" class="col-form-label">Slug:</label>
+                                        <input type="text" class="form-control" id="slug-create">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="category-create" class="col-form-label">Category:</label>
+                                        <select class="form-control" id="category-create">
+                                            <option value="">Choose...</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="thumbnail-create" class="col-form-label">Thumbnail:</label>
+                                        <input type="text" class="form-control" id="thumbnail-create">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description-create" class="col-form-label">Description:</label>
+                                        <input type="text" class="form-control" id="description-create">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="content-create" class="col-form-label">Content:</label>
+                                        <textarea class="form-control" id="content-create"></textarea>
+                                    </div>
+                                    
+                                </form>
                             </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
+                            <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Send message</button>
+                            <button type="button" class="btn btn-primary" id="btn-create-news" data-dismiss="modal">Submit</button>
                         </div>
                         </div>
                     </div>
                 </div>
-                
                 <!-- ============================================================== -->
                 <!-- Search -->
                 <!-- ============================================================== -->
@@ -204,4 +220,4 @@
         </div>
     </nav>
 </header>
-
+ 

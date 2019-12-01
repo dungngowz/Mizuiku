@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
@@ -88,12 +89,18 @@
     <!--Menu sidebar -->
     <script src="{{asset('admin/dist/js/sidebarmenu.js')}}"></script>
 
+    <!--Custom JavaScript -->
+    <script src="{{asset('admin/dist/js/custom.js')}}"></script>
+
     <!--DataTables-->
     <script src="{{asset('admin/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
 
     <!--Custom JavaScript -->
     <script src="{{asset('admin/dist/js/config-datatable.js')}}"></script>
     
+    <!--Notify -->
+    <script src="{{asset('admin/assets/libs/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
+
     <!--This page JavaScript -->
     {{-- <script src="{{asset('admin/dist/js/pages/dashboards/dashboard1.js' )}}"></script> --}}
 
@@ -106,7 +113,7 @@
     <script src="{{asset('admin/assets/libs/flot/jquery.flot.crosshair.js')}}"></script>
     <script src="{{asset('admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js')}}"></script>
     <script src="{{asset('admin/dist/js/pages/chart/chart-page-init.js')}}"></script> --}}
-
+    
     @stack('scripts')
 </body>
 

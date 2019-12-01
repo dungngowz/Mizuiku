@@ -115,4 +115,51 @@ $(function() {
         }
     });
 
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $('#create-news-btn').on("click",function() {
+        $.ajax({
+            type: "GET",
+            url: "/admin/news/getCategory",
+            success: function(data){
+                $.each(data, function(index, item){
+                    $('#category-create').append("<option value='"+item.id+"'>"+item.type+"</option>")
+                })
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    });
+    
+    $('#btn-create-news').on("click",function() {
+        $.ajax({
+            type: "POST",
+            url: "/admin/news/store",
+            data: { 
+                ref_id: 1,
+                category_id: $('#category-create').children("option:selected").val(),
+                slug : $('#slug-create').val(),  
+                title: $('#title-create').val(), 
+                thumbnail: $('#thumbnail-create').val(),
+                description: $('#description-create').val(), 
+                content: $('#content-create').val(), 
+                language: 'en',
+                created_user_id: 1,
+                updated_user_id: 1
+            },  
+            success: function(data){
+                $.notify({ message: 'The news was created successfully!' },{ type: 'success' });
+                $('#datatables').DataTable().ajax.reload();
+            },
+            error: function(data) {
+                $.notify({ message: 'The news creates fail!' },{ type: 'danger' });
+                console.log(data);
+            }
+        });
+    });
 });

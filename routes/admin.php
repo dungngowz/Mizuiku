@@ -28,6 +28,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/news', 'NewsController@index')->name('news.index');
     Route::get('/news/program', 'NewsController@program')->name('news.program');
     Route::get('/news/environment', 'NewsController@environment')->name('news.environment');
+    Route::post('/news/store', 'NewsController@store')->name('news.store');
+    Route::get('/news/getCategory', 'NewsController@getCategory')->name('news.getCategory');
+
 
     // library
     Route::get('/library', 'LibraryController@index')->name('library.index');
