@@ -63,7 +63,7 @@
 
                             <div class="form-group m-t-20">
                                 <label>{{trans('admin.priority')}}</label>
-                                <input type="text" name="priority" class="form-control"value="{{old('priority', $record->priority)}}" placeholder="{{trans('admin.enter_priority')}}">
+                                <input type="number" name="priority" class="form-control"value="{{old('priority', $record->priority)}}" placeholder="{{trans('admin.enter_priority')}}">
                                 @if($errors->has('priority'))
                                     <span class="error-msg">{{$errors->first('priority')}}</span>
                                 @endif

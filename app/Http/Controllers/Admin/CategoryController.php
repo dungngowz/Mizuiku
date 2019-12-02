@@ -122,7 +122,7 @@ class CategoryController extends Controller
         }
 
         $langNeedTrans = ($record->language == 'vi') ? 'en' : 'vi';
-        $chkRecord = Category::where('id', $id)->where('language', $langNeedTrans)->first();
+        $chkRecord = Category::where('ref_id', $record->ref_id)->where('language', $langNeedTrans)->first();
         if($chkRecord){
             $urlTrans = url('/admin/categories/'.$chkRecord->id.'/edit');
         }else{
