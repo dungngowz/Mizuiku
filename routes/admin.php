@@ -14,7 +14,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function(){
     // dashboard
-    Route::resource('/dashboard', 'DashBoardController');
+    Route::get('/dashboard', 'DashBoardController@index')->name('admin.dashboard');
 
     // auth
     Route::get('/logout', 'Auth\LoginController@logout');

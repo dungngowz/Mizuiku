@@ -1,0 +1,54 @@
+@extends('layouts.admin.default')
+@section('title', $title)
+
+@section('content')
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">@yield('title')</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-6">
+                <form action="{{url('admin/categories/' . $record->id)}}" method="post">
+                    {{ csrf_field() }}
+
+                    @if ($record->id)
+                        <input type="hidden" name="id" value="{{$record->id}}">
+                        {{ method_field('PUT') }}
+                    @else
+                        <input type="hidden" name="type" value="{{request()->type}}">
+                        <input type="hidden" name="language" value="{{request()->lang}}">
+                        <input type="hidden" name="ref_id" value="{{request()->ref_id}}">    
+                    @endif
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group m-t-20">
+                                <label>{{trans('admin.title')}}</label>
+                                <input type="text" name="title" class="form-control"value="{{old('title', $record->title)}}" placeholder="{{trans('admin.enter_title')}}">
+                                @if($errors->has('title'))
+                                    <span class="error-msg">{{$errors->first('title')}}</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="border-top">
+                            <div class="card-body text-right">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@push('scripts')
+    <script>
+    </script>
+@endpush

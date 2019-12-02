@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Category extends Model
 {
+    public $timestamps = true;
+
     /**
      * @var array
      */
@@ -31,7 +33,7 @@ class Category extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function article()
+    public function articles()
     {
         return $this->hasMany('App\Models\Article');
     }

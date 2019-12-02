@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\Category;
+use App\Http\Requests\StoreCategory;
 
 class CategoryController extends Controller
 {
@@ -58,7 +59,13 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $title = trans('admin.news_categories') . ' - ' . trans('admin.create');
+        $record = new Category;
+
+        return view('admin.categories.edit', [
+            'title' => $title,
+            'record' => $record
+        ]);
     }
 
     /**
@@ -67,9 +74,13 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategory $request)
     {
-        //
+        $record = new Category;
+        $record->title = $request->title;
+        $record->type = $request->type;
+        $record->save();
+        return redirect('admin/categories');
     }
 
     /**
@@ -91,7 +102,17 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = trans('admin.news_categories') . ' - ' . trans('admin.edit');
+        
+        $record = Category::find($id);
+        if(!$record){
+            return redirect()->route('admin.dashboard');
+        }
+
+        return view('admin.categories.edit', [
+            'title' => $title,
+            'record' => $record
+        ]);
     }
 
     /**
@@ -103,7 +124,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = Category::find($id);
+        if(!$record){
+            return redirect()->route('admin.dashboard');
+        }
+
+        $record->title = $request->title;
+        $record->save();
+        return redirect('admin/categories');
     }
 
     /**

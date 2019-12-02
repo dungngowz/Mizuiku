@@ -9,5 +9,7 @@ return [
     'created_at' => 'Created At',
     'delete' => 'Delete',
     'edit' => 'Edit',
-    'add_new' => 'Add New'
+    'add_new' => 'Add New',
+    'create' => 'Create',
+    'enter_title' => 'Enter Title'
 ];
