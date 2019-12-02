@@ -38,7 +38,7 @@
 
         {{-- Form Edit --}}
         <div class="row">
-            <div class="col-12">
+            <div class="col-6">
                 <form action="{{url('admin/categories/' . $record->id)}}" method="post">
                     {{ csrf_field() }}
 
@@ -58,6 +58,14 @@
                                 <input type="text" name="title" class="form-control"value="{{old('title', $record->title)}}" placeholder="{{trans('admin.enter_title')}}">
                                 @if($errors->has('title'))
                                     <span class="error-msg">{{$errors->first('title')}}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group m-t-20">
+                                <label>{{trans('admin.priority')}}</label>
+                                <input type="text" name="priority" class="form-control"value="{{old('priority', $record->priority)}}" placeholder="{{trans('admin.enter_priority')}}">
+                                @if($errors->has('priority'))
+                                    <span class="error-msg">{{$errors->first('priority')}}</span>
                                 @endif
                             </div>
                         </div>

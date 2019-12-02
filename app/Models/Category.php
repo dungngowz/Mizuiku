@@ -32,7 +32,7 @@ class Category extends SoftModelBase
     /**
      * @var array
      */
-    protected $fillable = ['ref_id', 'parent_id', 'type', 'title', 'slug', 'highligh', 'language', 'status', 'created_at', 'created_user_id', 'updated_at', 'updated_user_id', 'deleted_at', 'deleted_user_id'];
+    protected $fillable = ['ref_id', 'parent_id', 'type', 'title', 'slug', 'priority', 'language', 'status', 'created_at', 'created_user_id', 'updated_at', 'updated_user_id', 'deleted_at', 'deleted_user_id'];
 
     /**
      * The "booting" method of the model.

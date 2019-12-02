@@ -81,9 +81,7 @@ class CategoryController extends Controller
     public function store(StoreCategory $request)
     {
         $record = new Category;
-        $record->title = $request->title;
-        $record->type = $request->type;
-        $record->language = $request->language;
+        $record->fill($request->all());
 
         if($request->ref_id){
             $record->ref_id = $request->ref_id;
@@ -152,7 +150,7 @@ class CategoryController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
-        $record->title = $request->title;
+        $record->fill($request->all());
         $record->save();
         return redirect('admin/categories');
     }
