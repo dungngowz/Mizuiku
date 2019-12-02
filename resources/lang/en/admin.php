@@ -13,5 +13,6 @@ return [
     'create' => 'Create',
     'enter_title' => 'Enter Title',
     'cancel' => 'Cancel',
-    'submit' => 'Submit'
+    'submit' => 'Submit',
+    'show_all_laguages' => 'Show All Languages'
 ];
