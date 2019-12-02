@@ -59,9 +59,9 @@
                         <h4 class="page-title">@yield('title')</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
-                                @section('breadcrumb-section')
+                                {{-- @section('breadcrumb-section')
                                     {{ Breadcrumbs::render() }}
-                                @show
+                                @show --}}
                             </nav>
                         </div>
                     </div>
