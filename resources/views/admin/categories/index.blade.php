@@ -12,8 +12,10 @@
                             <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th style="width:10%">ID</th>
-                                        <th style="max-width: 350px"></th>
+                                        <th>ID</th>
+                                        <th>{{trans('admin.title')}}</th>
+                                        <th>{{trans('admin.language')}}</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                             </table>
@@ -30,12 +32,17 @@
         $(function() {
             $('#datatables').DataTable({
                 ...optionDataTable,
-                ajax: '/admin/articles/data',
+                ajax: '/admin/categories/data',
                 columns: [{
                         data: 'id',
                         name: 'id'
-                    },
-                    {
+                    },{
+                        data: 'title',
+                        name: 'title'
+                    },{
+                        data: 'language',
+                        name: 'language'
+                    },{
                         data: 'actions',
                         name: 'actions',
                         className: 'text-right',

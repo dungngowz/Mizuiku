@@ -1,5 +1,5 @@
 @extends('layouts.admin.default')
-@section('title', trans('dashboard.titleList'))
+@section('title', trans('admin.dashboard'))
 
 @section('content')
     <div class="container-fluid">

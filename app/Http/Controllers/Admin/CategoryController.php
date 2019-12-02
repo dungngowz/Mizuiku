@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Article;
+use Yajra\DataTables\DataTables;
 use App\Models\Category;
 
-class ArticleController extends Controller
+class CategoryController extends Controller
 {
     public function __construct()
     {
@@ -21,9 +21,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $title = '$title';
+        $title = 'categories';
 
-        return view('admin.articles.index', [
+        return view('admin.categories.index', [
             'title' => $title
         ]);
     }
@@ -34,13 +34,18 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(Request $request) {
-        $records = Contact::all();
+        $records = Category::all();
 
         return DataTables::of($records)
             ->RawColumns(['actions'])
-            ->addColumn('actions', function($company) {
-                return view('admin.'.$this->mod . '.cols-actions', [
-                    'company' => $company, 'mod' => $this->mod
+            ->addColumn('language', function($item) {
+                return view('admin.commons.language', [
+                    'item' => $item
+                ]);
+            })
+            ->addColumn('actions', function($item) {
+                return view('admin.categories.cols-actions', [
+                    'item' => $item
                 ]);
             })
             ->make(true);

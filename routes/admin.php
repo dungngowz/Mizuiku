@@ -19,29 +19,11 @@ Route::group(['middleware' => 'auth'], function(){
     // auth
     Route::get('/logout', 'Auth\LoginController@logout');
 
-    // introduction
-    Route::get('/introduction', 'IntroductionController@index')->name('intro.index');
-    Route::get('/introduction/program', 'IntroductionController@program')->name('intro.program');
-    Route::get('/introduction/partner', 'IntroductionController@partner')->name('intro.partner');
-
     // news
-    Route::get('/news', 'NewsController@index')->name('news.index');
-    Route::get('/news/program', 'NewsController@program')->name('news.program');
-    Route::get('/news/environment', 'NewsController@environment')->name('news.environment');
-    Route::post('/news/store', 'NewsController@store')->name('news.store');
-    Route::get('/news/getCategory', 'NewsController@getCategory')->name('news.getCategory');
-
-
-    // library
-    Route::get('/library', 'LibraryController@index')->name('library.index');
-    Route::get('/library/image', 'LibraryController@image')->name('library.image');
-    Route::get('/library/video', 'LibraryController@video')->name('library.video');
-
-    // schedule
-    Route::get('/schedule', 'ScheduleController@index')->name('schedule.index');
-
-    // e-learning
-    Route::get('/e-learning', 'ELearningController@index')->name('eLearning.index');
+    Route::resource('/articles', 'ArticleController');
+    
+    Route::get('/categories/data', 'CategoryController@data');
+    Route::resource('/categories', 'CategoryController');
 
     // contact
     Route::get('/contact-us/data', 'ContactUsController@data');
