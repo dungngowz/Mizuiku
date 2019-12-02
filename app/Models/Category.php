@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use App\Models\SoftModelBase;
+use App\Scopes\LanguageScope;
 
 /**
  * @property int $id
@@ -31,7 +32,18 @@ class Category extends SoftModelBase
     /**
      * @var array
      */
-    protected $fillable = ['ref_id', 'parent_id', 'type', 'title', 'slug', 'language', 'status', 'created_at', 'created_user_id', 'updated_at', 'updated_user_id', 'deleted_at', 'deleted_user_id'];
+    protected $fillable = ['ref_id', 'parent_id', 'type', 'title', 'slug', 'priority', 'language', 'status', 'created_at', 'created_user_id', 'updated_at', 'updated_user_id', 'deleted_at', 'deleted_user_id'];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new LanguageScope);
+    }
 
     /**
      * Return the sluggable configuration array for this model.

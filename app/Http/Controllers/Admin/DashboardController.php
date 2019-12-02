@@ -18,6 +18,17 @@ class DashboardController extends Controller
     }
 
     /**
+     * Filter content by language chooised
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function setLanguage(Request $request)
+    {
+        $request->session()->put('admin-language', $request->language);
+        return back();
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

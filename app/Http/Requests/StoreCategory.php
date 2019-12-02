@@ -24,7 +24,8 @@ class StoreCategory extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:255'
+            'title' => 'required|max:255',
+            'priority' => 'required|digits_between:0,999999'
         ];
     }
 }

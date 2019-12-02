@@ -15,6 +15,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function(){
     // dashboard
     Route::get('/dashboard', 'DashBoardController@index')->name('admin.dashboard');
+    Route::get('/set-language', 'DashBoardController@setLanguage')->name('admin.set-language');
 
     // auth
     Route::get('/logout', 'Auth\LoginController@logout');

@@ -18,6 +18,19 @@
         <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
             <ul class="navbar-nav float-left mr-auto">
                 <li class="nav-item d-none d-md-block"><a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar"><i class="mdi mdi-menu font-24"></i></a></li>
+
+                {{-- Filter content by languages --}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="d-none d-md-block">{{trans('admin.show_all_laguages')}} <i class="fa fa-angle-down"></i></span>
+                        <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>   
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item {{session('admin-language') == '' ? 'active' : ''}}" href="{{route('admin.set-language', ['language' => ''])}}">{{trans('admin.show_all_laguages')}}</a>
+                        <a class="dropdown-item {{session('admin-language') == 'vi' ? 'active' : ''}}" href="{{route('admin.set-language', ['language' => 'vi'])}}">Tiếng Việt</a>
+                        <a class="dropdown-item {{session('admin-language') == 'en' ? 'active' : ''}}" href="{{route('admin.set-language', ['language' => 'en'])}}">English</a>
+                    </div>
+                </li>
             </ul>
             
             <ul class="navbar-nav float-right">

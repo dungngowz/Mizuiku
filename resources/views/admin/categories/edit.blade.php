@@ -11,7 +11,32 @@
     </div>
 
     <div class="container-fluid">
+        {{-- switch language --}}
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3">
+                        <label>
+                            Current language
+                            @php
+                                $currentLang = request()->language ? request()->language : ($record->id ? $record->language : 'vi');
+                            @endphp
+                            <img src="{{ asset('admin/assets/images/'.$currentLang.'.png') }}" alt=""/>    
+                        </label>
+                    </div>
+                    <div class="col-3">
+                        <label>
+                            Translations to language
+                            <a href="{{$urlTrans}}">
+                                <img src="{{ asset('admin/assets/images/'.($currentLang == 'vi' ? 'en' : 'vi').'.png') }}" alt=""/>    
+                            </a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        {{-- Form Edit --}}
         <div class="row">
             <div class="col-6">
                 <form action="{{url('admin/categories/' . $record->id)}}" method="post">
@@ -22,7 +47,7 @@
                         {{ method_field('PUT') }}
                     @else
                         <input type="hidden" name="type" value="{{request()->type}}">
-                        <input type="hidden" name="language" value="{{request()->lang}}">
+                        <input type="hidden" name="language" value="{{request()->language ? request()->language : 'vi'}}">
                         <input type="hidden" name="ref_id" value="{{request()->ref_id}}">    
                     @endif
 
@@ -33,6 +58,14 @@
                                 <input type="text" name="title" class="form-control"value="{{old('title', $record->title)}}" placeholder="{{trans('admin.enter_title')}}">
                                 @if($errors->has('title'))
                                     <span class="error-msg">{{$errors->first('title')}}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group m-t-20">
+                                <label>{{trans('admin.priority')}}</label>
+                                <input type="number" name="priority" class="form-control"value="{{old('priority', $record->priority)}}" placeholder="{{trans('admin.enter_priority')}}">
+                                @if($errors->has('priority'))
+                                    <span class="error-msg">{{$errors->first('priority')}}</span>
                                 @endif
                             </div>
                         </div>
@@ -50,8 +83,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-    </script>
-@endpush

@@ -35,3 +35,8 @@
   font-style: italic;
 }
 
+table.dataTable tbody th,
+table.dataTable tbody td {
+  vertical-align: middle;
+}
+
