@@ -127,7 +127,7 @@ $(function() {
             url: "/admin/news/getCategory",
             success: function(data){
                 $.each(data, function(index, item){
-                    $('#category-create').append("<option value='"+item.id+"'>"+item.type+"</option>")
+                    $('#category-create').append("<option value='"+item.id+"'>"+item.title+"</option>")
                 })
             },
             error: function(data) {

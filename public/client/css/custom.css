@@ -1,0 +1,24 @@
+#slide_background, #success_background, #loginForm_background, #ForgotForm_background {
+    -webkit-transition: all 0.3s 0.3s;
+    -moz-transition: all 0.3s 0.3s;
+    transition: all 0.3s 0.3s;
+}
+
+#slide, #slide_wrapper, #success, #loginForm, #ForgotForm, #success_wrapper {
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+#foot {
+    padding-top: 0 !important
+}
+
+#foot {
+    position: relative;
+    padding-top: 0px
+}
+
+#foot .right {
+    padding-top: 0px
+}
