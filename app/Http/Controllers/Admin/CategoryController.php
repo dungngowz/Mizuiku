@@ -57,14 +57,18 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $title = trans('admin.news_categories') . ' - ' . trans('admin.create');
         $record = new Category;
 
+        $urlTrans = url('/admin/categories/create?type='. $request->type . '&language=');
+        $urlTrans .= (empty($request->language) || $request->language == 'vi') ? 'en' : 'vi';
+
         return view('admin.categories.edit', [
             'title' => $title,
-            'record' => $record
+            'record' => $record,
+            'urlTrans' => $urlTrans
         ]);
     }
 
@@ -79,7 +83,17 @@ class CategoryController extends Controller
         $record = new Category;
         $record->title = $request->title;
         $record->type = $request->type;
-        $record->save();
+        $record->language = $request->language;
+
+        if($request->ref_id){
+            $record->ref_id = $request->ref_id;
+            $record->save();
+        }else{
+            $record->save();
+            $record->ref_id = $record->id;
+            $record->save();
+        }
+        
         return redirect('admin/categories');
     }
 
@@ -109,9 +123,18 @@ class CategoryController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
+        $langNeedTrans = ($record->language == 'vi') ? 'en' : 'vi';
+        $chkRecord = Category::where('id', $id)->where('language', $langNeedTrans)->first();
+        if($chkRecord){
+            $urlTrans = url('/admin/categories/'.$chkRecord->id.'/edit');
+        }else{
+            $urlTrans = url('/admin/categories/create?type='. $record->type . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
+        }
+
         return view('admin.categories.edit', [
             'title' => $title,
-            'record' => $record
+            'record' => $record,
+            'urlTrans' => $urlTrans
         ]);
     }
 

@@ -11,9 +11,34 @@
     </div>
 
     <div class="container-fluid">
+        {{-- switch language --}}
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3">
+                        <label>
+                            Current language
+                            @php
+                                $currentLang = request()->language ? request()->language : ($record->id ? $record->language : 'vi');
+                            @endphp
+                            <img src="{{ asset('admin/assets/images/'.$currentLang.'.png') }}" alt=""/>    
+                        </label>
+                    </div>
+                    <div class="col-3">
+                        <label>
+                            Translations to language
+                            <a href="{{$urlTrans}}">
+                                <img src="{{ asset('admin/assets/images/'.($currentLang == 'vi' ? 'en' : 'vi').'.png') }}" alt=""/>    
+                            </a>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        {{-- Form Edit --}}
         <div class="row">
-            <div class="col-6">
+            <div class="col-12">
                 <form action="{{url('admin/categories/' . $record->id)}}" method="post">
                     {{ csrf_field() }}
 
@@ -22,7 +47,7 @@
                         {{ method_field('PUT') }}
                     @else
                         <input type="hidden" name="type" value="{{request()->type}}">
-                        <input type="hidden" name="language" value="{{request()->lang}}">
+                        <input type="hidden" name="language" value="{{request()->language ? request()->language : 'vi'}}">
                         <input type="hidden" name="ref_id" value="{{request()->ref_id}}">    
                     @endif
 
@@ -50,8 +75,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-    </script>
-@endpush
