@@ -1,1 +1,1 @@
-{{$item->language}}
+<img src="{{ asset('admin/assets/images/' . $item->language . '.png') }}" alt=""/>

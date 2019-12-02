@@ -21,7 +21,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $title = 'categories';
+        $title = trans('admin.news_categories');
 
         return view('admin.categories.index', [
             'title' => $title

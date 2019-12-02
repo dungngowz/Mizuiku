@@ -2,6 +2,17 @@
 @section('title', $title)
 
 @section('content')
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">@yield('title')</h4>
+                <div class="ml-auto text-right">
+                    <button type="button" class="btn btn-success">{{trans('admin.add_new')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid">
 
         <div class="row">
@@ -15,6 +26,7 @@
                                         <th>ID</th>
                                         <th>{{trans('admin.title')}}</th>
                                         <th>{{trans('admin.language')}}</th>
+                                        <th>{{trans('admin.created_at')}}</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -41,7 +53,11 @@
                         name: 'title'
                     },{
                         data: 'language',
-                        name: 'language'
+                        name: 'language',
+                        className: 'text-center'
+                    },{
+                        data: 'created_at',
+                        name: 'created_at'
                     },{
                         data: 'actions',
                         name: 'actions',

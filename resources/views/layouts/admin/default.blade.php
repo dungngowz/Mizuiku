@@ -20,6 +20,7 @@
     <link href="{{asset('admin/assets/libs/flot/css/float-chart.css')}}" rel="stylesheet">
     <link href="{{asset('admin/dist/css/style.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/dist/css/admin.css')}}" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -51,24 +52,6 @@
         @widget('admin.sideBar', [])
 
         <div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <div class="page-breadcrumb">
-                <div class="row">
-                    <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">@yield('title')</h4>
-                        <div class="ml-auto text-right">
-                            <nav aria-label="breadcrumb">
-                                {{-- @section('breadcrumb-section')
-                                    {{ Breadcrumbs::render() }}
-                                @show --}}
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                
             @yield('content')
         </div>
     </div>

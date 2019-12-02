@@ -10,7 +10,7 @@ var optionDataTable = {
     responsive: true,
     processing: true,
     serverSide: true,
-    searching: false,
+    searching: true,
     fnDrawCallback: function(oSettings) {
         let pagination = $('#' + oSettings.sTableId).closest('.dataTables_wrapper').find('.dataTables_paginate');
         if(oSettings._iDisplayLength >= oSettings._iRecordsDisplay) {

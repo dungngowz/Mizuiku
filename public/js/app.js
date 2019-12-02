@@ -49609,9 +49609,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\CongViec\Freelancer\Project\Mizuiku\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! E:\CongViec\Freelancer\Project\Mizuiku\resources\sass\admin.scss */"./resources/sass/admin.scss");
-module.exports = __webpack_require__(/*! E:\CongViec\Freelancer\Project\Mizuiku\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/Origin/Mizuiku/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/Origin/Mizuiku/resources/sass/admin.scss */"./resources/sass/admin.scss");
+module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/Origin/Mizuiku/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
