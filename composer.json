@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2",
         "arrilot/laravel-widgets": "^3.13",
+        "cviebrock/eloquent-sluggable": "^6.0",
         "davejamesmiller/laravel-breadcrumbs": "^5.3",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",

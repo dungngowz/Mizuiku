@@ -38,7 +38,10 @@
                         </div>
                         <div class="border-top">
                             <div class="card-body text-right">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <a href="{{url('admin/categories/')}}">
+                                    <button type="button" class="btn">{{trans('admin.cancel')}}</button>
+                                </a>
+                                <button type="submit" class="btn btn-primary">{{trans('admin.submit')}}</button>
                             </div>
                         </div>
                     </div>

@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use App\Models\SoftModelBase;
 
 /**
  * @property int $id
@@ -21,14 +22,30 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $deleted_user_id
  * @property Article $article
  */
-class Category extends Model
+class Category extends SoftModelBase
 {
+    use Sluggable;
+
     public $timestamps = true;
 
     /**
      * @var array
      */
     protected $fillable = ['ref_id', 'parent_id', 'type', 'title', 'slug', 'language', 'status', 'created_at', 'created_user_id', 'updated_at', 'updated_user_id', 'deleted_at', 'deleted_user_id'];
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
