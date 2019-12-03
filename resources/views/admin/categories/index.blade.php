@@ -22,7 +22,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0">
+                            <table id="datatable" class="table table-striped table-no-bordered table-hover" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -42,10 +42,15 @@
     </div>
 @endsection
 
+@push('modals')
+    <!-- The Modal Delete -->
+    @include('admin.commons.modals.delete')
+@endpush
+
 @push('scripts')
     <script>
         $(function() {
-            $('#datatables').DataTable({
+            $('#datatable').DataTable({
                 ...optionDataTable,
                 ajax: '/admin/categories/data',
                 columns: [{

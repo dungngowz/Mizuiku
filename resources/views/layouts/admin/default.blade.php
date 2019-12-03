@@ -73,9 +73,6 @@
     <!--Menu sidebar -->
     <script src="{{asset('admin/dist/js/sidebarmenu.js')}}"></script>
 
-    <!--Custom JavaScript -->
-    <script src="{{asset('admin/dist/js/custom.js')}}"></script>
-
     <!--DataTables-->
     <script src="{{asset('admin/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
 
@@ -85,6 +82,9 @@
     <!--Notify -->
     <script src="{{asset('admin/assets/libs/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
 
+    <!--Custom JavaScript -->
+    <script src="{{asset('admin/dist/js/custom.js')}}"></script>
+    
     <!--This page JavaScript -->
     {{-- <script src="{{asset('admin/dist/js/pages/dashboards/dashboard1.js' )}}"></script> --}}
 

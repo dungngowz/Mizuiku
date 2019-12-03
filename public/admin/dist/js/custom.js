@@ -1,3 +1,5 @@
+var _token = $('meta[name="csrf-token"]').attr('content');
+
 $(function() {
     "use strict";
 
@@ -159,6 +161,36 @@ $(function() {
             error: function(data) {
                 $.notify({ message: 'The news creates fail!' },{ type: 'danger' });
                 console.log(data);
+            }
+        });
+    });
+
+    // Modal Delete
+    $( document ).on( "click", ".btn-delete", function() {
+        let id = parseInt($(this).attr('data-id'));
+        $('#modal-delete .btn-submit-delete').attr('data-id', id);
+        $('#modal-delete').modal('show');
+    });
+
+    $( document ).on( "click", ".btn-submit-delete", function() {
+        let id = parseInt($(this).attr('data-id'));
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/categories/" + id,
+            data: { 
+                _token: _token,
+                _method: 'DELETE'
+            },  
+            complete:function(data){
+                $('#modal-delete').modal('hide');
+            },
+            success: function(data){
+                $.notify({ message: 'The item was deleted successfully!' },{ type: 'success' });
+                $('#datatable').DataTable().ajax.reload();
+            },
+            error: function(data) {
+                $.notify({ message: 'The item was delete fail!' },{ type: 'danger' });
             }
         });
     });

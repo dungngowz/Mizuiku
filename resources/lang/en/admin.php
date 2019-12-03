@@ -16,5 +16,8 @@ return [
     'submit' => 'Submit',
     'show_all_laguages' => 'Show All Languages',
     'priority' => 'Priority',
-    'enter_priority' => 'Enter Priority'
+    'enter_priority' => 'Enter Priority',
+    'confirm_deletion' => 'Confirm deletion',
+    'do_you_really_want_to_delete_this_item' => 'Do you really want to delete this item?',
+    'cancel' => 'Cancel'
 ];
