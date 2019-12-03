@@ -163,6 +163,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $record = Category::find($id);
+        if($record && $record->delete()){
+            return $this->response(200);
+        }
+        return $this->response(500);
     }
 }
