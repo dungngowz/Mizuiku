@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 29, 2019 at 10:28 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th12 03, 2019 lúc 08:24 AM
+-- Phiên bản máy phục vụ: 10.4.8-MariaDB
+-- Phiên bản PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `mizuiku`
+-- Cơ sở dữ liệu: `dev_mizuiku`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `articles`
+-- Cấu trúc bảng cho bảng `articles`
 --
 
 CREATE TABLE `articles` (
@@ -50,7 +50,7 @@ CREATE TABLE `articles` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Cấu trúc bảng cho bảng `categories`
 --
 
 CREATE TABLE `categories` (
@@ -58,22 +58,33 @@ CREATE TABLE `categories` (
   `ref_id` int(10) UNSIGNED DEFAULT NULL,
   `parent_id` int(10) UNSIGNED DEFAULT NULL COMMENT 'Parent ID',
   `type` varchar(255) NOT NULL COMMENT 'Article Type',
-  `title` text DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `slug` varchar(255) NOT NULL,
-  `language` varchar(10) NOT NULL,
+  `priority` int(11) NOT NULL DEFAULT 0,
+  `language` varchar(10) NOT NULL DEFAULT 'en',
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `created_user_id` int(10) UNSIGNED NOT NULL COMMENT 'Created User ID',
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Updated At',
-  `updated_user_id` int(10) UNSIGNED NOT NULL COMMENT 'Updated User ID',
   `deleted_at` datetime DEFAULT NULL COMMENT 'Deleted At',
-  `deleted_user_id` int(10) UNSIGNED DEFAULT NULL COMMENT 'Deleted User ID'
+  `created_user_id` bigint(20) UNSIGNED NOT NULL,
+  `updated_user_id` bigint(20) UNSIGNED NOT NULL,
+  `deleted_user_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `categories`
+--
+
+INSERT INTO `categories` (`id`, `ref_id`, `parent_id`, `type`, `title`, `slug`, `priority`, `language`, `status`, `created_at`, `updated_at`, `deleted_at`, `created_user_id`, `updated_user_id`, `deleted_user_id`) VALUES
+(1, 1, NULL, 'news', 'Tin tức môi trường', 'environmental-news', 0, 'vi', 1, '2019-12-02 09:38:16', '2019-12-02 09:38:51', NULL, 1, 1, NULL),
+(2, 1, NULL, 'news', 'Environmental news', 'environmental-news-1', 0, 'en', 1, '2019-12-02 09:39:06', '2019-12-02 09:39:06', NULL, 1, 1, NULL),
+(3, 3, NULL, 'news', 'Tin tức chương trình', 'tin-tuc-chuong-trinh', 1, 'vi', 1, '2019-12-02 09:39:21', '2019-12-02 10:24:47', NULL, 1, 1, NULL),
+(4, 3, NULL, 'news', 'Program news', 'program-news', 0, 'en', 1, '2019-12-02 09:39:35', '2019-12-02 09:39:35', NULL, 1, 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contacts`
+-- Cấu trúc bảng cho bảng `contacts`
 --
 
 CREATE TABLE `contacts` (
@@ -93,7 +104,7 @@ CREATE TABLE `contacts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `contacts`
+-- Đang đổ dữ liệu cho bảng `contacts`
 --
 
 INSERT INTO `contacts` (`id`, `fullname`, `phone`, `email`, `content`, `ip`, `language`, `created_at`, `created_user_id`, `updated_at`, `updated_user_id`, `deleted_at`, `deleted_user_id`) VALUES
@@ -120,7 +131,7 @@ INSERT INTO `contacts` (`id`, `fullname`, `phone`, `email`, `content`, `ip`, `la
 -- --------------------------------------------------------
 
 --
--- Table structure for table `failed_jobs`
+-- Cấu trúc bảng cho bảng `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -135,7 +146,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Cấu trúc bảng cho bảng `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -145,7 +156,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `migrations`
+-- Đang đổ dữ liệu cho bảng `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -156,7 +167,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `password_resets`
+-- Cấu trúc bảng cho bảng `password_resets`
 --
 
 CREATE TABLE `password_resets` (
@@ -168,7 +179,7 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `programs_timeline`
+-- Cấu trúc bảng cho bảng `programs_timeline`
 --
 
 CREATE TABLE `programs_timeline` (
@@ -191,7 +202,33 @@ CREATE TABLE `programs_timeline` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `seo`
+--
+
+CREATE TABLE `seo` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `table_name` varchar(255) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `keywords` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `og_title` text DEFAULT NULL,
+  `og_description` text DEFAULT NULL,
+  `og_type` text DEFAULT NULL,
+  `og_url` text DEFAULT NULL,
+  `og_image` text DEFAULT NULL,
+  `language` varchar(10) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_user_id` int(10) UNSIGNED NOT NULL,
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_user_id` int(10) UNSIGNED NOT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `deleted_user_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `users`
 --
 
 CREATE TABLE `users` (
@@ -206,11 +243,18 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Indexes for dumped tables
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin@gmail.com', NULL, '$2y$10$ZA9uaFSkQ2b4aqLTyXSaxOGXhcKTRDJs.EPG9eJE.hozF5k2.lET.', NULL, '2019-12-01 19:49:07', '2019-12-01 19:49:07');
+
+--
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `articles`
+-- Chỉ mục cho bảng `articles`
 --
 ALTER TABLE `articles`
   ADD PRIMARY KEY (`id`),
@@ -221,110 +265,129 @@ ALTER TABLE `articles`
   ADD KEY `article_ref_id` (`ref_id`) USING BTREE;
 
 --
--- Indexes for table `categories`
+-- Chỉ mục cho bảng `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD KEY `parent_id` (`parent_id`),
-  ADD KEY `category_ref_id` (`ref_id`);
+  ADD KEY `category_ref_id` (`ref_id`),
+  ADD KEY `create_user_id` (`created_user_id`) USING BTREE,
+  ADD KEY `updated_user_id` (`updated_user_id`),
+  ADD KEY `deleted_user_id` (`deleted_user_id`);
 
 --
--- Indexes for table `contacts`
+-- Chỉ mục cho bảng `contacts`
 --
 ALTER TABLE `contacts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `failed_jobs`
+-- Chỉ mục cho bảng `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `migrations`
+-- Chỉ mục cho bảng `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `password_resets`
+-- Chỉ mục cho bảng `password_resets`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indexes for table `programs_timeline`
+-- Chỉ mục cho bảng `programs_timeline`
 --
 ALTER TABLE `programs_timeline`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category_ref_id` (`ref_id`);
 
 --
--- Indexes for table `users`
+-- Chỉ mục cho bảng `seo`
+--
+ALTER TABLE `seo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `articles`
+-- AUTO_INCREMENT cho bảng `articles`
 --
 ALTER TABLE `articles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `contacts`
+-- AUTO_INCREMENT cho bảng `contacts`
 --
 ALTER TABLE `contacts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `failed_jobs`
+-- AUTO_INCREMENT cho bảng `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `programs_timeline`
+-- AUTO_INCREMENT cho bảng `programs_timeline`
 --
 ALTER TABLE `programs_timeline`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT cho bảng `seo`
+--
+ALTER TABLE `seo`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `categories`
+-- Các ràng buộc cho bảng `articles`
 --
--- ALTER TABLE `categories`
---   ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`id`) REFERENCES `articles` (`category_id`);
--- COMMIT;
-
 ALTER TABLE `articles`
   ADD CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+
+--
+-- Các ràng buộc cho bảng `categories`
+--
+ALTER TABLE `categories`
+  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`created_user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `categories_ibfk_2` FOREIGN KEY (`updated_user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `categories_ibfk_3` FOREIGN KEY (`deleted_user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

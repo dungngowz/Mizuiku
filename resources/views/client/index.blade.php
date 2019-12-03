@@ -34,6 +34,9 @@
             <div class="parent">
 
                 <div class="left">
+                    @foreach ($articles as $item)
+                        
+                    
                     <div class='item'>
                         <div class='tieude'>
                             <a href='https://mizuiku-emyeunuocsach.vn/program-news.htm' title='{{ __('client.program-news') }}' class='namex'>{{ __('client.program-news') }}</a>
@@ -49,7 +52,8 @@
                         <a href='https://mizuiku-emyeunuocsach.vn/comic-series-mizu-a-talking-water-drop-released.htm' title='Comic series "Mizu – A Talking Water Drop" released' class='name'>Comic series "Mizu – A Talking Water Drop" released</a>
                         <div class='cont dotdotdot'>In October 2019, the comic series "Mizu – A talking water drop" was officially launched and came to a all children in Vietnam. The comic series were written and built based on educational content of "Mizuiku - I love clean water" program. The comic series were created by Suntory Holdings Limtied., Suntory PepsiCo Vietnam Beverage Co., Ltd., Central Council of the Ho Chi Minh Young Pioneer Organization, Kim Dong Publishers; including content design contributions by Mizuiku program team of SPVB.</div>
                     </div>
-                    <div class='item'>
+                    @endforeach
+                    {{-- <div class='item'>
                         <div class='tieude'>
                             <a href='https://mizuiku-emyeunuocsach.vn/environmental-news.htm' title='{{ __('client.environment-news') }}' class='namex'>{{ __('client.environment-news') }}</a>
                         </div>
@@ -63,7 +67,7 @@
                         </div>
                         <a href='https://mizuiku-emyeunuocsach.vn/water-and-sanitation-letting-data-lead-the-way.htm' title='Water and Sanitation: Letting Data Lead the Way' class='name'>Water and Sanitation: Letting Data Lead the Way</a>
                         <div class='cont dotdotdot'>Guest article in International Institute for Sustainable Development (IISD) SDG Knowledge Hub by Mr Gilbert F. Houngbo, Chair of UN-Water and President of the International Fund for Agricultural Development (IFAD).</div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="right">

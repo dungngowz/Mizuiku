@@ -38,11 +38,11 @@
                 <p class="lh22">{{ __('client.pls-bellow') }}</p>
                 <p class="lh22 c666">{{ __('client.note-1') }}<span class="cRed">*</span> {{ __('client.note-2') }}</p>
                 <div class="ip">
-                    <input name="DisplayLoadControl$Login$tbUser" type="text" id="DisplayLoadControl_Login_tbUser" class="required" onchange="ResetLabel();" placeholder="{{ __('client.username') }} *" style="display: none;" />
+                    <input name="DisplayLoadControl$Login$tbUser" type="text" id="DisplayLoadControl_Login_tbUser" class="required" placeholder="{{ __('client.username') }} *" style="display: none;" />
                     <input name="DisplayLoadControl$Login$tbEmail" type="text" id="DisplayLoadControl_Login_tbEmail" class="required" onchange="setUserName(this.value);" placeholder="Email *" />
                     <label class="username"></label>
 
-                    <input name="DisplayLoadControl$Login$tbPass" type="password" id="DisplayLoadControl_Login_tbPass" class="required" onchange="ResetLabel2();" placeholder="{{ __('client.password') }} *" />
+                    <input name="DisplayLoadControl$Login$tbPass" type="password" id="DisplayLoadControl_Login_tbPass" class="required" placeholder="{{ __('client.password') }} *" />
                     <label class="passw">{{ __('client.validate-pass') }}</label>
                     <input name="DisplayLoadControl$Login$tbName" type="text" id="DisplayLoadControl_Login_tbName" class="required" placeholder="{{ __('client.last-and-fist-name') }} *" />
                     <label>
