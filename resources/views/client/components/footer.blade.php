@@ -5,34 +5,33 @@
             <a class='slogan dn dbMobile' title='' href='/'><img alt="" src="{{ asset('client/pic/banner/logorespo_636332056462083140.png') }}" /></a>
 
             <ul id='CommonMenuFooter' class='main'>
-                <li><a href='/' title='Home '>Home </a></li>
-                <li><a href='https://mizuiku-emyeunuocsach.vn/gioi-thieu.htm' title='About us'>About us</a></li>
-                <li><a href='https://mizuiku-emyeunuocsach.vn/tin-tuc.htm' title='News'>News</a></li>
-                <li><a href='https://mizuiku-emyeunuocsach.vn/thu-vien.htm' title='Gallery'>Gallery</a></li>
-                <li><a href='https://mizuiku-emyeunuocsach.vn/lich-trinh.htm' title='Program timeline'>Program timeline</a></li>
-                <li><a href='https://mizuiku-emyeunuocsach.vn/khoa-hoc.htm' title='E-learning'>E-learning</a></li>
-                <li><a href='https://mizuiku-emyeunuocsach.vn/lien-he.htm' title='Contact Us'>Contact Us</a></li>
+                <li><a href='/' title='{{ __('client.home') }}'>{{ __('client.home') }}</a></li>
+                <li><a href='https://mizuiku-emyeunuocsach.vn/gioi-thieu.htm' title='{{ __('client.about-us') }}'>{{ __('client.about-us') }}</a></li>
+                <li><a href='https://mizuiku-emyeunuocsach.vn/tin-tuc.htm' title='{{ __('client.news') }}'>{{ __('client.news') }}</a></li>
+                <li><a href='https://mizuiku-emyeunuocsach.vn/thu-vien.htm' title='{{ __('client.gallery') }}'>{{ __('client.gallery') }}</a></li>
+                <li><a href='https://mizuiku-emyeunuocsach.vn/lich-trinh.htm' title='{{ __('client.program-timeline') }}'>{{ __('client.program-timeline') }}</a></li>
+                <li><a href='https://mizuiku-emyeunuocsach.vn/khoa-hoc.htm' title='{{ __('client.e-learning-r') }}'>{{ __('client.e-learning-r') }}</a></li>
+                <li><a href='https://mizuiku-emyeunuocsach.vn/lien-he.htm' title='{{ __('client.contact-us') }}'>{{ __('client.contact-us') }}</a></li>
             </ul>
             <div>
-                <span style="background-image:initial;background-position:initial;background-size:initial;background-repeat:initial;background-attachment:initial;background-origin:initial;background-clip:initial;">Permit No. <strong>30/GP-STTTT</strong><br />(Granted by Department of Information and Communications of Ho Chi Minh city, 23Mar2018)</span>
-                <br /> Suntory PepsiCo Vietnam Beverage</div>
+                <span style="background-image:initial;background-position:initial;background-size:initial;background-repeat:initial;background-attachment:initial;background-origin:initial;background-clip:initial;">{{ __('client.permit-no-1') }}</span>
+                <br/>{{ __('client.permit-no-2') }}
+                <br />{{ __('client.contact') }}</div>
+            <div>{{ __('client.address') }}</div>
+            <div>{{ __('client.tel') }} &nbsp;</div>
             <div>
-                Address: 5th Floor, Sheraton Hotel, 88 Dong Khoi Street, District 1, Ho Chi Minh City, Vietnam.</div>
-            <div>
-                Tel: (84 28) 3 821 9437&nbsp;</div>
-            <div>
-                Website: www.mizuiku-emyeunuocsach.vn
+                Website: {{ env('APP_URL', 'http://localhost') }}
                 <br /> &nbsp;
             </div>
 
             <div class='tal cmNav_ft'>
-            <a target='_blank' href='https://www.facebook.com/mizuikuemyeunuocsach/' title='fanpage facebook'><span>Follow us</span><img alt='fb' src='{{ asset('client/css/Common/fb.png') }}' /></a>
+            <a target='_blank' href='https://www.facebook.com/mizuikuemyeunuocsach/' title='fanpage facebook'><span>{{ __('client.follow-us') }}</span><img alt='fb' src='{{ asset('client/css/Common/fb.png') }}' /></a>
                 <div class='cb'></div>
             </div>
         </div>
         <div class='right'>
             <div>
-                <div class='lienket'><span class='c005286 fOfficinaSanITCMedium'>Website Link </span>
+                <div class='lienket'><span class='c005286 fOfficinaSanITCMedium'>{{ __('client.web-link') }}</span>
                     <select onchange='navigation(this.value);'>
                         <option value=''>Link</option>
                         <option value='http://hoisinhvien.com.vn/'>Student Union of Vietnam</option>
@@ -46,14 +45,14 @@
                 </div>
                 <div class='cb'></div>
             </div>
-            <p class='tar lh24 fs16'>© 2017 All Rights Reserved</p>
-            <p class='tar lh24 fs16'>Suntory PepsiCo Vietnam Beverage Company Limited</p>
-            <p class='tar lh24 fs16'>All content on this site is solely the property of</p>
-            <p class='tar lh24 fs16'>"Mizuiku-I love clean water" program in Vietnam</p>
-            <p class='tar lh24 fs16'>All rights reserved</p>
+            <p class='tar lh24 fs16'>{{ __('client.reserved-1') }}</p>
+            <p class='tar lh24 fs16'>{{ __('client.company') }}</p>
+            <p class='tar lh24 fs16'>{{ __('client.site-1') }}</p>
+            <p class='tar lh24 fs16'>{{ __('client.site-2') }}</p>
+            <p class='tar lh24 fs16'>{{ __('client.reserved-2') }}</p>
             <ul id='CommonMenuBottom' class='main'>
-                <li><a href='http://mizuiku-emyeunuocsach.vn/dieu-khoan-su-dung.htm' title='Terms of Use'>Terms of Use</a></li>
-                <li><a href='/chinh-sach-bao-mat.htm' title='Private Policy'>Private Policy</a></li>
+                <li><a href='http://mizuiku-emyeunuocsach.vn/dieu-khoan-su-dung.htm' title='{{ __('client.term') }}'>{{ __('client.term') }}</a></li>
+                <li><a href='/chinh-sach-bao-mat.htm' title='{{ __('client.private-policy') }}'>{{ __('client.private-policy') }}</a></li>
             </ul>
             <div class='solieu'>
                 <span class='online'>Online: 4</span>

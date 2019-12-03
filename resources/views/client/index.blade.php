@@ -18,10 +18,10 @@
             <div class='wrp'>
                 <div class='item'>
                     <div class='tieude'>
-                        <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program.htm' title='"Mizuiku - I love clean water" program ' class='name'>"Mizuiku - I love clean water" program </a>
+                        <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program.htm' title='{{ __('client.title-banner') }}' class='name'>{{ __('client.title-banner') }}</a>
                     </div>
-                    <div class='cont dotdotdot'>“Mizuiku” is an initiative by Suntory Holdings Limited (Suntory) that was established and implemented in Japan since 2004. The aim of the initiative is to educate and spread awareness on the importance of water conservation and preservation among primary school students. Since then, the program has captivated the participation of over 145,000 primary school children and parents, receiving high praise from the Japanese community and society.</div>
-                    <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program.htm' title='"Mizuiku - I love clean water" program ' class='xct'>Details</a>
+                    <div class='cont dotdotdot'>>{{ __('client.des-banner') }}</div>
+                    <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program.htm' title='{{ __('client.title-banner') }}' class='xct'>{{ __('client.details') }}</a>
                     <div class='cb'></div>
                 </div>
                 <div class='cb'></div>
@@ -36,7 +36,7 @@
                 <div class="left">
                     <div class='item'>
                         <div class='tieude'>
-                            <a href='https://mizuiku-emyeunuocsach.vn/program-news.htm' title='Program news' class='namex'>Program news</a>
+                            <a href='https://mizuiku-emyeunuocsach.vn/program-news.htm' title='{{ __('client.program-news') }}' class='namex'>{{ __('client.program-news') }}</a>
                         </div>
 
                         <div class='khungAnh'>
@@ -51,7 +51,7 @@
                     </div>
                     <div class='item'>
                         <div class='tieude'>
-                            <a href='https://mizuiku-emyeunuocsach.vn/environmental-news.htm' title='Environmental news ' class='namex'>Environmental news </a>
+                            <a href='https://mizuiku-emyeunuocsach.vn/environmental-news.htm' title='{{ __('client.environment-news') }}' class='namex'>{{ __('client.environment-news') }}</a>
                         </div>
 
                         <div class='khungAnh'>
@@ -69,7 +69,7 @@
                 <div class="right">
 
                     <div class='tieude'>
-                        <a href='https://mizuiku-emyeunuocsach.vn/tin-tuc.htm' title='News' class='namex'>News</a>
+                        <a href='https://mizuiku-emyeunuocsach.vn/tin-tuc.htm' title='{{ __('client.news') }}' class='namex'>{{ __('client.news') }}</a>
                     </div>
 
                     <div class='item'>
@@ -113,9 +113,9 @@
         <div class="wrp">
             <div id='pta' class='hp'>
                 <div class='tieude'>
-                    <a href='https://mizuiku-emyeunuocsach.vn/photo-library.htm' title='Photo library' class='name'>Photo library</a>
-                    <a href='https://mizuiku-emyeunuocsach.vn/photo-library.htm' title='Photo library' class='xtc'>
-                        <p>All</p>
+                    <a href='https://mizuiku-emyeunuocsach.vn/photo-library.htm' title='{{ __('client.photo-library') }}' class='name'>{{ __('client.photo-library') }}</a>
+                    <a href='https://mizuiku-emyeunuocsach.vn/photo-library.htm' title='{{ __('client.photo-library') }}' class='xtc'>
+                        <p>{{ __('client.all') }}</p>
                     </a>
                     <div class='cb'></div>
                 </div>
@@ -171,8 +171,8 @@
 
             <div id='video' class='hp'>
                 <div class='tieude'>
-                    <a href='https://mizuiku-emyeunuocsach.vn/video-gallery.htm' title='Video gallery' class='name'>Video gallery</a>
-                    <a href='https://mizuiku-emyeunuocsach.vn/video-gallery.htm' title='Video gallery' class='xtc'>
+                    <a href='https://mizuiku-emyeunuocsach.vn/video-gallery.htm' title='{{ __('client.video-gallery') }}' class='name'>{{ __('client.video-gallery') }}</a>
+                    <a href='https://mizuiku-emyeunuocsach.vn/video-gallery.htm' title='{{ __('client.video-gallery') }}' class='xtc'>
                         <p>All</p>
                     </a>
                     <div class='cb'></div>
@@ -237,7 +237,7 @@
             <div class="wrp">
 
                 <div class='tieude'>
-                    <a href='https://mizuiku-emyeunuocsach.vn/lich-trinh.htm' title='Program timeline' class='name'>Program timeline</a>
+                    <a href='https://mizuiku-emyeunuocsach.vn/lich-trinh.htm' title='{{ __('client.program-timeline') }}' class='name'>{{ __('client.program-timeline') }}</a>
                 </div>
                 <div class='cont'></div>
                 <div class='group'>

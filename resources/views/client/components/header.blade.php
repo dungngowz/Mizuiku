@@ -41,18 +41,18 @@
 <div id="header">
     <div class="wrp">
         <div class="buton">
-            <div class='hocngay'><a href='https://mizuiku-emyeunuocsach.vn/e-learning.htm' class='btnhocngay' title='Learn now'>Learn now</a>
+            <div class='hocngay'><a href='https://mizuiku-emyeunuocsach.vn/e-learning.htm' class='btnhocngay' title='>{{ __('client.learn-now') }}'>{{ __('client.learn-now') }}</a>
                 <ul class='subloginx sublogin2'>
-                    <li><a href='https://mizuiku-emyeunuocsach.vn/e-learning.htm' title='E-learning'>E-learning</a></li>
-                    <li><a href='/thong-ke.htm' title='Thống kê'>Thống kê</a></li>
+                    <li><a href='https://mizuiku-emyeunuocsach.vn/e-learning.htm' title={{ __('client.e-learning') }}'>{{ __('client.e-learning') }}</a></li>
+                    <li><a href='/thong-ke.htm' title='{{ __('client.statistical') }}'>{{ __('client.statistical') }}</a></li>
                 </ul>
             </div>
             <div class="regis">
                 <div class="regis1">
 
-                    <a href='javascript://' title='Register' class='btndk slide_open fs12'>Register</a>
+                    <a href='javascript://' title='{{ __('client.register') }}' class='btndk slide_open fs12'>{{ __('client.register') }}</a>
                     <span class='border'></span>
-                    <a href='javascript://' title='Login' class='btndk loginForm_open fs12'>Login</a>
+                    <a href='javascript://' title='{{ __('client.login') }}' class='btndk loginForm_open fs12'>{{ __('client.login') }}</a>
 
                 </div>
             </div>
@@ -74,55 +74,50 @@
         <i class="icoac">
         <img src="{{ asset('client/css/Common/menuactive.png') }}" /></i>
         <ul id='CommonMenuMain' class='main'>
-            <li data='1' class='litop '><a href='/' title='Home '>{{ __('client.home') }}</a></li>
-            <li data='2' class='litop hassub'><a href='https://mizuiku-emyeunuocsach.vn/gioi-thieu.htm' title='About us'>About us</a>
+            <li data='1' class='litop '><a href='/' title='{{ __('client.home') }}'>{{ __('client.home') }}</a></li>
+            <li data='2' class='litop hassub'><a href='https://mizuiku-emyeunuocsach.vn/gioi-thieu.htm' title='{{ __('client.about-us') }}'>{{ __('client.about-us') }}</a>
                 <ul>
                     <li>
-                        <a title='"Mizuiku - I love clean water" program introduction' href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program-introduction.htm'>"Mizuiku - I love clean water" program introduction</a>
+                        <a title='{{ __('client.about-us-1') }}' href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program-introduction.htm'>{{ __('client.about-us-1') }}</a>
                     </li>
                     <li>
-                        <a title='Co-organizing Board ' href='https://mizuiku-emyeunuocsach.vn/co-organizing-board.htm'>Co-organizing Board </a>
+                        <a title='{{ __('client.about-us-2') }}' href='https://mizuiku-emyeunuocsach.vn/co-organizing-board.htm'>{{ __('client.about-us-2') }}</a>
                     </li>
                 </ul>
             </li>
-            <li data='3' class='litop hassub'><a href='https://mizuiku-emyeunuocsach.vn/tin-tuc.htm' title='News'>News</a>
+            <li data='3' class='litop hassub'><a href='https://mizuiku-emyeunuocsach.vn/tin-tuc.htm' title='{{ __('client.news') }}'>{{ __('client.news') }}</a>
                 <ul>
                     <li>
-                        <a title='Program news' href='https://mizuiku-emyeunuocsach.vn/program-news.htm'>Program news</a>
+                        <a title='{{ __('client.program-news') }}' href='https://mizuiku-emyeunuocsach.vn/program-news.htm'>{{ __('client.program-news') }}</a>
                     </li>
                     <li>
-                        <a title='Environmental news ' href='https://mizuiku-emyeunuocsach.vn/environmental-news.htm'>Environmental news </a>
+                        <a title='{{ __('client.environment-news') }}' href='https://mizuiku-emyeunuocsach.vn/environmental-news.htm'>{{ __('client.environment-news') }}</a>
                     </li>
                 </ul>
             </li>
-            <li data='4' class='litop hassub'><a href='https://mizuiku-emyeunuocsach.vn/thu-vien.htm' title='Gallery'>Gallery</a>
+            <li data='4' class='litop hassub'><a href='https://mizuiku-emyeunuocsach.vn/thu-vien.htm' title='{{ __('client.gallery') }}'>{{ __('client.gallery') }}</a>
                 <ul>
                     <li>
-                        <a title='Album ' href='https://mizuiku-emyeunuocsach.vn/album.htm'>Album </a>
+                        <a title='{{ __('client.album') }}' href='https://mizuiku-emyeunuocsach.vn/album.htm'>{{ __('client.album') }}</a>
                     </li>
                     <li>
-                        <a title='Videos' href='https://mizuiku-emyeunuocsach.vn/videos-en.htm'>Videos</a>
+                        <a title='{{ __('client.video') }}' href='https://mizuiku-emyeunuocsach.vn/videos-en.htm'>{{ __('client.video') }}</a>
                     </li>
                 </ul>
             </li>
-            <li data='5' class='litop hassub'><a href='https://mizuiku-emyeunuocsach.vn/lich-trinh.htm' title='Program timeline'>Program timeline</a>
+            <li data='5' class='litop hassub'><a href='https://mizuiku-emyeunuocsach.vn/lich-trinh.htm' title='Program timeline'>{{ __('client.program-timeline') }}</a>
+            </li>
+            <li data='6' class='litop hassub'><a href='https://mizuiku-emyeunuocsach.vn/khoa-hoc.htm' title='{{ __('client.e-learning') }}'>{{ __('client.e-learning') }}</a>
                 <ul>
                     <li>
-                        <a title='Program timeline' href='https://mizuiku-emyeunuocsach.vn/program-timeline.htm'>Program timeline</a>
+                        <a title='{{ __('client.e-learning-sub') }}' href='https://mizuiku-emyeunuocsach.vn/e-learning.htm'>{{ __('client.e-learning-sub') }}</a>
                     </li>
                 </ul>
             </li>
-            <li data='6' class='litop hassub'><a href='https://mizuiku-emyeunuocsach.vn/khoa-hoc.htm' title='E-learning'>E-learning</a>
-                <ul>
-                    <li>
-                        <a title='E-learning' href='https://mizuiku-emyeunuocsach.vn/e-learning.htm'>E-learning</a>
-                    </li>
-                </ul>
-            </li>
-            <li data='7' class='litop '><a href='https://mizuiku-emyeunuocsach.vn/lien-he.htm' title='Contact Us'>Contact Us</a></li>
+            <li data='7' class='litop '><a href='https://mizuiku-emyeunuocsach.vn/lien-he.htm' title='{{ __('client.contact-us') }}'>{{ __('client.contact-us') }}</a></li>
         </ul>
         <div class="cmNav">
-            <a target='_blank' href='https://www.facebook.com/mizuikuemyeunuocsach/' title='fanpage facebook'><span>Follow us</span><img alt='fb' src='{{ asset('client/css/Common/fb.png') }}'/></a>
+            <a target='_blank' href='https://www.facebook.com/mizuikuemyeunuocsach/' title='fanpage facebook'><span>{{ __('client.follow-us') }}</span><img alt='fb' src='{{ asset('client/css/Common/fb.png') }}'/></a>
             <div class="cb"></div>
         </div>
     </div>

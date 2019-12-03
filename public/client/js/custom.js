@@ -1,15 +1,15 @@
 
-function ResetLabel() {
-    if ($("#DisplayLoadControl_Login_tbUser").next().text() !== "Tên đăng nhập cần có ít nhất 8 ký tự. Ví dụ: Mizuiku123") {
-        $("#DisplayLoadControl_Login_tbUser").next().text("Tên đăng nhập cần có ít nhất 8 ký tự. Ví dụ: Mizuiku123").removeClass("cRed");
-    }
-}
+// function ResetLabel() {
+//     if ($("#DisplayLoadControl_Login_tbUser").next().text() !== "Tên đăng nhập cần có ít nhất 8 ký tự. Ví dụ: Mizuiku123") {
+//         $("#DisplayLoadControl_Login_tbUser").next().text("Tên đăng nhập cần có ít nhất 8 ký tự. Ví dụ: Mizuiku123").removeClass("cRed");
+//     }
+// }
 
-function ResetLabel2() {
-    if ($("#DisplayLoadControl_Login_tbPass").next().text() !== "Mật khẩu cần có ít nhất 8 ký tự bao gồm: Chữ, số, chữ in hoa và kí tự đặc biệt. Ví dụ: Mizuiku12@") {
-        $("#DisplayLoadControl_Login_tbPass").next().text("Mật khẩu cần có ít nhất 8 ký tự bao gồm: Chữ, số, chữ in hoa và kí tự đặc biệt. Ví dụ: Mizuiku12@").removeClass("cRed");
-    }
-}
+// function ResetLabel2() {
+//     if ($("#DisplayLoadControl_Login_tbPass").next().text() !== "Mật khẩu cần có ít nhất 8 ký tự bao gồm: Chữ, số, chữ in hoa và kí tự đặc biệt. Ví dụ: Mizuiku12@") {
+//         $("#DisplayLoadControl_Login_tbPass").next().text("Mật khẩu cần có ít nhất 8 ký tự bao gồm: Chữ, số, chữ in hoa và kí tự đặc biệt. Ví dụ: Mizuiku12@").removeClass("cRed");
+//     }
+// }
 
 function ResetLabel3() {
     $("label.loginnote").hide();
@@ -497,8 +497,3 @@ hovermenu();
 $(window).resize(function() {
     hovermenu();
 });
-
-// function SetLangDisplay(langId) {
-//     setCookie('LanguageIdDisplay', langId, '3', '/', '', '');
-//     window.location = weburl;
-// }
