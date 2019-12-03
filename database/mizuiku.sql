@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 29, 2019 at 10:28 AM
+-- Generation Time: Dec 03, 2019 at 08:17 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -58,17 +58,28 @@ CREATE TABLE `categories` (
   `ref_id` int(10) UNSIGNED DEFAULT NULL,
   `parent_id` int(10) UNSIGNED DEFAULT NULL COMMENT 'Parent ID',
   `type` varchar(255) NOT NULL COMMENT 'Article Type',
-  `title` text DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `slug` varchar(255) NOT NULL,
-  `language` varchar(10) NOT NULL,
+  `priority` int(11) NOT NULL DEFAULT 0,
+  `language` varchar(10) NOT NULL DEFAULT 'en',
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `created_user_id` int(10) UNSIGNED NOT NULL COMMENT 'Created User ID',
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Updated At',
-  `updated_user_id` int(10) UNSIGNED NOT NULL COMMENT 'Updated User ID',
   `deleted_at` datetime DEFAULT NULL COMMENT 'Deleted At',
-  `deleted_user_id` int(10) UNSIGNED DEFAULT NULL COMMENT 'Deleted User ID'
+  `created_user_id` bigint(20) UNSIGNED NOT NULL,
+  `updated_user_id` bigint(20) UNSIGNED NOT NULL,
+  `deleted_user_id` bigint(20) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `ref_id`, `parent_id`, `type`, `title`, `slug`, `priority`, `language`, `status`, `created_at`, `updated_at`, `deleted_at`, `created_user_id`, `updated_user_id`, `deleted_user_id`) VALUES
+(1, 1, NULL, 'news', 'Tin tức môi trường', 'environmental-news', 0, 'vi', 1, '2019-12-02 09:38:16', '2019-12-02 09:38:51', NULL, 1, 1, NULL),
+(2, 1, NULL, 'news', 'Environmental news', 'environmental-news-1', 0, 'en', 1, '2019-12-02 09:39:06', '2019-12-02 09:39:06', NULL, 1, 1, NULL),
+(3, 3, NULL, 'news', 'Tin tức chương trình', 'tin-tuc-chuong-trinh', 1, 'vi', 1, '2019-12-02 09:39:21', '2019-12-02 10:24:47', NULL, 1, 1, NULL),
+(4, 3, NULL, 'news', 'Program news', 'program-news', 0, 'en', 1, '2019-12-02 09:39:35', '2019-12-02 09:39:35', NULL, 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -191,6 +202,32 @@ CREATE TABLE `programs_timeline` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `seo`
+--
+
+CREATE TABLE `seo` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `table_name` varchar(255) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `keywords` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `og_title` text DEFAULT NULL,
+  `og_description` text DEFAULT NULL,
+  `og_type` text DEFAULT NULL,
+  `og_url` text DEFAULT NULL,
+  `og_image` text DEFAULT NULL,
+  `language` varchar(10) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_user_id` int(10) UNSIGNED NOT NULL,
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_user_id` int(10) UNSIGNED NOT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `deleted_user_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -204,6 +241,13 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin@gmail.com', NULL, '$2y$10$ZA9uaFSkQ2b4aqLTyXSaxOGXhcKTRDJs.EPG9eJE.hozF5k2.lET.', NULL, '2019-12-01 19:49:07', '2019-12-01 19:49:07');
 
 --
 -- Indexes for dumped tables
@@ -226,7 +270,10 @@ ALTER TABLE `articles`
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD KEY `parent_id` (`parent_id`),
-  ADD KEY `category_ref_id` (`ref_id`);
+  ADD KEY `category_ref_id` (`ref_id`),
+  ADD KEY `create_user_id` (`created_user_id`) USING BTREE,
+  ADD KEY `updated_user_id` (`updated_user_id`),
+  ADD KEY `deleted_user_id` (`deleted_user_id`);
 
 --
 -- Indexes for table `contacts`
@@ -260,6 +307,12 @@ ALTER TABLE `programs_timeline`
   ADD KEY `category_ref_id` (`ref_id`);
 
 --
+-- Indexes for table `seo`
+--
+ALTER TABLE `seo`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -280,7 +333,7 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `contacts`
@@ -307,10 +360,16 @@ ALTER TABLE `programs_timeline`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
 
 --
+-- AUTO_INCREMENT for table `seo`
+--
+ALTER TABLE `seo`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -319,12 +378,10 @@ ALTER TABLE `users`
 --
 -- Constraints for table `categories`
 --
--- ALTER TABLE `categories`
---   ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`id`) REFERENCES `articles` (`category_id`);
--- COMMIT;
-
-ALTER TABLE `articles`
-  ADD CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+ALTER TABLE `categories`
+  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`created_user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `categories_ibfk_2` FOREIGN KEY (`updated_user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `categories_ibfk_3` FOREIGN KEY (`deleted_user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
