@@ -19,6 +19,7 @@ Route::get('locale/{locale}', function ($locale){
 // Location
 Route::group(['namespace' => 'Client'], function(){
     Route::get('/', 'HomeController@index')->name('home');
-;
+    Route::get('/contact-us', 'HomeController@contact')->name('contact');
+
 });
 

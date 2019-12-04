@@ -88,5 +88,16 @@ return [
     'confirm-access' => 'Xác nhận quyền truy cập thống kê',
     'enter-pass' => 'Vui lòng nhập mật khẩu',
     'confirm' => 'Xác nhận',
-    'username' => 'Tên đăng nhập'
+    'username' => 'Tên đăng nhập',
+
+    'mizuiku-program'=> 'Chương trình Mizuiku',
+    'i-love-clean-water'=> 'Em yêu nước sạch',
+    'contact-1'=> 'Công ty TNHH Nước Giải khát Suntory PepsiCo Việt Nam',
+    'address-1'=> 'Lầu 5, Khách sạn Sheraton, 88 Đường Đồng Khởi, Quận 1, Tp. HCM, Việt Nam.',
+    'tel-1' => 'Điện thoại',
+    'address-2' => 'Địa chỉ',
+    'contact-2'=> 'Liên hệ chương trình',
+    'send-contact' => 'Gửi liên hệ về cho chúng tôi',
+    'location' => 'Địa điểm công ty',
+
 ];

@@ -18,18 +18,18 @@
     <link rel="Shortcut icon" href="{{ asset('client/pic/banner/iconbtnhoc_636319920147622774636559225605595018.png') }}" type="image/x-icon" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{-- <script type="text/javascript">
-		var weburl = "{{ env('APP_URL', 'http://localhost') }}";
-		if (document.URL.indexOf("www.") > -1) window.location = document.URL.replace("www.", "");
+    <script type="text/javascript">
+		var weburl = "{{ config('app.url') }}";
+		// if (document.URL.indexOf("www.") > -1) window.location = document.URL.replace("www.", "");
 
-		if (window.location.protocol === "http:" && document.URL.indexOf("localhost") < 0) {
-            var restOfUrl = window.location.href.substr(5);
-            console.log(restOfUrl)
-			// window.location = "https:" + restOfUrl;
-		}
+		// if (window.location.protocol === "http:" && document.URL.indexOf("localhost") < 0) {
+        //     var restOfUrl = window.location.href.substr(5);
+        //     console.log(restOfUrl)
+		// 	// window.location = "https:" + restOfUrl;
+		// }
 
-		if (document.URL.indexOf("www.") > -1) window.location = document.URL.replace("www.", "");
-	</script> --}}
+		// if (document.URL.indexOf("www.") > -1) window.location = document.URL.replace("www.", "");
+	</script>
 
     {{-- CSS --}}
     <link href="{{ asset('client/css/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" />

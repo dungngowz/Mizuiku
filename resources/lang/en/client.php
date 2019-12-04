@@ -88,5 +88,16 @@ return [
     'confirm-access' => 'Confirm access to statistics',
     'enter-pass' => 'Please enter a password',
     'confirm' => 'Confirm',
-    'username' => 'Username'
+    'username' => 'Username',
+
+    'mizuiku-program'=> 'Mizuiku program',
+    'i-love-clean-water'=> 'I love clean water',
+    'contact-1'=> 'Suntory PepsiCo Beverage Company Limited Vietnam',
+    'address-1'=> '5F, Sheraton Hotel, 88 Dong Khoi Street, District 1, Ho Chi Minh city, Vietnam',
+    'tel-1' => 'Tel',
+    'address-2' => 'Address',
+    'contact-2'=> 'Contact Program',
+    'send-contact' => 'Send us your contact',
+    'location' => 'Location',
+
 ];

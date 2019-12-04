@@ -114,7 +114,7 @@
                     </li>
                 </ul>
             </li>
-            <li data='7' class='litop '><a href='https://mizuiku-emyeunuocsach.vn/lien-he.htm' title='{{ __('client.contact-us') }}'>{{ __('client.contact-us') }}</a></li>
+            <li data='7' class='litop '><a href='{{ route('contact') }}' title='{{ __('client.contact-us') }}'>{{ __('client.contact-us') }}</a></li>
         </ul>
         <div class="cmNav">
             <a target='_blank' href='https://www.facebook.com/mizuikuemyeunuocsach/' title='fanpage facebook'><span>{{ __('client.follow-us') }}</span><img alt='fb' src='{{ asset('client/css/Common/fb.png') }}'/></a>
