@@ -17,25 +17,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $categories = Category::with('articles')->where('priority', '1')->get();
-        // $data = [];
-        // foreach ($categories as $item) {
-        //     // $item = [];
-        //     dd($item);
-        //     array_push($item, [$key->getAttributes(),'articles' => '']);
-        //     // array_push()
-        // }
-        $data = Category::with('articles')->get()->pluck('categories')->flatten();
-        dd($data);
+        $categories = Category::with('articles')->where('priority', '1')->take(2)->get()->toArray();
+        $articles = Article::get()->sortByDesc('created_at')->take(5)->toArray();
 
-        // $categories = \DB::table('categories')->where('priority', '1')->limit(2);
-        // $articles = $categories->rightJoin('articles','category_id','categories.id')->get();
-        $data = [
-            // 'categories' => $categories ->get(),
-            // 'articles' => $articles
-            'data' => $categories
-        ];
-
-        return view('client.index', $data);
+        return view('client.index', [ 'categories' => $categories, 'articles' => $articles]);
     }
 }

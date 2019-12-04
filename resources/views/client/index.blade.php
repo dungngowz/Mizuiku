@@ -34,40 +34,27 @@
             <div class="parent">
 
                 <div class="left">
-                    @foreach ($articles as $item)
+                    @foreach ($categories as $item)
                         
                     
                     <div class='item'>
                         <div class='tieude'>
-                            <a href='https://mizuiku-emyeunuocsach.vn/program-news.htm' title='{{ __('client.program-news') }}' class='namex'>{{ __('client.program-news') }}</a>
+                            <a href='https://mizuiku-emyeunuocsach.vn/program-news.htm' title='{{ $item['title'] }}' class='namex'>{{ $item['title'] }}</a>
                         </div>
 
+                        {{-- Article --}}
                         <div class='khungAnh'>
-                            <a class='khungAnhCrop' href='https://mizuiku-emyeunuocsach.vn/comic-series-mizu-a-talking-water-drop-released.htm' title='Comic series "Mizu – A Talking Water Drop" released'>
+                            <a class='khungAnhCrop' href='{{ url(end($item['articles'])['slug']) }}' title='Comic series "Mizu – A Talking Water Drop" released'>
                                 <img alt="Comic series Mizu – A Talking Water Drop released" class="" src="{{ asset('client/pic/News/PN1_637070152760942277.jpg') }}" />
                             </a>
-                            <div class='date'>18/10/2019</div>
-                            <a href='https://mizuiku-emyeunuocsach.vn/comic-series-mizu-a-talking-water-drop-released.htm' title='Comic series "Mizu – A Talking Water Drop" released' class='over'></a>
+                            <div class='date'>{{ date('d/m/Y', strtotime(end($item['articles'])['created_at'])) }}</div>
+                            <a href='{{ url(end($item['articles'])['slug']) }}' title='Comic series "Mizu – A Talking Water Drop" released' class='over'></a>
                         </div>
-                        <a href='https://mizuiku-emyeunuocsach.vn/comic-series-mizu-a-talking-water-drop-released.htm' title='Comic series "Mizu – A Talking Water Drop" released' class='name'>Comic series "Mizu – A Talking Water Drop" released</a>
-                        <div class='cont dotdotdot'>In October 2019, the comic series "Mizu – A talking water drop" was officially launched and came to a all children in Vietnam. The comic series were written and built based on educational content of "Mizuiku - I love clean water" program. The comic series were created by Suntory Holdings Limtied., Suntory PepsiCo Vietnam Beverage Co., Ltd., Central Council of the Ho Chi Minh Young Pioneer Organization, Kim Dong Publishers; including content design contributions by Mizuiku program team of SPVB.</div>
+                        <a href='{{ url(end($item['articles'])['slug']) }}' title='Comic series "Mizu – A Talking Water Drop" released' class='name'>{{ end($item['articles'])['title'] }}</a>
+                        <div class='cont dotdotdot'>{{ end($item['articles'])['description'] }}</div>
                     </div>
                     @endforeach
-                    {{-- <div class='item'>
-                        <div class='tieude'>
-                            <a href='https://mizuiku-emyeunuocsach.vn/environmental-news.htm' title='{{ __('client.environment-news') }}' class='namex'>{{ __('client.environment-news') }}</a>
-                        </div>
-
-                        <div class='khungAnh'>
-                            <a class='khungAnhCrop' href='https://mizuiku-emyeunuocsach.vn/water-and-sanitation-letting-data-lead-the-way.htm' title='Water and Sanitation: Letting Data Lead the Way'>
-                                <img alt="Water and Sanitation: Letting Data Lead the Way" class="" src="{{ asset('client/pic/News/EN03_637069230759526545.jpeg') }}" />
-                            </a>
-                            <div class='date'>17/10/2019</div>
-                            <a href='https://mizuiku-emyeunuocsach.vn/water-and-sanitation-letting-data-lead-the-way.htm' title='Water and Sanitation: Letting Data Lead the Way' class='over'></a>
-                        </div>
-                        <a href='https://mizuiku-emyeunuocsach.vn/water-and-sanitation-letting-data-lead-the-way.htm' title='Water and Sanitation: Letting Data Lead the Way' class='name'>Water and Sanitation: Letting Data Lead the Way</a>
-                        <div class='cont dotdotdot'>Guest article in International Institute for Sustainable Development (IISD) SDG Knowledge Hub by Mr Gilbert F. Houngbo, Chair of UN-Water and President of the International Fund for Agricultural Development (IFAD).</div>
-                    </div> --}}
+                    
                 </div>
 
                 <div class="right">
@@ -75,37 +62,13 @@
                     <div class='tieude'>
                         <a href='https://mizuiku-emyeunuocsach.vn/tin-tuc.htm' title='{{ __('client.news') }}' class='namex'>{{ __('client.news') }}</a>
                     </div>
-
-                    <div class='item'>
-                        <div class='date'>18/10/2019</div>
-                        <a href='https://mizuiku-emyeunuocsach.vn/comic-series-mizu-a-talking-water-drop-released.htm' title='Comic series "Mizu – A Talking Water Drop" released' class='name'>Comic series "Mizu – A Talking Water Drop" released</a>
-                        <div class='cb'></div>
-                    </div>
-
-                    <div class='item'>
-                        <div class='date'>17/10/2019</div>
-                        <a href='https://mizuiku-emyeunuocsach.vn/water-and-sanitation-letting-data-lead-the-way.htm' title='Water and Sanitation: Letting Data Lead the Way' class='name'>Water and Sanitation: Letting Data Lead the Way</a>
-                        <div class='cb'></div>
-                    </div>
-
-                    <div class='item'>
-                        <div class='date'>24/09/2019</div>
-                        <a href='https://mizuiku-emyeunuocsach.vn/do-we-really-need-8-glasses-of-water-a-day.htm' title='Do we really need 8 glasses of water a day?' class='name'>Do we really need 8 glasses of water a day?</a>
-                        <div class='cb'></div>
-                    </div>
-
-                    <div class='item'>
-                        <div class='date'>16/09/2019</div>
-                        <a href='https://mizuiku-emyeunuocsach.vn/the-rise-of-thirsty-cities.htm' title='The Rise of Thirsty Cities' class='name'>The Rise of Thirsty Cities</a>
-                        <div class='cb'></div>
-                    </div>
-
-                    <div class='item'>
-                        <div class='date'>06/09/2019</div>
-                        <a href='https://mizuiku-emyeunuocsach.vn/exciting-mizuiku-activity-with-school-wall-painting-in-lang-son-quang-nam-ben-tre-and-dong-nai-province.htm' title='Exciting Mizuiku Activity with School Wall Painting  in Lang Son, Quang Nam, Ben Tre and Dong Nai Province' class='name'>Exciting Mizuiku Activity with School Wall Painting  in Lang Son, Quang Nam, Ben Tre and Dong Nai Province</a>
-                        <div class='cb'></div>
-                    </div>
-
+                    @foreach ($articles as $item)
+                        <div class='item'>
+                            <div class='date'>{{ date('d/m/Y', strtotime($item['created_at'])) }}</div>
+                            <a href='{{ url($item['slug']) }}' title='Comic series "Mizu – A Talking Water Drop" released' class='name'>{{ $item['title'] }}</a>
+                            <div class='cb'></div>
+                        </div>
+                    @endforeach
                 </div>
 
                 <div class="cb"></div>
