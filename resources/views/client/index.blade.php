@@ -17,12 +17,14 @@
         <div class='main'>
             <div class='wrp'>
                 <div class='item'>
-                    <div class='tieude'>
-                        <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program.htm' title='{{ $intro[0]['title'] }}' class='name'>{{ $intro[0]['title'] }}</a>
-                    </div>
-                    <div class='cont dotdotdot'>{{ $intro[0]['description'] }}</div>
-                    <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program.htm' title='{{ __('client.details') }}' class='xct'>{{ __('client.details') }}</a>
-                    <div class='cb'></div>
+                    @if ($intro)
+                        <div class='tieude'>
+                            <a href='{{ route('introduction', ['path' => 'program-introduction']) }}' title='{{ $intro[0]['title'] }}' class='name'>{{ $intro[0]['title'] }}</a>
+                        </div>
+                        <div class='cont dotdotdot'>{{ $intro[0]['description'] }}</div>
+                        <a href='{{ route('detail-introduction') }}' title='{{ __('client.details') }}' class='xct'>{{ __('client.details') }}</a>
+                        <div class='cb'></div>
+                    @endif
                 </div>
                 <div class='cb'></div>
             </div>

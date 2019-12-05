@@ -123,5 +123,8 @@ return [
     'size' => 'Size',
     'prev' => 'Previous',
     'send-email' => 'Send email',
-    'print' => 'Print'
+    'print' => 'Print',
+    'course' => 'Course',
+    'sign-in-for-learn' => 'Sign in to learn now'
+
 ];

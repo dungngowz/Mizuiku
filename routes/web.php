@@ -22,6 +22,9 @@ Route::group(['namespace' => 'Client'], function(){
     Route::get('/contact-us', 'HomeController@contact')->name('contact');
     Route::get('/introduction', 'HomeController@introduction')->name('introduction');
     Route::get('/detail-introduction', 'HomeController@detailIntroduction')->name('detail-introduction');
+    Route::get('/live-learn-introduction', 'HomeController@liveLearnIntroduction')->name('live-learn-introduction');
+    Route::get('/e-learning', 'HomeController@eLearning')->name('e-learning');
+    Route::get('/program-timeline', 'HomeController@programTimeline')->name('program-timeline');
 
 });
 

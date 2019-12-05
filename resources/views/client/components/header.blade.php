@@ -75,13 +75,13 @@
         <img src="{{ asset('client/css/Common/menuactive.png') }}" /></i>
         <ul id='CommonMenuMain' class='main'>
             <li data='1' class='litop '><a href='/' title='{{ __('client.home') }}'>{{ __('client.home') }}</a></li>
-            <li data='2' class='litop hassub'><a href='{{ route('introduction') }}' title='{{ __('client.about-us') }}'>{{ __('client.about-us') }}</a>
+            <li data='2' class='litop hassub'><a href='{{ route('introduction', ['path' => 'program-introduction']) }}' title='{{ __('client.about-us') }}'>{{ __('client.about-us') }}</a>
                 <ul>
                     <li>
-                        <a title='{{ __('client.about-us-1') }}' href='{{ route('introduction') }}'>{{ __('client.about-us-1') }}</a>
+                        <a title='{{ __('client.about-us-1') }}' href='{{ route('introduction', ['path' => 'program-introduction']) }}'>{{ __('client.about-us-1') }}</a>
                     </li>
                     <li>
-                        <a title='{{ __('client.about-us-2') }}' href='https://mizuiku-emyeunuocsach.vn/co-organizing-board.htm'>{{ __('client.about-us-2') }}</a>
+                        <a title='{{ __('client.about-us-2') }}' href='{{ route('introduction', ['path' => 'live-learn-introduction']) }}'>{{ __('client.about-us-2') }}</a>
                     </li>
                 </ul>
             </li>
@@ -105,12 +105,12 @@
                     </li>
                 </ul>
             </li>
-            <li data='5' class='litop hassub'><a href='https://mizuiku-emyeunuocsach.vn/lich-trinh.htm' title='Program timeline'>{{ __('client.program-timeline') }}</a>
+            <li data='5' class='litop hassub'><a href='{{ route('program-timeline') }}' title='Program timeline'>{{ __('client.program-timeline') }}</a>
             </li>
-            <li data='6' class='litop hassub'><a href='https://mizuiku-emyeunuocsach.vn/khoa-hoc.htm' title='{{ __('client.e-learning') }}'>{{ __('client.e-learning') }}</a>
+            <li data='6' class='litop hassub'><a href='{{ route('e-learning') }}' title='{{ __('client.e-learning') }}'>{{ __('client.e-learning') }}</a>
                 <ul>
                     <li>
-                        <a title='{{ __('client.e-learning-sub') }}' href='https://mizuiku-emyeunuocsach.vn/e-learning.htm'>{{ __('client.e-learning-sub') }}</a>
+                        <a title='{{ __('client.e-learning-sub') }}' href='/'>{{ __('client.e-learning-sub') }}</a>
                     </li>
                 </ul>
             </li>

@@ -29,7 +29,7 @@
                             <div class="thongke">
 
                             <a class='thongke_ngay'>{{ __('client.date-post') }}: {{ date('H:i - d/m/Y',strtotime($introDetail[0]['created_at'])) }}</a>
-                                <a class='thongke_luotxem'>{{ __('client.views') }}: add table</a>
+                                <a class='thongke_luotxem'>{{ __('client.views') }}: add view table</a>
 
                                 <div class="cochu">
                                     <a class="NormalSize" href="javascript:ResetTextSize()">{{ __('client.size') }}</a>
@@ -40,7 +40,9 @@
 
                             <div class="noidung TextSize">
                                 {{-- Add content here --}}
-                                {!! $introDetail[0]['content'] !!}
+                                @if ($introDetail)
+                                    {!! $introDetail[0]['content'] !!}
+                                @endif
                             </div>
                         </div>
                             <div id="CommonCuoiChiTietTin">

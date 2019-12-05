@@ -118,10 +118,12 @@ return [
     'edu-partner' => 'Đơn vị đồng hành',
     'title-icon-student' => 'TW HỘI SINH VIÊN VIỆT NAM',
     'title-icon-young' => 'HỘI ĐỒNG ĐỘI TRUNG ƯƠNG',
-    'date-post' => 'Ngaày đăng',
+    'date-post' => 'Ngày đăng',
     'views' => 'Lượt xem',
     'size' => 'Cỡ chữ',
     'prev' => 'Về trang trước',
     'send-email' => 'Gửi email',
-    'print' => 'In trang'
+    'print' => 'In trang',
+    'course' => 'Khóa học',
+    'sign-in-for-learn' => 'Đăng Nhập Để Học Ngay'
 ];

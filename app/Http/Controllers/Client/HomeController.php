@@ -11,30 +11,23 @@ use App\Models\Contact;
 class HomeController extends Controller
 {
 
-    protected $locale;
-
-    public function __construct()
-    {
-        $this->locale = session()->get('locale') ? session()->get('locale') : 'en';
-    }
-
     //
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // $locale = 
+        $locale = session()->get('locale') ? session()->get('locale') : 'en';
 
         $categories = Category::where('categories.priority', '1')
-        ->where('categories.language',$this->locale)
+        ->where('categories.language',$locale)
         ->join('articles','articles.category_id','categories.id')
-        ->where('articles.language',$this->locale)
+        ->where('articles.language',$locale)
         ->select('articles.*','categories.title as category_title')
         ->get()->take(2)->toArray();
 
-        $articles = Article::where('language',$this->locale)->orderBy('created_at', 'desc')->get()->take(5)->toArray();
-        $intro = Article::where('keyword', 'introduction')->where('language',$this->locale)->get()->toArray();
+        $articles = Article::where('language',$locale)->orderBy('created_at', 'desc')->get()->take(5)->toArray();
+        $intro = Article::where('keyword', 'program-introduction')->where('language',$locale)->get()->toArray();
 
         $data = [ 
             'categories' => $categories, 
@@ -66,19 +59,42 @@ class HomeController extends Controller
      */
     public function introduction(Request $request)
     {
-        $intro = Article::where('keyword', 'introduction')->where('language',$this->locale)->get()->toArray();
-
+        $locale = session()->get('locale') ? session()->get('locale') : 'en';
+        $intro = Article::where('keyword', $request->path)->where('language',$locale)->get()->toArray();
+        
         return view('client.gioi-thieu', ['intro' => $intro]);
     }
 
     //
     /**
-     * Display a listing of the introduction.
+     * Display a listing of the detail introduction.
      */
     public function detailIntroduction(Request $request)
     {
-        $introDetail = Article::where('keyword', 'introduction-detail')->where('language',$this->locale)->get()->toArray();
+        $locale = session()->get('locale') ? session()->get('locale') : 'en';
+        $introDetail = Article::where('slug', $request->slug)->where('language',$locale)->get()->toArray();
 
         return view('client.detail', ['introDetail' => $introDetail]);
+    }
+
+    //
+    /**
+     * Display a listing of the e-learning.
+     */
+    public function eLearning()
+    {
+        $locale = session()->get('locale') ? session()->get('locale') : 'en';
+        $eLearning = Article::where('keyword', 'e-learning')->where('language',$locale)->get()->toArray();
+
+        return view('client.khoa-hoc', ['eLearning' => $eLearning]);
+    }
+
+    //
+    /**
+     * Display a listing of the program timeline.
+     */
+    public function programTimeline()
+    {
+        return view('client.lich-trinh');
     }
 }

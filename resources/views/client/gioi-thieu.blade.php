@@ -28,12 +28,14 @@
         <div class='main'>
             <div class='wrp'>
                 <div class='item'>
-                    <div class='tieude'>
-                        <a href='{{ url($intro[0]['slug']) }}' title='"Mizuiku - I love clean water" program ' class='name'>{{ $intro[0]['title'] }}</a>
-                    </div>
-                    <div class='cont dotdotdot'>{{ $intro[0]['description'] }}</div>
-                    <a href='{{ route('detail-introduction') }}' title='Details' class='xct'>{{ __('client.details') }}</a>
-                    <div class='cb'></div>
+                    @if ($intro)
+                        <div class='tieude'>
+                            <a href='{{ url($intro[0]['slug']) }}' title='"Mizuiku - I love clean water" program ' class='name'>{{ $intro[0]['title'] }}</a>
+                        </div>
+                        <div class='cont dotdotdot'>{{ $intro[0]['description'] }}</div>
+                        <a href='{{ route('detail-introduction', ['slug' => ($intro[0]['slug'])]) }}' title='Details' class='xct'>{{ __('client.details') }}</a>
+                        <div class='cb'></div>
+                    @endif
                 </div>
                 <div class='cb'></div>
             </div>
