@@ -11,26 +11,31 @@ use App\Models\Contact;
 class HomeController extends Controller
 {
 
+    protected $locale;
+
+    public function __construct()
+    {
+        $this->locale = session()->get('locale') ? session()->get('locale') : 'en';
+    }
+
     //
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $locale = session()->get('locale') ? session()->get('locale') : 'en';
+        // $locale = 
 
         $categories = Category::where('categories.priority', '1')
-        ->where('categories.language',$locale)
+        ->where('categories.language',$this->locale)
         ->join('articles','articles.category_id','categories.id')
-        ->where('articles.language',$locale)
+        ->where('articles.language',$this->locale)
         ->select('articles.*','categories.title as category_title')
         ->get()->take(2)->toArray();
 
-        $articles = Article::where('language',$locale)->orderBy('created_at', 'desc')->get()->take(5)->toArray();
-        $intro = Article::where('keyword', 'introduction')->where('language',$locale)->get()->toArray();
-        
+        $articles = Article::where('language',$this->locale)->orderBy('created_at', 'desc')->get()->take(5)->toArray();
+        $intro = Article::where('keyword', 'introduction')->where('language',$this->locale)->get()->toArray();
+
         $data = [ 
             'categories' => $categories, 
             'articles' => $articles,
@@ -53,5 +58,27 @@ class HomeController extends Controller
             return $this->response(200,true, $contact, trans('The contact was created successfully'));
         }
         return view('client.lien-he');
+    }
+
+    //
+    /**
+     * Display a listing of the introduction.
+     */
+    public function introduction(Request $request)
+    {
+        $intro = Article::where('keyword', 'introduction')->where('language',$this->locale)->get()->toArray();
+
+        return view('client.gioi-thieu', ['intro' => $intro]);
+    }
+
+    //
+    /**
+     * Display a listing of the introduction.
+     */
+    public function detailIntroduction(Request $request)
+    {
+        $introDetail = Article::where('keyword', 'introduction-detail')->where('language',$this->locale)->get()->toArray();
+
+        return view('client.detail', ['introDetail' => $introDetail]);
     }
 }

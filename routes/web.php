@@ -20,6 +20,8 @@ Route::get('locale/{locale}', function ($locale){
 Route::group(['namespace' => 'Client'], function(){
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/contact-us', 'HomeController@contact')->name('contact');
+    Route::get('/introduction', 'HomeController@introduction')->name('introduction');
+    Route::get('/detail-introduction', 'HomeController@detailIntroduction')->name('detail-introduction');
 
 });
 

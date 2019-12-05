@@ -9,14 +9,14 @@
                 <a href='http://hoisinhvien.com.vn/' target='_blank' title='Student Union of Vietnam'>
                     <img alt='Student Union of Vietnam' src='{{ asset('client/pic/banner/hs_636538_636560181771074555.png') }}' />
                 </a>
-                <p class='title fs11'>Student Union of Vietnam</p>
+                <p class='title fs11'>{{ __('client.title-icon-student')}}</p>
             </div>
 
             <div class='item'>
                 <a href='http://www.thieunhivietnam.vn/' target='_blank' title='Young Pioneer Org'>
                     <img alt='Young Pioneer Org' src='{{ asset('client/pic/banner/hd_636538_636560181837288343.png') }}' />
                 </a>
-                <p class='title fs11'>Young Pioneer Org</p>
+                <p class='title fs11'>{{ __('client.title-icon-young')}}</p>
             </div>
 
             <div class='item'>
@@ -75,10 +75,10 @@
         <img src="{{ asset('client/css/Common/menuactive.png') }}" /></i>
         <ul id='CommonMenuMain' class='main'>
             <li data='1' class='litop '><a href='/' title='{{ __('client.home') }}'>{{ __('client.home') }}</a></li>
-            <li data='2' class='litop hassub'><a href='https://mizuiku-emyeunuocsach.vn/gioi-thieu.htm' title='{{ __('client.about-us') }}'>{{ __('client.about-us') }}</a>
+            <li data='2' class='litop hassub'><a href='{{ route('introduction') }}' title='{{ __('client.about-us') }}'>{{ __('client.about-us') }}</a>
                 <ul>
                     <li>
-                        <a title='{{ __('client.about-us-1') }}' href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program-introduction.htm'>{{ __('client.about-us-1') }}</a>
+                        <a title='{{ __('client.about-us-1') }}' href='{{ route('introduction') }}'>{{ __('client.about-us-1') }}</a>
                     </li>
                     <li>
                         <a title='{{ __('client.about-us-2') }}' href='https://mizuiku-emyeunuocsach.vn/co-organizing-board.htm'>{{ __('client.about-us-2') }}</a>

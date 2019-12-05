@@ -11,7 +11,7 @@
                     <div class='item'>
                         <a class='date' href='{{ url($item['slug']) }}' title='{{ $item['title'] }}'>
                             <div class='text'>
-                                <span class='fs12'>{{ $item['month'] }}</span>
+                                <span class='fs12'>{{ __('client.months.'. strtolower(\App\Models\ProgramsTimeline::convertMonth($item['month'])) ) }}</span>
                             </div>
                         </a>
 

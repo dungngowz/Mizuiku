@@ -34,4 +34,7 @@ class ProgramsTimeline extends Model
      */
     protected $fillable = ['ref_id', 'title', 'slug', 'month', 'link', 'language', 'status', 'created_at', 'created_user_id', 'updated_at', 'updated_user_id', 'deleted_at', 'deleted_user_id'];
 
+    public static function convertMonth($numberMonth) {
+        return date("M", strtotime($numberMonth));
+    }
 }

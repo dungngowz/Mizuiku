@@ -13,11 +13,6 @@
 @endsection
 @section('content')
 
-        <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyBd0CRmUEi0rqasieRwBmdjh1a8J9IkYLU">
-        </script>
-        <script src="https://mizuiku-emyeunuocsach.vn/js/GoogleMap/GoogleMapInit.js"></script>
-        <script src="https://mizuiku-emyeunuocsach.vn/js/GoogleMap/infobox.js"></script>
-
         <div id="container">
             <div id="contact">
                 <div class="wrp">

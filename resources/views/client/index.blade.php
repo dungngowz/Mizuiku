@@ -18,10 +18,10 @@
             <div class='wrp'>
                 <div class='item'>
                     <div class='tieude'>
-                        <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program.htm' title='{{ __('client.title-banner') }}' class='name'>{{ $intro[0]['title'] }}</a>
+                        <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program.htm' title='{{ $intro[0]['title'] }}' class='name'>{{ $intro[0]['title'] }}</a>
                     </div>
                     <div class='cont dotdotdot'>{{ $intro[0]['description'] }}</div>
-                    <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program.htm' title='{{ __('client.title-banner') }}' class='xct'>{{ __('client.details') }}</a>
+                    <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program.htm' title='{{ __('client.details') }}' class='xct'>{{ __('client.details') }}</a>
                     <div class='cb'></div>
                 </div>
                 <div class='cb'></div>
