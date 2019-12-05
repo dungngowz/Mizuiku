@@ -7,11 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Contact;
-use App\Http\Controllers\Traits\ApiResponse;
 
 class HomeController extends Controller
 {
-    use ApiResponse;
 
     //
     /**
@@ -22,7 +20,7 @@ class HomeController extends Controller
     public function index()
     {
         $locale = session()->get('locale') ? session()->get('locale') : 'en';
-        
+
         $categories = Category::where('categories.priority', '1')
         ->where('categories.language',$locale)
         ->join('articles','articles.category_id','categories.id')
@@ -30,9 +28,16 @@ class HomeController extends Controller
         ->select('articles.*','categories.title as category_title')
         ->get()->take(2)->toArray();
 
-        $articles = Article::get()->where('language',$locale)->sortByDesc('created_at')->take(5)->toArray();
+        $articles = Article::where('language',$locale)->orderBy('created_at', 'desc')->get()->take(5)->toArray();
+        $intro = Article::where('keyword', 'introduction')->where('language',$locale)->get()->toArray();
+        
+        $data = [ 
+            'categories' => $categories, 
+            'articles' => $articles,
+            'intro' => $intro
+        ];
 
-        return view('client.index', [ 'categories' => $categories, 'articles' => $articles]);
+        return view('client.index', $data);
     }
 
     //

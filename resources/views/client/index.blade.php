@@ -18,9 +18,9 @@
             <div class='wrp'>
                 <div class='item'>
                     <div class='tieude'>
-                        <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program.htm' title='{{ __('client.title-banner') }}' class='name'>{{ __('client.title-banner') }}</a>
+                        <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program.htm' title='{{ __('client.title-banner') }}' class='name'>{{ $intro[0]['title'] }}</a>
                     </div>
-                    <div class='cont dotdotdot'>>{{ __('client.des-banner') }}</div>
+                    <div class='cont dotdotdot'>{{ $intro[0]['description'] }}</div>
                     <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program.htm' title='{{ __('client.title-banner') }}' class='xct'>{{ __('client.details') }}</a>
                     <div class='cb'></div>
                 </div>
@@ -199,108 +199,7 @@
         </div>
     </div>
 
-    <div id="lichtrinh">
-        <div class="top bot">
-            <div class="wrp">
-
-                <div class='tieude'>
-                    <a href='https://mizuiku-emyeunuocsach.vn/lich-trinh.htm' title='{{ __('client.program-timeline') }}' class='name'>{{ __('client.program-timeline') }}</a>
-                </div>
-                <div class='cont'></div>
-                <div class='group'>
-                    <div class='item'>
-                        <a class='date' href='https://mizuiku-emyeunuocsach.vn/nationwide-mizuiku-i-love-clean-water-program-kick-off-ceremony.htm' title='Nationwide "Mizuiku-I love clean water" program kick-off ceremony'>
-                            <div class='text'>
-                                <span class='fs12'>March</span>
-                            </div>
-                        </a>
-
-                        <a href='https://mizuiku-emyeunuocsach.vn/nationwide-mizuiku-i-love-clean-water-program-kick-off-ceremony.htm' title='Nationwide "Mizuiku-I love clean water" program kick-off ceremony' class='name'>Nationwide "Mizuiku-I love clean water" program kick-off ceremony</a>
-                    </div>
-
-                    <div class='item'>
-                        <a class='date' href='https://mizuiku-emyeunuocsach.vn/trainings-for-elementary-school-teachers.htm' title='Trainings for Elementary School Teachers'>
-                            <div class='text'>
-                                <span class='fs12'>April</span>
-                            </div>
-                        </a>
-
-                        <a href='https://mizuiku-emyeunuocsach.vn/trainings-for-elementary-school-teachers.htm' title='Trainings for Elementary School Teachers' class='name'>Trainings for Elementary School Teachers</a>
-                    </div>
-
-                    <div class='item'>
-                        <a class='date' href='https://mizuiku-emyeunuocsach.vn/mizuiku-classes-about-water-resource-and-environment-education-for-elementary-school-students.htm' title='Mizuiku classes about  water resource and environment education for elementary school students'>
-                            <div class='text'>
-                                <span class='fs12'>May</span>
-                            </div>
-                        </a>
-
-                        <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-classes-about-water-resource-and-environment-education-for-elementary-school-students.htm' title='Mizuiku classes about  water resource and environment education for elementary school students' class='name'>Mizuiku classes about  water resource and environment education for elementary school students</a>
-                    </div>
-
-                    <div class='item'>
-                        <a class='date' href='https://mizuiku-emyeunuocsach.vn/constructing-and-upgrading-clean-water-facilities-at-beneficiary-elementary-schools-and-community-sites.htm' title='Constructing and upgrading clean water facilities at beneficiary elementary schools and community sites'>
-                            <div class='text'>
-                                <span class='fs12'>June</span>
-                            </div>
-                        </a>
-
-                        <a href='https://mizuiku-emyeunuocsach.vn/constructing-and-upgrading-clean-water-facilities-at-beneficiary-elementary-schools-and-community-sites.htm' title='Constructing and upgrading clean water facilities at beneficiary elementary schools and community sites' class='name'>Constructing and upgrading clean water facilities at beneficiary elementary schools and community sites</a>
-                    </div>
-
-                    <div class='item'>
-                        <a class='date' href='https://mizuiku-emyeunuocsach.vn/mizuiku-ambassador-program.htm' title='Mizuiku Ambassador Program'>
-                            <div class='text'>
-                                <span class='fs12'>July</span>
-                            </div>
-                        </a>
-
-                        <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-ambassador-program.htm' title='Mizuiku Ambassador Program' class='name'>Mizuiku Ambassador Program</a>
-                    </div>
-
-                    <div class='item'>
-                        <a class='date' href='https://mizuiku-emyeunuocsach.vn/mizuiku-extra-curriculum-conducted-by-mizuiku-ambassadors-about-water-resource-and-environment-education-for-children.htm' title='Mizuiku extra curriculum conducted by Mizuiku Ambassadors about  water resource and environment education for children'>
-                            <div class='text'>
-                                <span class='fs12'>August</span>
-                            </div>
-                        </a>
-
-                        <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-extra-curriculum-conducted-by-mizuiku-ambassadors-about-water-resource-and-environment-education-for-children.htm' title='Mizuiku extra curriculum conducted by Mizuiku Ambassadors about  water resource and environment education for children' class='name'>Mizuiku extra curriculum conducted by Mizuiku Ambassadors about  water resource and environment education for children</a>
-                    </div>
-
-                    <div class='item'>
-                        <a class='date' href='https://mizuiku-emyeunuocsach.vn/clean-water-knight-festival.htm' title='Clean Water Knight festival'>
-                            <div class='text'>
-                                <span class='fs12'>September</span>
-                            </div>
-                        </a>
-
-                        <a href='https://mizuiku-emyeunuocsach.vn/clean-water-knight-festival.htm' title='Clean Water Knight festival' class='name'>Clean Water Knight festival</a>
-                    </div>
-
-                    <div class='item'>
-                        <a class='date' href='https://mizuiku-emyeunuocsach.vn/suntory-pepsico-vietnam-plant-tour.htm' title='Suntory PepsiCo Vietnam Plant tour'>
-                            <div class='text'>
-                                <span class='fs12'>October - November</span>
-                            </div>
-                        </a>
-
-                        <a href='https://mizuiku-emyeunuocsach.vn/suntory-pepsico-vietnam-plant-tour.htm' title='Suntory PepsiCo Vietnam Plant tour' class='name'>Suntory PepsiCo Vietnam Plant tour</a>
-                    </div>
-
-                    <div class='item'>
-                        <a class='date' href='https://mizuiku-emyeunuocsach.vn/closing-ceremony-of-the-mizuiku-i-love-clean-water-program.htm' title='Closing ceremony of the "Mizuiku - I love clean water" program'>
-                            <div class='text'>
-                                <span class='fs12'>December</span>
-                            </div>
-                        </a>
-
-                        <a href='https://mizuiku-emyeunuocsach.vn/closing-ceremony-of-the-mizuiku-i-love-clean-water-program.htm' title='Closing ceremony of the "Mizuiku - I love clean water" program' class='name'>Closing ceremony of the "Mizuiku - I love clean water" program</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @widget('client.timeline')
 
     <div id="HeadFt"></div>
 @endsection
