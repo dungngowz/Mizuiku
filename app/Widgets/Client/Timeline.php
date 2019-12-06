@@ -20,7 +20,7 @@ class Timeline extends AbstractWidget
      */
     public function run()
     {
-        $timeline = ProgramTimeline::all()->toArray();
+        $timeline = ProgramTimeline::all();
 
         return view('widgets.client.timeline', [
             'config' => $this->config,

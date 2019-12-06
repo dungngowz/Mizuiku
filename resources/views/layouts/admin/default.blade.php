@@ -17,10 +17,11 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Custom CSS -->
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.css">
     <link href="{{asset('admin/assets/libs/flot/css/float-chart.css')}}" rel="stylesheet">
     <link href="{{asset('admin/dist/css/style.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/dist/css/admin.css')}}" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,7 +33,7 @@
     <script>
         const SITE_URL = "<?php echo url('admin')?>/";
         const CSRF_TOKEN = "<?php echo csrf_token()?>";
-        const URL_NOIMAGE = "{{asset('admin/dist/img/noimage.jpg')}}";
+        const URL_NOIMAGE = "{{asset('admin/dist/images/noimage.jpg')}}";
         var route_prefix = "{{ url(config('lfm.url_prefix', config('lfm.prefix'))) }}";
     </script>
 </head>
@@ -85,6 +86,9 @@
     
     <!--Notify -->
     <script src="{{asset('admin/assets/libs/bootstrap-notify/bootstrap-notify.min.js')}}"></script>
+
+    <!--Croppie -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.js"></script>
 
     <!--Custom JavaScript -->
     <script src="{{asset('admin/dist/js/custom.js')}}"></script>

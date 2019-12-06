@@ -65,7 +65,14 @@ class ProgramTimeline extends SoftModelBase
         ];
     }
     
-    public static function convertMonth($numberMonth) {
-        return date("M", strtotime($numberMonth));
+    public function getMonthDisplayAttribute() {
+        $locale = session('client-locale');
+        
+        if($locale == 'vi'){
+            return 'Tháng ' . $this->month;
+        }
+
+        $dateObj = \DateTime::createFromFormat('!m', $this->month);
+        return $dateObj->format('F');
     }
 }

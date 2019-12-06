@@ -48,7 +48,7 @@
 
 @push('modals')
     <!-- The Modal Delete -->
-    @include('admin.commons.modals.delete')
+    @include('admin.components.modals.delete')
 @endpush
 
 @push('scripts')

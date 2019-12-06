@@ -48,4 +48,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('/library/delete', 'LibraryController@destroy')->name('admin.library.delete');
     Route::get('/library/data', 'LibraryController@data')->name('admin.library.data');
 
+    // upload file
+    //Route::post('upload-file', 'FileController@uploadTmp');
+    Route::post('upload-image-base64', 'ImageController@uploadImageBase64')->name('admin.uploadImageBase64');
 });
