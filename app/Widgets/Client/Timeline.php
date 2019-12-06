@@ -20,11 +20,11 @@ class Timeline extends AbstractWidget
      */
     public function run()
     {
-         $timeline = ProgramTimeline::all()->toArray();
+        $timeline = ProgramTimeline::all()->toArray();
 
         return view('widgets.client.timeline', [
             'config' => $this->config,
-            'timeline'   => $timeline
+            'timeline' => $timeline
         ]);
     }
 }

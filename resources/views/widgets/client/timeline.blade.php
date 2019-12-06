@@ -7,17 +7,21 @@
             </div>
             <div class='cont'></div>
             <div class='group'>
-                @foreach ($timeline as $item)
-                    <div class='item'>
-                        <a class='date' href='{{ url($item['slug']) }}' title='{{ $item['title'] }}'>
-                            <div class='text'>
-                                <span class='fs12'>{{ __('client.months.'. strtolower(\App\Models\ProgramTimeline::convertMonth($item['month'])) ) }}</span>
-                            </div>
-                        </a>
+                @if ($timeline)
+                    
+                    @foreach ($timeline as $item)
+                        <div class='item'>
+                            <a class='date' href='{{ url($item['slug']) }}' title='{{ $item['title'] }}'>
+                                <div class='text'>
+                                    <span class='fs12'>{{ __('client.months.'. strtolower(\App\Models\ProgramTimeline::convertMonth($item['month'])) ) }}</span>
+                                </div>
+                            </a>
 
-                        <a href='{{ url($item['slug']) }}' title='{{ url($item['slug']) }}' class='name'>{{ $item['title'] }}</a>
-                    </div>
-                @endforeach
+                            <a href='{{ url($item['slug']) }}' title='{{ url($item['slug']) }}' class='name'>{{ $item['title'] }}</a>
+                        </div>
+                    @endforeach
+                @endif
+
             </div>
         </div>
     </div>

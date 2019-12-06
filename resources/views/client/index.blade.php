@@ -15,7 +15,7 @@
                             <a href='{{ route('introduction', ['path' => 'program-introduction']) }}' title='{{ $intro[0]['title'] }}' class='name'>{{ $intro[0]['title'] }}</a>
                         </div>
                         <div class='cont dotdotdot'>{{ $intro[0]['description'] }}</div>
-                        <a href='{{ route('detail-introduction') }}' title='{{ __('client.details') }}' class='xct'>{{ __('client.details') }}</a>
+                        <a href='{{ route('detail-introduction', ['ref_id' => ($intro[0]['ref_id'])]) }}' title='{{ __('client.details') }}' class='xct'>{{ __('client.details') }}</a>
                         <div class='cb'></div>
                     @endif
                 </div>

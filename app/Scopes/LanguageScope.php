@@ -25,5 +25,6 @@ class LanguageScope implements Scope
             $tableName = $builder->getModel()->getTable();
             $builder->where($tableName.'.language', $sessionLanguage);
         }
+        
     }
 }

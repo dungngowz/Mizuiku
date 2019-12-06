@@ -63,6 +63,14 @@
                     </ul>
                 </li>
 
+                {{-- Library --}}
+                <li class="sidebar-item"> 
+                    <a class="sidebar-link waves-effect waves-dark" href="{{ route('admin.library', ['type' => 'image']) }}" aria-expanded="false">
+                        <i class="mdi mdi-receipt"></i>
+                        <span class="hide-menu">{{trans('admin.library')}}</span>
+                    </a>
+                </li>
+
                 {{-- Program Timeline --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('admin/program-timeline') }}" aria-expanded="false">

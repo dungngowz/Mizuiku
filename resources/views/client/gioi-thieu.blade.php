@@ -21,7 +21,7 @@
                             <a href='{{ url($intro[0]['slug']) }}' title='"Mizuiku - I love clean water" program ' class='name'>{{ $intro[0]['title'] }}</a>
                         </div>
                         <div class='cont dotdotdot'>{{ $intro[0]['description'] }}</div>
-                        <a href='{{ route('detail-introduction', ['slug' => ($intro[0]['slug'])]) }}' title='Details' class='xct'>{{ __('client.details') }}</a>
+                        <a href='{{ route('detail-introduction', ['ref_id' => ($intro[0]['ref_id'])]) }}' title='Details' class='xct'>{{ __('client.details') }}</a>
                         <div class='cb'></div>
                     @endif
                 </div>

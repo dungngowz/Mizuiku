@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/categories/data', 'CategoryController@data');
     Route::resource('/categories', 'CategoryController');
 
-    // Categories
+    // News
     Route::get('/news/data', 'NewsController@data');
     Route::resource('/news', 'NewsController');
 
@@ -38,4 +38,14 @@ Route::group(['middleware' => 'auth'], function(){
     // Contact
     Route::get('/contact-us/data', 'ContactUsController@data');
     Route::resource('/contact-us', 'ContactUsController');
+
+    // Library
+    Route::get('/library', 'LibraryController@index')->name('admin.library');
+    Route::get('/library/create', 'LibraryController@create')->name('admin.library.create');
+    Route::post('/library/store', 'LibraryController@store')->name('admin.library.store');
+    Route::get('/library/{id}/edit', 'LibraryController@edit')->name('admin.library.edit');
+    Route::put('/library/update', 'LibraryController@update')->name('admin.library.update');
+    Route::delete('/library/delete', 'LibraryController@destroy')->name('admin.library.delete');
+    Route::get('/library/data', 'LibraryController@data')->name('admin.library.data');
+
 });
