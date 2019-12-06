@@ -21,20 +21,20 @@
                 <li class="sidebar-item"> 
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="mdi mdi-receipt"></i>
-                        <span class="hide-menu">About Us</span>
+                        <span class="hide-menu">{{trans('admin.about_us')}}</span>
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
                             <a href="{{ url('admin/about-us/?keyword='. config('const.keywords.program_introduction')) }}" class="sidebar-link">
                                 <i class="mdi mdi-note-outline"></i>
-                                <span class="hide-menu">Program introduction</span>
+                                <span class="hide-menu">{{trans('admin.program_introduction')}}</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item">
                             <a href="{{ url('admin/about-us/?keyword=' . config('const.keywords.co_organizingboard')) }}" class="sidebar-link">
                                 <i class="mdi mdi-note-outline"></i>
-                                <span class="hide-menu">Co-organizing Board</span>
+                                <span class="hide-menu">{{trans('admin.co_organizing_board')}}</span>
                             </a>
                         </li>
                     </ul>

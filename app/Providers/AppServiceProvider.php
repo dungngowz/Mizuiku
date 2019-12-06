@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\App;
+use Illuminate\Http\Request;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,8 +23,16 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Request $request)
     {
-        //
+        $uriPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $uriSegments = explode('/', trim($uriPath, '/'));
+
+        $keyLocale = ($uriSegments[0] == 'admin') ? config('const.key_locale_admin') : config('const.key_locale_client');
+
+        if(isset($_COOKIE[$keyLocale])){
+            $locale = in_array($_COOKIE[$keyLocale], ['vi', 'en']) ? $_COOKIE[$keyLocale] : 'vi';
+            App::setLocale($locale);
+        }
     }
 }

@@ -35,6 +35,8 @@ return [
     'enter_url' => 'Nhập Url',
     'library' => 'Thư viện',
     'file_name' => 'Tên file',
-    'file_path' => 'Đường dẫn file '
-
+    'file_path' => 'Đường dẫn file ',
+    'about_us' => 'Giới thiệu',
+    'program_introduction' => 'Giới thiệu chương trình',
+    'co_organizing_board' => 'Giới thiệu đối tác'
 ];

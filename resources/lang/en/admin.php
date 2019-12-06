@@ -38,5 +38,7 @@ return [
     'file_path' => 'File path',
     'enter_file_name' => 'Enter File Name',
     'enter_file_path' => 'Enter File Path',
-
+    'about_us' => 'About us',
+    'program_introduction' => 'Program introduction',
+    'co_organizing_board' => 'Co-organizing board'
 ];
