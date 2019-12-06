@@ -168,16 +168,19 @@ $(function() {
     // Modal Delete
     $( document ).on( "click", ".btn-delete", function() {
         let id = parseInt($(this).attr('data-id'));
+        let url = $(this).attr('data-url');
         $('#modal-delete .btn-submit-delete').attr('data-id', id);
+        $('#modal-delete .btn-submit-delete').attr('data-url', url);
         $('#modal-delete').modal('show');
     });
 
     $( document ).on( "click", ".btn-submit-delete", function() {
         let id = parseInt($(this).attr('data-id'));
+        let url = $(this).attr('data-url');
 
         $.ajax({
             type: "POST",
-            url: "/admin/categories/" + id,
+            url: url + '/' + id,
             data: { 
                 _token: _token,
                 _method: 'DELETE'

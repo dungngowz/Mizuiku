@@ -56,7 +56,9 @@ class LibraryController extends Controller
      */
     public function store(Request $request){
         $gallery = Gallery::create($request->all());
-        return view('admin.library');
+        return view('admin.library.index', [
+            'title' => 'Library'
+        ]);
     }
 
     /**
@@ -78,13 +80,13 @@ class LibraryController extends Controller
      */
     public function edit($id)
     {
-        $record = Contact::find($id);
+        $record = Gallery::find($id);
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
 
-        return view('admin.contact-us.edit', [
-            'title' => 'Contact Us',
+        return view('admin.library.edit', [
+            'title' => trans('admin.library').' - ' .trans('admin.edit'),
             'record' => $record
         ]);
     }
@@ -98,6 +100,13 @@ class LibraryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $record = Gallery::find($id);
+        if(!$record){
+            return redirect()->route('admin.dashboard');
+        }
+        $record->update($request->all());
+
+        return redirect()->route('admin.library');
     }
 
     /**
@@ -108,7 +117,7 @@ class LibraryController extends Controller
      */
     public function destroy($id)
     {
-        $record = Contact::find($id);
+        $record = Gallery::find($id);
         if($record && $record->delete()){
             return $this->response(200);
         }

@@ -33,7 +33,7 @@ class ProgramTimeline extends SoftModelBase
      * 
      * @var string
      */
-    protected $table = 'programs_timeline';
+    protected $table = 'program_timeline';
 
     /**
      * @var array

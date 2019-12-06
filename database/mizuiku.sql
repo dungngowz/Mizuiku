@@ -422,6 +422,7 @@ ALTER TABLE `articles`
   ADD CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`created_user_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `articles_ibfk_2` FOREIGN KEY (`updated_user_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `articles_ibfk_3` FOREIGN KEY (`deleted_user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `articles_ibfk_4` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
 
 --
 -- Constraints for table `categories`
