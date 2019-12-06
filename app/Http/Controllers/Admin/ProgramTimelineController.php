@@ -33,7 +33,7 @@ class ProgramTimelineController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(Request $request) {
-        $records = ProgramTimeline::where('keyword', $request->keyword)->get();
+        $records = ProgramTimeline::all();
 
         return DataTables::of($records)
             ->RawColumns(['actions'])
@@ -56,6 +56,17 @@ class ProgramTimelineController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request){
+        $title = 'Program Timeline - Create';
+        $record = new ProgramTimeline;
+
+        $urlTrans = url('/admin/program-timeline/create?type='. $request->type . '&language=');
+        $urlTrans .= (empty($request->language) || $request->language == 'vi') ? 'en' : 'vi';
+
+        return view('admin.program-timeline.edit', [
+            'title' => $title,
+            'record' => $record,
+            'urlTrans' => $urlTrans
+        ]);
     }
 
     /**
@@ -65,6 +76,19 @@ class ProgramTimelineController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreProgramTimeline $request){
+        $record = new ProgramTimeline;
+        $record->fill($request->all());
+
+        if($request->ref_id){
+            $record->ref_id = $request->ref_id;
+            $record->save();
+        }else{
+            $record->save();
+            $record->ref_id = $record->id;
+            $record->save();
+        }
+        
+        return redirect('admin/program-timeline');
     }
 
     /**
@@ -122,7 +146,7 @@ class ProgramTimelineController extends Controller
 
         $record->fill($request->all());
         $record->save();
-        return redirect('admin/program-timeline?keyword=' . $record->keyword);
+        return redirect('admin/program-timeline');
     }
 
     /**

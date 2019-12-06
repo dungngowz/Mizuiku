@@ -7,11 +7,9 @@
             <div class="col-12 d-flex no-block align-items-center">
                 <h4 class="page-title">@yield('title')</h4>
                 <div class="ml-auto text-right">
-                    @if (!$removeBtnAddNew)
-                        <a href="{{url('admin/about-us/create?type=news')}}">
-                            <button type="button" class="btn btn-success">{{trans('admin.add_new')}}</button>
-                        </a>    
-                    @endif
+                    <a href="{{url('admin/about-us/create?type=news')}}">
+                        <button type="button" class="btn btn-success">{{trans('admin.add_new')}}</button>
+                    </a>
                 </div>
             </div>
         </div>

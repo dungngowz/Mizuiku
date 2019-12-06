@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 06, 2019 at 03:13 AM
+-- Generation Time: Dec 06, 2019 at 04:06 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -194,16 +194,16 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `programs_timeline`
+-- Table structure for table `program_timeline`
 --
 
-CREATE TABLE `programs_timeline` (
+CREATE TABLE `program_timeline` (
   `id` int(10) UNSIGNED NOT NULL COMMENT 'ID',
   `ref_id` int(10) UNSIGNED DEFAULT NULL,
   `title` text DEFAULT NULL,
   `slug` varchar(255) NOT NULL,
   `month` int(11) NOT NULL,
-  `link` varchar(255) NOT NULL,
+  `content` text NOT NULL,
   `language` varchar(10) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
@@ -213,6 +213,13 @@ CREATE TABLE `programs_timeline` (
   `deleted_at` datetime DEFAULT NULL COMMENT 'Deleted At',
   `deleted_user_id` int(10) UNSIGNED DEFAULT NULL COMMENT 'Deleted User ID'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `program_timeline`
+--
+
+INSERT INTO `program_timeline` (`id`, `ref_id`, `title`, `slug`, `month`, `content`, `language`, `status`, `created_at`, `created_user_id`, `updated_at`, `updated_user_id`, `deleted_at`, `deleted_user_id`) VALUES
+(1, 1, 'test', 'test', 1, '<p>asd</p>', 'vi', 1, '2019-12-06 03:04:13', 1, '2019-12-06 03:04:13', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -325,9 +332,9 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
--- Indexes for table `programs_timeline`
+-- Indexes for table `program_timeline`
 --
-ALTER TABLE `programs_timeline`
+ALTER TABLE `program_timeline`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category_ref_id` (`ref_id`);
 
@@ -385,10 +392,10 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `programs_timeline`
+-- AUTO_INCREMENT for table `program_timeline`
 --
-ALTER TABLE `programs_timeline`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
+ALTER TABLE `program_timeline`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `seo`

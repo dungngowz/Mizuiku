@@ -39,7 +39,7 @@
         {{-- Form Edit --}}
         <div class="row">
             <div class="col-12">
-                <form action="{{url('admin/about-us/' . $record->id)}}" method="post">
+                <form action="{{url('admin/program-timeline/' . $record->id)}}" method="post">
                     {{ csrf_field() }}
 
                     @if ($record->id)
@@ -55,9 +55,24 @@
                         <div class="card-body">
                             <div class="form-group m-t-20">
                                 <label>{{trans('admin.title')}}</label>
-                                <input type="text" name="title" class="form-control" value="{{old('title', $record->title)}}" placeholder="{{trans('admin.enter_title')}}">
+                                <input type="text" name="title" class="form-control"value="{{old('title', $record->title)}}" placeholder="{{trans('admin.enter_title')}}">
                                 @if($errors->has('title'))
                                     <span class="error-msg">{{$errors->first('title')}}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group m-t-20">
+                                <label>{{trans('admin.month')}}</label>
+                                <select name="month" class="select2 form-control custom-select">
+                                    @for ($i = 1; $i < 13; $i++)
+                                        @php
+                                            $month = old('month', $record->month);
+                                        @endphp
+                                        <option {{ ($i == $month) ? 'selected' : '' }}>{{$i}}</option>    
+                                    @endfor
+                                </select>
+                                @if($errors->has('month'))
+                                    <span class="error-msg">{{$errors->first('month')}}</span>
                                 @endif
                             </div>
 
@@ -71,7 +86,7 @@
                         </div>
                         <div class="border-top">
                             <div class="card-body text-right">
-                                <a href="{{url('admin/about-us/?keyword=' . $record->keyword)}}">
+                                <a href="{{url('admin/program-timeline/')}}">
                                     <button type="button" class="btn">{{trans('admin.cancel')}}</button>
                                 </a>
                                 <button type="submit" class="btn btn-primary">{{trans('admin.submit')}}</button>

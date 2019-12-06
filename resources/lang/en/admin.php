@@ -27,5 +27,8 @@ return [
     'enter_fullname' => 'Enter Fullname',
     'back' => 'Back',
     'contact_us' => 'Contact Us',
-    'program_timeline' => 'Program timeline'
+    'program_timeline' => 'Program timeline',
+    'month' => 'Month',
+    'link' => 'Link',
+    'enter_link' => 'Enter Link'
 ];

@@ -3,7 +3,7 @@
 namespace App\Widgets\Client;
 
 use Arrilot\Widgets\AbstractWidget;
-use App\Models\ProgramsTimeline;
+use App\Models\ProgramTimeline;
 
 class Timeline extends AbstractWidget
 {
@@ -20,7 +20,7 @@ class Timeline extends AbstractWidget
      */
     public function run()
     {
-         $timeline = ProgramsTimeline::all()->toArray();
+         $timeline = ProgramTimeline::all()->toArray();
 
         return view('widgets.client.timeline', [
             'config' => $this->config,

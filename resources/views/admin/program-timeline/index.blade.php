@@ -6,6 +6,11 @@
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
                 <h4 class="page-title">@yield('title')</h4>
+                <div class="ml-auto text-right">
+                    <a href="{{url('admin/program-timeline/create')}}">
+                        <button type="button" class="btn btn-success">{{trans('admin.add_new')}}</button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -22,6 +27,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>{{trans('admin.title')}}</th>
+                                        <th>{{trans('admin.month')}}</th>
                                         <th>{{trans('admin.language')}}</th>
                                         <th>{{trans('admin.created_at')}}</th>
                                         <th></th>
@@ -51,7 +57,7 @@
             $('#datatable').DataTable({
                 ...optionDataTable,
                 ajax: {
-                    url: '/admin/about-us/data',
+                    url: '/admin/program-timeline/data',
                     data : JSON.parse('<?php echo json_encode(request()->all()) ?>')
                 },
                 columns: [{
@@ -60,6 +66,9 @@
                     },{
                         data: 'title',
                         name: 'title'
+                    },{
+                        data: 'month',
+                        name: 'month'
                     },{
                         data: 'language',
                         name: 'language',
