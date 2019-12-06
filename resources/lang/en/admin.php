@@ -19,5 +19,13 @@ return [
     'enter_priority' => 'Enter Priority',
     'confirm_deletion' => 'Confirm deletion',
     'do_you_really_want_to_delete_this_item' => 'Do you really want to delete this item?',
-    'cancel' => 'Cancel'
+    'cancel' => 'Cancel',
+    'content' => 'Content',
+    'fullname' => 'Fullname',
+    'phone' => 'Phone',
+    'email' => 'Email',
+    'enter_fullname' => 'Enter Fullname',
+    'back' => 'Back',
+    'contact_us' => 'Contact Us',
+    'program_timeline' => 'Program timeline'
 ];

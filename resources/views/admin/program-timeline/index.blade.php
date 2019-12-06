@@ -21,10 +21,8 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>{{trans('admin.fullname')}}</th>
-                                        <th>{{trans('admin.phone')}}</th>
-                                        <th>{{trans('admin.email')}}</th>
-                                        <th>IP</th>
+                                        <th>{{trans('admin.title')}}</th>
+                                        <th>{{trans('admin.language')}}</th>
                                         <th>{{trans('admin.created_at')}}</th>
                                         <th></th>
                                     </tr>
@@ -36,6 +34,10 @@
             </div>
         </div>
     </div>
+
+    @php
+        //dd(request()->all())
+    @endphp
 @endsection
 
 @push('modals')
@@ -49,24 +51,19 @@
             $('#datatable').DataTable({
                 ...optionDataTable,
                 ajax: {
-                    url: '/admin/contact-us/data',
+                    url: '/admin/about-us/data',
                     data : JSON.parse('<?php echo json_encode(request()->all()) ?>')
                 },
                 columns: [{
                         data: 'id',
                         name: 'id'
                     },{
-                        data: 'fullname',
-                        name: 'fullname'
+                        data: 'title',
+                        name: 'title'
                     },{
-                        data: 'phone',
-                        name: 'phone',
-                    },{
-                        data: 'email',
-                        name: 'email',
-                    },{
-                        data: 'ip',
-                        name: 'ip',
+                        data: 'language',
+                        name: 'language',
+                        className: 'text-center'
                     },{
                         data: 'created_at',
                         name: 'created_at'

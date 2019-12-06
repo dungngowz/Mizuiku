@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use App\Models\Contact;
+use App\Models\ProgramTimeline;
+use App\Http\Requests\StoreProgramTimeline;
 
-class ContactUsController extends Controller
+class ProgramTimelineController extends Controller
 {
     public function __construct()
     {
@@ -21,8 +22,8 @@ class ContactUsController extends Controller
      */
     public function index(Request $request)
     {
-        return view('admin.contact-us.index', [
-            'title' => 'Contact Us'
+        return view('admin.program-timeline.index', [
+            'title' => 'Program Timeline'
         ]);
     }
 
@@ -32,12 +33,17 @@ class ContactUsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(Request $request) {
-        $records = Contact::all();
+        $records = ProgramTimeline::where('keyword', $request->keyword)->get();
 
         return DataTables::of($records)
             ->RawColumns(['actions'])
+            ->addColumn('language', function($item) {
+                return view('admin.commons.language', [
+                    'item' => $item
+                ]);
+            })
             ->addColumn('actions', function($item) {
-                return view('admin.contact-us.cols-actions', [
+                return view('admin.program-timeline.cols-actions', [
                     'item' => $item
                 ]);
             })
@@ -58,7 +64,7 @@ class ContactUsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(StoreProgramTimeline $request){
     }
 
     /**
@@ -80,14 +86,23 @@ class ContactUsController extends Controller
      */
     public function edit($id)
     {
-        $record = Contact::find($id);
+        $record = ProgramTimeline::find($id);
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
 
-        return view('admin.contact-us.edit', [
-            'title' => 'Contact Us',
-            'record' => $record
+        $langNeedTrans = ($record->language == 'vi') ? 'en' : 'vi';
+        $chkRecord = ProgramTimeline::where('ref_id', $record->ref_id)->where('language', $langNeedTrans)->first();
+        if($chkRecord){
+            $urlTrans = url('/admin/program-timeline/'.$chkRecord->id.'/edit');
+        }else{
+            $urlTrans = url('/admin/program-timeline/create?keyword='. $record->keyword . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
+        }
+
+        return view('admin.program-timeline.edit', [
+            'title' => $record->title,
+            'record' => $record,
+            'urlTrans' => $urlTrans
         ]);
     }
 
@@ -98,8 +113,16 @@ class ContactUsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreProgramTimeline $request, $id)
     {
+        $record = ProgramTimeline::find($id);
+        if(!$record){
+            return redirect()->route('admin.dashboard');
+        }
+
+        $record->fill($request->all());
+        $record->save();
+        return redirect('admin/program-timeline?keyword=' . $record->keyword);
     }
 
     /**
@@ -110,7 +133,7 @@ class ContactUsController extends Controller
      */
     public function destroy($id)
     {
-        $record = Contact::find($id);
+        $record = ProgramTimeline::find($id);
         if($record && $record->delete()){
             return $this->response(200);
         }

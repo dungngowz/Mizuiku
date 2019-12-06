@@ -5,7 +5,7 @@ var optionDataTable = {
     pageLength: 10,
     lengthMenu: [[10, 20, 50], [10, 20, 50]],
     order: [
-        [1, 'desc']
+        [0, 'desc']
     ],
     // columnDefs: [{
     //     targets: 0,

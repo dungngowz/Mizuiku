@@ -92,7 +92,7 @@ class CategoryController extends Controller
             $record->save();
         }
         
-        return redirect('admin/categories');
+        return redirect('admin/categories?type=' . $request->type);
     }
 
     /**
@@ -146,13 +146,16 @@ class CategoryController extends Controller
     public function update(StoreCategory $request, $id)
     {
         $record = Category::find($id);
+        
+        dd($record);
+
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
 
         $record->fill($request->all());
         $record->save();
-        return redirect('admin/categories');
+        return redirect('admin/categories?type=' . $record->type);
     }
 
     /**

@@ -33,6 +33,7 @@
         const SITE_URL = "<?php echo url('admin')?>/";
         const CSRF_TOKEN = "<?php echo csrf_token()?>";
         const URL_NOIMAGE = "{{asset('admin/dist/img/noimage.jpg')}}";
+        var route_prefix = "{{ url(config('lfm.url_prefix', config('lfm.prefix'))) }}";
     </script>
 </head>
 
@@ -76,7 +77,10 @@
     <!--DataTables-->
     <script src="{{asset('admin/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
 
-    <!--Custom JavaScript -->
+    <!--Editor-->
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+
+    <!--Config datatable -->
     <script src="{{asset('admin/dist/js/config-datatable.js')}}"></script>
     
     <!--Notify -->
