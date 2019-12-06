@@ -89,7 +89,7 @@
                                 <a href="{{url('admin/program-timeline/')}}">
                                     <button type="button" class="btn">{{trans('admin.cancel')}}</button>
                                 </a>
-                                <button type="submit" class="btn btn-primary">{{trans('admin.submit')}}</button>
+                                <button type="submit" class="btn btn-success">{{trans('admin.submit')}}</button>
                             </div>
                         </div>
                     </div>
@@ -100,5 +100,5 @@
 @endsection
 
 @push('scripts')
-    @include('admin.commons.editor-config')
+    @include('admin.components.editor-config')
 @endpush

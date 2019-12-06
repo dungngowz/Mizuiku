@@ -40,7 +40,7 @@ class CategoryController extends Controller
         return DataTables::of($records)
             ->RawColumns(['actions'])
             ->addColumn('language', function($item) {
-                return view('admin.commons.language', [
+                return view('admin.components.language', [
                     'item' => $item
                 ]);
             })

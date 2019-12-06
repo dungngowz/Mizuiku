@@ -38,4 +38,8 @@ Route::group(['middleware' => 'auth'], function(){
     // Contact
     Route::get('/contact-us/data', 'ContactUsController@data');
     Route::resource('/contact-us', 'ContactUsController');
+
+    // upload file
+    //Route::post('upload-file', 'FileController@uploadTmp');
+    Route::post('upload-image-base64', 'ImageController@uploadImageBase64')->name('admin.uploadImageBase64');
 });

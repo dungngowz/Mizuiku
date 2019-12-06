@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use App\Models\SoftModelBase;
 use App\Scopes\LanguageScope;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @property int $id
@@ -70,5 +72,18 @@ class Article extends SoftModelBase
     public function category()
     {
         return $this->hasOne('App\Models\Category');
+    }
+
+    /**
+     * Return the custom thumbnail
+     *
+     * @return string
+     */
+    public function getThumbnailDisplayAttribute(){
+        $parsed = parse_url($this->thumbnail);
+        if (empty($parsed['scheme'])) {
+            return $this->thumbnail ? Storage::url($this->thumbnail) : 'admin/dist/images/noimage.jpg';
+        }
+        return $this->thumbnail;
     }
 }

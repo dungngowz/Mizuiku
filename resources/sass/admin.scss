@@ -30,3 +30,12 @@
 table.dataTable tbody th, table.dataTable tbody td{
     vertical-align: middle;
 }
+#upload-file{
+    text-align: center;
+    cursor: pointer;
+    #preview-crop-image{
+        img{
+            width: 100%;
+        }
+    }
+}
