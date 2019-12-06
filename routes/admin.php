@@ -28,7 +28,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/categories/data', 'CategoryController@data');
     Route::resource('/categories', 'CategoryController');
 
-    // contact
+    // Programs-timeline
+    Route::get('/program-timeline/data', 'ProgramTimelineController@data');
+    Route::resource('/program-timeline', 'ProgramTimelineController');
+
+    // Contact
     Route::get('/contact-us/data', 'ContactUsController@data');
     Route::resource('/contact-us', 'ContactUsController');
 });

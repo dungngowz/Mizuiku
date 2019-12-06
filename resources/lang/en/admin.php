@@ -25,5 +25,7 @@ return [
     'phone' => 'Phone',
     'email' => 'Email',
     'enter_fullname' => 'Enter Fullname',
-    'back' => 'Back'
+    'back' => 'Back',
+    'contact_us' => 'Contact Us',
+    'program_timeline' => 'Program timeline'
 ];

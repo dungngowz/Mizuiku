@@ -63,10 +63,17 @@
                     </ul>
                 </li>
 
+                {{-- Program Timeline --}}
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('admin/program-timeline') }}" aria-expanded="false">
+                    <i class="mdi mdi-receipt"></i><span class="hide-menu">{{trans('admin.program_timeline')}}</span>
+                    </a>
+                </li>
+
                 {{-- Contact Us --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('admin/contact-us') }}" aria-expanded="false">
-                        <i class="mdi mdi-receipt"></i><span class="hide-menu">Contact Us</span>
+                        <i class="mdi mdi-receipt"></i><span class="hide-menu">{{trans('admin.contact_us')}}</span>
                     </a>
                 </li>
 
