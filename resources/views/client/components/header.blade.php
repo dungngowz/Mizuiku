@@ -85,23 +85,23 @@
                     </li>
                 </ul>
             </li>
-            <li data='3' class='litop hassub'><a href='https://mizuiku-emyeunuocsach.vn/tin-tuc.htm' title='{{ __('client.news') }}'>{{ __('client.news') }}</a>
+            <li data='3' class='litop hassub'><a href='{{ route('news',['path' => 'program-news']) }}' title='{{ __('client.news') }}'>{{ __('client.news') }}</a>
                 <ul>
                     <li>
-                        <a title='{{ __('client.program-news') }}' href='https://mizuiku-emyeunuocsach.vn/program-news.htm'>{{ __('client.program-news') }}</a>
+                        <a title='{{ __('client.program-news') }}' href='{{ route('news',['path' => 'program-news']) }}'>{{ __('client.program-news') }}</a>
                     </li>
                     <li>
-                        <a title='{{ __('client.environment-news') }}' href='https://mizuiku-emyeunuocsach.vn/environmental-news.htm'>{{ __('client.environment-news') }}</a>
+                        <a title='{{ __('client.environment-news') }}' href='{{ route('news',['path' => 'environment-news']) }}'>{{ __('client.environment-news') }}</a>
                     </li>
                 </ul>
             </li>
-            <li data='4' class='litop hassub'><a href='https://mizuiku-emyeunuocsach.vn/thu-vien.htm' title='{{ __('client.gallery') }}'>{{ __('client.gallery') }}</a>
+            <li data='4' class='litop hassub'><a href='{{ route('library',['path' => 'image-library']) }}' title='{{ __('client.gallery') }}'>{{ __('client.gallery') }}</a>
                 <ul>
                     <li>
-                        <a title='{{ __('client.album') }}' href='https://mizuiku-emyeunuocsach.vn/album.htm'>{{ __('client.album') }}</a>
+                        <a title='{{ __('client.album') }}' href='{{ route('library',['path' => 'image-library']) }}'>{{ __('client.album') }}</a>
                     </li>
                     <li>
-                        <a title='{{ __('client.video') }}' href='https://mizuiku-emyeunuocsach.vn/videos-en.htm'>{{ __('client.video') }}</a>
+                        <a title='{{ __('client.video') }}' href='{{ route('library',['path' => 'video-library']) }}'>{{ __('client.video') }}</a>
                     </li>
                 </ul>
             </li>

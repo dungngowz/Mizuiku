@@ -78,23 +78,18 @@
 </head>
 
 <body>
-    <form name="form1" method="post" action="@yield('url-form')" id="form1">
+    @include('client.components.header')
 
-        @yield('params-form')
+    @yield('content')
 
-        @include('client.components.header')
+    @include('client.components.footer')
 
-        @yield('content')
+    @include('client.components.modal')
 
-        @include('client.components.footer')
+    <script src="{{ asset('client/js/custom.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('client/css/custom.css') }}">
 
-        @include('client.components.modal')
-
-        <script src="{{ asset('client/js/custom.js') }}"></script>
-        <link rel="stylesheet" href="{{ asset('client/css/custom.css') }}">
-
-        @yield('custom-js')
-    </form>
+    @yield('custom-js')
 </body>
 
 </html>

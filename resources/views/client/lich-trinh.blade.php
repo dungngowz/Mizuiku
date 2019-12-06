@@ -1,11 +1,4 @@
 @extends('layouts.client.default')
-@section('url-form', '{{ route(detail-introduction) }}')
-@section('params-form')
-    <div>
-        <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CA0B0334" />
-        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdABRnd0UL2yz8Nwhuj9eAYk9JxSmaAS04ClqMGm0TNSe71PY6NPEhGxyqUfbrtU5fmn2Ea1JmMp/omb6DBYyqB8t4aJWaBGhcdI015b/mBhG3Gx7EMk7ShbbqtY6TGZoa9ziTJ6S6DYjhZubzEtbOrs4EqRjlsWi91vMr8+iawXpLpulctB5UNZMCEqnVpCZUOhsJbzoBqJlLSqTOV+ByHgA8fCUMftueCVzFLlj7PVAFccWHLKmKn1d9PSHqKgkLpF6HjsBalzX8GRHC3hP00WRujLfdiHdgjx59E5EVWfsewFL1TWIyRwEAx82L0V5V3dLr5cUzuLeFE8JcO/xGFc9Xki7u87Rh3NAa0R0R7xsQcJRbMjWeiBsYX78aMpRgLxDyDNJGUOxSowwhsySzxlSpkr18Jgt91XABMyxg49or3K6KLvKC7ptFLM58gKJFjVofgNiU" />
-    </div>
-@endsection
 @section('content')
     <div id="pageroad">
         <div class="wrp">
