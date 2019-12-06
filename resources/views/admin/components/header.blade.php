@@ -26,9 +26,9 @@
                         <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>   
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item {{session('admin-language') == '' ? 'active' : ''}}" href="{{route('admin.set-language', ['language' => ''])}}">{{trans('admin.show_all_laguages')}}</a>
-                        <a class="dropdown-item {{session('admin-language') == 'vi' ? 'active' : ''}}" href="{{route('admin.set-language', ['language' => 'vi'])}}">Tiếng Việt</a>
-                        <a class="dropdown-item {{session('admin-language') == 'en' ? 'active' : ''}}" href="{{route('admin.set-language', ['language' => 'en'])}}">English</a>
+                        <a class="dropdown-item {{session('admin-locale') == '' ? 'active' : ''}}" href="{{url('set-locale/admin-locale/all')}}">{{trans('admin.show_all_laguages')}}</a>
+                        <a class="dropdown-item {{session('admin-locale') == 'vi' ? 'active' : ''}}" href="{{url('set-locale/admin-locale/vi')}}">Tiếng Việt</a>
+                        <a class="dropdown-item {{session('admin-locale') == 'en' ? 'active' : ''}}" href="{{url('set-locale/admin-locale/en')}}">English</a>
                     </div>
                 </li>
             </ul>

@@ -30,5 +30,8 @@ return [
     'program_timeline' => 'Program timeline',
     'month' => 'Month',
     'link' => 'Link',
-    'enter_link' => 'Enter Link'
+    'enter_link' => 'Enter Link',
+    'news' => 'News',
+    'category' => 'Category',
+    'enter_url' => 'Enter Url'
 ];

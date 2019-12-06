@@ -39,7 +39,7 @@
         {{-- Form Edit --}}
         <div class="row">
             <div class="col-12">
-                <form action="{{url('admin/program-timeline/' . $record->id)}}" method="post">
+                <form action="{{url('admin/news/' . $record->id)}}" method="post">
                     {{ csrf_field() }}
 
                     @if ($record->id)
@@ -61,21 +61,53 @@
                                 @endif
                             </div>
 
-                            <div class="form-group m-t-20">
-                                <label>{{trans('admin.month')}}</label>
-                                <select name="month" class="select2 form-control custom-select">
-                                    @php
-                                        $month = old('month', $record->month);
-                                    @endphp
-                                    @for ($i = 1; $i < 13; $i++)
-                                        <option {{ ($i == $month) ? 'selected' : '' }}>{{$i}}</option>    
-                                    @endfor
-                                </select>
-                                @if($errors->has('month'))
-                                    <span class="error-msg">{{$errors->first('month')}}</span>
-                                @endif
-                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group m-t-20">
+                                        <label>{{trans('admin.category')}}</label>
+                                        <select name="category" class="select2 form-control custom-select">
+                                            @php
+                                                $category_id = old('category_id', $record->category_id);
+                                            @endphp
+                                            @foreach ($articleCategories as $item)
+                                                <option {{ ($item->id == $category_id) ? 'selected' : '' }}>{{$item->title}}</option>    
+                                            @endforeach
+                                        </select>
+                                        @if($errors->has('category_id'))
+                                            <span class="error-msg">{{$errors->first('category_id')}}</span>
+                                        @endif
+                                    </div>
 
+                                    <div class="form-group m-t-20">
+                                        <label>{{trans('admin.link')}}</label>
+                                        <input type="text" name="url" class="form-control" value="{{old('url', $record->url)}}" placeholder="{{trans('admin.enter_url')}}">
+                                        @if($errors->has('url'))
+                                            <span class="error-msg">{{$errors->first('url')}}</span>
+                                        @endif
+                                    </div>
+        
+                                    <div class="form-group m-t-20">
+                                        <label>{{trans('admin.priority')}}</label>
+                                        <input type="number" name="priority" class="form-control" value="{{old('priority', $record->priority ? $record->priority : 0)}}" placeholder="{{trans('admin.enter_priority')}}">
+                                        @if($errors->has('priority'))
+                                            <span class="error-msg">{{$errors->first('priority')}}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-3"></div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group m-t-20">
+                                        <label>Thumbnail</label>
+                                        <input type="number" name="" class="form-control" value="{{old('url', $record->url)}}" placeholder="{{trans('admin.enter_url')}}">
+                                        @if($errors->has('url'))
+                                            <span class="error-msg">{{$errors->first('url')}}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="form-group m-t-20">
                                 <label>{{trans('admin.content')}}</label>
                                 <textarea name="content" class="form-control editor">{!! $record->content !!}</textarea>
@@ -86,7 +118,7 @@
                         </div>
                         <div class="border-top">
                             <div class="card-body text-right">
-                                <a href="{{url('admin/program-timeline/')}}">
+                                <a href="{{url('admin/news/')}}">
                                     <button type="button" class="btn">{{trans('admin.cancel')}}</button>
                                 </a>
                                 <button type="submit" class="btn btn-primary">{{trans('admin.submit')}}</button>

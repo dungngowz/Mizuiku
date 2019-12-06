@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('locale/{locale}', function ($locale){
-    Session::put('locale', $locale);
+Route::get('set-locale/{keyLocale}/{locale}', function ($keyLocale, $locale){
+    Session::put($keyLocale, $locale);
     return redirect()->back();
 });
 

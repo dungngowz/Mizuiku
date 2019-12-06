@@ -7,7 +7,7 @@
             <div class="col-12 d-flex no-block align-items-center">
                 <h4 class="page-title">@yield('title')</h4>
                 <div class="ml-auto text-right">
-                    <a href="{{url('admin/about-us/create?type=news')}}">
+                    <a href="{{url('admin/news/create?type=news')}}">
                         <button type="button" class="btn btn-success">{{trans('admin.add_new')}}</button>
                     </a>
                 </div>
@@ -27,7 +27,6 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>{{trans('admin.title')}}</th>
-                                        <th>{{trans('admin.priority')}}</th>
                                         <th>{{trans('admin.language')}}</th>
                                         <th>{{trans('admin.created_at')}}</th>
                                         <th></th>
@@ -40,10 +39,6 @@
             </div>
         </div>
     </div>
-
-    @php
-        //dd(request()->all())
-    @endphp
 @endsection
 
 @push('modals')
@@ -56,20 +51,13 @@
         $(function() {
             $('#datatable').DataTable({
                 ...optionDataTable,
-                ajax: {
-                    url: '/admin/about-us/data',
-                    data : JSON.parse('<?php echo json_encode(request()->all()) ?>')
-                },
+                ajax: '/admin/news/data',
                 columns: [{
                         data: 'id',
                         name: 'id'
                     },{
                         data: 'title',
                         name: 'title'
-                    },{
-                        data: 'priority',
-                        name: 'priority',
-                        className: 'text-center'
                     },{
                         data: 'language',
                         name: 'language',

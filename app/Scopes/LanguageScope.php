@@ -17,9 +17,13 @@ class LanguageScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $adminLanguage = session('admin-language');
-        if(in_array($adminLanguage, ['vi', 'en'])){
-            $builder->where('language', $adminLanguage);
+        $prefixRoute = trim(request()->route()->getPrefix(), '/');
+        $keyLanguage = $prefixRoute == 'admin' ? 'admin-locale' : 'client-locale';
+        $sessionLanguage = session($keyLanguage);
+
+        if(in_array($sessionLanguage, ['vi', 'en'])){
+            $tableName = $builder->getModel()->getTable();
+            $builder->where($tableName.'.language', $sessionLanguage);
         }
     }
 }

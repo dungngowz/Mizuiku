@@ -15,7 +15,6 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function(){
     // dashboard
     Route::get('/dashboard', 'DashBoardController@index')->name('admin.dashboard');
-    Route::get('/set-language', 'DashBoardController@setLanguage')->name('admin.set-language');
 
     // auth
     Route::get('/logout', 'Auth\LoginController@logout');
@@ -27,6 +26,10 @@ Route::group(['middleware' => 'auth'], function(){
     // Categories
     Route::get('/categories/data', 'CategoryController@data');
     Route::resource('/categories', 'CategoryController');
+
+    // Categories
+    Route::get('/news/data', 'NewsController@data');
+    Route::resource('/news', 'NewsController');
 
     // Programs-timeline
     Route::get('/program-timeline/data', 'ProgramTimelineController@data');

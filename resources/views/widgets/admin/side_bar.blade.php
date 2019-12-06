@@ -48,7 +48,7 @@
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a href="{{ url('admin/articles?type=news') }}" class="sidebar-link">
+                            <a href="{{ url('admin/news/?keyword=news') }}" class="sidebar-link">
                                 <i class="mdi mdi-note-outline"></i>
                                 <span class="hide-menu">{{trans('admin.list_of_news')}}</span>
                             </a>

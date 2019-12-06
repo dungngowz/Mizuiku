@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App\Models\Article;
+use App\Http\Requests\StoreNews;
 use App\Models\Category;
-use App\Http\Requests\StoreCategory;
+use App\Scopes\LanguageScope;
 
-class CategoryController extends Controller
+class NewsController extends Controller
 {
     public function __construct()
     {
@@ -22,10 +24,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $title = trans('admin.news_categories');
-
-        return view('admin.categories.index', [
-            'title' => $title
+        return view('admin.news.index', [
+            'title' => trans('admin.news')
         ]);
     }
 
@@ -35,7 +35,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(Request $request) {
-        $records = Category::all();
+        $records = Article::where('keyword', $request->keyword)->get();
 
         return DataTables::of($records)
             ->RawColumns(['actions'])
@@ -45,7 +45,7 @@ class CategoryController extends Controller
                 ]);
             })
             ->addColumn('actions', function($item) {
-                return view('admin.categories.cols-actions', [
+                return view('admin.news.cols-actions', [
                     'item' => $item
                 ]);
             })
@@ -59,16 +59,23 @@ class CategoryController extends Controller
      */
     public function create(Request $request)
     {
-        $title = trans('admin.news_categories') . ' - ' . trans('admin.create');
-        $record = new Category;
+        $title = trans('admin.news') . ' - ' . trans('admin.create');
+        $record = new Article;
 
-        $urlTrans = url('/admin/categories/create?type='. $request->type . '&language=');
-        $urlTrans .= (empty($request->language) || $request->language == 'vi') ? 'en' : 'vi';
+        $urlTrans = url('/admin/news/create?type='. $request->type . '&language=');
+        $currentLang = empty($request->language) ? 'vi' : $request->language;
+        $urlTrans .= ($currentLang == 'vi') ? 'en' : 'vi';
 
-        return view('admin.categories.edit', [
+        $articleCategories = Category::withoutGlobalScope(LanguageScope::class)
+            ->where('language', $currentLang)
+            ->where('type', 'news')
+            ->get();
+
+        return view('admin.news.edit', [
             'title' => $title,
             'record' => $record,
-            'urlTrans' => $urlTrans
+            'urlTrans' => $urlTrans,
+            'articleCategories' => $articleCategories
         ]);
     }
 
@@ -78,9 +85,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCategory $request)
+    public function store(StoreNews $request)
     {
-        $record = new Category;
+        $record = new Article;
         $record->fill($request->all());
 
         if($request->ref_id){
@@ -92,7 +99,7 @@ class CategoryController extends Controller
             $record->save();
         }
         
-        return redirect('admin/categories?type=' . $request->type);
+        return redirect('admin/news?type=' . $request->type);
     }
 
     /**
@@ -114,25 +121,32 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $title = trans('admin.news_categories') . ' - ' . trans('admin.edit');
+        $title = trans('admin.news') . ' - ' . trans('admin.edit');
         
-        $record = Category::find($id);
+        $record = Article::find($id);
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
 
+        $currentLang = empty($request->language) ? 'vi' : $request->language;
         $langNeedTrans = ($record->language == 'vi') ? 'en' : 'vi';
-        $chkRecord = Category::where('ref_id', $record->ref_id)->where('language', $langNeedTrans)->first();
+        $chkRecord = Article::where('ref_id', $record->ref_id)->where('language', $langNeedTrans)->first();
         if($chkRecord){
-            $urlTrans = url('/admin/categories/'.$chkRecord->id.'/edit');
+            $urlTrans = url('/admin/news/'.$chkRecord->id.'/edit');
         }else{
-            $urlTrans = url('/admin/categories/create?type='. $record->type . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
+            $urlTrans = url('/admin/news/create?type='. $record->type . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
         }
 
-        return view('admin.categories.edit', [
+        $articleCategories = Category::withoutGlobalScope(LanguageScope::class)
+            ->where('language', $currentLang)
+            ->where('type', 'news')
+            ->get();
+
+        return view('admin.news.edit', [
             'title' => $title,
             'record' => $record,
-            'urlTrans' => $urlTrans
+            'urlTrans' => $urlTrans,
+            'articleCategories' => $articleCategories
         ]);
     }
 
@@ -143,9 +157,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCategory $request, $id)
+    public function update(StoreNews $request, $id)
     {
-        $record = Category::find($id);
+        $record = Article::find($id);
 
         if(!$record){
             return redirect()->route('admin.dashboard');
@@ -153,7 +167,7 @@ class CategoryController extends Controller
 
         $record->fill($request->all());
         $record->save();
-        return redirect('admin/categories?type=' . $record->type);
+        return redirect('admin/news?type=' . $record->type);
     }
 
     /**
@@ -164,7 +178,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $record = Category::find($id);
+        $record = Article::find($id);
         if($record && $record->delete()){
             return $this->response(200);
         }
