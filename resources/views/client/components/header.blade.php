@@ -57,9 +57,9 @@
                 </div>
             </div>
             <ul class='CommonLanguage'>
-                <li><a href='{{ url('locale/vi') }}' class='langchi''>Tiếng Việt</a></li>
+                <li><a href='{{ url('set-locale/client-locale/vi') }}' class='langchi''>Tiếng Việt</a></li>
 
-                <li><a href='{{ url('locale/en') }}' class='langchi'>English</a></li>
+                <li><a href='{{ url('set-locale/client-locale/en') }}' class='langchi'>English</a></li>
             </ul>
 
             <div class="cb"></div>
