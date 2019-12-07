@@ -12,29 +12,7 @@
 
     <div class="container-fluid">
         {{-- switch language --}}
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-3">
-                        <label>
-                            Current language
-                            @php
-                                $currentLang = request()->language ? request()->language : ($record->id ? $record->language : 'vi');
-                            @endphp
-                            <img src="{{ asset('admin/assets/images/'.$currentLang.'.png') }}" alt=""/>    
-                        </label>
-                    </div>
-                    <div class="col-3">
-                        <label>
-                            Translations to language
-                            <a href="{{$urlTrans}}">
-                                <img src="{{ asset('admin/assets/images/'.($currentLang == 'vi' ? 'en' : 'vi').'.png') }}" alt=""/>    
-                            </a>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('admin.components.switch-language')
 
         {{-- Form Edit --}}
         <div class="row">
@@ -61,19 +39,26 @@
                                 @endif
                             </div>
 
-                            <div class="form-group m-t-20">
-                                <label>{{trans('admin.month')}}</label>
-                                <select name="month" class="select2 form-control custom-select">
-                                    @php
-                                        $month = old('month', $record->month);
-                                    @endphp
-                                    @for ($i = 1; $i < 13; $i++)
-                                        <option {{ ($i == $month) ? 'selected' : '' }}>{{$i}}</option>    
-                                    @endfor
-                                </select>
-                                @if($errors->has('month'))
-                                    <span class="error-msg">{{$errors->first('month')}}</span>
-                                @endif
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group m-t-10">
+                                        <label>{{trans('admin.month')}}</label>
+                                        <input type="text" name="month" class="form-control"value="{{old('month', $record->month)}}" placeholder="{{trans('admin.enter_month')}}">
+                                        @if($errors->has('month'))
+                                            <span class="error-msg">{{$errors->first('month')}}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-2"></div>
+                                <div class="col-md-5">
+                                    <div class="form-group m-t-10">
+                                        <label>{{trans('admin.priority')}}</label>
+                                        <input type="number" name="priority" class="form-control" value="{{old('priority', $record->priority ? $record->priority : 0)}}" placeholder="{{trans('admin.enter_priority')}}">
+                                        @if($errors->has('priority'))
+                                            <span class="error-msg">{{$errors->first('priority')}}</span>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="form-group m-t-20">
