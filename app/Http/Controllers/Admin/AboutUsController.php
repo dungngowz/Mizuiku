@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\Article;
 use App\Http\Requests\StoreAboutUs;
+use App\Scopes\LanguageScope;
 
 class AboutUsController extends Controller
 {
@@ -23,7 +24,7 @@ class AboutUsController extends Controller
     public function index(Request $request)
     {
         return view('admin.about-us.index', [
-            'title' => 'About Us'
+            'title' => trans('admin.about_us')
         ]);
     }
 
@@ -86,13 +87,19 @@ class AboutUsController extends Controller
      */
     public function edit($id)
     {
-        $record = Article::find($id);
+        //Get detail article
+        $record = Article::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
 
+        //Get url translate article
         $langNeedTrans = ($record->language == 'vi') ? 'en' : 'vi';
-        $chkRecord = Article::where('ref_id', $record->ref_id)->where('language', $langNeedTrans)->first();
+        $chkRecord = Article::withoutGlobalScope(LanguageScope::class)
+            ->where('ref_id', $record->ref_id)
+            ->where('language', $langNeedTrans)
+            ->first();
+
         if($chkRecord){
             $urlTrans = url('/admin/about-us/'.$chkRecord->id.'/edit');
         }else{
@@ -115,7 +122,7 @@ class AboutUsController extends Controller
      */
     public function update(StoreAboutUs $request, $id)
     {
-        $record = Article::find($id);
+        $record = Article::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
@@ -133,7 +140,7 @@ class AboutUsController extends Controller
      */
     public function destroy($id)
     {
-        $record = Article::find($id);
+        $record = Article::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if($record && $record->delete()){
             return $this->response(200);
         }
