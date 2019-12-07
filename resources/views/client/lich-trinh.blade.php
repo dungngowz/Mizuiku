@@ -1,4 +1,7 @@
 @extends('layouts.client.default')
+
+@section('title', $title)
+
 @section('content')
     <div id="pageroad">
         <div class="wrp">
@@ -15,7 +18,7 @@
             @widget('client.timeline')
         </div>
 
-        @if ($record)
+        @isset($record)
             <div id="about" class="LichTrinhDetail detail">
                 <div class="wrp">
                     <div class="fs30 c109ce3 fiCielCadena pb10">
@@ -100,6 +103,6 @@
 
                 </div>
             </div>
-        @endif
+        @endisset
     </div>
 @endsection

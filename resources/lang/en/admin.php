@@ -43,5 +43,6 @@ return [
     'co_organizing_board' => 'Co-organizing board',
     'current_language' => 'Current language',
     'translations_to_language' => 'Translations to language',
-    'description' => 'Description'
+    'description' => 'Description',
+    'enter_month' => 'Enter month'
 ];

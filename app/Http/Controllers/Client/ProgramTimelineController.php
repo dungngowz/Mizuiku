@@ -17,7 +17,9 @@ class ProgramTimelineController extends Controller
      */
     public function index()
     {
-        return view('client.lich-trinh');
+        return view('client.lich-trinh', [
+            'title' => trans('client.program-timeline')
+        ]);
     }
 
     /**
@@ -49,6 +51,9 @@ class ProgramTimelineController extends Controller
             return redirect('lich-trinh/' . $record->slug);
         }
 
-        return view('client.lich-trinh', ['record' => $record]);
+        return view('client.lich-trinh', [
+            'record' => $record,
+            'title' => $record->title
+        ]);
     }
 }

@@ -41,5 +41,6 @@ return [
     'co_organizing_board' => 'Giới thiệu đối tác',
     'current_language' => 'Ngôn ngữ hiện tại',
     'translations_to_language' => 'Dịch sang ngôn ngữ',
-    'description' => 'Mô tả'
+    'description' => 'Mô tả',
+    'enter_month' => 'Nhập tháng'
 ];
