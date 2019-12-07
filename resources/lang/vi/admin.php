@@ -38,5 +38,8 @@ return [
     'file_path' => 'Đường dẫn file ',
     'about_us' => 'Giới thiệu',
     'program_introduction' => 'Giới thiệu chương trình',
-    'co_organizing_board' => 'Giới thiệu đối tác'
+    'co_organizing_board' => 'Giới thiệu đối tác',
+    'current_language' => 'Ngôn ngữ hiện tại',
+    'translations_to_language' => 'Dịch sang ngôn ngữ',
+    'description' => 'Mô tả'
 ];

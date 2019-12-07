@@ -40,5 +40,8 @@ return [
     'enter_file_path' => 'Enter File Path',
     'about_us' => 'About us',
     'program_introduction' => 'Program introduction',
-    'co_organizing_board' => 'Co-organizing board'
+    'co_organizing_board' => 'Co-organizing board',
+    'current_language' => 'Current language',
+    'translations_to_language' => 'Translations to language',
+    'description' => 'Description'
 ];

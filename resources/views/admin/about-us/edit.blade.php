@@ -12,29 +12,7 @@
 
     <div class="container-fluid">
         {{-- switch language --}}
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-3">
-                        <label>
-                            Current language
-                            @php
-                                $currentLang = request()->language ? request()->language : ($record->id ? $record->language : 'vi');
-                            @endphp
-                            <img src="{{ asset('admin/assets/images/'.$currentLang.'.png') }}" alt=""/>    
-                        </label>
-                    </div>
-                    <div class="col-3">
-                        <label>
-                            Translations to language
-                            <a href="{{$urlTrans}}">
-                                <img src="{{ asset('admin/assets/images/'.($currentLang == 'vi' ? 'en' : 'vi').'.png') }}" alt=""/>    
-                            </a>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('admin.components.switch-language')
 
         {{-- Form Edit --}}
         <div class="row">
@@ -58,6 +36,14 @@
                                 <input type="text" name="title" class="form-control" value="{{old('title', $record->title)}}" placeholder="{{trans('admin.enter_title')}}">
                                 @if($errors->has('title'))
                                     <span class="error-msg">{{$errors->first('title')}}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group m-t-20">
+                                <label>{{trans('admin.description')}}</label>
+                                <textarea rows="5" name="description" class="form-control">{{$record->description}}</textarea>
+                                @if($errors->has('description'))
+                                    <span class="error-msg">{{$errors->first('description')}}</span>
                                 @endif
                             </div>
 
