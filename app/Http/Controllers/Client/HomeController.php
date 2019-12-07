@@ -87,15 +87,6 @@ class HomeController extends Controller
 
     //
     /**
-     * Display a listing of the program timeline.
-     */
-    public function programTimeline()
-    {
-        return view('client.lich-trinh');
-    }
-
-    //
-    /**
      * Display a listing of the news.
      */
     public function news(Request $request)

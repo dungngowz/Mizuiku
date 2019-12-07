@@ -34,7 +34,7 @@ body { min-width: 1170px; font-family: Arial; font-size: 15px; color: #333}
 .wrp { width: 1170px; margin: auto;}
 
 .baiviet {margin-bottom: 18px}
-.noidung {width: 100%; min-height: 100px; margin: 10px 0px;text-align:justify; line-height: 22px;font-size: 16px}
+.noidung {width: 100%; margin: 10px 0px;text-align:justify; line-height: 22px;font-size: 16px}
 .noidung img { max-width: 100%; height: auto}
  
 #bttop { position: fixed; z-index: 100; bottom: 180px; right: 20px; cursor: pointer; width: 58px; height: 89px; background: url(bgbttop.png); text-align: center;display: none}
