@@ -109,7 +109,7 @@
         var content = $("#tbContent_CT").val();
         // var igid = $("#DisplayLoadControl_ctl00_Index_dllCT option:selected").val();
         $.ajax({
-            url: '/contact-us',
+            url: '/lien-he',
             type: "get",
             data: {
                 "fullname": name,

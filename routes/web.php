@@ -20,14 +20,14 @@ Route::get('set-locale/{keyLocale}/{locale}', function ($keyLocale, $locale){
 // Location
 Route::group(['namespace' => 'Client'], function(){
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/contact-us', 'HomeController@contact')->name('contact');
-    Route::get('/introduction', 'HomeController@introduction')->name('introduction');
+    Route::get('/lien-he', 'HomeController@contact')->name('contact');
+    Route::get('/gioi-thieu', 'HomeController@introduction')->name('introduction');
     Route::get('/detail-introduction', 'HomeController@detailIntroduction')->name('detail-introduction');
     Route::get('/live-learn-introduction', 'HomeController@liveLearnIntroduction')->name('live-learn-introduction');
-    Route::get('/e-learning', 'HomeController@eLearning')->name('e-learning');
-    Route::get('/program-timeline', 'HomeController@programTimeline')->name('program-timeline');
-    Route::get('/news', 'HomeController@news')->name('news');
-    Route::get('/library', 'HomeController@library')->name('library');
+    Route::get('/khoa-hoc', 'HomeController@eLearning')->name('e-learning');
+    Route::get('/lich-trinh', 'HomeController@programTimeline')->name('program-timeline');
+    Route::get('/tin-tuc', 'HomeController@news')->name('news');
+    Route::get('/thu-vien', 'HomeController@library')->name('library');
 
 });
 
