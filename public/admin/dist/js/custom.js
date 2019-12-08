@@ -169,6 +169,7 @@ $(function() {
     $( document ).on( "click", ".btn-delete", function() {
         let id = parseInt($(this).attr('data-id'));
         let url = $(this).attr('data-url');
+        alert(url);
         $('#modal-delete .btn-submit-delete').attr('data-id', id);
         $('#modal-delete .btn-submit-delete').attr('data-url', url);
         $('#modal-delete').modal('show');

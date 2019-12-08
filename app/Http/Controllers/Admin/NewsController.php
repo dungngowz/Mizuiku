@@ -9,6 +9,8 @@ use App\Models\Article;
 use App\Http\Requests\StoreNews;
 use App\Models\Category;
 use App\Scopes\LanguageScope;
+use Illuminate\Support\Facades\Storage;
+use App\Helpers\CommonHelper;
 
 class NewsController extends Controller
 {
@@ -88,7 +90,13 @@ class NewsController extends Controller
     public function store(StoreNews $request)
     {
         $record = new Article;
-        $record->fill($request->all());
+
+        $params = $request->all();
+        if(!empty($params['thumbnail'])){
+            CommonHelper::updateFileRecord($params['thumbnail'], $record->thumbnail, 'news');
+        }
+
+        $record->fill($params);
 
         if($request->ref_id){
             $record->ref_id = $request->ref_id;
@@ -165,7 +173,12 @@ class NewsController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
-        $record->fill($request->all());
+        $params = $request->all();
+        if(!empty($params['thumbnail']) && $params['thumbnail'] != $record->thumbnail){
+            CommonHelper::updateFileRecord($params['thumbnail'], $record->thumbnail, 'news');
+        }
+
+        $record->fill($params);
         $record->save();
         return redirect('admin/news?type=' . $record->type);
     }

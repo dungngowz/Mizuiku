@@ -206,4 +206,28 @@ class CommonHelper{
         imagejpeg($source_image, $new_image, $quality);
         imagedestroy($source_image);
     }
+
+    //Ex: $this->updateFileRecord($params['thumbnail'], $record->thumbnail, 'products');
+    public static function updateFileRecord(&$fileTmp, $fileOld, $folder){
+        if(empty($fileTmp)){
+            if(!empty($fileOld)){ //Delete file old
+                Storage::delete($fileOld);
+            }
+        }else{
+            if(Storage::exists($fileTmp)){
+                if( $fileTmp != $fileOld ){//Add new file
+                    $desFolder = $folder . '/' . date("Y") . '/' . date("m") . '/' . basename($fileTmp);
+                    if(Storage::move($fileTmp, $desFolder)){
+                        Storage::delete($fileOld);
+                    }
+
+                    $fileTmp = $desFolder;
+                }
+            }else{
+                if( $fileTmp != $fileOld ){
+                    $fileTmp = '';
+                }
+            }
+        }
+    }
 }

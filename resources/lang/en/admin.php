@@ -44,5 +44,8 @@ return [
     'current_language' => 'Current language',
     'translations_to_language' => 'Translations to language',
     'description' => 'Description',
-    'enter_month' => 'Enter month'
+    'enter_month' => 'Enter month',
+    'status' => 'Status',
+    'show' => 'Show',
+    'hide' => 'Hide'
 ];

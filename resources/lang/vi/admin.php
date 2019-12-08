@@ -42,5 +42,8 @@ return [
     'current_language' => 'Ngôn ngữ hiện tại',
     'translations_to_language' => 'Dịch sang ngôn ngữ',
     'description' => 'Mô tả',
-    'enter_month' => 'Nhập tháng'
+    'enter_month' => 'Nhập tháng',
+    'status' => 'Trạng thái',
+    'show' => 'Hiện',
+    'hide' => 'Ẩn'
 ];
