@@ -13,8 +13,8 @@
     <div class="container-fluid">
         {{-- Form Create --}}
         <div class="row">
-            <div class="col-12">
-                <form action="{{ route('admin.library.store')}}" method="post">
+            <div class="col">
+                {{-- <form action="{{ route('admin.library.store')}}" method="post">
                     @csrf
                     <div class="card">
                         <div class="card-body">
@@ -41,7 +41,13 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="upload-file">Upload file</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="border-top">
                             <div class="card-body text-right">
@@ -52,8 +58,53 @@
                             </div>
                         </div>
                     </div>
+                </form> --}}
+                <div class="form-group">
+                    <label for="document">Upload File</label>
+                    <form action="{{ route('admin.library.storeFileUpload') }}" name="upload-file" enctype="multipart/form-data" class="dropzone" id="dropzone" method="post">
+                        @csrf   
+                    </form>
+                </div>
+                <form action="{{ route('admin.library.store') }}" name="store-gallery" method="post">
+                    @csrf   
+                    <div class="text-right">
+                        <a href="{{ route('admin.library') }}">
+                            <button type="button" class="btn">{{trans('admin.cancel')}}</button>
+                        </a>
+                        <button type="submit" class="btn btn-primary">{{trans('admin.submit')}}</button>
+                    </div>
                 </form>
+               
             </div>
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        Dropzone.options.dropzone = {
+            maxFilesize: 16,
+            uploadMultiple: true,
+            dictFileTooBig: 'Image is larger than 16MB',
+            renameFile: function(file) {
+                var dt = new Date();
+                var time = dt.getTime();
+               return time+file.name;
+            },
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            addRemoveLinks: true,
+            timeout: 2000,
+            success: function(file, response) 
+            {
+                // $('form[name="store-gallery"]').append('<input type="hidden" name="fileUpload[file_path]" value="' + file.name + '">');
+                $('form[name="store-gallery"]').append('<input type="hidden" name="fileUpload[file_name]" value="' + file.name + '">')
+                console.log(response, file);
+            },
+            error: function(file, response)
+            {
+               return false;
+            }
+        };
+    </script>
+    
+@endpush

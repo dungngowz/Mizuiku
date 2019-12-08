@@ -10,7 +10,7 @@ return [
     'delete' => 'Xóa',
     'edit' => 'Sửa',
     'add_new' => 'Thêm mới',
-    'create' => 'Tạo',
+    'create' => 'Tạo Mới',
     'enter_title' => 'Nhập tiêu đề',
     'cancel' => 'Thoát',
     'submit' => 'Gửi',

@@ -45,7 +45,7 @@ class LibraryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request){
-        return view('admin.library.create' , ['title' => trans('admin.library') .trans('admin.create')]);
+        return view('admin.library.create' , ['title' => trans('admin.library'). ' - ' .trans('admin.create')]);
     }
 
     /**
@@ -55,21 +55,12 @@ class LibraryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        $gallery = Gallery::create($request->all());
+        $data = $request->fileUpload;
+        $data['file_path'] = 'storage/app/public/gallery';
+        $gallery = Gallery::create($data);
         return view('admin.library.index', [
             'title' => 'Library'
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -122,5 +113,15 @@ class LibraryController extends Controller
             return $this->response(200);
         }
         return $this->response(500);
+    }
+
+    public function storeFileUpload(Request $request)
+    {
+        $image = $request->file('file');
+   
+        $imageName = time().'.'.$image->extension();
+        $image->move(storage_path('app/public/gallery'), $imageName);
+   
+        return response()->json(['success'=>$imageName]);
     }
 }

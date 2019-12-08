@@ -47,7 +47,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/library/{id}/update', 'LibraryController@update')->name('admin.library.update');
     Route::delete('/library/delete/{id}', 'LibraryController@destroy')->name('admin.library.delete');
     Route::get('/library/data', 'LibraryController@data')->name('admin.library.data');
-
+    Route::post('library/storeFileUpload', 'LibraryController@storeFileUpload')->name('admin.library.storeFileUpload');
     // upload file
     //Route::post('upload-file', 'FileController@uploadTmp');
     Route::post('upload-image-base64', 'ImageController@uploadImageBase64')->name('admin.uploadImageBase64');

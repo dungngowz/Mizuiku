@@ -29,7 +29,7 @@
                         @php
                             $locale = $_COOKIE[config('const.key_locale_admin')];
                         @endphp
-                        <a class="dropdown-item {{$locale == '' ? 'active' : ''}}" href="{{url('set-locale/admin-locale/all')}}">{{trans('admin.show_all_laguages')}}</a>
+                        <a class="dropdown-item {{$locale == '' ? 'active' : ''}}" data-id='{{ $locale }}' href="{{url('set-locale/admin-locale/all')}}">{{trans('admin.show_all_laguages')}}</a>
                         <a class="dropdown-item {{$locale == 'vi' ? 'active' : ''}}" href="{{url('set-locale/admin-locale/vi')}}">Tiếng Việt</a>
                         <a class="dropdown-item {{$locale == 'en' ? 'active' : ''}}" href="{{url('set-locale/admin-locale/en')}}">English</a>
                     </div>

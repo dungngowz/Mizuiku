@@ -22,7 +22,10 @@
     <link href="{{asset('admin/assets/libs/flot/css/float-chart.css')}}" rel="stylesheet">
     <link href="{{asset('admin/dist/css/style.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/dist/css/admin.css')}}" rel="stylesheet">
-
+    
+    <!--Dropzone -->
+    <link rel="stylesheet" href="{{ asset('admin/dist/css/dropzone/dropzone.css') }}">
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -39,6 +42,9 @@
 </head>
 
 <body>
+    @php
+        setcookie(config('const.key_locale_admin'), 'vi', time() + (86400 * 30), "/");
+    @endphp
     <!-- Preloader - style you can find in spinners.css -->
     <div class="preloader">
         <div class="lds-ripple">
@@ -93,6 +99,9 @@
     <!--Custom JavaScript -->
     <script src="{{asset('admin/dist/js/custom.js')}}"></script>
     
+    <!--Dropzone -->
+    <script src="{{ asset('admin/dist/css/dropzone/dropzone.js') }}"></script>
+
     <!--This page JavaScript -->
     {{-- <script src="{{asset('admin/dist/js/pages/dashboards/dashboard1.js' )}}"></script> --}}
 

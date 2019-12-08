@@ -49,3 +49,10 @@ table.dataTable tbody td {
   width: 100%;
 }
 
+.dropzone {
+  min-height: 200px;
+  border: 2px dashed #0087F7 !important;
+  border-radius: 5px;
+  background: white;
+}
+

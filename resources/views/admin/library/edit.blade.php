@@ -11,10 +11,10 @@
     </div>
 
     <div class="container-fluid">
-        {{-- Form Create --}}
+        {{-- Form Edit --}}
         <div class="row">
-            <div class="col-12">
-                <form action="{{ route('admin.library.update', ['id' => $record->id])}}" method="post">
+            <div class="col">
+                {{-- <form action="{{ route('admin.library.update', ['id' => $record->id])}}" method="post">
                     {{ method_field('PUT') }}
                     @csrf
                     <div class="card">
@@ -52,6 +52,21 @@
                                 <button type="submit" class="btn btn-primary">{{trans('admin.submit')}}</button>
                             </div>
                         </div>
+                    </div>
+                </form> --}}
+                <div class="form-group">
+                    <label for="document">Upload File</label>
+                    <form action="{{ route('admin.library.storeFileUpload') }}" name="upload-file" enctype="multipart/form-data" class="dropzone" id="dropzone" method="post">
+                        @csrf   
+                    </form>
+                </div>
+                <form action="{{ route('admin.library.store') }}" name="store-gallery" method="post">
+                    @csrf   
+                    <div class="text-right">
+                        <a href="{{ route('admin.library') }}">
+                            <button type="button" class="btn">{{trans('admin.cancel')}}</button>
+                        </a>
+                        <button type="submit" class="btn btn-primary">{{trans('admin.submit')}}</button>
                     </div>
                 </form>
             </div>
