@@ -14,7 +14,9 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function(){
     // dashboard
-    Route::get('/dashboard', 'DashBoardController@index')->name('admin.dashboard');
+    Route::get('/dashboard', function(){
+        return view('admin.dashboard.index');
+    })->name('admin.dashboard');
 
     // auth
     Route::get('/logout', 'Auth\LoginController@logout');
