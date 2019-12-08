@@ -25,7 +25,9 @@ Route::group(['namespace' => 'Client'], function(){
     Route::get('/detail-introduction', 'HomeController@detailIntroduction')->name('detail-introduction');
     Route::get('/live-learn-introduction', 'HomeController@liveLearnIntroduction')->name('live-learn-introduction');
     Route::get('/khoa-hoc', 'HomeController@eLearning')->name('e-learning');
-    Route::get('/lich-trinh', 'HomeController@programTimeline')->name('program-timeline');
+    
+    Route::resource('/lich-trinh', 'ProgramTimelineController');
+
     Route::get('/tin-tuc', 'HomeController@news')->name('news');
     Route::get('/thu-vien', 'HomeController@library')->name('library');
 

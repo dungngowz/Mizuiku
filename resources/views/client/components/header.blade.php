@@ -81,7 +81,7 @@
                         <a title='{{ __('client.about-us-1') }}' href='{{ route('introduction', ['path' => 'program-introduction']) }}'>{{ __('client.about-us-1') }}</a>
                     </li>
                     <li>
-                        <a title='{{ __('client.about-us-2') }}' href='{{ route('introduction', ['path' => 'live-learn-introduction']) }}'>{{ __('client.about-us-2') }}</a>
+                        <a title='{{ __('client.about-us-2') }}' href='{{ route('introduction', ['path' => 'co-organizingboard']) }}'>{{ __('client.about-us-2') }}</a>
                     </li>
                 </ul>
             </li>
@@ -105,7 +105,7 @@
                     </li>
                 </ul>
             </li>
-            <li data='5' class='litop hassub'><a href='{{ route('program-timeline') }}' title='Program timeline'>{{ __('client.program-timeline') }}</a>
+            <li data='5' class='litop hassub'><a href='{{ url('lich-trinh') }}' title='Program timeline'>{{ __('client.program-timeline') }}</a>
             </li>
             <li data='6' class='litop hassub'><a href='{{ route('e-learning') }}' title='{{ __('client.e-learning') }}'>{{ __('client.e-learning') }}</a>
                 <ul>

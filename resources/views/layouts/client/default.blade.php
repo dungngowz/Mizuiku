@@ -2,8 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ app()->getLocale() }}">
 
 <head>
-    <title>{{ config('app.name') }}</title>
-
     {{-- SEO --}}
     <meta http-equiv="content-language" content="vi" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -18,6 +16,9 @@
     <link rel="Shortcut icon" href="{{ asset('client/pic/banner/iconbtnhoc_636319920147622774636559225605595018.png') }}" type="image/x-icon" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Title -->
+    <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
+    
     <script type="text/javascript">
 		var weburl = "{{ config('app.url') }}";
 		// if (document.URL.indexOf("www.") > -1) window.location = document.URL.replace("www.", "");

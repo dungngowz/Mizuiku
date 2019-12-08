@@ -9,9 +9,9 @@
         <!-- Sidebar navigation-->
         <nav class="sidebar-nav">
             <ul id="sidebarnav" class="p-t-30">
-                {{-- Dashboard --}}
+                {{-- HomePage --}}
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark" href="{{ url('admin/dashboard') }}" aria-expanded="false">
+                    <a class="sidebar-link waves-effect waves-dark" href="{{ url('/') }}" aria-expanded="false">
                         <i class="mdi mdi-view-dashboard"></i>
                         <span class="hide-menu">{{trans('admin.dashboard')}}</span>
                     </a>

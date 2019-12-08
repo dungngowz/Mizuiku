@@ -38,7 +38,7 @@ class ProgramTimeline extends SoftModelBase
     /**
      * @var array
      */
-    protected $fillable = ['ref_id', 'title', 'slug', 'month', 'content', 'language', 'status', 'created_at', 'created_user_id', 'updated_at', 'updated_user_id', 'deleted_at', 'deleted_user_id'];
+    protected $fillable = ['ref_id', 'title', 'slug', 'month', 'content', 'priority', 'language', 'status', 'created_at', 'created_user_id', 'updated_at', 'updated_user_id', 'deleted_at', 'deleted_user_id'];
 
     /**
      * The "booting" method of the model.

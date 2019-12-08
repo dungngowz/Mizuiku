@@ -17,12 +17,20 @@ class LanguageScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
+        $tableName = $builder->getModel()->getTable();
         $prefixRoute = trim(request()->route()->getPrefix(), '/');
-        $keyLocale = $prefixRoute == 'admin' ? config('const.key_locale_admin') : config('const.key_locale_client');
 
-        if(isset($_COOKIE[$keyLocale]) && in_array($_COOKIE[$keyLocale], ['vi', 'en']) ){
-            $tableName = $builder->getModel()->getTable();
-            $builder->where($tableName.'.language', $_COOKIE[$keyLocale]);
+        if($prefixRoute == 'admin'){
+            $keyLocale = config('const.key_locale_admin');
+
+            if(isset($_COOKIE[$keyLocale]) && in_array($_COOKIE[$keyLocale], ['vi', 'en'])){
+                $builder->where($tableName.'.language', $_COOKIE[$keyLocale]);
+            }
+
+        }else{
+            $keyLocale = config('const.key_locale_client');
+            $locale = isset($_COOKIE[$keyLocale]) ? $_COOKIE[$keyLocale] : 'vi';
+            $builder->where($tableName.'.language', $locale);
         }
     }
 }

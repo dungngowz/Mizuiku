@@ -27,7 +27,8 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @php
-                            $locale = $_COOKIE[config('const.key_locale_admin')];
+                            $keyLocale = config('const.key_locale_admin');
+                            $locale = isset($_COOKIE[$keyLocale]) ? $_COOKIE[$keyLocale] : '';
                         @endphp
                         <a class="dropdown-item {{$locale == '' ? 'active' : ''}}" data-id='{{ $locale }}' href="{{url('set-locale/admin-locale/all')}}">{{trans('admin.show_all_laguages')}}</a>
                         <a class="dropdown-item {{$locale == 'vi' ? 'active' : ''}}" href="{{url('set-locale/admin-locale/vi')}}">Tiếng Việt</a>

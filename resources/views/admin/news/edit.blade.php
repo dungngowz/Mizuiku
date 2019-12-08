@@ -12,29 +12,7 @@
 
     <div class="container-fluid">
         {{-- switch language --}}
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-3">
-                        <label>
-                            Current language
-                            @php
-                                $currentLang = request()->language ? request()->language : ($record->id ? $record->language : 'vi');
-                            @endphp
-                            <img src="{{ asset('admin/assets/images/'.$currentLang.'.png') }}" alt=""/>    
-                        </label>
-                    </div>
-                    <div class="col-3">
-                        <label>
-                            Translations to language
-                            <a href="{{$urlTrans}}">
-                                <img src="{{ asset('admin/assets/images/'.($currentLang == 'vi' ? 'en' : 'vi').'.png') }}" alt=""/>    
-                            </a>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('admin.components.switch-language')
 
         {{-- Form Edit --}}
         <div class="row">
@@ -79,10 +57,16 @@
                                     </div>
 
                                     <div class="form-group m-t-20">
-                                        <label>{{trans('admin.link')}}</label>
-                                        <input type="text" name="url" class="form-control" value="{{old('url', $record->url)}}" placeholder="{{trans('admin.enter_url')}}">
-                                        @if($errors->has('url'))
-                                            <span class="error-msg">{{$errors->first('url')}}</span>
+                                        <label>{{trans('admin.status')}}</label>
+                                        <select name="category" class="select2 form-control custom-select">
+                                            @php
+                                                $status = old('status', $record->status);
+                                            @endphp
+                                            <option {{ ($status == 0) ? 'selected' : '' }}>{{trans('admin.hide')}}</option>
+                                            <option {{ ($status == 1) ? 'selected' : '' }}>{{trans('admin.show')}}</option>
+                                        </select>
+                                        @if($errors->has('status'))
+                                            <span class="error-msg">{{$errors->first('status')}}</span>
                                         @endif
                                     </div>
         
@@ -95,7 +79,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-3"></div>
+                                <div class="col-md-2"></div>
 
                                 <div class="col-md-3">
                                     <div class="form-group m-t-20 wrap-thumbnail">
