@@ -20,11 +20,11 @@ class Timeline extends AbstractWidget
      */
     public function run()
     {
-        $timeline = ProgramTimeline::all();
+        $timeline = ProgramTimeline::orderBy('priority', 'desc')->orderBy('id', 'desc')->get();
 
         return view('widgets.client.timeline', [
             'config' => $this->config,
-            'timeline'   => $timeline
+            'timeline' => $timeline
         ]);
     }
 }

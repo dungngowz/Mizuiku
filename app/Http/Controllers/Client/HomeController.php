@@ -17,17 +17,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $locale = session()->get('locale') ? session()->get('locale') : 'en';
+        $locale = session()->get('client-locale') ?? 'en';
 
         $categories = Category::where('categories.priority', '1')
-        ->where('categories.language',$locale)
         ->join('articles','articles.category_id','categories.id')
         ->where('articles.language',$locale)
         ->select('articles.*','categories.title as category_title')
         ->get()->take(2)->toArray();
 
-        $articles = Article::where('language',$locale)->orderBy('created_at', 'desc')->get()->take(5)->toArray();
-        $intro = Article::where('keyword', 'program-introduction')->where('language',$locale)->get()->toArray();
+        $articles = Article::orderBy('created_at', 'desc')->get()->take(5)->toArray();
+        $intro = Article::where('keyword', 'program-introduction')->get()->toArray();
 
         $data = [ 
             'categories' => $categories, 
@@ -59,9 +58,8 @@ class HomeController extends Controller
      */
     public function introduction(Request $request)
     {
-        $locale = session()->get('locale') ? session()->get('locale') : 'en';
-        $intro = Article::where('keyword', $request->path)->where('language',$locale)->get()->toArray();
-        
+        $intro = Article::where('keyword', $request->path)->get()->toArray();
+
         return view('client.gioi-thieu', ['intro' => $intro]);
     }
 
@@ -71,8 +69,7 @@ class HomeController extends Controller
      */
     public function detailIntroduction(Request $request)
     {
-        $locale = session()->get('locale') ? session()->get('locale') : 'en';
-        $introDetail = Article::where('slug', $request->slug)->where('language',$locale)->get()->toArray();
+        $introDetail = Article::where('ref_id', $request->ref_id)->get()->toArray();
 
         return view('client.detail', ['introDetail' => $introDetail]);
     }
@@ -83,19 +80,9 @@ class HomeController extends Controller
      */
     public function eLearning()
     {
-        $locale = session()->get('locale') ? session()->get('locale') : 'en';
-        $eLearning = Article::where('keyword', 'e-learning')->where('language',$locale)->get()->toArray();
+        $eLearning = Article::where('keyword', 'e-learning')->get()->toArray();
 
         return view('client.khoa-hoc', ['eLearning' => $eLearning]);
-    }
-
-    //
-    /**
-     * Display a listing of the program timeline.
-     */
-    public function programTimeline()
-    {
-        return view('client.lich-trinh');
     }
 
     //

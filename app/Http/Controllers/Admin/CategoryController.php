@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\Category;
 use App\Http\Requests\StoreCategory;
+use App\Scopes\LanguageScope;
 
 class CategoryController extends Controller
 {
@@ -116,13 +117,19 @@ class CategoryController extends Controller
     {
         $title = trans('admin.news_categories') . ' - ' . trans('admin.edit');
         
-        $record = Category::find($id);
+        //Get detail category
+        $record = ProgrCategoryamTimeline::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
 
+        //Get url translate category
         $langNeedTrans = ($record->language == 'vi') ? 'en' : 'vi';
-        $chkRecord = Category::where('ref_id', $record->ref_id)->where('language', $langNeedTrans)->first();
+        $chkRecord = ProgCategoryramTimeline::withoutGlobalScope(LanguageScope::class)
+            ->where('ref_id', $record->ref_id)
+            ->where('language', $langNeedTrans)
+            ->first();
+
         if($chkRecord){
             $urlTrans = url('/admin/categories/'.$chkRecord->id.'/edit');
         }else{
@@ -145,7 +152,7 @@ class CategoryController extends Controller
      */
     public function update(StoreCategory $request, $id)
     {
-        $record = Category::find($id);
+        $record = Category::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
 
         if(!$record){
             return redirect()->route('admin.dashboard');
@@ -164,7 +171,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $record = Category::find($id);
+        $record = Category::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if($record && $record->delete()){
             return $this->response(200);
         }

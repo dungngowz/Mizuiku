@@ -4,18 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Gallery;
 use Yajra\DataTables\DataTables;
-use App\Models\Article;
-use App\Http\Requests\StoreAboutUs;
-use App\Scopes\LanguageScope;
 
-class AboutUsController extends Controller
+class LibraryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
     /**
      * Display a listing of the resource.
      *
@@ -23,8 +16,8 @@ class AboutUsController extends Controller
      */
     public function index(Request $request)
     {
-        return view('admin.about-us.index', [
-            'title' => trans('admin.about_us')
+        return view('admin.library.index', [
+            'title' => 'Library'
         ]);
     }
 
@@ -34,17 +27,12 @@ class AboutUsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(Request $request) {
-        $records = Article::where('keyword', $request->keyword)->get();
+        $records = Gallery::all();
 
         return DataTables::of($records)
             ->RawColumns(['actions'])
-            ->addColumn('language', function($item) {
-                return view('admin.components.language', [
-                    'item' => $item
-                ]);
-            })
             ->addColumn('actions', function($item) {
-                return view('admin.about-us.cols-actions', [
+                return view('admin.library.cols-actions', [
                     'item' => $item
                 ]);
             })
@@ -57,6 +45,7 @@ class AboutUsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request){
+        return view('admin.library.create' , ['title' => trans('admin.library') .trans('admin.create')]);
     }
 
     /**
@@ -65,7 +54,11 @@ class AboutUsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAboutUs $request){
+    public function store(Request $request){
+        $gallery = Gallery::create($request->all());
+        return view('admin.library.index', [
+            'title' => 'Library'
+        ]);
     }
 
     /**
@@ -87,29 +80,14 @@ class AboutUsController extends Controller
      */
     public function edit($id)
     {
-        //Get detail article
-        $record = Article::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
+        $record = Gallery::find($id);
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
 
-        //Get url translate article
-        $langNeedTrans = ($record->language == 'vi') ? 'en' : 'vi';
-        $chkRecord = Article::withoutGlobalScope(LanguageScope::class)
-            ->where('ref_id', $record->ref_id)
-            ->where('language', $langNeedTrans)
-            ->first();
-
-        if($chkRecord){
-            $urlTrans = url('/admin/about-us/'.$chkRecord->id.'/edit');
-        }else{
-            $urlTrans = url('/admin/about-us/create?keyword='. $record->keyword . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
-        }
-
-        return view('admin.about-us.edit', [
-            'title' => $record->title,
-            'record' => $record,
-            'urlTrans' => $urlTrans
+        return view('admin.library.edit', [
+            'title' => trans('admin.library').' - ' .trans('admin.edit'),
+            'record' => $record
         ]);
     }
 
@@ -120,16 +98,15 @@ class AboutUsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreAboutUs $request, $id)
+    public function update(Request $request, $id)
     {
-        $record = Article::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
+        $record = Gallery::find($id);
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
+        $record->update($request->all());
 
-        $record->fill($request->all());
-        $record->save();
-        return redirect('admin/about-us?keyword=' . $record->keyword);
+        return redirect()->route('admin.library');
     }
 
     /**
@@ -140,7 +117,7 @@ class AboutUsController extends Controller
      */
     public function destroy($id)
     {
-        $record = Article::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
+        $record = Gallery::find($id);
         if($record && $record->delete()){
             return $this->response(200);
         }

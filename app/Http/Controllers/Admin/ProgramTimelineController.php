@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\ProgramTimeline;
 use App\Http\Requests\StoreProgramTimeline;
+use App\Scopes\LanguageScope;
 
 class ProgramTimelineController extends Controller
 {
@@ -23,7 +24,7 @@ class ProgramTimelineController extends Controller
     public function index(Request $request)
     {
         return view('admin.program-timeline.index', [
-            'title' => 'Program Timeline'
+            'title' => trans('admin.program_timeline')
         ]);
     }
 
@@ -56,7 +57,7 @@ class ProgramTimelineController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request){
-        $title = 'Program Timeline - Create';
+        $title = trans('admin.program_timeline') . ' - ' . trans('admin.create');
         $record = new ProgramTimeline;
 
         $urlTrans = url('/admin/program-timeline/create?type='. $request->type . '&language=');
@@ -110,13 +111,19 @@ class ProgramTimelineController extends Controller
      */
     public function edit($id)
     {
-        $record = ProgramTimeline::find($id);
+        //Get detail program timeline
+        $record = ProgramTimeline::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
 
+        //Get url translate article
         $langNeedTrans = ($record->language == 'vi') ? 'en' : 'vi';
-        $chkRecord = ProgramTimeline::where('ref_id', $record->ref_id)->where('language', $langNeedTrans)->first();
+        $chkRecord = ProgramTimeline::withoutGlobalScope(LanguageScope::class)
+            ->where('ref_id', $record->ref_id)
+            ->where('language', $langNeedTrans)
+            ->first();
+
         if($chkRecord){
             $urlTrans = url('/admin/program-timeline/'.$chkRecord->id.'/edit');
         }else{
@@ -139,7 +146,7 @@ class ProgramTimelineController extends Controller
      */
     public function update(StoreProgramTimeline $request, $id)
     {
-        $record = ProgramTimeline::find($id);
+        $record = ProgramTimeline::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
@@ -157,7 +164,7 @@ class ProgramTimelineController extends Controller
      */
     public function destroy($id)
     {
-        $record = ProgramTimeline::find($id);
+        $record = ProgramTimeline::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if($record && $record->delete()){
             return $this->response(200);
         }
