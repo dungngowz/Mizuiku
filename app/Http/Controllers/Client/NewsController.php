@@ -28,7 +28,7 @@ class NewsController extends Controller
             ->orderBy('priority', 'desc')
             ->orderBy('id', 'desc')
             ->where('status', 1)
-            ->paginate(1);
+            ->paginate(15);
         
         return view('client.news', [
             'categoriesNews' => $categoriesNews,
@@ -43,16 +43,27 @@ class NewsController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $slug)
+    public function show(Request $request, $slugCategory, $slugArticle)
     {
-        $record = ProgramTimeline::where('ref_id', $request->ref_id)->first();
+        $record = Article::where('ref_id', $request->ref_id)->first();
+        
+        $categoriesNews = Category::orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->get();
+
         if(!$record){
-            return redirect('lich-trinh');
+            return redirect('/');
         }
 
-        return view('client.lich-trinh', [
+        $ortherArticles = Article::where('category_id', $record->category_id)
+            ->where('id', '<>', $record->id)
+            ->orderBy('priority', 'desc')
+            ->orderBy('id', 'desc')
+            ->where('status', 1)
+            ->get();
+
+        return view('client.news-detail', [
             'record' => $record,
-            'title' => $record->title
+            'categoriesNews' => $categoriesNews,
+            'ortherArticles' => $ortherArticles
         ]);
     }
 }

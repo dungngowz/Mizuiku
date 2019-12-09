@@ -1,0 +1,31 @@
+.wrap-pagination nav {
+  text-align: center;
+  position: relative;
+  bottom: 20px;
+}
+
+.wrap-pagination nav ul.pagination {
+  padding: 0;
+  list-style: none;
+  display: -webkit-inline-box;
+  display: inline-flex;
+}
+
+.wrap-pagination nav ul.pagination .page-item {
+  margin-left: 5px;
+}
+
+.wrap-pagination nav ul.pagination .page-item .page-link {
+  display: block;
+  padding: 6px 11px;
+  border-radius: 3px;
+  background: #f2f2f2;
+  color: #333;
+}
+
+.wrap-pagination nav ul.pagination .page-item.active .page-link {
+  background: #0e9ee6 !important;
+  color: #fff !important;
+  border-color: #0e9ee6 !important;
+}
+

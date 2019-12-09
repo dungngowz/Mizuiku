@@ -50,7 +50,7 @@
                         <div class='cb'></div>
                     </div>
 
-                    <div class='phantrang'>
+                    <div class='wrap-pagination'>
                         {{ $articles->appends(['ref_id' => request()->ref_id])->links() }}
                     </div>
                 @endif
