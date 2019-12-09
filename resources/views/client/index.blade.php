@@ -1,5 +1,5 @@
 @extends('layouts.client.default')
-@section('title', config('app.name'))
+@section('title', trans('client.home'))
 
 @section('content')
     <div id='slider' class='nivoSlider'>
@@ -14,10 +14,10 @@
                 <div class='item'>
                     @if ($intro)
                         <div class='tieude'>
-                            <a href='{{ $intro->url_detail_about_us_display }}' title='{{ $intro->title }}' class='name'>{{ $intro->title }}</a>
+                            <a href='{{ $intro->url_detail_about_us }}' title='{{ $intro->title }}' class='name'>{{ $intro->title }}</a>
                         </div>
                         <div class='cont dotdotdot'>{{ $intro->description }}</div>
-                        <a href='{{  $intro->url_detail_about_us_display }}' title='{{ __('client.details') }}' class='xct'>{{ __('client.details') }}</a>
+                        <a href='{{  $intro->url_detail_about_us }}' title='{{ __('client.details') }}' class='xct'>{{ __('client.details') }}</a>
                         <div class='cb'></div>
                     @endif
                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Widgets\Client;
 
+use Illuminate\Http\Request;
 use Arrilot\Widgets\AbstractWidget;
 use App\Models\Category;
 use App\Models\Article;
@@ -19,7 +20,7 @@ class Header extends AbstractWidget
      * Treat this method as a controller action.
      * Return view() or other content to display.
      */
-    public function run()
+    public function run(Request $request)
     {
         $articlesAboutUs = Article::whereIn('keyword', ['co-organizingboard', 'program-introduction'])
             ->orderBy('priority', 'desc')
@@ -30,6 +31,7 @@ class Header extends AbstractWidget
 
         return view('widgets.client.header', [
             'config' => $this->config,
+            'segments' => $request->segments(),
             'categoriesNews' => $categoriesNews,
             'articlesAboutUs' => $articlesAboutUs
         ]);

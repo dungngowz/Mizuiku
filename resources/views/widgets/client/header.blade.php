@@ -81,20 +81,20 @@
             
             {{-- About Us --}}
             @if (count($articlesAboutUs) > 0)
-            <li data='2' class='litop hassub'><a href='{{ route('introduction', ['path' => 'program-introduction']) }}' title='{{ __('client.about-us') }}'>{{ __('client.about-us') }}</a>
-                <ul>
-                    @foreach ($collection as $item)
-                        <li>
-                            <a title='{{$item->title}}' href='{{$item->url_detail_about_us}}'>{{$item->title}}</a>
-                        </li>    
-                    @endforeach
-                </ul>
-            </li>
+                <li data='2' class="litop hassub {{$segments[0] == 'gioi-thieu' ? 'active' : ''}}"><a href='{{ route('introduction', ['path' => 'program-introduction']) }}' title='{{ __('client.about-us') }}'>{{ __('client.about-us') }}</a>
+                    <ul>
+                        @foreach ($articlesAboutUs as $item)
+                            <li>
+                                <a title='{{$item->title}}' href='{{ route('introduction', ['path' => $item->keyword]) }}'>{{$item->title}}</a>
+                            </li>    
+                        @endforeach
+                    </ul>
+                </li>
             @endif
 
             {{-- News --}}
             @if ($categoriesNews)
-                <li data='3' class='litop active hassub'>
+                <li data='3' class='litop hassub {{$segments[0] == 'tin-tuc' ? 'active' : ''}}'>
                     <a href='{{ $categoriesNews[0]->url_detail_news }}' title='{{ $categoriesNews[0]->title }}'>{{ __('client.news') }}</a>
                     <ul>
                         @foreach ($categoriesNews as $item)
@@ -116,8 +116,9 @@
                     </li>
                 </ul>
             </li>
-            <li data='5' class='litop hassub'><a href='{{ url('lich-trinh') }}' title='Program timeline'>{{ __('client.program-timeline') }}</a>
-            </li>
+
+            <li data='5' class='litop hassub {{$segments[0] == 'lich-trinh' ? 'active' : ''}}'><a href='{{ url('lich-trinh') }}' title='Program timeline'>{{ __('client.program-timeline') }}</a></li>
+            
             <li data='6' class='litop hassub'><a href='{{ route('e-learning') }}' title='{{ __('client.e-learning') }}'>{{ __('client.e-learning') }}</a>
                 <ul>
                     <li>
@@ -125,7 +126,7 @@
                     </li>
                 </ul>
             </li>
-            <li data='7' class='litop '><a href='{{ route('contact') }}' title='{{ __('client.contact-us') }}'>{{ __('client.contact-us') }}</a></li>
+            <li data='7' class='litop {{$segments[0] == 'lien-he' ? 'active' : ''}}'><a href='{{ route('contact') }}' title='{{ __('client.contact-us') }}'>{{ __('client.contact-us') }}</a></li>
         </ul>
         <div class="cmNav">
             <a target='_blank' href='https://www.facebook.com/mizuikuemyeunuocsach/' title='fanpage facebook'><span>{{ __('client.follow-us') }}</span><img alt='fb' src='{{ asset('client/css/Common/fb.png') }}'/></a>

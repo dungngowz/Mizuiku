@@ -94,8 +94,8 @@ class Article extends SoftModelBase
      *
      * @return string
      */
-    public function getUrlDetailAboutUsDisplayAttribute(){
-        return url('detail-introduction/' . $this->slug . '?ref_id=' . $this->ref_id);
+    public function getUrlDetailAboutUsAttribute(){
+        return url('gioi-thieu/' . $this->slug . '?ref_id=' . $this->ref_id);
     }
 
     /**
