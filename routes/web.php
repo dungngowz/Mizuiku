@@ -33,5 +33,9 @@ Route::group(['namespace' => 'Client'], function(){
 
     Route::get('/thu-vien', 'HomeController@library')->name('library');
 
+    Route::post('/ajax-register', 'HomeController@ajaxRegister')->name('ajaxRegister');
+
+    Route::get('/get-provinces', 'HomeController@getProvinces')->name('getProvinces');
+
 });
 

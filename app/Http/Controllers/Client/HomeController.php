@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Models\Gallery;
+use App\Models\Province;
 
 class HomeController extends Controller
 {
@@ -17,7 +19,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $locale = session()->get('client-locale') ?? 'en';
+        $locale = session()->get(config('const.key_locale_client')) ?? 'en';
 
         $categories = Category::where('categories.priority', '1')
         ->join('articles','articles.category_id','categories.id')
@@ -91,6 +93,45 @@ class HomeController extends Controller
      */
     public function library(Request $request)
     {
-        return view('client.thu-vien');
+        $gallery = Gallery::paginate(12)->toArray();
+        return view('client.thu-vien', [
+            'gallery' => $gallery,
+            'title' => trans('client.album')
+        ]);
+    }
+
+    /**
+     * Store a newly created user
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function ajaxRegister(Request $request)
+    {
+        dd($request);
+        $user = User::create($request->all());
+        return $this->response(200,true,$user, trans('Created User Successfully!'));
+    }
+
+    /**
+     * Get Provinces
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getProvinces(Request $request)
+    {
+        $locale = session()->get(config('const.key_locale_client')) ?? 'en';
+
+        $city = Province::where('parent_id' , 0)->get();
+        if($request->id) {
+            if($request->id == 0) {
+                return $this->response(200,true,null,'No data found!');
+            }
+            $disctrict = Province::where('parent_id' , $request->id)->get();
+            return $this->response(200,true,$disctrict);
+        }
+
+        return $this->response(200,true,$city);
     }
 }

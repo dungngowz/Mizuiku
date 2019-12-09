@@ -15,28 +15,6 @@ function ResetLabel3() {
     $("label.loginnote").hide();
 }
 
-function LoadDistrict(igid, type) {
-    loading(true);
-    jQuery.ajax({
-        url: weburl + "cms/display/Member/Ajax/Ajax.aspx",
-        type: "POST",
-        dataType: "json",
-        data: {
-            "action": "LoadDistrict",
-            "igid": igid,
-            "type": type
-        },
-        success: function(res) {
-            loading(false);
-            if (type === 1) $("#DisplayLoadControl_Login_ddlDistric").html(res[0]);
-
-        },
-        error: function(error) { //Lỗi xảy ra
-            loading(false);
-        }
-    });
-}
-
 function ForgotPass() {
     var email = $("#DisplayLoadControl_Login_TextBox1").val();
     if (!CheckEmailValue($("#DisplayLoadControl_Login_TextBox1").val())) {
@@ -76,7 +54,6 @@ function ForgotPass() {
 }
 
 function registerMember() {
-
     var obError = undefined;
     $("#regisForm .required").each(function() {
         if (obError == undefined && $(this).val() === '') {
@@ -145,7 +122,7 @@ function registerMember() {
     }
     loading(true);
     jQuery.ajax({
-        url: weburl + "cms/display/Member/Ajax/Ajax.aspx",
+        url: '/ajax-register',
         type: "POST",
         dataType: "json",
         data: {
@@ -497,3 +474,40 @@ hovermenu();
 $(window).resize(function() {
     hovermenu();
 });
+
+$('.slide_open').on('click', function(){
+    $.ajax({
+        url: '/get-provinces',
+        type: "GET",
+        dataType: "json",
+        success: function(res) {
+            $.each(res.data, function (){
+                $('#DisplayLoadControl_Login_ddlCity').append("<option value='"+ this.id +"' >"+ this.name_vi +"</option>");
+            });
+            // console.log(res.data)
+        },
+        error: function(error) { //Lỗi xảy ra
+            console.log(error)
+        }
+    });
+});
+
+$('#DisplayLoadControl_Login_ddlCity').on('change', function(){
+    $.ajax({
+        url: '/get-provinces',
+        type: "GET",
+        dataType: "json",
+        data: {
+            'id': this.value
+        },
+        success: function(res) {
+            $.each(res.data, function (){
+                $('#DisplayLoadControl_Login_ddlDistric').append("<option value='"+ this.id +"' >"+ this.name_vi +"</option>");
+            });
+        //    console.log(res)
+        },
+        error: function(error) { //Lỗi xảy ra
+            console.log(error)
+        }
+    });
+})

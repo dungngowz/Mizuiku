@@ -63,11 +63,11 @@
                         <option value="3">{{ __('client.other') }}</option>
 
                     </select>
-                    <select name="DisplayLoadControl$Login$ddlCity" id="DisplayLoadControl_Login_ddlCity" class="w50pc fl" onchange="LoadDistrict(this.value,1)">
+                    <select name="DisplayLoadControl$Login$ddlCity" id="DisplayLoadControl_Login_ddlCity" class="w50pc fl">
                         <option value="0">{{ __('client.choose-city') }}</option>
 
                     </select>
-                    <select name="DisplayLoadControl$Login$ddlDistric" id="DisplayLoadControl_Login_ddlDistric" class="w50pc fr" onchange="LoadDistrict(this.value,2)">
+                    <select name="DisplayLoadControl$Login$ddlDistric" id="DisplayLoadControl_Login_ddlDistric" class="w50pc fr">
                         <option value="0">{{ __('client.choose-contry') }}</option>
 
                     </select>

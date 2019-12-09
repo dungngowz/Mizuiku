@@ -8,6 +8,7 @@
             <ul>
                 <li><a href="https://mizuiku-emyeunuocsach.vn/" title="Home">Home</a></li>
                 <li><a href='https://mizuiku-emyeunuocsach.vn/hinh-anh.htm' title='Thư viện'>Thư viện</a></li>
+                <li><a href='https://mizuiku-emyeunuocsach.vn/hinh-anh.htm' title='Thư viện'>Album</a></li>
             </ul>
             <div class="cb"></div>
         </div>

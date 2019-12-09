@@ -90,7 +90,7 @@
                 var time = dt.getTime();
                return time+file.name;
             },
-            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            acceptedFiles: ".jpeg,.jpg,.png,.gif,.mp4",
             addRemoveLinks: true,
             timeout: 2000,
             success: function(file, response) 
