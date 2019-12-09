@@ -1,4 +1,6 @@
 @extends('layouts.client.default')
+@section('title', trans('client.news'))
+
 @section('content')
 
         <div id="pageroad">

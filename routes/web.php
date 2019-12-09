@@ -22,7 +22,7 @@ Route::group(['namespace' => 'Client'], function(){
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/lien-he', 'HomeController@contact')->name('contact');
     Route::get('/gioi-thieu', 'HomeController@introduction')->name('introduction');
-    Route::get('/detail-introduction', 'HomeController@detailIntroduction')->name('detail-introduction');
+    Route::get('/detail-introduction/{slug}', 'HomeController@detailIntroduction')->name('detail-introduction');
     Route::get('/live-learn-introduction', 'HomeController@liveLearnIntroduction')->name('live-learn-introduction');
     Route::get('/khoa-hoc', 'HomeController@eLearning')->name('e-learning');
     

@@ -1,4 +1,5 @@
 @extends('layouts.client.default')
+@section('title', $introDetail->title)
 @section('content')
     <div id="pageroad">
         <div class="wrp">
@@ -15,13 +16,13 @@
             @if (!empty($introDetail))
                 <div class="wrp">
                     <div class="fs30 c109ce3 fiCielCadena pb10">
-                        <h1>{{ $introDetail[0]['title'] }}</h1>
+                        <h1>{{ $introDetail->title }}</h1>
                     </div>
                     <div class="baiviet">
 
                         <div class="thongke">
 
-                        <a class='thongke_ngay'>{{ __('client.date-post') }}: {{ date('H:i - d/m/Y',strtotime($introDetail[0]['created_at'])) }}</a>
+                        <a class='thongke_ngay'>{{ __('client.date-post') }}: {{ date('H:i - d/m/Y',strtotime($introDetail->created_at)) }}</a>
                             <a class='thongke_luotxem'>{{ __('client.views') }}: add view table</a>
 
                             <div class="cochu">
@@ -34,7 +35,7 @@
                         <div class="noidung TextSize">
                             {{-- Add content here --}}
                             @if ($introDetail)
-                                {!! $introDetail[0]['content'] !!}
+                                {!! $introDetail->content !!}
                             @endif
                         </div>
                     </div>
@@ -60,7 +61,7 @@
                                             fjs.parentNode.insertBefore(js, fjs);
                                         }(document, "script", "facebook-jssdk"));
                                     </script>
-                                    <div class="fb-like" data-href="{{ route('detail-introduction') }}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                                    <div class="fb-like" data-href="{{  $introDetail->url_detail_about_us_display }}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
 
                                     <!-- Place this tag where you want the share button to render. -->
                                     <div class="g-plus" data-action="share" data-annotation="bubble"></div>

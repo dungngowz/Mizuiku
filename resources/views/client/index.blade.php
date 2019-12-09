@@ -1,4 +1,6 @@
 @extends('layouts.client.default')
+@section('title', config('app.name'))
+
 @section('content')
     <div id='slider' class='nivoSlider'>
         <a href='javascript://'><img alt="" src="{{ asset('client/pic/banner/Banne_636905880545478378.jpg') }}" /></a>
@@ -12,10 +14,10 @@
                 <div class='item'>
                     @if ($intro)
                         <div class='tieude'>
-                            <a href='{{ route('introduction', ['path' => 'program-introduction']) }}' title='{{ $intro[0]['title'] }}' class='name'>{{ $intro[0]['title'] }}</a>
+                            <a href='{{ $intro->url_detail_about_us_display }}' title='{{ $intro->title }}' class='name'>{{ $intro->title }}</a>
                         </div>
-                        <div class='cont dotdotdot'>{{ $intro[0]['description'] }}</div>
-                        <a href='{{ route('detail-introduction', ['ref_id' => ($intro[0]['ref_id'])]) }}' title='{{ __('client.details') }}' class='xct'>{{ __('client.details') }}</a>
+                        <div class='cont dotdotdot'>{{ $intro->description }}</div>
+                        <a href='{{  $intro->url_detail_about_us_display }}' title='{{ __('client.details') }}' class='xct'>{{ __('client.details') }}</a>
                         <div class='cb'></div>
                     @endif
                 </div>

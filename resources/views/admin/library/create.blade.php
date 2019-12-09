@@ -84,7 +84,6 @@
     <script type="text/javascript">
         Dropzone.options.dropzone = {
             maxFilesize: 16,
-            uploadMultiple: true,
             dictFileTooBig: 'Image is larger than 16MB',
             renameFile: function(file) {
                 var dt = new Date();
@@ -96,9 +95,14 @@
             timeout: 2000,
             success: function(file, response) 
             {
-                // $('form[name="store-gallery"]').append('<input type="hidden" name="fileUpload[file_path]" value="' + file.name + '">');
-                $('form[name="store-gallery"]').append('<input type="hidden" name="fileUpload[file_name]" value="' + file.name + '">')
-                console.log(response, file);
+                paramObj = {
+                    'file_name': file.name,
+                    'file_path': response.file_path
+                };
+                
+                $('form[name="store-gallery"]').append("<input type='hidden' name='fileUpload[]' value='"+JSON.stringify(paramObj)+"'>");
+
+                console.log(JSON.stringify(paramObj));
             },
             error: function(file, response)
             {

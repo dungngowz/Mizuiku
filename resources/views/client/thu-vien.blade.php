@@ -1,4 +1,6 @@
 @extends('layouts.client.default')
+@section('title', trans('client.gallery'))
+
 @section('content')
 
     <div id="pageroad">

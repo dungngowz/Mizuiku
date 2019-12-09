@@ -86,4 +86,13 @@ class Article extends SoftModelBase
         }
         return $this->thumbnail;
     }
+
+    /**
+     * Return the custom thumbnail
+     *
+     * @return string
+     */
+    public function getUrlDetailAboutUsDisplayAttribute(){
+        return url('detail-introduction/' . $this->slug . '?ref_id=' . $this->ref_id);
+    }
 }

@@ -26,7 +26,7 @@ class HomeController extends Controller
         ->get()->take(2)->toArray();
 
         $articles = Article::orderBy('created_at', 'desc')->get()->take(5)->toArray();
-        $intro = Article::where('keyword', 'program-introduction')->get()->toArray();
+        $intro = Article::where('keyword', 'program-introduction')->first();
 
         $data = [ 
             'categories' => $categories, 
@@ -58,7 +58,7 @@ class HomeController extends Controller
      */
     public function introduction(Request $request)
     {
-        $intro = Article::where('keyword', $request->path)->get()->toArray();
+        $intro = Article::where('keyword', $request->path)->first();
 
         return view('client.gioi-thieu', ['intro' => $intro]);
     }
@@ -67,9 +67,9 @@ class HomeController extends Controller
     /**
      * Display a listing of the detail introduction.
      */
-    public function detailIntroduction(Request $request)
+    public function detailIntroduction(Request $request, $slug)
     {
-        $introDetail = Article::where('ref_id', $request->ref_id)->get()->toArray();
+        $introDetail = Article::where('ref_id', $request->ref_id)->first();
 
         return view('client.detail', ['introDetail' => $introDetail]);
     }

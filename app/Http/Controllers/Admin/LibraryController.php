@@ -56,11 +56,20 @@ class LibraryController extends Controller
      */
     public function store(Request $request){
         $data = $request->fileUpload;
-        $data['file_path'] = 'storage/app/public/gallery';
-        $gallery = Gallery::create($data);
-        return view('admin.library.index', [
-            'title' => 'Library'
-        ]);
+        // dd($request->all(), json_decode($request->fileUpload[0]));
+        if($data) {
+            foreach ($data as $item) {
+                $element = json_decode($item);
+
+                // store data to DB
+                $gallery = Gallery::create([
+                    'file_path' => 'gallery/'. $element->file_path,
+                    'file_name' => $element->file_name
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.library');
     }
 
     /**
@@ -118,10 +127,11 @@ class LibraryController extends Controller
     public function storeFileUpload(Request $request)
     {
         $image = $request->file('file');
-   
         $imageName = time().'.'.$image->extension();
+
+        // store image to storage
         $image->move(storage_path('app/public/gallery'), $imageName);
-   
-        return response()->json(['success'=>$imageName]);
+
+        return response()->json(['file_path'=>$imageName]);
     }
 }

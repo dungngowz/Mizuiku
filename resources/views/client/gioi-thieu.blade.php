@@ -1,4 +1,6 @@
 @extends('layouts.client.default')
+@section('title', trans('client.about-us'))
+
 @section('content')
     <div id="pageroad">
         <div class="wrp">
@@ -18,10 +20,10 @@
                 <div class='item'>
                     @if ($intro)
                         <div class='tieude'>
-                            <a href='{{ url($intro[0]['slug']) }}' title='"Mizuiku - I love clean water" program ' class='name'>{{ $intro[0]['title'] }}</a>
+                            <a href='{{ $intro->url_detail_about_us_display }}' title='{{ $intro->title }}' class='name'>{{ $intro->title }}</a>
                         </div>
-                        <div class='cont dotdotdot'>{{ $intro[0]['description'] }}</div>
-                        <a href='{{ route('detail-introduction', ['ref_id' => ($intro[0]['ref_id'])]) }}' title='Details' class='xct'>{{ __('client.details') }}</a>
+                        <div class='cont dotdotdot'>{{ $intro->description }}</div>
+                        <a href='{{ $intro->url_detail_about_us_display }}' title='Details' class='xct'>{{ __('client.details') }}</a>
                         <div class='cb'></div>
                     @endif
                 </div>

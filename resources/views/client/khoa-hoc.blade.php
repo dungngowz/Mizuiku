@@ -1,5 +1,7 @@
 
 @extends('layouts.client.default')
+@section('title', trans('client.course'))
+
 @section('content')
     <div id="pageroad">
         <div class="wrp">

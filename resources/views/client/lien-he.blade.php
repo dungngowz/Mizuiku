@@ -1,4 +1,6 @@
 @extends('layouts.client.default')
+@section('title', trans('client.contact-us'))
+
 @section('content')
 
         <div id="container">
