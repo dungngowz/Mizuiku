@@ -89,15 +89,6 @@ class HomeController extends Controller
     /**
      * Display a listing of the news.
      */
-    public function news(Request $request)
-    {
-        return view('client.tin-tuc');
-    }
-
-    //
-    /**
-     * Display a listing of the news.
-     */
     public function library(Request $request)
     {
         return view('client.thu-vien');

@@ -85,16 +85,21 @@
                     </li>
                 </ul>
             </li>
-            <li data='3' class='litop hassub'><a href='{{ route('news',['path' => 'program-news']) }}' title='{{ __('client.news') }}'>{{ __('client.news') }}</a>
-                <ul>
-                    <li>
-                        <a title='{{ __('client.program-news') }}' href='{{ route('news',['path' => 'program-news']) }}'>{{ __('client.program-news') }}</a>
-                    </li>
-                    <li>
-                        <a title='{{ __('client.environment-news') }}' href='{{ route('news',['path' => 'environment-news']) }}'>{{ __('client.environment-news') }}</a>
-                    </li>
-                </ul>
-            </li>
+
+            {{-- News --}}
+            @if ($categoriesNews)
+                <li data='3' class='litop hassub'>
+                    <a href='{{ $categoriesNews[0]->url_detail_news }}' title='{{ $categoriesNews[0]->title }}'>{{ __('client.news') }}</a>
+                    <ul>
+                        @foreach ($categoriesNews as $item)
+                            <li>
+                                <a title='{{ $item->title }}' href='{{ $item->url_detail_news }}'>{{$item->title}}</a>
+                            </li>    
+                        @endforeach
+                    </ul>
+                </li>
+            @endif
+
             <li data='4' class='litop hassub'><a href='{{ route('library',['path' => 'image-library']) }}' title='{{ __('client.gallery') }}'>{{ __('client.gallery') }}</a>
                 <ul>
                     <li>

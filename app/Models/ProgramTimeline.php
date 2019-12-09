@@ -65,14 +65,7 @@ class ProgramTimeline extends SoftModelBase
         ];
     }
     
-    public function getMonthDisplayAttribute() {
-        $locale = session('client-locale');
-        
-        if($locale == 'vi'){
-            return 'Tháng ' . $this->month;
-        }
-
-        $dateObj = \DateTime::createFromFormat('!m', $this->month);
-        return $dateObj->format('F');
+    public function getUrlDetailAttribute() {
+        return url('lich-trinh/' . $this->slug . '/?ref_id=' . $this->ref_id);
     }
 }

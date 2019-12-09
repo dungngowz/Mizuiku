@@ -125,5 +125,7 @@ return [
     'send-email' => 'Gửi email',
     'print' => 'In trang',
     'course' => 'Khóa học',
-    'sign-in-for-learn' => 'Đăng Nhập Để Học Ngay'
+    'sign-in-for-learn' => 'Đăng Nhập Để Học Ngay',
+    'date-submitted' => 'Ngày đăng',
+    'orther-post' => 'Các bài viết khác'
 ];
