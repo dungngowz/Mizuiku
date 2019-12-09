@@ -61,7 +61,7 @@
                                             fjs.parentNode.insertBefore(js, fjs);
                                         }(document, "script", "facebook-jssdk"));
                                     </script>
-                                    <div class="fb-like" data-href="{{  $introDetail->url_detail_about_us_display }}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                                    <div class="fb-like" data-href="{{  $introDetail->url_detail_about_us }}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
 
                                     <!-- Place this tag where you want the share button to render. -->
                                     <div class="g-plus" data-action="share" data-annotation="bubble"></div>

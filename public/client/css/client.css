@@ -29,3 +29,7 @@
   border-color: #0e9ee6 !important;
 }
 
+.CommonLanguage li.active a {
+  color: white;
+}
+
