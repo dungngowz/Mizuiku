@@ -35,6 +35,8 @@ class Article extends SoftModelBase
     use Sluggable;
 
     public $timestamps = true;
+    
+    protected $dates = ['created_at', 'updated_at'];
 
     /**
      * @var array
@@ -71,7 +73,7 @@ class Article extends SoftModelBase
      */
     public function category()
     {
-        return $this->hasOne('App\Models\Category');
+        return $this->belongsTo('App\Models\Category');
     }
 
     /**
@@ -85,5 +87,9 @@ class Article extends SoftModelBase
             return $this->thumbnail ? Storage::url($this->thumbnail) : 'admin/dist/images/noimage.jpg';
         }
         return $this->thumbnail;
+    }
+
+    public function getUrlDetailNewsAttribute() {
+        return url('tin-tuc/' . $this->category->slug . '/' . $this->slug . '/?ref_id=' . $this->ref_id);
     }
 }

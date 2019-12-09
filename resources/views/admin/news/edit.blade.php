@@ -43,12 +43,12 @@
 
                                     <div class="form-group m-t-20">
                                         <label>{{trans('admin.category')}}</label>
-                                        <select name="category" class="select2 form-control custom-select">
+                                        <select name="category_id" class="select2 form-control custom-select">
                                             @php
                                                 $category_id = old('category_id', $record->category_id);
                                             @endphp
                                             @foreach ($articleCategories as $item)
-                                                <option {{ ($item->id == $category_id) ? 'selected' : '' }}>{{$item->title}}</option>    
+                                                <option value="{{$item->id}}" {{ ($item->id == $category_id) ? 'selected' : '' }}>{{$item->title}}</option>    
                                             @endforeach
                                         </select>
                                         @if($errors->has('category_id'))
@@ -60,7 +60,7 @@
                                         <label>{{trans('admin.status')}}</label>
                                         <select name="category" class="select2 form-control custom-select">
                                             @php
-                                                $status = old('status', $record->status);
+                                                $status = old('status', $record->status ? $record->status : 1);
                                             @endphp
                                             <option {{ ($status == 0) ? 'selected' : '' }}>{{trans('admin.hide')}}</option>
                                             <option {{ ($status == 1) ? 'selected' : '' }}>{{trans('admin.show')}}</option>
@@ -94,6 +94,14 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="form-group m-t-20">
+                                <label>{{trans('admin.description')}}</label>
+                                <textarea rows="5" name="description" class="form-control">{{$record->description}}</textarea>
+                                @if($errors->has('description'))
+                                    <span class="error-msg">{{$errors->first('description')}}</span>
+                                @endif
                             </div>
                             
                             <div class="form-group m-t-20">
@@ -131,8 +139,8 @@
             enableExif: true,
             enableOrientation: true,    
             viewport: { 
-                width: 350,
-                height: 350,
+                width: 372,
+                height: 246,
             },
             boundary: {
                 width: 500,

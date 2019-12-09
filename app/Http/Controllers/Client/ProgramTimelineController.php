@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Scopes\LanguageScope;
-
 use App\Models\ProgramTimeline;
 
 class ProgramTimelineController extends Controller
@@ -30,7 +28,6 @@ class ProgramTimelineController extends Controller
      */
     public function show(Request $request, $slug)
     {
-        //Get detail program timeline
         $record = ProgramTimeline::where('ref_id', $request->ref_id)->first();
         if(!$record){
             return redirect('lich-trinh');

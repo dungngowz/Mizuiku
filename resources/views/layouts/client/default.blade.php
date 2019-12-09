@@ -79,7 +79,7 @@
 </head>
 
 <body>
-    @include('client.components.header')
+    @widget('client.header')
 
     @yield('content')
 

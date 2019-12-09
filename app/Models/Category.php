@@ -66,4 +66,8 @@ class Category extends SoftModelBase
     {
         return $this->hasMany('App\Models\Article');
     }
+
+    public function getUrlDetailNewsAttribute() {
+        return url('tin-tuc/' . $this->slug . '/?ref_id=' . $this->ref_id);
+    }
 }
