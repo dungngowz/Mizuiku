@@ -422,7 +422,7 @@ if ($('#header .buton .regis1 .btndk').hasClass('ac')) {
 var cRewrite = "";
 var cHrefInUrl = XuLyLink(document.URL);
 
-jQuery("#CommonMenuMain li.litop").removeClass("active");
+/*jQuery("#CommonMenuMain li.litop").removeClass("active");
 jQuery("#CommonMenuMain li.litop a").each(function() {
     var href = jQuery(this).attr("href");
     if (href) {
@@ -443,7 +443,7 @@ jQuery("#CommonMenuMain li.litop a").each(function() {
             if (active) jQuery(this).parent().addClass("active");
         }
     }
-});
+});*/
 
 function XuLyLink(href) {
     if (href.lastIndexOf("/") > -1) href = href.substring(href.lastIndexOf("/") + 1);
