@@ -200,3 +200,12 @@
 
     <div id="HeadFt"></div>
 @endsection
+
+@section('custom-js')
+    <script>
+        if({{ \Session::get('verified') ?? false }}) {
+            alert('Kích hoạt thành công! Vui lòng đăng nhập để bắt đầu khóa học')
+            $('#loginForm').popup('show');
+        }
+    </script>
+@endsection

@@ -9,6 +9,10 @@ use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Gallery;
 use App\Models\Province;
+use App\Http\Requests\RegisterClient;
+use App\Models\User;
+use App\Http\Requests\LoginClient;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -111,10 +115,15 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function ajaxRegister(Request $request)
+    public function ajaxRegister(RegisterClient $request)
     {
-        dd($request);
-        $user = User::create($request->all());
+        $data = $request->all();
+        $data['password'] = Hash::make($data['password']);
+        $user = User::create($data);
+        
+        // Send Email Verify
+        $user->sendEmailVerificationNotification();
+
         return $this->response(200,true,$user, trans('Created User Successfully!'));
     }
 
@@ -138,5 +147,17 @@ class HomeController extends Controller
         }
 
         return $this->response(200,true,$city);
+    }
+
+    /**
+     * Login
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function ajaxLogin(LoginClient $request)
+    {
+        dd($request);
+        return $this->response(200,true,null, trans('Login Successfully!'));
     }
 }
