@@ -1,6 +1,6 @@
 @extends('layouts.client.default')
 
-@section('title', $title)
+@section('title', $record->title)
 
 @section('content')
     <div id="pageroad">
@@ -8,24 +8,41 @@
             <ul>
                 <li><a href="/" title="{{ __('client.home') }}">{{ __('client.home') }}</a></li>
                 <li><a href='{{url('thu-vien/photo')}}' title='{{ __('client.gallery') }}'>{{ __('client.gallery') }}</a></li>
-                <li><a href='{{url('thu-vien/') . request()->keyword}}' title='{{ $title }}'>{{ $title }}</a></li>
+                <li><a href='{{url('thu-vien') . '/' . request()->keyword}}' title='{{ $title }}'>{{ $title }}</a></li>
             </ul>
             <div class="cb"></div>
         </div>
     </div>
 
     <div id="container">
-        <div class="wrp">
-            <div id="pta" class="hp cate list">
-                @if (count($articles) > 0)
-                    <div class="parent">
-                        <div class="tieude">
-                            <a href="javascript:;" title="{{$title}}" class="name">{{$title}}</a> 
-                            <div class="cb"></div>
+        <div id="pta" class="hp cate list detail">
+            <div class="wrp">
+                <div class="fs30 c109ce3 fiCielCadena pb10">
+                    <h1>{{$record->title}}</h1>
+                </div>
+                    
+                <div class="baiviet">
+                    <div class="thongke">
+                        <a class="thongke_ngay">{{trans('client.date-submitted')}}: {{$record->updated_at->format('H:i d-m-Y')}}</a>
+                        <div class="cochu">
+                            <a class="NormalSize" href="javascript:ResetTextSize()">{{trans('client.size')}}</a>
+                            <a class="SmallSize" href="javascript:DecreaseTextSize()"></a>
+                            <a class="LargeSize" href="javascript:IncreaseTextSize()"></a>
                         </div>
+                    </div>
+                    <div class="noidung TextSize">
+                        @php
+                            echo preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","<iframe src=\"//www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>",$record->url);
+                        @endphp
+                    </div>
+                    @component('client/components/social', ['record' => $record])@endcomponent
+                </div>
 
-                        <div class="group">
-                            @foreach ($articles as $item)
+                @if (count($ortherArticles) > 0)
+                    <div class='other'>
+                        <p class='fs24 c0e9ee6 fiCielGotham pb10'>{{request()->keyword == 'video' ? trans('client.other_videos') : trans('client.other_photo')}}</p>
+                        <div class='group'>
+                            @foreach ($ortherArticles as $item)
                                 <div class="item">
                                     <div class="khungAnh {{request()->keyword == 'video' ? 'khungVideo' : ''}}">
                                         <a class="khungAnhCrop" href="{{$item->url_detail_library}}" title="{{$item->title}}">
@@ -48,12 +65,7 @@
                                     </div>
                                 </div>
                             @endforeach
-                            <div class="cb"></div>
                         </div>
-                    </div>
-
-                    <div class='wrap-pagination'>
-                        {{ $articles->links() }}
                     </div>
                 @endif
             </div>

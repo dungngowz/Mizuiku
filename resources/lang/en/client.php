@@ -128,5 +128,6 @@ return [
     'sign-in-for-learn' => 'Sign in to learn now',
     'date-submitted' => 'Date Submitted',
     'orther-post' => 'Other posts',
-    'share' => 'Share'
+    'share' => 'Share',
+    'other_videos' => 'Other videos'
 ];

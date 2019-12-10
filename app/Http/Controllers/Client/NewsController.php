@@ -58,6 +58,7 @@ class NewsController extends Controller
             ->orderBy('priority', 'desc')
             ->orderBy('id', 'desc')
             ->where('status', 1)
+            ->limit(5)
             ->get();
 
         return view('client.news-detail', [

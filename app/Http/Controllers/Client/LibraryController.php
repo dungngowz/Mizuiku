@@ -38,23 +38,22 @@ class LibraryController extends Controller
     public function show(Request $request, $keyword, $slugArticle)
     {
         $record = Article::where('ref_id', $request->ref_id)->first();
-        
-        $categoriesNews = Category::orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->get();
 
         if(!$record){
-            return redirect('/');
+            return redirect('/thu-vien/' . $keyword);
         }
 
-        $ortherArticles = Article::where('category_id', $record->category_id)
+        $ortherArticles = Article::where('keyword', $keyword)
             ->where('id', '<>', $record->id)
             ->orderBy('priority', 'desc')
             ->orderBy('id', 'desc')
             ->where('status', 1)
+            ->limit(10)
             ->get();
 
-        return view('client.news-detail', [
+        return view('client.library-detail', [
             'record' => $record,
-            'categoriesNews' => $categoriesNews,
+            'title' => $keyword == 'video' ? trans('client.video') : trans('client.album'),
             'ortherArticles' => $ortherArticles
         ]);
     }

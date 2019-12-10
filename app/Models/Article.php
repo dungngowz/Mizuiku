@@ -113,6 +113,6 @@ class Article extends SoftModelBase
      * @return string
      */
     public function getUrlDetailLibraryAttribute() {
-        return url('tin-tuc/' . $this->keyword . '/' . $this->slug . '/?ref_id=' . $this->ref_id);
+        return url('thu-vien/' . $this->keyword . '/' . $this->slug . '/?ref_id=' . $this->ref_id);
     }
 }
