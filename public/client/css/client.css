@@ -33,3 +33,11 @@
   color: white;
 }
 
+#CommonMenuFooter a.active {
+  color: #68c5f6;
+}
+
+#foot {
+  padding-top: 25px !important;
+}
+

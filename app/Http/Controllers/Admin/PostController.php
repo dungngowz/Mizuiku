@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\Article;
-use App\Http\Requests\StoreAboutUs;
+use App\Http\Requests\StorePost;
 use App\Scopes\LanguageScope;
+use DB;
 
-class AboutUsController extends Controller
+class PostController extends Controller
 {
     public function __construct()
     {
@@ -23,8 +24,8 @@ class AboutUsController extends Controller
      */
     public function index(Request $request)
     {
-        return view('admin.about-us.index', [
-            'title' => trans('admin.about_us')
+        return view('admin.post.index', [
+            'title' => trans('admin.' . str_replace('-', '_', $request->keyword))
         ]);
     }
 
@@ -44,7 +45,7 @@ class AboutUsController extends Controller
                 ]);
             })
             ->addColumn('actions', function($item) {
-                return view('admin.about-us.cols-actions', [
+                return view('admin.post.cols-actions', [
                     'item' => $item
                 ]);
             })
@@ -65,7 +66,7 @@ class AboutUsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAboutUs $request){
+    public function store(StorePost $request){
     }
 
     /**
@@ -101,12 +102,12 @@ class AboutUsController extends Controller
             ->first();
 
         if($chkRecord){
-            $urlTrans = url('/admin/about-us/'.$chkRecord->id.'/edit');
+            $urlTrans = url('/admin/post/'.$chkRecord->id.'/edit');
         }else{
-            $urlTrans = url('/admin/about-us/create?keyword='. $record->keyword . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
+            $urlTrans = url('/admin/post/create?keyword='. $record->keyword . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
         }
 
-        return view('admin.about-us.edit', [
+        return view('admin.post.edit', [
             'title' => $record->title,
             'record' => $record,
             'urlTrans' => $urlTrans
@@ -120,7 +121,7 @@ class AboutUsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreAboutUs $request, $id)
+    public function update(StorePost $request, $id)
     {
         $record = Article::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if(!$record){
@@ -129,7 +130,7 @@ class AboutUsController extends Controller
 
         $record->fill($request->all());
         $record->save();
-        return redirect('admin/about-us?keyword=' . $record->keyword);
+        return redirect('admin/post?keyword=' . $record->keyword);
     }
 
     /**

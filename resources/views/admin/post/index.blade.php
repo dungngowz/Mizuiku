@@ -51,7 +51,7 @@
             $('#datatable').DataTable({
                 ...optionDataTable,
                 ajax: {
-                    url: '/admin/about-us/data',
+                    url: '/admin/post/data',
                     data : JSON.parse('<?php echo json_encode(request()->all()) ?>')
                 },
                 columns: [{

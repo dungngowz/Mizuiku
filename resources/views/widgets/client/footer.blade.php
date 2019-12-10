@@ -6,14 +6,22 @@
 
             <ul id='CommonMenuFooter' class='main'>
                 <li><a href='/' title='{{ __('client.home') }}'>{{ __('client.home') }}</a></li>
-                <li><a href='https://mizuiku-emyeunuocsach.vn/gioi-thieu.htm' title='{{ __('client.about-us') }}'>{{ __('client.about-us') }}</a></li>
-                <li><a href='https://mizuiku-emyeunuocsach.vn/tin-tuc.htm' title='{{ __('client.news') }}'>{{ __('client.news') }}</a></li>
-                <li><a href='https://mizuiku-emyeunuocsach.vn/thu-vien.htm' title='{{ __('client.gallery') }}'>{{ __('client.gallery') }}</a></li>
-                <li><a href='https://mizuiku-emyeunuocsach.vn/lich-trinh.htm' title='{{ __('client.program-timeline') }}'>{{ __('client.program-timeline') }}</a></li>
-                <li><a href='https://mizuiku-emyeunuocsach.vn/khoa-hoc.htm' title='{{ __('client.e-learning-r') }}'>{{ __('client.e-learning-r') }}</a></li>
-                <li><a href='https://mizuiku-emyeunuocsach.vn/lien-he.htm' title='{{ __('client.contact-us') }}'>{{ __('client.contact-us') }}</a></li>
+
+                @if (count($articlesAboutUs) > 0)
+                    <li><a class="{{$segments[0] == 'gioi-thieu' ? 'active' : ''}}" href='{{ route('introduction', ['path' => 'program-introduction']) }}' title='{{ __('client.about-us') }}'>{{ __('client.about-us') }}</a></li>
+                @endif
+
+                @if (count($categoriesNews) > 0)
+                    <li><a class="{{$segments[0] == 'tin-tuc' ? 'active' : ''}}" href='{{ $categoriesNews[0]->url_detail_news }}' title='{{ __('client.news') }}'>{{ __('client.news') }}</a></li>
+                @endif
+
+                <li><a class="{{$segments[0] == 'thu-vien' ? 'active' : ''}}" href='{{url('thu-vien/photo')}}' title='{{ __('client.gallery') }}'>{{ __('client.gallery') }}</a></li>
+                <li><a class="{{$segments[0] == 'lich-trinh' ? 'active' : ''}}" href='{{ url('lich-trinh') }}' title='{{ __('client.program-timeline') }}'>{{ __('client.program-timeline') }}</a></li>
+                <li><a class="{{$segments[0] == 'khoa-hoc' ? 'active' : ''}}" href='{{ route('e-learning') }}' title='{{ __('client.e-learning-r') }}'>{{ __('client.e-learning-r') }}</a></li>
+                <li><a class="{{$segments[0] == 'lien-he' ? 'active' : ''}}" href='{{ route('contact') }}' title='{{ __('client.contact-us') }}'>{{ __('client.contact-us') }}</a></li>
             </ul>
-            <div>
+            
+            <div style="margin-top: 10px;">
                 <span style="background-image:initial;background-position:initial;background-size:initial;background-repeat:initial;background-attachment:initial;background-origin:initial;background-clip:initial;">{{ __('client.permit-no-1') }}</span>
                 <br/>{{ __('client.permit-no-2') }}
                 <br />{{ __('client.contact') }}</div>

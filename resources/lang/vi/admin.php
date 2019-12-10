@@ -47,5 +47,9 @@ return [
     'show' => 'Hiện',
     'hide' => 'Ẩn',
     'photo_library' => 'Thư viện ảnh',
-    'video_library' => 'Thư viện video'
+    'video_library' => 'Thư viện video',
+    'tearm_of_use'=> 'Điều khoản sử dụng',
+    'private_policy' => 'Chính sách bảo mật',
+    'co_organizingboard' => 'Giới thiệu đối tác',
+    'e_learning' => 'E-Learning'
 ];

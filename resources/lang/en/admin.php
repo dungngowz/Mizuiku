@@ -49,5 +49,9 @@ return [
     'show' => 'Show',
     'hide' => 'Hide',
     'photo_library' => 'Photo library',
-    'video_library' => 'Video library'
+    'video_library' => 'Video library',
+    'tearm_of_use'=> 'Team Of Use',
+    'private_policy' => 'Private Policy',
+    'co_organizingboard' => 'Co-organizing Board',
+    'e_learning' => 'E-Learning'
 ];

@@ -21,7 +21,7 @@ class LanguageScope implements Scope
         $prefixRoute = trim(request()->route()->getPrefix(), '/');
 
         if($prefixRoute == 'admin'){
-            $keyLocale = config('const.key_locale_admin');
+            $keyLocale = 'admin-locale';
 
             if(isset($_COOKIE[$keyLocale]) && in_array($_COOKIE[$keyLocale], ['vi', 'en'])){
                 $builder->where($tableName.'.language', $_COOKIE[$keyLocale]);

@@ -85,7 +85,7 @@
 
     @yield('content')
 
-    @include('client.components.footer')
+    @widget('client.footer')
 
     @include('client.components.modal')
 

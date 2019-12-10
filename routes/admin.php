@@ -22,8 +22,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/logout', 'Auth\LoginController@logout');
 
     // About Us
-    Route::get('/about-us/data', 'AboutUsController@data');
-    Route::resource('/about-us', 'AboutUsController');
+    Route::get('/post/data', 'PostController@data');
+    Route::resource('/post', 'PostController');
     
     // Categories
     Route::get('/categories/data', 'CategoryController@data');

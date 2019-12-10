@@ -25,14 +25,14 @@
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
-                            <a href="{{ url('admin/about-us/?keyword='. config('const.keywords.program_introduction')) }}" class="sidebar-link">
+                            <a href="{{ url('admin/post/?keyword='. config('const.keywords.program_introduction')) }}" class="sidebar-link">
                                 <i class="mdi mdi-note-outline"></i>
                                 <span class="hide-menu">{{trans('admin.program_introduction')}}</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item">
-                            <a href="{{ url('admin/about-us/?keyword=' . config('const.keywords.co_organizingboard')) }}" class="sidebar-link">
+                            <a href="{{ url('admin/post/?keyword=' . config('const.keywords.co_organizingboard')) }}" class="sidebar-link">
                                 <i class="mdi mdi-note-outline"></i>
                                 <span class="hide-menu">{{trans('admin.co_organizing_board')}}</span>
                             </a>
@@ -93,10 +93,31 @@
                     </a>
                 </li>
 
+                {{-- E-Learning --}}
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('admin/post?keyword=e-learning') }}" aria-expanded="false">
+                    <i class="mdi mdi-receipt"></i><span class="hide-menu">E-Learning</span>
+                    </a>
+                </li>
+
                 {{-- Contact Us --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('admin/contact-us') }}" aria-expanded="false">
                         <i class="mdi mdi-receipt"></i><span class="hide-menu">{{trans('admin.contact_us')}}</span>
+                    </a>
+                </li>
+
+                {{-- Tearm Of Use --}}
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('admin/post?keyword=tearm-of-use') }}" aria-expanded="false">
+                    <i class="mdi mdi-receipt"></i><span class="hide-menu">{{trans('admin.tearm_of_use')}}</span>
+                    </a>
+                </li>
+
+                {{-- Private Policy --}}
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('admin/post?keyword=private-policy') }}" aria-expanded="false">
+                    <i class="mdi mdi-receipt"></i><span class="hide-menu">{{trans('admin.private_policy')}}</span>
                     </a>
                 </li>
 

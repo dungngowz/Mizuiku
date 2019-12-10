@@ -17,7 +17,7 @@
         {{-- Form Edit --}}
         <div class="row">
             <div class="col-12">
-                <form action="{{url('admin/about-us/' . $record->id)}}" method="post">
+                <form action="{{url('admin/post/' . $record->id)}}" method="post">
                     {{ csrf_field() }}
 
                     @if ($record->id)
@@ -57,7 +57,7 @@
                         </div>
                         <div class="border-top">
                             <div class="card-body text-right">
-                                <a href="{{url('admin/about-us/?keyword=' . $record->keyword)}}">
+                                <a href="{{url('admin/post/?keyword=' . $record->keyword)}}">
                                     <button type="button" class="btn">{{trans('admin.cancel')}}</button>
                                 </a>
                                 <button type="submit" class="btn btn-success">{{trans('admin.submit')}}</button>

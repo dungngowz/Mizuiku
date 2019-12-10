@@ -95,7 +95,7 @@
             @endif
 
             {{-- News --}}
-            @if ($categoriesNews)
+            @if (count($categoriesNews) > 0)
                 <li data='3' class='litop hassub {{$segments[0] == 'tin-tuc' ? 'active' : ''}}'>
                     <a href='{{ $categoriesNews[0]->url_detail_news }}' title='{{ $categoriesNews[0]->title }}'>{{ __('client.news') }}</a>
                     <ul>
@@ -121,7 +121,7 @@
 
             <li data='5' class='litop hassub {{$segments[0] == 'lich-trinh' ? 'active' : ''}}'><a href='{{ url('lich-trinh') }}' title='Program timeline'>{{ __('client.program-timeline') }}</a></li>
             
-            <li data='6' class='litop hassub'><a href='{{ route('e-learning') }}' title='{{ __('client.e-learning') }}'>{{ __('client.e-learning') }}</a>
+            <li data='6' class='litop hassub {{$segments[0] == 'khoa-hoc' ? 'active' : ''}}'><a href='{{ route('e-learning') }}' title='{{ __('client.e-learning') }}'>{{ __('client.e-learning') }}</a>
                 <ul>
                     <li>
                         <a title='{{ __('client.e-learning-sub') }}' href='/'>{{ __('client.e-learning-sub') }}</a>
