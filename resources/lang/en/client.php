@@ -127,5 +127,6 @@ return [
     'course' => 'Course',
     'sign-in-for-learn' => 'Sign in to learn now',
     'date-submitted' => 'Date Submitted',
-    'orther-post' => 'Other posts'
+    'orther-post' => 'Other posts',
+    'share' => 'Share'
 ];

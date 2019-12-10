@@ -29,6 +29,9 @@ Route::group(['namespace' => 'Client'], function(){
     Route::get('/tin-tuc/{slugCategory}/{slugArticle}', 'NewsController@show');
     Route::get('/tin-tuc/{slugCategory}', 'NewsController@index');
 
+    Route::get('/thu-vien/{keyword}/{slugArticle}', 'LibraryController@show');
+    Route::get('/thu-vien/{keyword}', 'LibraryController@index');
+
     Route::resource('/lich-trinh', 'ProgramTimelineController');
 
     Route::get('/thu-vien', 'HomeController@library')->name('library');

@@ -108,13 +108,13 @@
                 </li>
             @endif
 
-            <li data='4' class='litop hassub'><a href='{{ route('library',['path' => 'image-library']) }}' title='{{ __('client.gallery') }}'>{{ __('client.gallery') }}</a>
+            <li data='4' class='litop hassub {{$segments[0] == 'thu-vien' ? 'active' : ''}}'><a href="{{url('thu-vien/photo')}}" title='{{ __('client.gallery') }}'>{{ __('client.gallery') }}</a>
                 <ul>
                     <li>
-                        <a title='{{ __('client.album') }}' href='{{ route('library',['path' => 'image-library']) }}'>{{ __('client.album') }}</a>
+                        <a title='{{ __('client.album') }}' href="{{url('thu-vien/photo')}}">{{ __('client.album') }}</a>
                     </li>
                     <li>
-                        <a title='{{ __('client.video') }}' href='{{ route('library',['path' => 'video-library']) }}'>{{ __('client.video') }}</a>
+                        <a title='{{ __('client.video') }}' href="{{url('thu-vien/video')}}">{{ __('client.video') }}</a>
                     </li>
                 </ul>
             </li>

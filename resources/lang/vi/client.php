@@ -127,5 +127,6 @@ return [
     'course' => 'Khóa học',
     'sign-in-for-learn' => 'Đăng Nhập Để Học Ngay',
     'date-submitted' => 'Ngày đăng',
-    'orther-post' => 'Các bài viết khác'
+    'orther-post' => 'Các bài viết khác',
+    'share' => 'Chia sẽ'
 ];

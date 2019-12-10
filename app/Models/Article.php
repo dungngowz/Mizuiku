@@ -106,4 +106,13 @@ class Article extends SoftModelBase
     public function getUrlDetailNewsAttribute() {
         return url('tin-tuc/' . $this->category->slug . '/' . $this->slug . '/?ref_id=' . $this->ref_id);
     }
+
+    /**
+     * Return the custom url detail library
+     *
+     * @return string
+     */
+    public function getUrlDetailLibraryAttribute() {
+        return url('tin-tuc/' . $this->keyword . '/' . $this->slug . '/?ref_id=' . $this->ref_id);
+    }
 }
