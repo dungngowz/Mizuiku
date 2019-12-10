@@ -54,10 +54,6 @@
                 <li><a href='http://mizuiku-emyeunuocsach.vn/dieu-khoan-su-dung.htm' title='{{ __('client.term') }}'>{{ __('client.term') }}</a></li>
                 <li><a href='/chinh-sach-bao-mat.htm' title='{{ __('client.private-policy') }}'>{{ __('client.private-policy') }}</a></li>
             </ul>
-            <div class='solieu'>
-                <span class='online'>Online: 4</span>
-                <span class='total'>Total access: 301</span>
-            </div>
             <div class='cb'></div>
 
         </div>

@@ -31,7 +31,7 @@ class Header extends AbstractWidget
 
         return view('widgets.client.header', [
             'config' => $this->config,
-            'segments' => $request->segments(),
+            'segments' => empty($request->segments()) ? [''] : $request->segments(),
             'categoriesNews' => $categoriesNews,
             'articlesAboutUs' => $articlesAboutUs
         ]);
