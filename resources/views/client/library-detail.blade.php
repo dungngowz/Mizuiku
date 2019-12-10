@@ -30,11 +30,30 @@
                             <a class="LargeSize" href="javascript:IncreaseTextSize()"></a>
                         </div>
                     </div>
-                    <div class="noidung TextSize">
-                        @php
-                            echo preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","<iframe src=\"//www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>",$record->url);
-                        @endphp
-                    </div>
+
+                    @if (request()->keyword == 'video')
+                        <div class="noidung TextSize">
+                            @php
+                                echo preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","<iframe src=\"//www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>",$record->url);
+                            @endphp
+                        </div>    
+                    @else
+                        <div class='bst'>
+                            @foreach ($record->gallery as $item)
+                                <div class='item'>
+                                    <div class='khungAnh'>
+                                        <a class='khungAnhCrop' href='javascript://' title='IMG_2654'>
+                                            <img alt="{{$record->title}}" class="" src="{{$item->thumbnail_display}}" />
+                                        </a>
+                                        <a href='{{$item->thumbnail_display}}' title='IMG_2654' class='over example-image-link' data-lightbox='example-set'></a>
+                                    </div>
+                                </div>
+                            @endforeach
+                            
+                            <div class='cb'></div>
+                        </div>
+                    @endif
+
                     @component('client/components/social', ['record' => $record])@endcomponent
                 </div>
 

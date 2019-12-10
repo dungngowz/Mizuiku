@@ -11,6 +11,7 @@ use App\Http\Requests\StoreLibrary;
 use App\Scopes\LanguageScope;
 use App\Helpers\CommonHelper;
 use App\Models\Gallery;
+use Illuminate\Support\Facades\Storage;
 
 class LibraryController extends Controller
 {
@@ -73,7 +74,8 @@ class LibraryController extends Controller
         return view('admin.library.edit', [
             'title' => $title,
             'record' => $record,
-            'urlTrans' => $urlTrans
+            'urlTrans' => $urlTrans,
+            'gallery' => []
         ]);
     }
 
@@ -162,10 +164,25 @@ class LibraryController extends Controller
             $urlTrans = url('/admin/library/create?keyword='. $record->keyword . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
         }
 
+        $gallery = [];
+        if($record->keyword == 'photo'){
+            $recordsGallery = Gallery::where('post_id', $record->id)->get();
+            if($recordsGallery){
+                foreach($recordsGallery as $item){
+                    $gallery[] = (object)[
+                        'name' => '',
+                        'path' => Storage::url($item->file_path),
+                        'size' => 1000
+                    ];
+                }
+            }
+        }
+
         return view('admin.library.edit', [
             'title' => $title,
             'record' => $record,
-            'urlTrans' => $urlTrans
+            'urlTrans' => $urlTrans,
+            'gallery' => $gallery
         ]);
     }
 

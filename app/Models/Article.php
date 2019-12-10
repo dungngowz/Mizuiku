@@ -77,6 +77,14 @@ class Article extends SoftModelBase
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function gallery()
+    {
+        return $this->hasMany('App\Models\Gallery', 'post_id');
+    }
+
+    /**
      * Return the custom thumbnail
      *
      * @return string

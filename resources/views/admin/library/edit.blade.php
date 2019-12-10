@@ -141,6 +141,8 @@
 
 @push('scripts')
     <script>
+        var gallery = <?php echo json_encode($gallery); ?>;
+
         var resize = $('#modal-crop-image #image-preview').croppie({
             enableExif: true,
             enableOrientation: true,    
@@ -214,13 +216,13 @@
         Dropzone.options.dropzone = {
             init: function() {
                 thisDropzone = this;
-                
-                // var mockFile = { name: 'http://127.0.0.1:8000/storage/library/2019/12/5def1ac53848b_Screen Shot 2019-12-10 at 09.20.27.png', size: '1000' };
-                 
-                // thisDropzone.options.addedfile.call(thisDropzone, mockFile);
- 
-                // thisDropzone.options.thumbnail.call(thisDropzone, mockFile, mockFile.name);
 
+                var i; var mockFile;
+                for (i = 0; i < gallery.length; i++) {
+                    mockFile = gallery[i];
+                    thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+                    thisDropzone.options.thumbnail.call(thisDropzone, mockFile, mockFile.path);
+                }
             },
             maxFilesize: 16,
             dictFileTooBig: 'Image is larger than 16MB',
