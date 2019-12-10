@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\SoftModelBase;
 
-class Gallery extends Model
+class Gallery extends SoftModelBase
 {
-
     public $timestamps = true;
+    protected $dates = ['created_at', 'updated_at'];
     public $table = 'gallery';
+    
     /**
      * @var array
      */

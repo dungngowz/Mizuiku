@@ -33,6 +33,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/news/data', 'NewsController@data');
     Route::resource('/news', 'NewsController');
 
+    // Video Library
+    Route::get('/library/data', 'LibraryController@data');
+    Route::resource('/library', 'LibraryController');
+
     // Programs-timeline
     Route::get('/program-timeline/data', 'ProgramTimelineController@data');
     Route::resource('/program-timeline', 'ProgramTimelineController');

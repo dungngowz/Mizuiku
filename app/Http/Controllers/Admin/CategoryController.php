@@ -36,7 +36,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(Request $request) {
-        $records = Category::all();
+        $records = Category::where('type', 'news')->get();
 
         return DataTables::of($records)
             ->RawColumns(['actions'])
@@ -118,14 +118,14 @@ class CategoryController extends Controller
         $title = trans('admin.news_categories') . ' - ' . trans('admin.edit');
         
         //Get detail category
-        $record = ProgrCategoryamTimeline::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
+        $record = Category::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
 
         //Get url translate category
         $langNeedTrans = ($record->language == 'vi') ? 'en' : 'vi';
-        $chkRecord = ProgCategoryramTimeline::withoutGlobalScope(LanguageScope::class)
+        $chkRecord = Category::withoutGlobalScope(LanguageScope::class)
             ->where('ref_id', $record->ref_id)
             ->where('language', $langNeedTrans)
             ->first();

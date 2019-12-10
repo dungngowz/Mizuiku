@@ -1,7 +1,7 @@
 <div id="foot">
     <div class="wrp">
         <div class="left">
-        <a class='slogan dnmobile' title='' href='/'><img alt="" src="{{ asset('client/pic/banner/mizuiku_n_636687337648333192.png') }}" /></a>
+            <a class='slogan dnmobile' title='' href='/'><img alt="" src="{{ asset('client/pic/banner/mizuiku_n_636687337648333192.png') }}" /></a>
             <a class='slogan dn dbMobile' title='' href='/'><img alt="" src="{{ asset('client/pic/banner/logorespo_636332056462083140.png') }}" /></a>
 
             <ul id='CommonMenuFooter' class='main'>
@@ -17,8 +17,8 @@
                 <span style="background-image:initial;background-position:initial;background-size:initial;background-repeat:initial;background-attachment:initial;background-origin:initial;background-clip:initial;">{{ __('client.permit-no-1') }}</span>
                 <br/>{{ __('client.permit-no-2') }}
                 <br />{{ __('client.contact') }}</div>
-            <div>{{ __('client.address') }}</div>
-            <div>{{ __('client.tel') }} &nbsp;</div>
+                <div>{{ __('client.address') }}</div>
+                <div>{{ __('client.tel') }} &nbsp;</div>
             <div>
                 Website: {{ env('APP_URL', 'http://localhost') }}
                 <br /> &nbsp;

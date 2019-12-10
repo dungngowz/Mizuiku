@@ -47,5 +47,7 @@ return [
     'enter_month' => 'Enter month',
     'status' => 'Status',
     'show' => 'Show',
-    'hide' => 'Hide'
+    'hide' => 'Hide',
+    'photo_library' => 'Photo library',
+    'video_library' => 'Video library'
 ];
