@@ -31,7 +31,9 @@ class HomeController extends Controller
         ->select('articles.*','categories.title as category_title')
         ->get()->take(2)->toArray();
 
-        $articles = Article::orderBy('created_at', 'desc')->get()->take(5)->toArray();
+        $cats = Category::where('type', 'news')->pluck('id')->toArray();
+        $articles = Article::whereIn('category_id', $cats)->orderBy('created_at', 'desc')->get()->take(5)->toArray();
+
         $intro = Article::where('keyword', 'program-introduction')->first();
 
         $data = [ 
