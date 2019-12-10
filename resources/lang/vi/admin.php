@@ -45,5 +45,7 @@ return [
     'enter_month' => 'Nhập tháng',
     'status' => 'Trạng thái',
     'show' => 'Hiện',
-    'hide' => 'Ẩn'
+    'hide' => 'Ẩn',
+    'photo_library' => 'Thư viện ảnh',
+    'video_library' => 'Thư viện video'
 ];

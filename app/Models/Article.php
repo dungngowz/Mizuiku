@@ -77,6 +77,14 @@ class Article extends SoftModelBase
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function gallery()
+    {
+        return $this->hasMany('App\Models\Gallery', 'post_id');
+    }
+
+    /**
      * Return the custom thumbnail
      *
      * @return string
@@ -105,5 +113,14 @@ class Article extends SoftModelBase
      */
     public function getUrlDetailNewsAttribute() {
         return url('tin-tuc/' . $this->category->slug . '/' . $this->slug . '/?ref_id=' . $this->ref_id);
+    }
+
+    /**
+     * Return the custom url detail library
+     *
+     * @return string
+     */
+    public function getUrlDetailLibraryAttribute() {
+        return url('thu-vien/' . $this->keyword . '/' . $this->slug . '/?ref_id=' . $this->ref_id);
     }
 }

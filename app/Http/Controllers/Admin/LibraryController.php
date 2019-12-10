@@ -4,11 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Gallery;
 use Yajra\DataTables\DataTables;
+use App\Models\Article;
+use App\Models\Category;
+use App\Http\Requests\StoreLibrary;
+use App\Scopes\LanguageScope;
+use App\Helpers\CommonHelper;
+use App\Models\Gallery;
+use Illuminate\Support\Facades\Storage;
 
 class LibraryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +27,10 @@ class LibraryController extends Controller
      */
     public function index(Request $request)
     {
+        $title = $request->keyword == 'video' ? trans('admin.video_library') : trans('admin.photo_library');
+
         return view('admin.library.index', [
-            'title' => 'Library'
+            'title' => $title
         ]);
     }
 
@@ -27,10 +40,15 @@ class LibraryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(Request $request) {
-        $records = Gallery::all();
+        $records = Article::where('keyword', $request->keyword)->get();
 
         return DataTables::of($records)
             ->RawColumns(['actions'])
+            ->addColumn('language', function($item) {
+                return view('admin.components.language', [
+                    'item' => $item
+                ]);
+            })
             ->addColumn('actions', function($item) {
                 return view('admin.library.cols-actions', [
                     'item' => $item
@@ -44,8 +62,21 @@ class LibraryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request){
-        return view('admin.library.create' , ['title' => trans('admin.library'). ' - ' .trans('admin.create')]);
+    public function create(Request $request)
+    {
+        $title = $request->keyword == 'video' ? trans('admin.video_library') : trans('admin.photo_library');
+        $title = $title . ' - ' . trans('admin.create');
+        $record = new Article;
+
+        $urlTrans = url('/admin/library/create?keyword='. $request->keyword . '&language=');
+        $urlTrans .= (empty($request->language) || $request->language == 'vi') ? 'en' : 'vi';
+        
+        return view('admin.library.edit', [
+            'title' => $title,
+            'record' => $record,
+            'urlTrans' => $urlTrans,
+            'gallery' => []
+        ]);
     }
 
     /**
@@ -54,22 +85,53 @@ class LibraryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
-        $data = $request->fileUpload;
-        // dd($request->all(), json_decode($request->fileUpload[0]));
-        if($data) {
-            foreach ($data as $item) {
-                $element = json_decode($item);
+    public function store(StoreLibrary $request)
+    {
+        $record = new Article;
 
-                // store data to DB
-                $gallery = Gallery::create([
-                    'file_path' => 'gallery/'. $element->file_path,
-                    'file_name' => $element->file_name
-                ]);
-            }
+        $params = $request->all();
+        if(!empty($params['thumbnail'])){
+            CommonHelper::updateFileRecord($params['thumbnail'], $record->thumbnail, 'library');
         }
 
-        return redirect()->route('admin.library');
+        $record->fill($params);
+
+        if($request->ref_id){
+            $record->ref_id = $request->ref_id;
+            $record->save();
+        }else{
+            $record->save();
+            $record->ref_id = $record->id;
+            $record->save();
+        }
+
+        // store data to table gallery
+        if($request->keyword == 'photo'){
+            $files = $request->fileUpload;
+            if($files) {
+                foreach ($files as $item) {
+                    $element = json_decode($item);
+                    $gallery = Gallery::create([
+                        'file_path' => 'library/'. $element->file_path,
+                        'file_name' => $element->file_name,
+                        'post_id' => $record->id
+                    ]);
+                }
+            }
+        }
+        
+        return redirect('admin/library?keyword=' . $request->keyword);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**
@@ -78,16 +140,49 @@ class LibraryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $record = Gallery::find($id);
+        $title = $request->keyword == 'video' ? trans('admin.video_library') : trans('admin.photo_library');
+        $title = $title . ' - ' . trans('admin.edit');
+        
+        //Get detail category
+        $record = Article::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
 
+        //Get url translate category
+        $langNeedTrans = ($record->language == 'vi') ? 'en' : 'vi';
+        $chkRecord = Article::withoutGlobalScope(LanguageScope::class)
+            ->where('ref_id', $record->ref_id)
+            ->where('language', $langNeedTrans)
+            ->first();
+
+        if($chkRecord){
+            $urlTrans = url('/admin/library/'.$chkRecord->id.'/edit');
+        }else{
+            $urlTrans = url('/admin/library/create?keyword='. $record->keyword . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
+        }
+
+        $gallery = [];
+        if($record->keyword == 'photo'){
+            $recordsGallery = Gallery::where('post_id', $record->id)->get();
+            if($recordsGallery){
+                foreach($recordsGallery as $item){
+                    $gallery[] = (object)[
+                        'name' => '',
+                        'path' => Storage::url($item->file_path),
+                        'size' => 1000
+                    ];
+                }
+            }
+        }
+
         return view('admin.library.edit', [
-            'title' => trans('admin.library').' - ' .trans('admin.edit'),
-            'record' => $record
+            'title' => $title,
+            'record' => $record,
+            'urlTrans' => $urlTrans,
+            'gallery' => $gallery
         ]);
     }
 
@@ -98,15 +193,49 @@ class LibraryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreLibrary $request, $id)
     {
-        $record = Gallery::find($id);
+        $record = Article::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
+
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
-        $record->update($request->all());
 
-        return redirect()->route('admin.library');
+        $params = $request->all();
+        if(!empty($params['thumbnail']) && $params['thumbnail'] != $record->thumbnail){
+            CommonHelper::updateFileRecord($params['thumbnail'], $record->thumbnail, 'library');
+        }
+        $record->fill($params);
+
+        $record->save();
+
+        // store data to table gallery
+        if($request->keyword == 'photo'){
+            $files = $request->fileUpload;
+            if($files) {
+                foreach ($files as $item) {
+                    $element = json_decode($item);
+                    $gallery = Gallery::create([
+                        'file_path' => 'library/'. $element->file_path,
+                        'file_name' => $element->file_name,
+                        'post_id' => $record->id
+                    ]);
+                }
+            }
+        }
+
+        return redirect('admin/library?keyword=' . $record->keyword);
+    }
+
+    public function storeFileUpload(Request $request)
+    {
+        $image = $request->file('file');
+        $imageName = time().'.'.$image->extension();
+
+        // store image to storage
+        $image->move(storage_path('app/public/library'), $imageName);
+
+        return response()->json(['file_path'=>$imageName]);
     }
 
     /**
@@ -117,21 +246,10 @@ class LibraryController extends Controller
      */
     public function destroy($id)
     {
-        $record = Gallery::find($id);
+        $record = Article::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if($record && $record->delete()){
             return $this->response(200);
         }
         return $this->response(500);
-    }
-
-    public function storeFileUpload(Request $request)
-    {
-        $image = $request->file('file');
-        $imageName = time().'.'.$image->extension();
-
-        // store image to storage
-        $image->move(storage_path('app/public/gallery'), $imageName);
-
-        return response()->json(['file_path'=>$imageName]);
     }
 }

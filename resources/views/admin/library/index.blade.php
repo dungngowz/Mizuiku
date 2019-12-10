@@ -7,7 +7,7 @@
             <div class="col-12 d-flex no-block align-items-center">
                 <h4 class="page-title">@yield('title')</h4>
                 <div class="ml-auto text-right">
-                    <a href="{{ route('admin.library.create') }}">
+                    <a href="{{url('admin/library/create?keyword=' . request()->keyword)}}">
                         <button type="button" class="btn btn-success">{{trans('admin.add_new')}}</button>
                     </a>
                 </div>
@@ -26,8 +26,9 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>{{trans('admin.file_name')}}</th>
-                                        <th>{{trans('admin.file_path')}}</th>
+                                        <th>{{trans('admin.title')}}</th>
+                                        <th>{{trans('admin.priority')}}</th>
+                                        <th>{{trans('admin.language')}}</th>
                                         <th>{{trans('admin.created_at')}}</th>
                                         <th></th>
                                     </tr>
@@ -51,16 +52,23 @@
         $(function() {
             $('#datatable').DataTable({
                 ...optionDataTable,
-                ajax: '{{ route("admin.library.data") }}',
+                ajax: {
+                    url: '/admin/library/data',
+                    data : JSON.parse('<?php echo json_encode(request()->all()) ?>')
+                },
                 columns: [{
                         data: 'id',
                         name: 'id'
                     },{
-                        data: 'file_name',
-                        name: 'file_name'
+                        data: 'title',
+                        name: 'title'
                     },{
-                        data: 'file_path',
-                        name: 'file_path',
+                        data: 'priority',
+                        name: 'priority',
+                        className: 'text-center'
+                    },{
+                        data: 'language',
+                        name: 'language',
                         className: 'text-center'
                     },{
                         data: 'created_at',
