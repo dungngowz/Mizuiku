@@ -5,6 +5,7 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use App\Models\SoftModelBase;
 use App\Scopes\LanguageScope;
+use App\Models\Traits\SortByScope;
 
 /**
  * @property int $id
@@ -26,7 +27,8 @@ use App\Scopes\LanguageScope;
 class Category extends SoftModelBase
 {
     use Sluggable;
-
+    use SortByScope;
+    
     public $timestamps = true;
 
     /**

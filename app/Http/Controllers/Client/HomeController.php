@@ -23,30 +23,35 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy('priority', 'desc')->where('status', 1)->take(2)->get();
+        $categories = Category::sortBy()->where('status', 1)->take(2)->get();
         $articles = [];
         foreach($categories as $cat){
             $query = $cat->articles()
-                ->orderBy('priority', 'desc')
                 ->where('status', 1)
-                ->orderBy('id', 'desc')
+                ->sortBy()
                 ->first()
             ;
-            $query->category_title = $cat->title;
-            array_push($articles,$query);
+            if($query) {
+                $query->category_title = $cat->title;
+                array_push($articles,$query);
+            }
         }
 
         // find article is "news"
         $cats = Category::where('type', 'news')->pluck('id')->toArray();
-        $news = Article::whereIn('category_id', $cats)->where('status', 1)->orderBy('created_at', 'desc')->get();
-        $compare = $news->diff($articles)->take(5)->toArray();
+        $news = Article::whereIn('category_id', $cats)->where('status', 1)->sortBy()->get();
+        $compare = $news->diff($articles)->take(5);
 
-        $intro = Article::where('keyword', 'program-introduction')->first();
+        $intro = Article::where('keyword', 'program-introduction')->sortBy()->first();
+        $libraryPhoto = Article::with(['gallery'])->where('keyword', 'photo')->sortBy()->take(6)->get();
+        $libraryVideo = Article::with(['gallery'])->where('keyword', 'video')->sortBy()->take(2)->get();
 
         $data = [ 
             'categories' => $articles, 
             'articles' => $compare,
-            'intro' => $intro
+            'intro' => $intro,
+            'photo' => $libraryPhoto,
+            'video' => $libraryVideo
         ];
 
         return view('client.index', $data);

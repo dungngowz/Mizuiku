@@ -8,6 +8,7 @@ use App\Models\SoftModelBase;
 use App\Scopes\LanguageScope;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Traits\SortByScope;
 
 /**
  * @property int $id
@@ -33,6 +34,7 @@ use Illuminate\Support\Facades\Storage;
 class Article extends SoftModelBase
 {
     use Sluggable;
+    use SortByScope;
 
     public $timestamps = true;
     
