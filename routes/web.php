@@ -38,7 +38,7 @@ Route::group(['namespace' => 'Client'], function(){
     Route::get('/thu-vien', 'HomeController@library')->name('library');
 
     Route::post('/ajax-register', 'HomeController@ajaxRegister')->name('ajaxRegister');
-    Route::post('/ajax-login', 'HomeController@ajaxLogin')->name('ajaxLogin')->middleware(['auth','verified']);
+    Route::post('/ajax-login', 'HomeController@ajaxLogin')->name('ajaxLogin');
 
     Route::get('/get-provinces', 'HomeController@getProvinces')->name('getProvinces');
 

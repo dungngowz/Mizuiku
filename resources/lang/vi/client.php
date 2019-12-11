@@ -130,5 +130,6 @@ return [
     'orther-post' => 'Các bài viết khác',
     'share' => 'Chia sẽ',
     'other_videos' => 'Các video khác',
-    'other_photo' => 'Các hình ảnh khác'
+    'other_photo' => 'Các hình ảnh khác',
+    'hi' => 'Xin Chào'
 ];

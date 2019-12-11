@@ -181,43 +181,49 @@ function loginMember() {
         obError.focus();
         return;
     }
-    var email = "",
+    var token = "",
+        email = "",
         matkhau = "",
         remember = "0";
+    token = $("#token_login").val();
     email = $("#DisplayLoadControl_Login_tbEmailLogin").val();
     matkhau = $("#DisplayLoadControl_Login_tbPassLogin").val();
     if ($("#RememberPass").prop('checked')) {
         remember = "1";
     }
     loading(true);
-    jQuery.ajax({
-        url: weburl + "cms/display/Member/Ajax/Ajax.aspx",
+    $.ajax({
+        url: '/ajax-login',
         type: "POST",
         dataType: "json",
         data: {
-            "action": "Login",
+            "_token": token,
             "email": email,
-            "matkhau": matkhau,
+            "password": matkhau,
             "remember": remember
         },
         success: function(res) {
             loading(false);
-            if (res[0] === "Success") {
-                window.location.href = 'https://mizuiku-emyeunuocsach.vn/';
-            } else if (res[0] === "unActive") {
-                $("label.loginnote").text("Đăng nhập không thành công, tài khoản chưa được kích hoạt!");
-                $("label.loginnote").css("display", "block");
-            } else if (res[0] === "LockUser") {
-                $("label.loginnote").text("Đăng nhập không thành công, Tài khoản đang bị khóa!");
-                $("label.loginnote").css("display", "block");
-            } else {
+            console.log(res.mes)
+            if (res.status === true) {
+                location.reload();
+            } 
+            // else if (res[0] === "unActive") {
+            //     $("label.loginnote").text("Đăng nhập không thành công, tài khoản chưa được kích hoạt!");
+            //     $("label.loginnote").css("display", "block");
+            // } else if (res[0] === "LockUser") {
+            //     $("label.loginnote").text("Đăng nhập không thành công, Tài khoản đang bị khóa!");
+            //     $("label.loginnote").css("display", "block");
+            // }
+             else {
                 $("label.loginnote").text("Email hoặc mật khẩu không chính xác!");
                 $("label.loginnote").css("display", "block");
             }
         },
         error: function(error) { //Lỗi xảy ra
             loading(false);
-            alert("Hệ thống đang bận, bạn vui lòng thử lại sau!");
+            var mesError = jQuery.parseJSON(error.responseText).message;
+            alert(mesError);
         }
     });
 }

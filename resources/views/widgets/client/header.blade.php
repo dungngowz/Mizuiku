@@ -52,7 +52,11 @@
 
                     <a href='javascript://' title='{{ __('client.register') }}' class='btndk slide_open fs12'>{{ __('client.register') }}</a>
                     <span class='border'></span>
-                    <a href='javascript://' title='{{ __('client.login') }}' class='btndk loginForm_open fs12'>{{ __('client.login') }}</a>
+                    @if ( Auth::check() )
+                        <a href='javascript://' class=' fs12'>{{ __('client.hi') }}, {{ Auth::user()->name }}</a>
+                    @else
+                        <a href='javascript://' title='{{ __('client.login') }}' class='btndk loginForm_open fs12'>{{ __('client.login') }}</a>
+                    @endif
 
                 </div>
             </div>

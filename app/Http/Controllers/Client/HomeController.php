@@ -172,7 +172,9 @@ class HomeController extends Controller
      */
     public function ajaxLogin(LoginClient $request)
     {
-        dd($request);
-        return $this->response(200,true,null, trans('Login Successfully!'));
+        if(\Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return $this->response(200,true,null, trans('Login Successfully!'));
+        }
+        return $this->response(500,false,null, trans('Login Fail!'));
     }
 }

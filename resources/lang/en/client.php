@@ -130,5 +130,6 @@ return [
     'orther-post' => 'Other posts',
     'share' => 'Share',
     'other_videos' => 'Other videos',
-    'other_photo' => 'Other photos'
+    'other_photo' => 'Other photos',
+    'hi' => 'Hi'
 ];
