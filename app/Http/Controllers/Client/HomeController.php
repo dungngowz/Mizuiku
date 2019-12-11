@@ -39,7 +39,7 @@ class HomeController extends Controller
         }
 
         // find article is "news"
-        $cats = Category::where('type', 'news')->pluck('id')->toArray();
+        $cats = Category::where('type', 'news')->where('status', 1)->pluck('id')->toArray();
         $news = Article::whereIn('category_id', $cats)->where('status', 1)->sortBy()->get();
         $compare = $news->diff($articles)->take(5);
 
