@@ -123,11 +123,6 @@
             <li data='5' class='litop hassub {{$segments && $segments[0] == 'lich-trinh' ? 'active' : ''}}'><a href='{{ url('lich-trinh') }}' title='Program timeline'>{{ __('client.program-timeline') }}</a></li>
             
             <li data='6' class='litop hassub {{$segments[0] == 'khoa-hoc' ? 'active' : ''}}'><a href='{{ route('e-learning') }}' title='{{ __('client.e-learning') }}'>{{ __('client.e-learning') }}</a>
-                <ul>
-                    <li>
-                        <a title='{{ __('client.e-learning-sub') }}' href='/'>{{ __('client.e-learning-sub') }}</a>
-                    </li>
-                </ul>
             </li>
             <li data='7' class='litop {{$segments && $segments[0] == 'lien-he' ? 'active' : ''}}'><a href='{{ route('contact') }}' title='{{ __('client.contact-us') }}'>{{ __('client.contact-us') }}</a></li>
         </ul>
