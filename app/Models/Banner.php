@@ -69,7 +69,7 @@ class Banner extends SoftModelBase
     public function getThumbnailDisplayAttribute(){
         $parsed = parse_url($this->thumbnail);
         if (empty($parsed['scheme'])) {
-            return $this->thumbnail ? Storage::url($this->thumbnail) : 'admin/dist/images/banner-default.png';
+            return $this->thumbnail ? Storage::url($this->thumbnail) : 'admin/dist/images/banner-default.png?t=' . time();
         }
         return $this->thumbnail;
     }
