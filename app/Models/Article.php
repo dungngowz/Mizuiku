@@ -94,7 +94,7 @@ class Article extends SoftModelBase
     public function getThumbnailDisplayAttribute(){
         $parsed = parse_url($this->thumbnail);
         if (empty($parsed['scheme'])) {
-            return $this->thumbnail ? Storage::url($this->thumbnail) : 'admin/dist/images/noimage.jpg';
+            return $this->thumbnail ? Storage::url($this->thumbnail) : 'admin/dist/images/370x250.png';
         }
         return $this->thumbnail;
     }
