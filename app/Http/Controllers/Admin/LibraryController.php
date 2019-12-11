@@ -54,6 +54,11 @@ class LibraryController extends Controller
                     'item' => $item
                 ]);
             })
+            ->addColumn('thumbnail', function($item) {
+                return view('admin.library.cols-thumbnail', [
+                    'item' => $item
+                ]);
+            })
             ->make(true);
     }
 

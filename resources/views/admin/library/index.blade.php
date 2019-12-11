@@ -26,6 +26,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>Thumbnail</th>
                                         <th>{{trans('admin.title')}}</th>
                                         <th>{{trans('admin.priority')}}</th>
                                         <th>{{trans('admin.language')}}</th>
@@ -59,6 +60,9 @@
                 columns: [{
                         data: 'id',
                         name: 'id'
+                    },{
+                        data: 'thumbnail',
+                        name: 'thumbnail'
                     },{
                         data: 'title',
                         name: 'title'
