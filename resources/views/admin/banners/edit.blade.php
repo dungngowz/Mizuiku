@@ -107,10 +107,11 @@
         var resize = $('#modal-crop-image #image-preview').croppie({
             enableExif: true,
             enableOrientation: true,    
-            viewport: { 
-                width: 1900,
-                height: 788,
-            }
+            viewport: {
+                width: 300,
+                height: 100
+            },
+            boundary: { width: 300, height: 300 },
         });
 
         $('.wrap-thumbnail #preview-crop-image').on('click', function(){
@@ -126,7 +127,7 @@
                     resize.croppie('bind',{
                         url: e.target.result
                     }).then(function(){
-                        $('.btn-submit-upload-file').trigger('click');
+                        //$('.btn-submit-upload-file').trigger('click');
                     });
                 }, 500);
             }
@@ -144,8 +145,11 @@
         $('.btn-submit-upload-file').on('click', function (ev) {
             ev.preventDefault()
             resize.croppie('result', {
-                type: 'canvas',
-                size: 'viewport'
+                type: 'base64',
+                size: 'original',
+                format: 'png',
+                quality: 1,
+                circle: false
             }).then(function (img) {
                 $.ajax({
                     url: "{{route('admin.uploadImageBase64')}}",

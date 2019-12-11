@@ -27,6 +27,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>{{trans('admin.title')}}</th>
+                                        <th>Banner</th>
                                         <th>{{trans('admin.priority')}}</th>
                                         <th>{{trans('admin.language')}}</th>
                                         <th>{{trans('admin.created_at')}}</th>
@@ -59,6 +60,10 @@
                     },{
                         data: 'title',
                         name: 'title'
+                    },{
+                        data: 'thumbnail',
+                        name: 'thumbnail',
+                        className: 'text-center'
                     },{
                         data: 'priority',
                         name: 'priority',

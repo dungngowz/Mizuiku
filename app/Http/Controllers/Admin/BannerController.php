@@ -50,6 +50,11 @@ class BannerController extends Controller
                     'item' => $item
                 ]);
             })
+            ->addColumn('thumbnail', function($item) {
+                return view('admin.banners.cols-thumbnail', [
+                    'item' => $item
+                ]);
+            })
             ->make(true);
     }
 

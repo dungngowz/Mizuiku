@@ -17,6 +17,7 @@
     <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
     <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.css">
     <link href="{{asset('admin/assets/libs/flot/css/float-chart.css')}}" rel="stylesheet">
@@ -95,12 +96,14 @@
 
     <!--Croppie -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.js"></script>
-
-    <!--Custom JavaScript -->
-    <script src="{{asset('admin/dist/js/custom.js')}}"></script>
     
     <!--Dropzone -->
     <script src="{{ asset('admin/dist/css/dropzone/dropzone.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+    <!--Custom JavaScript -->
+    <script src="{{asset('admin/dist/js/custom.js')}}"></script>
 
     <!--This page JavaScript -->
     {{-- <script src="{{asset('admin/dist/js/pages/dashboards/dashboard1.js' )}}"></script> --}}

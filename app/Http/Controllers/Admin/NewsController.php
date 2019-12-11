@@ -46,6 +46,11 @@ class NewsController extends Controller
                     'item' => $item
                 ]);
             })
+            ->addColumn('thumbnail', function($item) {
+                return view('admin.news.cols-thumbnail', [
+                    'item' => $item
+                ]);
+            })
             ->addColumn('actions', function($item) {
                 return view('admin.news.cols-actions', [
                     'item' => $item
