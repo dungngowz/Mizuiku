@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,16 +27,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Request $request)
     {
-        if(isset($_SERVER['REQUEST_URI'])){
-            $uriPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-            $uriSegments = explode('/', trim($uriPath, '/'));
+        // Send Email Verify
+        VerifyEmail::toMailUsing(function ($notifiable, $url) {
+            $user = $notifiable->toArray();
 
-            $keyLocale = ($uriSegments[0] == 'admin') ? config('const.key_locale_admin') : config('const.key_locale_client');
-
-            if(isset($_COOKIE[$keyLocale])){
-                $locale = in_array($_COOKIE[$keyLocale], ['vi', 'en']) ? $_COOKIE[$keyLocale] : 'vi';
-                App::setLocale($locale);
-            }
-        }
+            return (new MailMessage)
+                ->subject(config('app.name'))
+                ->markdown('mails.verify-message', [
+                    'name' => $user['name'],
+                    // 'email' => $user['email'],
+                    // 'password' => $user['password'],
+                    'url_verify' => $url
+            ]);
+        });
     }
 }

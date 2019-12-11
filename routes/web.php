@@ -13,6 +13,7 @@
 
 Route::get('set-locale/{keyLocale}/{locale}', function ($keyLocale, $locale){
     $time = time() + (86400 * 30);
+    // \Cookie::queue($keyLocale, $locale, $time);
     setcookie($keyLocale, $locale, $time, "/");
     return redirect()->back();
 });
@@ -37,8 +38,13 @@ Route::group(['namespace' => 'Client'], function(){
     Route::get('/thu-vien', 'HomeController@library')->name('library');
 
     Route::post('/ajax-register', 'HomeController@ajaxRegister')->name('ajaxRegister');
+    Route::post('/ajax-login', 'HomeController@ajaxLogin')->name('ajaxLogin')->middleware(['auth','verified']);
 
     Route::get('/get-provinces', 'HomeController@getProvinces')->name('getProvinces');
 
 });
+
+Auth::routes(['verify' => true]);
+
+
 

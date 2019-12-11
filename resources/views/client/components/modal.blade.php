@@ -38,7 +38,7 @@
                 <p class="lh22">{{ __('client.pls-bellow') }}</p>
                 <p class="lh22 c666">{{ __('client.note-1') }}<span class="cRed">*</span> {{ __('client.note-2') }}</p>
                 <div class="ip">
-                    <input name="DisplayLoadControl$Login$tbUser" type="text" id="DisplayLoadControl_Login_tbUser" class="required" placeholder="{{ __('client.username') }} *" style="display: none;" />
+                <input name="DisplayLoadControl$Login$tbUser" type="text" id="token_register" class="required" value="{{ csrf_token() }}" placeholder="{{ __('client.username') }} *" style="display: none;" />
                     <input name="DisplayLoadControl$Login$tbEmail" type="text" id="DisplayLoadControl_Login_tbEmail" class="required" onchange="setUserName(this.value);" placeholder="Email *" />
                     <label class="username"></label>
 

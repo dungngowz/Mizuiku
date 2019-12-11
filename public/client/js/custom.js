@@ -70,7 +70,7 @@ function registerMember() {
         alert("Bạn đã nhập email chưa chính xác, vui lòng nhập lại email.");
         return;
     }
-    var account = "",
+    var token = "",
         email = "",
         matkhau = "",
         hovaten = "",
@@ -80,7 +80,7 @@ function registerMember() {
         thanhpho = "",
         quanhuyen = "",
         noicongtac = "";
-    account = $("#DisplayLoadControl_Login_tbUser").val();
+    token = $("#token_register").val();
     matkhau = $("#DisplayLoadControl_Login_tbPass").val();
     hovaten = $("#DisplayLoadControl_Login_tbName").val();
     gioitinh = $("#DisplayLoadControl_Login_ddlSex option:selected").val();
@@ -121,22 +121,21 @@ function registerMember() {
         return;
     }
     loading(true);
-    jQuery.ajax({
+    $.ajax({
         url: '/ajax-register',
         type: "POST",
         dataType: "json",
         data: {
-            "action": "Register",
-            "account": account,
-            "matkhau": matkhau,
-            "hovaten": hovaten,
-            "gioitinh": gioitinh,
+            "_token": token,
+            "password": matkhau,
+            "name": hovaten,
+            "sex": gioitinh,
             "email": email,
-            "sodienthoai": sodienthoai,
-            "chucvu": chucvu,
-            "thanhpho": thanhpho,
-            "quanhuyen": quanhuyen,
-            "noicongtac": noicongtac
+            "phone": sodienthoai,
+            "career": chucvu,
+            "city": thanhpho,
+            "district": quanhuyen,
+            "work_place": noicongtac,
         },
         success: function(res) {
             loading(false);
@@ -501,6 +500,7 @@ $('#DisplayLoadControl_Login_ddlCity').on('change', function(){
             'id': this.value
         },
         success: function(res) {
+            $('#DisplayLoadControl_Login_ddlDistric').find('option').not(':first').remove();
             $.each(res.data, function (){
                 $('#DisplayLoadControl_Login_ddlDistric').append("<option value='"+ this.id +"' >"+ this.name_vi +"</option>");
             });

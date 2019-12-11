@@ -9,6 +9,10 @@ use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Gallery;
 use App\Models\Province;
+use App\Http\Requests\RegisterClient;
+use App\Models\User;
+use App\Http\Requests\LoginClient;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -19,20 +23,31 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $locale = session()->get(config('const.key_locale_client')) ?? 'en';
+        $categories = Category::orderBy('priority', 'desc')->where('status', 1)->take(2)->get();
+        $articles = [];
+        foreach($categories as $cat){
+            $query = $cat->articles()
+                ->orderBy('priority', 'desc')
+                ->where('status', 1)
+                ->orderBy('id', 'desc')
+                ->first()
+            ;
+            if($query){
+                $query->category_title = $cat->title;
+                array_push($articles,$query);
+            }
+        }
 
-        $categories = Category::where('categories.priority', '1')
-        ->join('articles','articles.category_id','categories.id')
-        ->where('articles.language',$locale)
-        ->select('articles.*','categories.title as category_title')
-        ->get()->take(2)->toArray();
+        // find article is "news"
+        $cats = Category::where('type', 'news')->pluck('id')->toArray();
+        $news = Article::whereIn('category_id', $cats)->where('status', 1)->orderBy('created_at', 'desc')->get();
+        $compare = $news->diff($articles)->take(5)->toArray();
 
-        $articles = Article::orderBy('created_at', 'desc')->get()->take(5)->toArray();
         $intro = Article::where('keyword', 'program-introduction')->first();
 
         $data = [ 
-            'categories' => $categories, 
-            'articles' => $articles,
+            'categories' => $articles, 
+            'articles' => $compare,
             'intro' => $intro
         ];
 
@@ -111,10 +126,15 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function ajaxRegister(Request $request)
+    public function ajaxRegister(RegisterClient $request)
     {
-        dd($request);
-        $user = User::create($request->all());
+        $data = $request->all();
+        $data['password'] = Hash::make($data['password']);
+        $user = User::create($data);
+        
+        // Send Email Verify
+        $user->sendEmailVerificationNotification();
+
         return $this->response(200,true,$user, trans('Created User Successfully!'));
     }
 
@@ -126,8 +146,6 @@ class HomeController extends Controller
      */
     public function getProvinces(Request $request)
     {
-        $locale = session()->get(config('const.key_locale_client')) ?? 'en';
-
         $city = Province::where('parent_id' , 0)->get();
         if($request->id) {
             if($request->id == 0) {
@@ -138,5 +156,17 @@ class HomeController extends Controller
         }
 
         return $this->response(200,true,$city);
+    }
+
+    /**
+     * Login
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function ajaxLogin(LoginClient $request)
+    {
+        dd($request);
+        return $this->response(200,true,null, trans('Login Successfully!'));
     }
 }

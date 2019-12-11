@@ -61,7 +61,7 @@
                     $keyLocale = config('const.key_locale_client');
                     $locale = isset($_COOKIE[$keyLocale]) ? $_COOKIE[$keyLocale] : '';
                 @endphp
-                <li class="{{($locale == 'vi') ? 'active' : ''}}"><a href='{{ url('set-locale/client-locale/vi') }}' class='langchi''>Tiếng Việt</a></li>
+                <li class="{{($locale == 'vi') ? 'active' : ''}}"><a href='{{ url('set-locale/client-locale/vi') }}' class='langchi'>Tiếng Việt</a></li>
                 <li class="{{($locale == 'en') ? 'active' : ''}}"><a href='{{ url('set-locale/client-locale/en') }}' class='langchi'>English</a></li>
             </ul>
 
@@ -83,7 +83,7 @@
             
             {{-- About Us --}}
             @if (count($articlesAboutUs) > 0)
-                <li data='2' class="litop hassub {{$segments[0] == 'gioi-thieu' ? 'active' : ''}}"><a href='{{ route('introduction', ['path' => 'program-introduction']) }}' title='{{ __('client.about-us') }}'>{{ __('client.about-us') }}</a>
+                <li data='2' class="litop hassub {{$segments && $segments[0] == 'gioi-thieu' ? 'active' : ''}}"><a href='{{ route('introduction', ['path' => 'program-introduction']) }}' title='{{ __('client.about-us') }}'>{{ __('client.about-us') }}</a>
                     <ul>
                         @foreach ($articlesAboutUs as $item)
                             <li>
@@ -95,8 +95,9 @@
             @endif
 
             {{-- News --}}
-            @if ($categoriesNews)
-                <li data='3' class='litop hassub {{$segments[0] == 'tin-tuc' ? 'active' : ''}}'>
+
+            @if (count($categoriesNews) > 0)
+                <li data='3' class='litop hassub {{$segments && $segments[0] == 'tin-tuc' ? 'active' : ''}}'>
                     <a href='{{ $categoriesNews[0]->url_detail_news }}' title='{{ $categoriesNews[0]->title }}'>{{ __('client.news') }}</a>
                     <ul>
                         @foreach ($categoriesNews as $item)
@@ -119,16 +120,16 @@
                 </ul>
             </li>
 
-            <li data='5' class='litop hassub {{$segments[0] == 'lich-trinh' ? 'active' : ''}}'><a href='{{ url('lich-trinh') }}' title='Program timeline'>{{ __('client.program-timeline') }}</a></li>
+            <li data='5' class='litop hassub {{$segments && $segments[0] == 'lich-trinh' ? 'active' : ''}}'><a href='{{ url('lich-trinh') }}' title='Program timeline'>{{ __('client.program-timeline') }}</a></li>
             
-            <li data='6' class='litop hassub'><a href='{{ route('e-learning') }}' title='{{ __('client.e-learning') }}'>{{ __('client.e-learning') }}</a>
+            <li data='6' class='litop hassub {{$segments[0] == 'khoa-hoc' ? 'active' : ''}}'><a href='{{ route('e-learning') }}' title='{{ __('client.e-learning') }}'>{{ __('client.e-learning') }}</a>
                 <ul>
                     <li>
                         <a title='{{ __('client.e-learning-sub') }}' href='/'>{{ __('client.e-learning-sub') }}</a>
                     </li>
                 </ul>
             </li>
-            <li data='7' class='litop {{$segments[0] == 'lien-he' ? 'active' : ''}}'><a href='{{ route('contact') }}' title='{{ __('client.contact-us') }}'>{{ __('client.contact-us') }}</a></li>
+            <li data='7' class='litop {{$segments && $segments[0] == 'lien-he' ? 'active' : ''}}'><a href='{{ route('contact') }}' title='{{ __('client.contact-us') }}'>{{ __('client.contact-us') }}</a></li>
         </ul>
         <div class="cmNav">
             <a target='_blank' href='https://www.facebook.com/mizuikuemyeunuocsach/' title='fanpage facebook'><span>{{ __('client.follow-us') }}</span><img alt='fb' src='{{ asset('client/css/Common/fb.png') }}'/></a>

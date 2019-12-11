@@ -27,7 +27,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @php
-                            $keyLocale = config('const.key_locale_admin');
+                            $keyLocale = 'admin-locale';
                             $locale = isset($_COOKIE[$keyLocale]) ? $_COOKIE[$keyLocale] : '';
                         @endphp
                         <a class="dropdown-item {{$locale == '' ? 'active' : ''}}" data-id='{{ $locale }}' href="{{url('set-locale/admin-locale/all')}}">{{trans('admin.show_all_laguages')}}</a>
