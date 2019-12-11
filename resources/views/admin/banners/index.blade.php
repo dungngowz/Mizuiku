@@ -7,7 +7,7 @@
             <div class="col-12 d-flex no-block align-items-center">
                 <h4 class="page-title">@yield('title')</h4>
                 <div class="ml-auto text-right">
-                    <a href="{{url('admin/news/create?type=news')}}">
+                    <a href="{{url('admin/banners/create?type=home')}}">
                         <button type="button" class="btn btn-success">{{trans('admin.add_new')}}</button>
                     </a>
                 </div>
@@ -26,9 +26,9 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Thumbnail</th>
-                                        <th>{{trans('admin.category')}}</th>
                                         <th>{{trans('admin.title')}}</th>
+                                        <th>Banner</th>
+                                        <th>{{trans('admin.priority')}}</th>
                                         <th>{{trans('admin.language')}}</th>
                                         <th>{{trans('admin.created_at')}}</th>
                                         <th></th>
@@ -44,6 +44,7 @@
 @endsection
 
 @push('modals')
+    <!-- The Modal Delete -->
     @include('admin.components.modals.delete')
 @endpush
 
@@ -52,19 +53,21 @@
         $(function() {
             $('#datatable').DataTable({
                 ...optionDataTable,
-                ajax: '/admin/news/data',
+                ajax: '/admin/banners/data',
                 columns: [{
                         data: 'id',
                         name: 'id'
                     },{
-                        data: 'thumbnail',
-                        name: 'thumbnail'
-                    },{
-                        data: 'category.title',
-                        name: 'category.title',
-                    },{
                         data: 'title',
                         name: 'title'
+                    },{
+                        data: 'thumbnail',
+                        name: 'thumbnail',
+                        className: 'text-center'
+                    },{
+                        data: 'priority',
+                        name: 'priority',
+                        className: 'text-center'
                     },{
                         data: 'language',
                         name: 'language',

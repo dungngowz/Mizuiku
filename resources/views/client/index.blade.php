@@ -2,11 +2,15 @@
 @section('title', trans('client.home'))
 
 @section('content')
-    <div id='slider' class='nivoSlider'>
-        <a href='javascript://'><img alt="" src="{{ asset('client/pic/banner/Banne_636905880545478378.jpg') }}" /></a>
-        <a href='javascript://'><img alt="" src="{{ asset('client/pic/banner/1_637025133340565189.jpg') }}" /></a>
-        <a href='javascript://'><img alt="" src="{{ asset('client/pic/banner/slide_636573346101899731.jpg') }}" /></a>
-    </div>
+    @if ($banners)
+        <div id='slider' class='nivoSlider'>
+            @foreach ($banners as $item)
+                <a href='javascript://'>
+                    <img alt="{{$item->title}}" src="{{$item->thumbnail_display}}" />
+                </a>    
+            @endforeach
+        </div>
+    @endif
 
     <div id='about' class='hp cate'>
         <div class='main'>

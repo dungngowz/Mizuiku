@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Gallery;
+use App\Models\Banner;
 use App\Models\Province;
 use App\Http\Requests\RegisterClient;
 use App\Models\User;
@@ -38,20 +39,22 @@ class HomeController extends Controller
         }
 
         // find article is "news"
-        $cats = Category::where('type', 'news')->pluck('id')->toArray();
+        $cats = Category::where('type', 'news')->where('status', 1)->pluck('id')->toArray();
         $news = Article::whereIn('category_id', $cats)->where('status', 1)->sortBy()->get();
         $compare = $news->diff($articles)->take(5);
 
         $intro = Article::where('keyword', 'program-introduction')->sortBy()->first();
         $libraryPhoto = Article::with(['gallery'])->where('keyword', 'photo')->sortBy()->take(6)->get();
         $libraryVideo = Article::with(['gallery'])->where('keyword', 'video')->sortBy()->take(2)->get();
-
+        $banners = Banner::where('type', 'home')->sortBy()->get();
+        
         $data = [ 
             'categories' => $articles, 
             'articles' => $compare,
             'intro' => $intro,
             'photo' => $libraryPhoto,
-            'video' => $libraryVideo
+            'video' => $libraryVideo,
+            'banners' => $banners
         ];
 
         return view('client.index', $data);

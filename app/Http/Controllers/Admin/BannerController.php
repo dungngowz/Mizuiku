@@ -5,14 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use App\Models\Article;
-use App\Http\Requests\StoreNews;
-use App\Models\Category;
+use App\Models\Banner;
+use App\Http\Requests\StoreBanner;
 use App\Scopes\LanguageScope;
-use Illuminate\Support\Facades\Storage;
 use App\Helpers\CommonHelper;
+use Illuminate\Support\Facades\Storage;
 
-class NewsController extends Controller
+class BannerController extends Controller
 {
     public function __construct()
     {
@@ -26,8 +25,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('admin.news.index', [
-            'title' => trans('admin.news')
+        return view('admin.banners.index', [
+            'title' => 'Banners'
         ]);
     }
 
@@ -37,7 +36,7 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(Request $request) {
-        $records = Article::with('category')->where('keyword', $request->keyword)->get();
+        $records = Banner::where('type', 'home')->get();
 
         return DataTables::of($records)
             ->RawColumns(['actions'])
@@ -46,13 +45,13 @@ class NewsController extends Controller
                     'item' => $item
                 ]);
             })
-            ->addColumn('thumbnail', function($item) {
-                return view('admin.news.cols-thumbnail', [
+            ->addColumn('actions', function($item) {
+                return view('admin.banners.cols-actions', [
                     'item' => $item
                 ]);
             })
-            ->addColumn('actions', function($item) {
-                return view('admin.news.cols-actions', [
+            ->addColumn('thumbnail', function($item) {
+                return view('admin.banners.cols-thumbnail', [
                     'item' => $item
                 ]);
             })
@@ -66,23 +65,16 @@ class NewsController extends Controller
      */
     public function create(Request $request)
     {
-        $title = trans('admin.news') . ' - ' . trans('admin.create');
-        $record = new Article;
+        $title = 'Banner - ' . trans('admin.create');
+        $record = new Banner;
 
-        $urlTrans = url('/admin/news/create?type='. $request->type . '&language=');
-        $currentLang = empty($request->language) ? 'vi' : $request->language;
-        $urlTrans .= ($currentLang == 'vi') ? 'en' : 'vi';
+        $urlTrans = url('/admin/banners/create?type='. $request->type . '&language=');
+        $urlTrans .= (empty($request->language) || $request->language == 'vi') ? 'en' : 'vi';
 
-        $articleCategories = Category::withoutGlobalScope(LanguageScope::class)
-            ->where('language', $currentLang)
-            ->where('type', 'news')
-            ->get();
-
-        return view('admin.news.edit', [
+        return view('admin.banners.edit', [
             'title' => $title,
             'record' => $record,
-            'urlTrans' => $urlTrans,
-            'articleCategories' => $articleCategories
+            'urlTrans' => $urlTrans
         ]);
     }
 
@@ -92,15 +84,14 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreNews $request)
+    public function store(StoreBanner $request)
     {
-        $record = new Article;
+        $record = new Banner;
 
         $params = $request->all();
         if(!empty($params['thumbnail'])){
-            CommonHelper::updateFileRecord($params['thumbnail'], $record->thumbnail, 'news');
+            CommonHelper::updateFileRecord($params['thumbnail'], $record->thumbnail, 'banners');
         }
-
         $record->fill($params);
 
         if($request->ref_id){
@@ -112,7 +103,7 @@ class NewsController extends Controller
             $record->save();
         }
         
-        return redirect('admin/news?type=' . $request->type);
+        return redirect('admin/banners?type=' . $request->type);
     }
 
     /**
@@ -134,32 +125,31 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $title = trans('admin.news') . ' - ' . trans('admin.edit');
+        $title = 'Banner - ' . trans('admin.edit');
         
-        $record = Article::find($id);
+        //Get detail Banner
+        $record = Banner::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
 
-        $currentLang = empty($request->language) ? 'vi' : $request->language;
+        //Get url translate Banner
         $langNeedTrans = ($record->language == 'vi') ? 'en' : 'vi';
-        $chkRecord = Article::where('ref_id', $record->ref_id)->where('language', $langNeedTrans)->first();
+        $chkRecord = Banner::withoutGlobalScope(LanguageScope::class)
+            ->where('ref_id', $record->ref_id)
+            ->where('language', $langNeedTrans)
+            ->first();
+
         if($chkRecord){
-            $urlTrans = url('/admin/news/'.$chkRecord->id.'/edit');
+            $urlTrans = url('/admin/banners/'.$chkRecord->id.'/edit');
         }else{
-            $urlTrans = url('/admin/news/create?type='. $record->type . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
+            $urlTrans = url('/admin/banners/create?type='. $record->type . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
         }
 
-        $articleCategories = Category::withoutGlobalScope(LanguageScope::class)
-            ->where('language', $currentLang)
-            ->where('type', 'news')
-            ->get();
-
-        return view('admin.news.edit', [
+        return view('admin.banners.edit', [
             'title' => $title,
             'record' => $record,
-            'urlTrans' => $urlTrans,
-            'articleCategories' => $articleCategories
+            'urlTrans' => $urlTrans
         ]);
     }
 
@@ -170,9 +160,9 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreNews $request, $id)
+    public function update(StoreBanner $request, $id)
     {
-        $record = Article::find($id);
+        $record = Banner::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
 
         if(!$record){
             return redirect()->route('admin.dashboard');
@@ -180,12 +170,12 @@ class NewsController extends Controller
 
         $params = $request->all();
         if(!empty($params['thumbnail']) && $params['thumbnail'] != $record->thumbnail){
-            CommonHelper::updateFileRecord($params['thumbnail'], $record->thumbnail, 'news');
+            CommonHelper::updateFileRecord($params['thumbnail'], $record->thumbnail, 'banners');
         }
-
         $record->fill($params);
+
         $record->save();
-        return redirect('admin/news?type=' . $record->type);
+        return redirect('admin/banners?type=' . $record->type);
     }
 
     /**
@@ -196,7 +186,7 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        $record = Article::find($id);
+        $record = Banner::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if($record && $record->delete()){
             return $this->response(200);
         }

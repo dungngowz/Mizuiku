@@ -21,6 +21,10 @@ Route::group(['middleware' => 'auth'], function(){
     // auth
     Route::get('/logout', 'Auth\LoginController@logout');
 
+    // Banners
+    Route::get('/banners/data', 'BannerController@data');
+    Route::resource('/banners', 'BannerController');
+
     // About Us
     Route::get('/post/data', 'PostController@data');
     Route::resource('/post', 'PostController');
