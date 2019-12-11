@@ -27,6 +27,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Thumbnail</th>
+                                        <th>{{trans('admin.category')}}</th>
                                         <th>{{trans('admin.title')}}</th>
                                         <th>{{trans('admin.language')}}</th>
                                         <th>{{trans('admin.created_at')}}</th>
@@ -58,6 +59,9 @@
                     },{
                         data: 'thumbnail',
                         name: 'thumbnail'
+                    },{
+                        data: 'category.title',
+                        name: 'category.title',
                     },{
                         data: 'title',
                         name: 'title'

@@ -37,7 +37,7 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(Request $request) {
-        $records = Article::where('keyword', $request->keyword)->get();
+        $records = Article::with('category')->where('keyword', $request->keyword)->get();
 
         return DataTables::of($records)
             ->RawColumns(['actions'])
