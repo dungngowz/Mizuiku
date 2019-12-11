@@ -183,8 +183,7 @@ class CommonHelper{
      * @return 
      */
     public static function compress($old_image, $new_image = null, $quality = 50){
-        return false;
-        
+
         list($width, $height, $type, $attr) = getimagesize($old_image);
         if (empty($new_image)) $new_image = $old_image;
         $source_image = null;

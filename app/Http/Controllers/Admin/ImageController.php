@@ -19,7 +19,7 @@ class ImageController extends Controller
             $image = base64_decode($image);
             $imagePath= 'tmp/' . uniqid() . '_' . $fileName;
             Storage::disk('public')->put($imagePath, $image);
-            CommonHelper::compress(public_path('storage/').$imagePath);
+            //CommonHelper::compress(public_path('storage/').$imagePath);
             
             return response()->json([
                 'status' => 200,
