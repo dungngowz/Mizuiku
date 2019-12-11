@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.css">
     <link href="{{asset('admin/assets/libs/flot/css/float-chart.css')}}" rel="stylesheet">
     <link href="{{asset('admin/dist/css/style.min.css')}}" rel="stylesheet">
-    <link href="{{asset('admin/dist/css/admin.css')}}" rel="stylesheet">
+    <link href="{{asset('admin/dist/css/admin.css?t=' . time())}}" rel="stylesheet">
     
     <!--Dropzone -->
     <link rel="stylesheet" href="{{ asset('admin/dist/css/dropzone/dropzone.css') }}">
@@ -103,7 +103,7 @@
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
     <!--Custom JavaScript -->
-    <script src="{{asset('admin/dist/js/custom.js')}}"></script>
+    <script src="{{asset('admin/dist/js/custom.js?t=' . time())}}"></script>
 
     <!--This page JavaScript -->
     {{-- <script src="{{asset('admin/dist/js/pages/dashboards/dashboard1.js' )}}"></script> --}}

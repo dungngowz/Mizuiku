@@ -76,7 +76,7 @@
                                 
                                 <div class="col-md-2"></div>
 
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <div class="form-group m-t-20 wrap-thumbnail">
                                         <label>Thumbnail</label>
                                         <div id="upload-file">
@@ -147,8 +147,8 @@
             enableExif: true,
             enableOrientation: true,    
             viewport: { 
-                width: 372,
-                height: 246,
+                width: 280,
+                height: 190,
             },
             boundary: {
                 width: 500,

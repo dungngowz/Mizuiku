@@ -33,7 +33,7 @@ class Gallery extends SoftModelBase
     public function getThumbnailDisplayAttribute(){
         $parsed = parse_url($this->file_path);
         if (empty($parsed['scheme'])) {
-            return $this->file_path ? Storage::url($this->file_path) : 'admin/dist/images/noimage.jpg';
+            return $this->file_path ? Storage::url($this->file_path) : 'admin/dist/images/370x250.png';
         }
         return $this->file_path;
     }
