@@ -104,6 +104,7 @@
     @include('admin.components.editor-config')
 
     <script>
+        var noImageBanner = 'admin/dist/images/banner-default.png';
         var resize = $('#modal-crop-image #image-preview').croppie({
             enableExif: true,
             enableOrientation: true,    
@@ -135,7 +136,7 @@
         });
 
         $('.wrap-thumbnail .close-img-preview').on('click', function (ev) {
-            let html = '<img src="' + URL_NOIMAGE + '" alt="noimage" class="w-100" style="width: 100%; height: 100%;"/>';
+            let html = '<img src="' + noImageBanner + '" alt="noimage" class="w-100" style="width: 100%; height: 100%;"/>';
             $("#preview-crop-image").html(html);
             $('.wrap-thumbnail #input_path').val('');
             $('.wrap-thumbnail .close-img-preview').addClass('hide');
