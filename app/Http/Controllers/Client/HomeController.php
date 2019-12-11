@@ -31,7 +31,7 @@ class HomeController extends Controller
                 ->sortBy()
                 ->first()
             ;
-            if($query) {
+            if($query){
                 $query->category_title = $cat->title;
                 array_push($articles,$query);
             }
