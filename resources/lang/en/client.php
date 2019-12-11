@@ -129,5 +129,6 @@ return [
     'date-submitted' => 'Date Submitted',
     'orther-post' => 'Other posts',
     'share' => 'Share',
-    'other_videos' => 'Other videos'
+    'other_videos' => 'Other videos',
+    'other_photo' => 'Other photos'
 ];

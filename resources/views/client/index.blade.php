@@ -83,52 +83,18 @@
                     </a>
                     <div class='cb'></div>
                 </div>
-                <div class='group'>
+                <div class='group' id="list-photo">
                     @if ($photo)
-                        <div class='left'>
-                            <div class='khungAnh'>
-                                <a class='khungAnhCrop' href='{{ $photo[0]->slug }}' title='{{ $photo[0]->title }}'>
-                                    <img alt="{{ $photo[0]->gallery[0]->title }}" src="{{ asset($photo[0]->gallery[0]->title) }}" />
-                                </a>
-                                <a href='https://mizuiku-emyeunuocsach.vn/training-course-for-teachers-in-bac-ninh-province-and-hanoi.htm' title='Training course for teachers in Bac Ninh province and Hanoi. ' class='over'></a>
-                            </div>
-
-                            <div class='khungAnh'>
-                                <a class='khungAnhCrop' href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-booth-in-the-10th-annual-recycling-day-hcmc.htm' title='"Mizuiku - I love clean water" booth in the 10th Annual Recycling Day (HCMC)'>
-                                    <img alt="Mizuiku - I love clean water booth in the 10th Annual Recycling Day (HCMC)" class="" src="{{ asset('client/pic/PhotoAlbum/Nhan-vien_636572468981841334.jpg') }}" />
-                                </a>
-                                <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-booth-in-the-10th-annual-recycling-day-hcmc.htm' title='"Mizuiku - I love clean water" booth in the 10th Annual Recycling Day (HCMC)' class='over'></a>
-                            </div>
-
-                            <div class='khungAnh'>
-                                <a class='khungAnhCrop' href='https://mizuiku-emyeunuocsach.vn/suntory-pepsico-can-tho-plant-tour-of-my-an-elementary-school-thanh-phu-district-ben-tre-province.htm' title='Suntory PepsiCo Can Tho plant tour of My An Elementary School (Thanh Phu district, Ben Tre province)'>
-                                    <img alt="Suntory PepsiCo Can Tho plant tour of My An Elementary School (Thanh Phu district, Ben Tre province)" class="" src="{{ asset('client/pic/PhotoAlbum/DSCN9180-_636589681830384771.jpg') }}" />
-                                </a>
-                                <a href='https://mizuiku-emyeunuocsach.vn/suntory-pepsico-can-tho-plant-tour-of-my-an-elementary-school-thanh-phu-district-ben-tre-province.htm' title='Suntory PepsiCo Can Tho plant tour of My An Elementary School (Thanh Phu district, Ben Tre province)' class='over'></a>
-                            </div>
-                        </div>
-                        <div class='mid'>
-                            <div class='khungAnh'>
-                                <a class='khungAnhCrop' href='https://mizuiku-emyeunuocsach.vn/suntory-pepsico-can-tho-plant-tour-of-tan-thieng-b-elementary-school-cho-lach-district-ben-tre-province.htm' title='Suntory PepsiCo Can Tho plant tour of Tan Thieng B Elementary School (Cho Lach district, Ben Tre province)'>
-                                    <img alt="Suntory PepsiCo Can Tho plant tour of Tan Thieng B Elementary School (Cho Lach district, Ben Tre province)" class="" src="{{ asset('client/pic/PhotoAlbum/TH_TanThi_636589684630760792.jpg') }}" />
-                                </a>
-                                <a href='https://mizuiku-emyeunuocsach.vn/suntory-pepsico-can-tho-plant-tour-of-tan-thieng-b-elementary-school-cho-lach-district-ben-tre-province.htm' title='Suntory PepsiCo Can Tho plant tour of Tan Thieng B Elementary School (Cho Lach district, Ben Tre province)' class='over'></a>
-                            </div>
-                        </div>
-                        <div class='right'>
-                            <div class='khungAnh'>
-                                <a class='khungAnhCrop' href='https://mizuiku-emyeunuocsach.vn/outstanding-results-of-mizuiku-i-love-clean-water-drawing-contest-2017.htm' title='Outstanding results of “Mizuiku – I love clean water” drawing contest 2017'>
-                                    <img alt="Outstanding results of “Mizuiku – I love clean water” drawing contest 2017" class="" src="{{ asset('client/pic/PhotoAlbum/VetranhMi_636590297963769140.jpg') }}" />
-                                </a>
-                                <a href='https://mizuiku-emyeunuocsach.vn/outstanding-results-of-mizuiku-i-love-clean-water-drawing-contest-2017.htm' title='Outstanding results of “Mizuiku – I love clean water” drawing contest 2017' class='over'></a>
-                            </div>
-
-                            <div class='khungAnh'>
-                                <a class='khungAnhCrop' href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program-2017-kick-off-ceremony.htm' title='"Mizuiku - I love clean water" program 2017 Kick-off ceremony '>
-                                    <img alt="Mizuiku - I love clean water program 2017 Kick-off ceremony " class="" src="{{ asset('client/pic/PhotoAlbum/Hoc-sinh-_636351200895821409.jpg') }}" />
-                                </a>
-                                <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program-2017-kick-off-ceremony.htm' title='"Mizuiku - I love clean water" program 2017 Kick-off ceremony ' class='over'></a>
-                            </div>
+                        {{-- left, mid, right --}}
+                        <div class="left"> 
+                            @foreach ($photo as $key => $item)
+                                <div class='khungAnh'>
+                                    <a class='khungAnhCrop' href='{{ url('thu-vien/photo/'. $item->slug) }}' title='{{ $item->title }}'>
+                                        <img alt="{{ $item->title }}" src="{{ asset('storage/'.$item->gallery[0]->file_path) }}" />
+                                    </a>
+                                    <a href='{{ url('thu-vien/photo/'. $item->slug) }}' title='{{ $item->title }}' class='over'></a>
+                                </div>
+                            @endforeach
                         </div>
                     @endif
                     <div class='cb'></div>
