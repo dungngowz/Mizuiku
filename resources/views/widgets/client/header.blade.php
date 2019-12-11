@@ -61,7 +61,7 @@
                     $keyLocale = config('const.key_locale_client');
                     $locale = isset($_COOKIE[$keyLocale]) ? $_COOKIE[$keyLocale] : '';
                 @endphp
-                <li class="{{($locale == 'vi') ? 'active' : ''}}"><a href='{{ url('set-locale/client-locale/vi') }}' class='langchi''>Tiếng Việt</a></li>
+                <li class="{{($locale == 'vi') ? 'active' : ''}}"><a href='{{ url('set-locale/client-locale/vi') }}' class='langchi'>Tiếng Việt</a></li>
                 <li class="{{($locale == 'en') ? 'active' : ''}}"><a href='{{ url('set-locale/client-locale/en') }}' class='langchi'>English</a></li>
             </ul>
 

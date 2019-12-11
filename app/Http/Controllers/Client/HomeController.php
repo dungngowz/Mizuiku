@@ -23,22 +23,29 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $locale = session()->get(config('const.key_locale_client')) ?? 'en';
+        $categories = Category::orderBy('priority', 'desc')->where('status', 1)->take(2)->get();
+        $articles = [];
+        foreach($categories as $cat){
+            $query = $cat->articles()
+                ->orderBy('priority', 'desc')
+                ->where('status', 1)
+                ->orderBy('id', 'desc')
+                ->first()
+            ;
+            $query->category_title = $cat->title;
+            array_push($articles,$query);
+        }
 
-        $categories = Category::where('categories.priority', '1')
-        ->join('articles','articles.category_id','categories.id')
-        ->where('articles.language',$locale)
-        ->select('articles.*','categories.title as category_title')
-        ->get()->take(2)->toArray();
-
+        // find article is "news"
         $cats = Category::where('type', 'news')->pluck('id')->toArray();
-        $articles = Article::whereIn('category_id', $cats)->orderBy('created_at', 'desc')->get()->take(5)->toArray();
+        $news = Article::whereIn('category_id', $cats)->where('status', 1)->orderBy('created_at', 'desc')->get();
+        $compare = $news->diff($articles)->take(5)->toArray();
 
         $intro = Article::where('keyword', 'program-introduction')->first();
 
         $data = [ 
-            'categories' => $categories, 
-            'articles' => $articles,
+            'categories' => $articles, 
+            'articles' => $compare,
             'intro' => $intro
         ];
 
@@ -137,8 +144,6 @@ class HomeController extends Controller
      */
     public function getProvinces(Request $request)
     {
-        $locale = session()->get(config('const.key_locale_client')) ?? 'en';
-
         $city = Province::where('parent_id' , 0)->get();
         if($request->id) {
             if($request->id == 0) {

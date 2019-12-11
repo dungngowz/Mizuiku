@@ -203,7 +203,7 @@
 
 @section('custom-js')
     <script>
-        if({{ \Session::get('verified') ?? false }}) {
+        if({{ session()->has('verified') ? session()->get('verified') : 0 }}) {
             alert('Kích hoạt thành công! Vui lòng đăng nhập để bắt đầu khóa học')
             $('#loginForm').popup('show');
         }

@@ -13,6 +13,7 @@
 
 Route::get('set-locale/{keyLocale}/{locale}', function ($keyLocale, $locale){
     $time = time() + (86400 * 30);
+    // \Cookie::queue($keyLocale, $locale, $time);
     setcookie($keyLocale, $locale, $time, "/");
     return redirect()->back();
 });
