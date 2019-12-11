@@ -32,8 +32,10 @@ class HomeController extends Controller
                 ->orderBy('id', 'desc')
                 ->first()
             ;
-            $query->category_title = $cat->title;
-            array_push($articles,$query);
+            if($query){
+                $query->category_title = $cat->title;
+                array_push($articles,$query);
+            }
         }
 
         // find article is "news"
