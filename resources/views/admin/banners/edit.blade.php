@@ -104,7 +104,7 @@
     @include('admin.components.editor-config')
 
     <script>
-        var noImageBanner = 'admin/dist/images/banner-default.png';
+        var noImageBanner = "{{asset('admin/dist/images/banner-default.png')}}";
         var resize = $('#modal-crop-image #image-preview').croppie({
             enableExif: true,
             enableOrientation: true,    
