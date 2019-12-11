@@ -87,81 +87,78 @@
                     </a>
                     <div class='cb'></div>
                 </div>
-                <div class='group' id="list-photo">
-                    @if ($photo)
-                        {{-- left, mid, right --}}
-                        <div class="left"> 
-                            @foreach ($photo as $key => $item)
-                                <div class='khungAnh'>
-                                    <a class='khungAnhCrop' href='{{ url('thu-vien/photo/'. $item->slug) }}' title='{{ $item->title }}'>
-                                        <img alt="{{ $item->title }}" src="{{ asset('storage/'.$item->gallery[0]->file_path) }}" />
+                
+                @if (($countPhotos = count($photos)) > 0)
+                    <div class="group">
+                        <div class="left">
+                            @for ($i = 0; $i < min(3, $countPhotos); $i++)
+                                <div class="khungAnh">
+                                    <a class="khungAnhCrop" href="{{$photos[$i]->url_detail_gallery}}" title="{{$photos[$i]->title}}">
+                                        <img alt="{{$photos[$i]->title}}" class="tall" src="{{$photos[$i]->thumbnail_display}}" style="opacity: 1;">
                                     </a>
-                                    <a href='{{ url('thu-vien/photo/'. $item->slug) }}' title='{{ $item->title }}' class='over'></a>
-                                </div>
-                            @endforeach
+                                    <a href="{{$photos[$i]->url_detail_gallery}}" title="{{$photos[$i]->title}}" class="over"></a>
+                                </div>    
+                            @endfor
                         </div>
-                    @endif
-                    <div class='cb'></div>
-                </div>
+
+                        <div class="mid">
+                            @if ($countPhotos > 3)
+                                <div class="khungAnh">
+                                    <a class="khungAnhCrop" href="{{$photos[3]->url_detail_gallery}}" title="{{$photos[3]->title}}">
+                                        <img alt="{{$photos[3]->title}}" class="tall" src="{{$photos[3]->thumbnail_display}}" style="opacity: 1;">
+                                    </a>
+                                    <a href="{{$photos[3]->url_detail_gallery}}" title="{{$photos[3]->title}}" class="over"></a>
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="right">
+                            @if ($countPhotos > 4)
+                                @for ($i = 4; $i < $countPhotos; $i++)
+                                    <div class="khungAnh">
+                                        <a class="khungAnhCrop" href="{{$photos[$i]->url_detail_gallery}}" title="{{$photos[$i]->title}}">
+                                            <img alt="{{$photos[$i]->title}}" class="tall" src="{{$photos[$i]->thumbnail_display}}" style="opacity: 1;">
+                                        </a>
+                                        <a href="{{$photos[$i]->url_detail_gallery}}" title="{{$photos[$i]->title}}" class="over"></a>
+                                    </div>    
+                                @endfor
+                            @endif
+                        </div>
+                        <div class="cb"></div>
+                    </div>
+                @endif
+
             </div>
 
             <div id='video' class='hp'>
                 <div class='tieude'>
-                    <a href='https://mizuiku-emyeunuocsach.vn/video-gallery.htm' title='{{ __('client.video-gallery') }}' class='name'>{{ __('client.video-gallery') }}</a>
-                    <a href='https://mizuiku-emyeunuocsach.vn/video-gallery.htm' title='{{ __('client.video-gallery') }}' class='xtc'>
-                        <p>All</p>
+                    <a href='{{ url('thu-vien/video') }}' title='{{ __('client.video-gallery') }}' class='name'>{{ __('client.video-gallery') }}</a>
+                    <a href='{{ url('thu-vien/video') }}' title='{{ __('client.video-gallery') }}' class='xtc'>
+                        <p>{{ __('client.all') }}</p>
                     </a>
                     <div class='cb'></div>
                 </div>
-                <div class='groups_items'>
-                    <div class='item'>
-                        <div class='img'>
-                            <div class='khungAnh'>
-                                <a class='khungAnhCrop' href='https://mizuiku-emyeunuocsach.vn/lauching-ceremony-of-mizuiku-i-love-clean-water-in-2016.htm' title='Lauching ceremony of "Mizuiku - I love clean water" in 2016'>
-                                    {{-- <img src="https://i.ytimg.com/vi/VwMzBW0V8m8/0.jpg" class="" /> --}}
-                                </a>
-                            </div>
-                            <a title='Lauching ceremony of "Mizuiku - I love clean water" in 2016' class='over'></a>
-                            <a title='Lauching ceremony of "Mizuiku - I love clean water" in 2016' class='play'></a>
-                            {{-- <iframe src='https://www.youtube.com/embed/VwMzBW0V8m8' frameborder='0' allowfullscreen></iframe> --}}
-                        </div>
-                        <div class='bgname'>
-                            <a href='https://mizuiku-emyeunuocsach.vn/lauching-ceremony-of-mizuiku-i-love-clean-water-in-2016.htm' title='Lauching ceremony of "Mizuiku - I love clean water" in 2016' class='name'>Lauching ceremony of "Mizuiku - I love clean water" in 2016</a>
-                        </div>
-                    </div>
 
-                    <div class='item'>
-                        <div class='img'>
-                            <div class='khungAnh'>
-                                <a class='khungAnhCrop' href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program-kick-off-ceremony-in-2017.htm' title='"Mizuiku - I love clean water" program kick-off ceremony in 2017'>
-                                    {{-- <img src="https://i.ytimg.com/vi/ulZZVbvGTsU/0.jpg" class="" /> --}}
-                                </a>
+                @if ($videos)
+                    @foreach ($videos as $item)
+                        <div class='groups_items'>
+                            <div class='item'>
+                                <div class='img'>
+                                    <div class='khungAnh'>
+                                        <a class='khungAnhCrop' href='{{$item->url_detail_library}}' title='{{$item->title}}'>
+                                            <img src="{{$item->thumbnail_display}}" class="" />
+                                        </a>
+                                    </div>
+                                    <a title='{{$item->title}}' class='over'></a>
+                                    <a title='{{$item->title}}' class='play'></a>
+                                </div>
+                                <div class='bgname'>
+                                    <a href='{{$item->url_detail_library}}' title='{{$item->title}}' class='name'>{{$item->title}}</a>
+                                </div>
                             </div>
-                            <a title='"Mizuiku - I love clean water" program kick-off ceremony in 2017' class='over'></a>
-                            <a title='"Mizuiku - I love clean water" program kick-off ceremony in 2017' class='play'></a>
-                            {{-- <iframe src='https://www.youtube.com/embed/ulZZVbvGTsU' frameborder='0' allowfullscreen></iframe> --}}
-                        </div>
-                        <div class='bgname'>
-                            <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program-kick-off-ceremony-in-2017.htm' title='"Mizuiku - I love clean water" program kick-off ceremony in 2017' class='name'>"Mizuiku - I love clean water" program kick-off ceremony in 2017</a>
-                        </div>
-                    </div>
-
-                    <div class='item'>
-                        <div class='img'>
-                            <div class='khungAnh'>
-                                <a class='khungAnhCrop' href='https://mizuiku-emyeunuocsach.vn/introducing-the-mizuiku-program-in-japan.htm' title='Introducing the Mizuiku program in Japan'>
-                                    {{-- <img src="https://i.ytimg.com/vi/Fx_8UHU6Ysw/0.jpg" class="" /> --}}
-                                </a>
-                            </div>
-                            <a title='Introducing the Mizuiku program in Japan' class='over'></a>
-                            <a title='Introducing the Mizuiku program in Japan' class='play'></a>
-                            {{-- <iframe src='https://www.youtube.com/embed/Fx_8UHU6Ysw' frameborder='0' allowfullscreen></iframe> --}}
-                        </div>
-                        <div class='bgname'>
-                            <a href='https://mizuiku-emyeunuocsach.vn/introducing-the-mizuiku-program-in-japan.htm' title='Introducing the Mizuiku program in Japan' class='name'>Introducing the Mizuiku program in Japan</a>
-                        </div>
-                    </div>
-                </div>
+                        </div>  
+                    @endforeach
+                @endif
             </div>
 
             <div class="cb"></div>
