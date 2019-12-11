@@ -6,6 +6,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use App\Models\SoftModelBase;
 use App\Scopes\LanguageScope;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Traits\SortByScope;
 
 /**
  * @property int $id
@@ -26,6 +27,7 @@ use Illuminate\Support\Facades\Storage;
 class Banner extends SoftModelBase
 {
     use Sluggable;
+    use SortByScope;
 
     public $timestamps = true;
 
