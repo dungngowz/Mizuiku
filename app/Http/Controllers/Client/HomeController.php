@@ -45,7 +45,7 @@ class HomeController extends Controller
 
         $intro = Article::where('keyword', 'program-introduction')->sortBy()->first();
         $libraryPhoto = Article::with(['gallery'])->where('keyword', 'photo')->sortBy()->take(6)->get();
-        $libraryVideo = Article::with(['gallery'])->where('keyword', 'video')->sortBy()->take(2)->get();
+        $libraryVideo = Article::with(['gallery'])->where('keyword', 'video')->sortBy()->take(3)->get();
         $banners = Banner::where('type', 'home')->sortBy()->get();
         
         $data = [ 

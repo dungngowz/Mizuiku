@@ -107,60 +107,32 @@
 
             <div id='video' class='hp'>
                 <div class='tieude'>
-                    <a href='https://mizuiku-emyeunuocsach.vn/video-gallery.htm' title='{{ __('client.video-gallery') }}' class='name'>{{ __('client.video-gallery') }}</a>
-                    <a href='https://mizuiku-emyeunuocsach.vn/video-gallery.htm' title='{{ __('client.video-gallery') }}' class='xtc'>
+                    <a href='{{ url('thu-vien/video') }}' title='{{ __('client.video-gallery') }}' class='name'>{{ __('client.video-gallery') }}</a>
+                    <a href='{{ url('thu-vien/video') }}' title='{{ __('client.video-gallery') }}' class='xtc'>
                         <p>All</p>
                     </a>
                     <div class='cb'></div>
                 </div>
                 <div class='groups_items'>
-                    <div class='item'>
-                        <div class='img'>
-                            <div class='khungAnh'>
-                                <a class='khungAnhCrop' href='https://mizuiku-emyeunuocsach.vn/lauching-ceremony-of-mizuiku-i-love-clean-water-in-2016.htm' title='Lauching ceremony of "Mizuiku - I love clean water" in 2016'>
-                                    {{-- <img src="https://i.ytimg.com/vi/VwMzBW0V8m8/0.jpg" class="" /> --}}
-                                </a>
+                    @if ($video)
+                        @foreach ($video as $item)
+                            <div class='item'>
+                                <div class='img'>
+                                    <div class='khungAnh'>
+                                        <a class='khungAnhCrop' href='{{ url('thu-vien/video/'. $item->slug) }}' title='{{ $item->title }}'>
+                                            <img src="{{ $item->url }}"/>
+                                        </a>
+                                    </div>
+                                    <a title='{{ $item->title }}' class='over'></a>
+                                    <a title='{{ $item->title }}' class='play'></a>
+                                    {{-- <iframe src='https://www.youtube.com/embed/VwMzBW0V8m8' frameborder='0' allowfullscreen></iframe> --}}
+                                </div>
+                                <div class='bgname'>
+                                    <a href='{{ url('thu-vien/video/'. $item->slug) }}' title='{{ $item->title }}' class='name'>{{ $item->title }}</a>
+                                </div>
                             </div>
-                            <a title='Lauching ceremony of "Mizuiku - I love clean water" in 2016' class='over'></a>
-                            <a title='Lauching ceremony of "Mizuiku - I love clean water" in 2016' class='play'></a>
-                            {{-- <iframe src='https://www.youtube.com/embed/VwMzBW0V8m8' frameborder='0' allowfullscreen></iframe> --}}
-                        </div>
-                        <div class='bgname'>
-                            <a href='https://mizuiku-emyeunuocsach.vn/lauching-ceremony-of-mizuiku-i-love-clean-water-in-2016.htm' title='Lauching ceremony of "Mizuiku - I love clean water" in 2016' class='name'>Lauching ceremony of "Mizuiku - I love clean water" in 2016</a>
-                        </div>
-                    </div>
-
-                    <div class='item'>
-                        <div class='img'>
-                            <div class='khungAnh'>
-                                <a class='khungAnhCrop' href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program-kick-off-ceremony-in-2017.htm' title='"Mizuiku - I love clean water" program kick-off ceremony in 2017'>
-                                    {{-- <img src="https://i.ytimg.com/vi/ulZZVbvGTsU/0.jpg" class="" /> --}}
-                                </a>
-                            </div>
-                            <a title='"Mizuiku - I love clean water" program kick-off ceremony in 2017' class='over'></a>
-                            <a title='"Mizuiku - I love clean water" program kick-off ceremony in 2017' class='play'></a>
-                            {{-- <iframe src='https://www.youtube.com/embed/ulZZVbvGTsU' frameborder='0' allowfullscreen></iframe> --}}
-                        </div>
-                        <div class='bgname'>
-                            <a href='https://mizuiku-emyeunuocsach.vn/mizuiku-i-love-clean-water-program-kick-off-ceremony-in-2017.htm' title='"Mizuiku - I love clean water" program kick-off ceremony in 2017' class='name'>"Mizuiku - I love clean water" program kick-off ceremony in 2017</a>
-                        </div>
-                    </div>
-
-                    <div class='item'>
-                        <div class='img'>
-                            <div class='khungAnh'>
-                                <a class='khungAnhCrop' href='https://mizuiku-emyeunuocsach.vn/introducing-the-mizuiku-program-in-japan.htm' title='Introducing the Mizuiku program in Japan'>
-                                    {{-- <img src="https://i.ytimg.com/vi/Fx_8UHU6Ysw/0.jpg" class="" /> --}}
-                                </a>
-                            </div>
-                            <a title='Introducing the Mizuiku program in Japan' class='over'></a>
-                            <a title='Introducing the Mizuiku program in Japan' class='play'></a>
-                            {{-- <iframe src='https://www.youtube.com/embed/Fx_8UHU6Ysw' frameborder='0' allowfullscreen></iframe> --}}
-                        </div>
-                        <div class='bgname'>
-                            <a href='https://mizuiku-emyeunuocsach.vn/introducing-the-mizuiku-program-in-japan.htm' title='Introducing the Mizuiku program in Japan' class='name'>Introducing the Mizuiku program in Japan</a>
-                        </div>
-                    </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
 
