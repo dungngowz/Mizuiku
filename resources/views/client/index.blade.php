@@ -140,8 +140,8 @@
                 </div>
 
                 @if ($videos)
-                    @foreach ($videos as $item)
-                        <div class='groups_items'>
+                    <div class='groups_items'>
+                        @foreach ($videos as $item)
                             <div class='item'>
                                 <div class='img'>
                                     <div class='khungAnh'>
@@ -156,8 +156,8 @@
                                     <a href='{{$item->url_detail_library}}' title='{{$item->title}}' class='name'>{{$item->title}}</a>
                                 </div>
                             </div>
-                        </div>  
-                    @endforeach
+                        @endforeach
+                    </div>
                 @endif
             </div>
 
