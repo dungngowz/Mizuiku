@@ -44,16 +44,16 @@ class HomeController extends Controller
         $compare = $news->diff($articles)->take(5);
 
         $intro = Article::where('keyword', 'program-introduction')->sortBy()->first();
-        $libraryPhoto = Article::with(['gallery'])->where('keyword', 'photo')->sortBy()->take(6)->get();
-        $libraryVideo = Article::with(['gallery'])->where('keyword', 'video')->sortBy()->take(3)->get();
+        $libraryPhoto = Article::with(['gallery'])->where('keyword', 'photo')->where('status', 1)->sortBy()->take(6)->get();
+        $libraryVideo = Article::where('keyword', 'video')->where('status', 1)->sortBy()->take(3)->get();
         $banners = Banner::where('type', 'home')->sortBy()->get();
         
         $data = [ 
             'categories' => $articles, 
             'articles' => $compare,
             'intro' => $intro,
-            'photo' => $libraryPhoto,
-            'video' => $libraryVideo,
+            'photos' => $libraryPhoto,
+            'videos' => $libraryVideo,
             'banners' => $banners
         ];
 

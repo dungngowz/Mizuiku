@@ -87,53 +87,78 @@
                     </a>
                     <div class='cb'></div>
                 </div>
-                <div class='group' id="list-photo">
-                    @if ($photo)
-                        {{-- left, mid, right --}}
-                        <div class="left"> 
-                            @foreach ($photo as $key => $item)
-                                <div class='khungAnh'>
-                                    <a class='khungAnhCrop' href='{{ url('thu-vien/photo/'. $item->slug) }}' title='{{ $item->title }}'>
-                                        <img alt="{{ $item->title }}" src="{{ asset('storage/'.$item->gallery[0]->file_path) }}" />
+                
+                @if (($countPhotos = count($photos)) > 0)
+                    <div class="group">
+                        <div class="left">
+                            @for ($i = 0; $i < min(3, $countPhotos); $i++)
+                                <div class="khungAnh">
+                                    <a class="khungAnhCrop" href="{{$photos[$i]->url_detail_gallery}}" title="{{$photos[$i]->title}}">
+                                        <img alt="{{$photos[$i]->title}}" class="tall" src="{{$photos[$i]->thumbnail_display}}" style="opacity: 1;">
                                     </a>
-                                    <a href='{{ url('thu-vien/photo/'. $item->slug) }}' title='{{ $item->title }}' class='over'></a>
-                                </div>
-                            @endforeach
+                                    <a href="{{$photos[$i]->url_detail_gallery}}" title="{{$photos[$i]->title}}" class="over"></a>
+                                </div>    
+                            @endfor
                         </div>
-                    @endif
-                    <div class='cb'></div>
-                </div>
+
+                        <div class="mid">
+                            @if ($countPhotos > 3)
+                                <div class="khungAnh">
+                                    <a class="khungAnhCrop" href="{{$photos[3]->url_detail_gallery}}" title="{{$photos[3]->title}}">
+                                        <img alt="{{$photos[3]->title}}" class="tall" src="{{$photos[3]->thumbnail_display}}" style="opacity: 1;">
+                                    </a>
+                                    <a href="{{$photos[3]->url_detail_gallery}}" title="{{$photos[3]->title}}" class="over"></a>
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="right">
+                            @if ($countPhotos > 4)
+                                @for ($i = 4; $i < $countPhotos; $i++)
+                                    <div class="khungAnh">
+                                        <a class="khungAnhCrop" href="{{$photos[$i]->url_detail_gallery}}" title="{{$photos[$i]->title}}">
+                                            <img alt="{{$photos[$i]->title}}" class="tall" src="{{$photos[$i]->thumbnail_display}}" style="opacity: 1;">
+                                        </a>
+                                        <a href="{{$photos[$i]->url_detail_gallery}}" title="{{$photos[$i]->title}}" class="over"></a>
+                                    </div>    
+                                @endfor
+                            @endif
+                        </div>
+                        <div class="cb"></div>
+                    </div>
+                @endif
+
             </div>
 
             <div id='video' class='hp'>
                 <div class='tieude'>
                     <a href='{{ url('thu-vien/video') }}' title='{{ __('client.video-gallery') }}' class='name'>{{ __('client.video-gallery') }}</a>
                     <a href='{{ url('thu-vien/video') }}' title='{{ __('client.video-gallery') }}' class='xtc'>
-                        <p>All</p>
+                        <p>{{ __('client.all') }}</p>
                     </a>
                     <div class='cb'></div>
                 </div>
-                <div class='groups_items'>
-                    @if ($video)
-                        @foreach ($video as $item)
+
+                @if ($videos)
+                    <div class='groups_items'>
+                        @foreach ($videos as $item)
                             <div class='item'>
                                 <div class='img'>
                                     <div class='khungAnh'>
-                                        <a class='khungAnhCrop' href='{{ url('thu-vien/video/'. $item->slug) }}' title='{{ $item->title }}'>
-                                            <img src="{{ $item->url }}"/>
+                                        <a class='khungAnhCrop' href='{{$item->url_detail_library}}' title='{{$item->title}}'>
+                                            <img src="{{$item->thumbnail_display}}" class="" />
                                         </a>
                                     </div>
-                                    <a title='{{ $item->title }}' class='over'></a>
-                                    <a title='{{ $item->title }}' class='play'></a>
-                                    {{-- <iframe src='https://www.youtube.com/embed/VwMzBW0V8m8' frameborder='0' allowfullscreen></iframe> --}}
+                                    <a title='{{$item->title}}' class='over'></a>
+                                    <a title='{{$item->title}}' class='play'></a>
                                 </div>
                                 <div class='bgname'>
-                                    <a href='{{ url('thu-vien/video/'. $item->slug) }}' title='{{ $item->title }}' class='name'>{{ $item->title }}</a>
+                                    <a href='{{$item->url_detail_library}}' title='{{$item->title}}' class='name'>{{$item->title}}</a>
                                 </div>
                             </div>
                         @endforeach
-                    @endif
-                </div>
+                    </div>
+                @endif
             </div>
 
             <div class="cb"></div>
