@@ -209,12 +209,12 @@ class HomeController extends Controller
 
         $city = Province::where('parent_id' , 0)->get();
         $disctrict = Province::where('parent_id' , $user->city)->get();
-
+        
         return view('client.info-user', [
             'user' => $user,
             'city' => $city,
             'findColumn' => $findColumn,
-            'district' => $disctrict
+            'district' => $disctrict,
         ]);
     }
 
@@ -232,7 +232,6 @@ class HomeController extends Controller
     public function updateInfo(Request $request)
     {
         $user = auth()->user()->update($request->all());
-
-        return redirect()->route('showManageAccount');
+        return redirect()->route('showManageAccount')->with('showAlertSuccess' , true);
     }
 }

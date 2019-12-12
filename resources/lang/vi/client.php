@@ -155,5 +155,7 @@ return [
     'update-info' => 'Cập nhật thông tin',
     'ignore' => 'Bỏ qua',
     'manage_acc' => 'Quản lý tài khoản',
-    'choose_link' => 'Chọn liên kết'
+    'choose_link' => 'Chọn liên kết',
+    'update_success' => 'Cập nhật thông tin thành công!'
+
 ];

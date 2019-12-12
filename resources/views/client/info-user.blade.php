@@ -97,3 +97,10 @@
       </div>
    </div>
 @endsection
+
+@section('custom-js')
+   <script>
+      if({{ session()->has('showAlertSuccess') ? session()->get('showAlertSuccess') : 0 }})
+         alert("{{ trans('client.update_success') }}");
+   </script>
+@endsection

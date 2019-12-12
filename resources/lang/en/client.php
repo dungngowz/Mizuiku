@@ -155,5 +155,6 @@ return [
     'update-info' => 'Update infomation',
     'ignore' => 'Ignore',
     'manage_acc' => 'Manage Account',
-    'choose_link' => 'Link'
+    'choose_link' => 'Link',
+    'update_success' => 'Update Infomation Successfully!'
 ];
