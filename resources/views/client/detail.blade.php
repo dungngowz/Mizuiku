@@ -23,7 +23,7 @@
                         <div class="thongke">
 
                         <a class='thongke_ngay'>{{ __('client.date-post') }}: {{ date('H:i - d/m/Y',strtotime($introDetail->created_at)) }}</a>
-                            <a class='thongke_luotxem'>{{ __('client.views') }}: add view table</a>
+                            <a class='thongke_luotxem'>{{ __('client.views') }}: {{ $introDetail->views }}</a>
 
                             <div class="cochu">
                                 <a class="NormalSize" href="javascript:ResetTextSize()">{{ __('client.size') }}</a>

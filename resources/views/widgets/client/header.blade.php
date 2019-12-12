@@ -49,12 +49,18 @@
             </div>
             <div class="regis">
                 <div class="regis1">
-
-                    <a href='javascript://' title='{{ __('client.register') }}' class='btndk slide_open fs12'>{{ __('client.register') }}</a>
-                    <span class='border'></span>
-                    @if ( Auth::check() )
-                        <a href='javascript://' class=' fs12'>{{ __('client.hi') }}, {{ Auth::user()->name }}</a>
+                    @if ( \Auth::check() )
+                        <a href='javascript://' title="{{ \Auth::user()->name }}" class='btndk ac fs12'>{{ __('client.hi') }}, {{ \Auth::user()->name }}</a>
+                        <span class='border'></span>
+                        <ul class="subloginx sublogin">
+                            <li><a href="{{ route('showManageAccount') }}" title="{{ trans('client.info_acc') }}">{{ trans('client.info_acc') }}</a></li> 
+                            <li><a href="{{ route('showChangePassword') }}" title="{{ trans('client.change_pass') }}">{{ trans('client.change_pass') }}</a></li> 
+                            <li><a href="{{ route('showMyCourse') }}" title="{{ trans('client.my_course') }}">{{ trans('client.my_course') }}</a></li> 
+                            <li><a href="javascript:;" title="" class="logout_open" data-popup-ordinal="0" id="open_29030588">{{ trans('client.log_out') }}</a></li> 
+                        </ul>
                     @else
+                        <a href='javascript://' title='{{ __('client.register') }}' class='btndk slide_open fs12'>{{ __('client.register') }}</a>
+                        <span class='border'></span>
                         <a href='javascript://' title='{{ __('client.login') }}' class='btndk loginForm_open fs12'>{{ __('client.login') }}</a>
                     @endif
 

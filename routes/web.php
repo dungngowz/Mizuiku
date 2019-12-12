@@ -45,6 +45,12 @@ Route::group(['namespace' => 'Client'], function(){
     Route::get('/dieu-khoan/{keyword}', 'HomeController@showTermOrPolicy')->name('showTerm');
     Route::get('/chinh-sach/{keyword}', 'HomeController@showTermOrPolicy')->name('showPolicy');
 
+    Route::get('/quan-ly-tai-khoan', 'HomeController@showManageAccount')->name('showManageAccount');
+    Route::get('/doi-mat-khau', 'HomeController@showChangePassword')->name('showChangePassword');
+    Route::get('/quan-ly-khoa-hoc', 'HomeController@showMyCourse')->name('showMyCourse');
+    Route::post('/logout-client', 'HomeController@logoutClient')->name('logoutClient');
+    Route::put('/update-info', 'HomeController@updateInfo')->name('updateInfo');
+
 });
 
 Auth::routes(['verify' => true]);

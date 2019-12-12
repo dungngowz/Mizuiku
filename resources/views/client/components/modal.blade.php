@@ -4,10 +4,14 @@
         <div class="main">
             <p class="tac pb15 fs16">{{ __('client.qs-logout') }}</p>
             <div class="tac">
-                <a href="https://mizuiku-emyeunuocsach.vn/logout.htm" class="btnlogout">{{ __('client.yes') }}</a>
+                <a href="{{ route('logoutClient') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();" class="btnlogout">{{ __('client.yes') }}</a>
                 <a href="javascript:;" onclick="clickClass('.logout_close');" class="btnlogout">{{ __('client.no') }}</a>
             </div>
             <div class="cb"></div>
+            <form id="logout-form" action="{{ route('logoutClient') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </div>
         <a href="javascript:;" class="logout_close"></a>
     </div>
@@ -51,16 +55,17 @@
 
                     <select name="DisplayLoadControl$Login$ddlSex" id="DisplayLoadControl_Login_ddlSex" class="w50pc fr">
                         <option value="0">{{ __('client.sex') }}</option>
-                        <option value="1">{{ __('client.male') }}</option>
-                        <option value="2">{{ __('client.female') }}</option>
-                        <option value="3">{{ __('client.other') }}</option>
+                        <option value="1">{{ __('client.sex-list.1') }}</option>
+                        <option value="2">{{ __('client.sex-list.2') }}</option>
+                        <option value="3">{{ __('client.sex-list.3') }}</option>
 
                     </select>
                     <input name="DisplayLoadControl$Login$tbPhone" type="text" id="DisplayLoadControl_Login_tbPhone" class="w50pc fl" placeholder="{{ __('client.phone') }}" />
                     <select name="DisplayLoadControl$Login$ddlType" id="DisplayLoadControl_Login_ddlType">
                         <option value="0">{{ __('client.you-are') }}</option>
-                        <option value="1">{{ __('client.teacher') }}</option>
-                        <option value="3">{{ __('client.other') }}</option>
+                        <option value="1">{{ __('client.career-list.1') }}</option>
+                        <option value="2">{{ __('client.career-list.2') }}</option>
+                        <option value="3">{{ __('client.career-list.3') }}</option>
 
                     </select>
                     <select name="DisplayLoadControl$Login$ddlCity" id="DisplayLoadControl_Login_ddlCity" class="w50pc fl">

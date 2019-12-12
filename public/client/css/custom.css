@@ -18,3 +18,8 @@
 #foot .right {
     padding-top: 0px
 }
+
+.look-like-link {
+    border: none;
+    padding: 0 !important;
+}

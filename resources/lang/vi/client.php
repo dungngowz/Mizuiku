@@ -46,7 +46,7 @@ return [
     'notification' => 'Thông báo',
     'qs-logout' => 'Bạn có chắc chắn muốn thoát ra không?',
     'yes' => 'Có',
-    'No' => 'Không',
+    'no' => 'Không',
     'qs-download' => 'Bạn có đồng ý với các điều khoản trên và tiến hành tải tài liệu?',
     'agree' => 'Đồng ý',
     'qs-register' => 'Bạn chưa có tài khoản?',
@@ -132,5 +132,28 @@ return [
     'other_videos' => 'Các video khác',
     'other_photo' => 'Các hình ảnh khác',
     'hi' => 'Xin Chào',
-    'other_articles' => 'Bài viết khác'
+    'other_articles' => 'Bài viết khác',
+    'info_acc' => 'Thông tin tài khoản',
+    'change_pass' => 'Đổi mật khẩu',
+    'my_course' => 'Khóa học của tôi',
+    'log_out' => 'Thoát',
+    'member' => 'Thành viên',
+    'city' => 'Tỉnh/Thành phố',
+    'district' => 'Quận/Huyện/Thị xã',
+    'email' => 'Email',
+    'receive-email' => 'Nhận email từ dự án',
+    'sex-list' => [
+        '1' => 'Nam',
+        '2' => 'Nữ',
+        '3' => 'Khác'
+    ],
+    'career-list' => [
+        '1' => 'Giáo viên',
+        '2' => 'Học sinh',
+        '3' => 'Khác'
+    ],
+    'update-info' => 'Cập nhật thông tin',
+    'ignore' => 'Bỏ qua',
+    'manage_acc' => 'Quản lý tài khoản'
+
 ];

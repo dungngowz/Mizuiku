@@ -188,4 +188,45 @@ class HomeController extends Controller
             'otherArticles' => $otherArticles
         ]);
     }
+
+    /**
+     * Show User Info
+     */
+    public function showManageAccount()
+    {
+        $user = auth()->user();
+        $locale = $_COOKIE[config('const.key_locale_client')] ?? 'vi';
+        $findColumn = 'name_' . $locale;
+
+        $user->city_name = Province::where('id' , $user->city)->first()->$findColumn;
+        $user->district_name = Province::where('id' , $user->district)->first()->$findColumn;
+
+        $city = Province::where('parent_id' , 0)->get();
+        $disctrict = Province::where('parent_id' , $user->city)->get();
+
+        return view('client.info-user', [
+            'user' => $user,
+            'city' => $city,
+            'findColumn' => $findColumn,
+            'district' => $disctrict
+        ]);
+    }
+
+    /**
+     * Logout
+     */
+    public function logoutClient() {
+        \Auth::logout();
+        return redirect('/');
+    }
+
+    /**
+     * Show User Info
+     */
+    public function updateInfo(Request $request)
+    {
+        $user = auth()->user()->update($request->all());
+
+        return redirect()->route('showManageAccount');
+    }
 }

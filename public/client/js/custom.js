@@ -497,7 +497,7 @@ $('.slide_open').on('click', function(){
     });
 });
 
-$('#DisplayLoadControl_Login_ddlCity').on('change', function(){
+$('#DisplayLoadControl_Login_ddlCity, #DisplayLoadControl_ctl00_ctl00_ddlCity').on('change', function(){
     $.ajax({
         url: '/get-provinces',
         type: "GET",
@@ -506,9 +506,9 @@ $('#DisplayLoadControl_Login_ddlCity').on('change', function(){
             'id': this.value
         },
         success: function(res) {
-            $('#DisplayLoadControl_Login_ddlDistric').find('option').not(':first').remove();
+            $('#DisplayLoadControl_Login_ddlDistric, #DisplayLoadControl_ctl00_ctl00_ddlDistrict').find('option').not(':first').remove();
             $.each(res.data, function (){
-                $('#DisplayLoadControl_Login_ddlDistric').append("<option value='"+ this.id +"' >"+ this.name_vi +"</option>");
+                $('#DisplayLoadControl_Login_ddlDistric, #DisplayLoadControl_ctl00_ctl00_ddlDistrict').append("<option value='"+ this.id +"' >"+ this.name_vi +"</option>");
             });
         //    console.log(res)
         },
@@ -516,4 +516,33 @@ $('#DisplayLoadControl_Login_ddlCity').on('change', function(){
             console.log(error)
         }
     });
-})
+});
+
+$('.uploadFile input').change(function () {
+    var filename = $(this).val();
+    var lastIndex = filename.lastIndexOf("\\");
+    if (lastIndex >= 0) {
+       filename = filename.substring(lastIndex + 1);
+    }
+    //$(this).parent().find(".show_file").text(filename);
+    console.log(filename);
+    // Hiển thị ảnh sau khi select
+    var preview = document.querySelector('.Avatar');
+    var file = document.querySelector('#DisplayLoadControl_ctl00_ctl00_flImage').files[0];
+    var reader = new FileReader();
+
+    reader.onloadend = function () {
+       preview.src = reader.result;
+    }
+
+    if (file) {
+       reader.readAsDataURL(file);
+       CropImage();
+    } else {
+       preview.src = "";
+    }
+ });
+
+function reFresh() {
+    location.href = location.href;
+}

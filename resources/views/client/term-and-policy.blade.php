@@ -23,7 +23,7 @@
                             <div class="thongke">
 
                                 <a class='thongke_ngay'>{{ __('client.date-post') }}: {{ date('H:i - d/m/Y',strtotime($data->created_at)) }}</a>
-                                <a class='thongke_luotxem'>{{ __('client.views') }}: add view table</a>
+                                <a class='thongke_luotxem'>{{ __('client.views') }}: {{ $data->views }}</a>
 
                                 <div class="cochu">
                                     <a class="NormalSize" href="javascript:ResetTextSize()">Size</a>
@@ -104,7 +104,7 @@
                                 <p class='fs24 c0e9ee6 fiCielGotham pb10'>{{ trans('client.other_articles') }}</p>
                                 <ul>
                                     @foreach ($otherArticles as $item)
-                                        <li><a href='{{ $item->url_detail_news }}' title='{{ $item->title }}'><h2>{{ $item->title }}</h2> (<span class='c999'>10 Views</span>)</a></li>
+                                        <li><a href='{{ $item->url_detail_news }}' title='{{ $item->title }}'><h2>{{ $item->title }}</h2> (<span class='c999'>{{ $item->views }} Views</span>)</a></li>
                                     @endforeach
                                 </ul>
                             @endif

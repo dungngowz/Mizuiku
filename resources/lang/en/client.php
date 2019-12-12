@@ -46,7 +46,7 @@ return [
     'notification' => 'Notification',
     'qs-logout' => 'Are you sure you want to log out?',
     'yes' => 'Yes',
-    'No' => 'No',
+    'no' => 'No',
     'qs-download' => 'Do you agree with the above terms and download documents?',
     'agree' => 'Agree',
     'qs-register' => 'Do not have an account?',
@@ -132,5 +132,27 @@ return [
     'other_videos' => 'Other videos',
     'other_photo' => 'Other photos',
     'hi' => 'Hi',
-    'other_articles' => 'Other articles'
+    'other_articles' => 'Other articles',
+    'info_acc' => 'Infomation Account',
+    'change_pass' => 'Change Password',
+    'my_course' => 'My Course',
+    'log_out' => 'Log Out',
+    'member' => 'Member',
+    'city' => 'Select Province / City',
+    'district' => 'County / District / Town',
+    'email' => 'Email',
+    'receive-email' => 'Receive emails from the project',
+    'sex-list' => [
+        '1' => 'Male',
+        '2' => 'Female',
+        '3' => 'Other'
+    ],
+    'career-list' => [
+        '1' => 'Teacher',
+        '2' => 'Student',
+        '3' => 'Other'
+    ],
+    'update-info' => 'Update infomation',
+    'ignore' => 'Ignore',
+    'manage_acc' => 'Manage Account',
 ];
