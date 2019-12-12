@@ -22,8 +22,8 @@
                 <div class="baiviet">
                     @if ($eLearning)
                         <div class="thongke">
-                            <a class='thongke_ngay'>{{ __('client.date-post') }}: {{ date('H:i - d/m/Y',strtotime($eLearning[0]['created_at'])) }}</a>
-                            <a class='thongke_luotxem'>{{ __('client.views') }}: add view table</a>
+                            <a class='thongke_ngay'>{{ __('client.date-post') }}: {{ date('H:i - d/m/Y',strtotime($eLearning->created_at)) }}</a>
+                            <a class='thongke_luotxem'>{{ __('client.views') }}: {{$eLearning->views}}</a>
 
                             <div class="cochu">
                                 <a class="NormalSize" href="javascript:ResetTextSize()">{{ __('client.size') }}</a>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="noidung TextSize">
                             {{-- Add Content Here --}}
-                            {!! $eLearning[0]['content'] !!}
+                            {!! $eLearning->content !!}
                         </div>
                     @endif
                     <div class='nav'>

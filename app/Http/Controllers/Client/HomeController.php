@@ -101,7 +101,11 @@ class HomeController extends Controller
      */
     public function eLearning()
     {
-        $eLearning = Article::where('keyword', 'e-learning')->get()->toArray();
+        $eLearning = Article::where('keyword', 'e-learning')->first();
+        
+        //Update Views
+        $eLearning->views = $eLearning->views + 1;
+        $eLearning->save();
 
         return view('client.khoa-hoc', ['eLearning' => $eLearning]);
     }
