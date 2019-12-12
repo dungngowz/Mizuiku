@@ -132,5 +132,6 @@ return [
     'other_videos' => 'Các video khác',
     'other_photo' => 'Các hình ảnh khác',
     'hi' => 'Xin Chào',
-    'other_articles' => 'Bài viết khác'
+    'other_articles' => 'Bài viết khác',
+    'choose_link' => 'Chọn liên kết'
 ];

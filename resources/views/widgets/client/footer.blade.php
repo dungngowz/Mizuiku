@@ -41,7 +41,7 @@
             <div>
                 <div class='lienket'><span class='c005286 fOfficinaSanITCMedium'>{{ __('client.web-link') }}</span>
                     <select onchange='navigation(this.value);'>
-                        <option value=''>Link</option>
+                        <option value=''>{{trans('client.choose_link')}}</option>
                         <option value='http://hoisinhvien.com.vn/'>Student Union of Vietnam</option>
                         <option value='http://www.thieunhivietnam.vn/'>Central Council for Ho Chi Minh Young Pioneer Organization</option>
                         <option value='http://www.suntory.com'>Suntory Holdings Limited </option>
@@ -59,8 +59,8 @@
             <p class='tar lh24 fs16'>{{ __('client.site-2') }}</p>
             <p class='tar lh24 fs16'>{{ __('client.reserved-2') }}</p>
             <ul id='CommonMenuBottom' class='main'>
-                <li><a href='{{ route('showTerm', ["keyword" => 'tearm-of-use']) }}' title='{{ __('client.term') }}'>{{ __('client.term') }}</a></li>
-                <li><a href='{{ route('showPolicy', ["keyword" => 'private-policy']) }}' title='{{ __('client.private-policy') }}'>{{ __('client.private-policy') }}</a></li>
+                <li><a class="{{(isset($segments[1]) && $segments[1] == 'tearm-of-use') ? 'active' : ''}}" href='{{ route('showTerm', ["keyword" => 'tearm-of-use']) }}' title='{{ __('client.term') }}'>{{ __('client.term') }}</a></li>
+                <li><a class="{{(isset($segments[1]) && $segments[1] == 'private-policy') ? 'active' : ''}}" href='{{ route('showPolicy', ["keyword" => 'private-policy']) }}' title='{{ __('client.private-policy') }}'>{{ __('client.private-policy') }}</a></li>
             </ul>
             <div class='cb'></div>
 

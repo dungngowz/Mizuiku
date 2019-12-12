@@ -132,5 +132,6 @@ return [
     'other_videos' => 'Other videos',
     'other_photo' => 'Other photos',
     'hi' => 'Hi',
-    'other_articles' => 'Other articles'
+    'other_articles' => 'Other articles',
+    'choose_link' => 'Link'
 ];
