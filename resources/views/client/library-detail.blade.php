@@ -39,6 +39,7 @@
                             @endphp
                         </div>    
                     @else
+                        <div class="noidung TextSize">{!! $record->content !!}</div>
                         <div class='bst'>
                             @foreach ($record->gallery as $item)
                                 <div class='item'>

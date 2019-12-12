@@ -107,6 +107,16 @@
                         @endif
                         
                     </div>
+
+                    @if (request()->keyword == 'photo')
+                        <div class="form-group m-t-20">
+                            <label>{{trans('admin.content')}}</label>
+                            <textarea name="content" class="form-control editor">{!! $record->content !!}</textarea>
+                            @if($errors->has('content'))
+                                <span class="error-msg">{{$errors->first('content')}}</span>
+                            @endif
+                        </div>
+                    @endif
                 </form>
 
                 @if (request()->keyword == 'photo')
@@ -140,6 +150,7 @@
 @endpush
 
 @push('scripts')
+    @include('admin.components.editor-config')
     <script>
         var gallery = <?php echo json_encode($gallery); ?>;
 

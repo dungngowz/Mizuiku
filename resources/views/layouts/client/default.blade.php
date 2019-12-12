@@ -89,8 +89,8 @@
 
     @include('client.components.modal')
 
-    <script src="{{ asset('client/js/custom.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('client/css/custom.css') }}">
+    <script src="{{ asset('client/js/custom.js?t=' . time()) }}"></script>
+    <link rel="stylesheet" href="{{ asset('client/css/custom.css?t=' . time()) }}">
 
     @yield('custom-js')
 </body>

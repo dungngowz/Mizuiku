@@ -24,10 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categoriesNews = Category::orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->take(1)->get();
+        $categoriesNews = Category::orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->take(2)->get();
       
-        $newsByCats = Category::sortBy()->where('status', 1)->take(1)->get()->map(function ($cat) {
+        $newsByCats = Category::sortBy()->where('status', 1)->take(2)->get()->map(function ($cat) {
             return $cat->articles()->where('status', 1)->sortBy()->first();
+        })->filter(function ($value, $key) {
+            return $value;
         });
 
         // find article is "news"
@@ -101,7 +103,11 @@ class HomeController extends Controller
      */
     public function eLearning()
     {
-        $eLearning = Article::where('keyword', 'e-learning')->get()->toArray();
+        $eLearning = Article::where('keyword', 'e-learning')->first();
+        
+        //Update Views
+        $eLearning->views = $eLearning->views + 1;
+        $eLearning->save();
 
         return view('client.khoa-hoc', ['eLearning' => $eLearning]);
     }

@@ -155,4 +155,5 @@ return [
     'update-info' => 'Update infomation',
     'ignore' => 'Ignore',
     'manage_acc' => 'Manage Account',
+    'choose_link' => 'Link'
 ];
