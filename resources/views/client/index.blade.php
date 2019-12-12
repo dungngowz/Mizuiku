@@ -90,10 +90,10 @@
                         <div class="left">
                             @for ($i = 0; $i < min(3, $countPhotos); $i++)
                                 <div class="khungAnh">
-                                    <a class="khungAnhCrop" href="{{$photos[$i]->url_detail_gallery}}" title="{{$photos[$i]->title}}">
+                                    <a class="khungAnhCrop" href="{{$photos[$i]->url_detail_library}}" title="{{$photos[$i]->title}}">
                                         <img alt="{{$photos[$i]->title}}" class="tall" src="{{$photos[$i]->thumbnail_display}}" style="opacity: 1;">
                                     </a>
-                                    <a href="{{$photos[$i]->url_detail_gallery}}" title="{{$photos[$i]->title}}" class="over"></a>
+                                    <a href="{{$photos[$i]->url_detail_library}}" title="{{$photos[$i]->title}}" class="over"></a>
                                 </div>    
                             @endfor
                         </div>
@@ -101,10 +101,10 @@
                         <div class="mid">
                             @if ($countPhotos > 3)
                                 <div class="khungAnh">
-                                    <a class="khungAnhCrop" href="{{$photos[3]->url_detail_gallery}}" title="{{$photos[3]->title}}">
+                                    <a class="khungAnhCrop" href="{{$photos[3]->url_detail_library}}" title="{{$photos[3]->title}}">
                                         <img alt="{{$photos[3]->title}}" class="tall" src="{{$photos[3]->thumbnail_display}}" style="opacity: 1;">
                                     </a>
-                                    <a href="{{$photos[3]->url_detail_gallery}}" title="{{$photos[3]->title}}" class="over"></a>
+                                    <a href="{{$photos[3]->url_detail_library}}" title="{{$photos[3]->title}}" class="over"></a>
                                 </div>
                             @endif
                         </div>
@@ -113,10 +113,10 @@
                             @if ($countPhotos > 4)
                                 @for ($i = 4; $i < $countPhotos; $i++)
                                     <div class="khungAnh">
-                                        <a class="khungAnhCrop" href="{{$photos[$i]->url_detail_gallery}}" title="{{$photos[$i]->title}}">
+                                        <a class="khungAnhCrop" href="{{$photos[$i]->url_detail_library}}" title="{{$photos[$i]->title}}">
                                             <img alt="{{$photos[$i]->title}}" class="tall" src="{{$photos[$i]->thumbnail_display}}" style="opacity: 1;">
                                         </a>
-                                        <a href="{{$photos[$i]->url_detail_gallery}}" title="{{$photos[$i]->title}}" class="over"></a>
+                                        <a href="{{$photos[$i]->url_detail_library}}" title="{{$photos[$i]->title}}" class="over"></a>
                                     </div>    
                                 @endfor
                             @endif
