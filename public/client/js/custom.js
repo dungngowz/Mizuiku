@@ -471,22 +471,6 @@ function hovermenu() {
         c = c / 2;
         $('#menu .icoac').css('left', tong + b - c);
     }, function() {
-
-        $('.cmNav a').hover(function(event) {
-            var left = $(this).offset().left + ($(this).innerWidth() / 2) - 20;
-            $('#menu .icoac').css('left', left + 'px');
-        }, function() {
-            $('#menu .icoac').removeClass('ac');
-            $('#menu .icoac').css('left', current);
-        });
-
-        
-    });
-
-    $('.cmNav a').hover(function(event) {
-        var left = $(this).offset().left + ($(this).innerWidth() / 2) - 20;
-        $('#menu .icoac').css('left', left + 'px');
-    }, function() {
         $('#menu .icoac').removeClass('ac');
         $('#menu .icoac').css('left', current);
     });
