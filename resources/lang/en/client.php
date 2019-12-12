@@ -131,5 +131,6 @@ return [
     'share' => 'Share',
     'other_videos' => 'Other videos',
     'other_photo' => 'Other photos',
-    'hi' => 'Hi'
+    'hi' => 'Hi',
+    'other_articles' => 'Other articles'
 ];

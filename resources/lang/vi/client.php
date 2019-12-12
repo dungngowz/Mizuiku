@@ -131,5 +131,6 @@ return [
     'share' => 'Chia sẽ',
     'other_videos' => 'Các video khác',
     'other_photo' => 'Các hình ảnh khác',
-    'hi' => 'Xin Chào'
+    'hi' => 'Xin Chào',
+    'other_articles' => 'Bài viết khác'
 ];

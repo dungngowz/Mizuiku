@@ -177,4 +177,22 @@ class HomeController extends Controller
         }
         return $this->response(500,false,null, trans('Login Fail!'));
     }
+
+    /**
+     * Show Term
+     * @param  $keyword
+     */
+    public function showTermOrPolicy($keyword)
+    {
+        $term = Article::where('keyword', $keyword)->first();
+
+        // Get other articles
+        $cats = Category::where('type', 'news')->where('status', 1)->pluck('id')->toArray();
+        $otherArticles = Article::whereIn('category_id', $cats)->where('status', 1)->sortBy()->get();
+
+        return view('client.term-and-policy', [
+            'data' => $term, 
+            'otherArticles' => $otherArticles
+        ]);
+    }
 }

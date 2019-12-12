@@ -59,8 +59,8 @@
             <p class='tar lh24 fs16'>{{ __('client.site-2') }}</p>
             <p class='tar lh24 fs16'>{{ __('client.reserved-2') }}</p>
             <ul id='CommonMenuBottom' class='main'>
-                <li><a href='http://mizuiku-emyeunuocsach.vn/dieu-khoan-su-dung.htm' title='{{ __('client.term') }}'>{{ __('client.term') }}</a></li>
-                <li><a href='/chinh-sach-bao-mat.htm' title='{{ __('client.private-policy') }}'>{{ __('client.private-policy') }}</a></li>
+                <li><a href='{{ route('showTerm', ["keyword" => 'tearm-of-use']) }}' title='{{ __('client.term') }}'>{{ __('client.term') }}</a></li>
+                <li><a href='{{ route('showPolicy', ["keyword" => 'private-policy']) }}' title='{{ __('client.private-policy') }}'>{{ __('client.private-policy') }}</a></li>
             </ul>
             <div class='cb'></div>
 

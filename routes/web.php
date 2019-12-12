@@ -42,6 +42,9 @@ Route::group(['namespace' => 'Client'], function(){
 
     Route::get('/get-provinces', 'HomeController@getProvinces')->name('getProvinces');
 
+    Route::get('/dieu-khoan/{keyword}', 'HomeController@showTermOrPolicy')->name('showTerm');
+    Route::get('/chinh-sach/{keyword}', 'HomeController@showTermOrPolicy')->name('showPolicy');
+
 });
 
 Auth::routes(['verify' => true]);
