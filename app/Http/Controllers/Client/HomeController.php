@@ -24,24 +24,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::sortBy()->where('status', 1)->take(2)->get();
-        $articles = [];
-        foreach($categories as $cat){
-            $query = $cat->articles()
-                ->where('status', 1)
-                ->sortBy()
-                ->first()
-            ;
-            if($query){
-                $query->category_title = $cat->title;
-                array_push($articles,$query);
-            }
-        }
+        $categoriesNews = Category::orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->get();
+
+        $newsByCats = Category::sortBy()->where('status', 1)->take(2)->get()->map(function ($cat) {
+            return $cat->articles()->where('status', 1)->sortBy()->first();
+        });
 
         // find article is "news"
         $cats = Category::where('type', 'news')->where('status', 1)->pluck('id')->toArray();
         $news = Article::whereIn('category_id', $cats)->where('status', 1)->sortBy()->get();
-        $compare = $news->diff($articles)->take(5);
+        $compare = $news->diff($newsByCats)->take(5);
 
         $intro = Article::where('keyword', 'program-introduction')->sortBy()->first();
         $libraryPhoto = Article::with(['gallery'])->where('keyword', 'photo')->where('status', 1)->sortBy()->take(6)->get();
@@ -49,7 +41,8 @@ class HomeController extends Controller
         $banners = Banner::where('type', 'home')->sortBy()->get();
         
         $data = [ 
-            'categories' => $articles, 
+            'newsByCats' => $newsByCats, 
+            'categoriesNews' => $categoriesNews,
             'articles' => $compare,
             'intro' => $intro,
             'photos' => $libraryPhoto,

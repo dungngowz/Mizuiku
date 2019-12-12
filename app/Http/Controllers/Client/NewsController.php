@@ -53,6 +53,10 @@ class NewsController extends Controller
             return redirect('/');
         }
 
+        //Update Views
+        $record->views = $record->views + 1;
+        $record->save();
+
         $ortherArticles = Article::where('category_id', $record->category_id)
             ->where('id', '<>', $record->id)
             ->orderBy('priority', 'desc')

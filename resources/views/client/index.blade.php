@@ -35,37 +35,34 @@
             <div class="parent">
 
                 <div class="left">
-                    @foreach ($categories as $item)
-                    <div class='item'>
-                        <div class='tieude'>
-                            <a href='https://mizuiku-emyeunuocsach.vn/program-news.htm' title='{{ $item['category_title'] }}' class='namex'>{{ $item['category_title'] }}</a>
+                    @foreach ($newsByCats as $item)
+                        <div class='item'>
+                            <div class='tieude'>
+                                <a href='{{$item->category['url_detail_news']}}' title='{{ $item->category['title'] }}' class='namex'>{{ $item->category['title'] }}</a>
+                            </div>
+                            <div class='khungAnh'>
+                                <a class='khungAnhCrop' href='{{$item->url_detail_news}}' title=''>
+                                    <img alt="" class="" src="{{$item->thumbnail_display}}" />
+                                </a>
+                                <div class='date'>{{ date('d/m/Y', strtotime($item->created_at)) }}</div>
+                                <a href='{{ $item->url_detail_news}}' title='' class='over'></a>
+                            </div>
+                            <a href='{{$item->url_detail_news}}' title='' class='name'>{{ $item->title }}</a>
+                            <div class='cont dotdotdot'>{{ $item->description }}</div>
                         </div>
-
-                        {{-- Article --}}
-                        <div class='khungAnh'>
-                            <a class='khungAnhCrop' href='{{ url('gioi-thieu/'.$item['slug']) }}' title=''>
-                                <img alt="" class="" src="{{ asset('client/pic/News/PN1_637070152760942277.jpg') }}" />
-                            </a>
-                            <div class='date'>{{ date('d/m/Y', strtotime($item['created_at'])) }}</div>
-                            <a href='{{  url('gioi-thieu/'.$item['slug']) }}' title='' class='over'></a>
-                        </div>
-                        <a href='{{ url('gioi-thieu/'.$item['slug']) }}' title='' class='name'>{{ $item['title'] }}</a>
-                        <div class='cont dotdotdot'>{{ $item['description'] }}</div>
-                    </div>
                     @endforeach
                     
                 </div>
 
                 <div class="right">
-
                     <div class='tieude'>
-                        <a href='https://mizuiku-emyeunuocsach.vn/tin-tuc.htm' title='{{ __('client.news') }}' class='namex'>{{ __('client.news') }}</a>
+                        <a href='{{$categoriesNews[0]->url_detail_news}}' title='{{ __('client.news') }}' class='namex'>{{ __('client.news') }}</a>
                     </div>
                     @if ($articles)
                         @foreach ($articles as $item)
                             <div class='item'>
                                 <div class='date'>{{ date('d/m/Y', strtotime($item->created_at)) }}</div>
-                                <a href='{{ url($item->slug) }}' title='Comic series "Mizu – A Talking Water Drop" released' class='name'>{{ $item->title }}</a>
+                                    <a href='{{$item->url_detail_news}}' title='{{$item->title}}' class='name'>{{ $item->title }}</a>
                                 <div class='cb'></div>
                             </div>
                         @endforeach
