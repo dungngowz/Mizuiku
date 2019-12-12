@@ -24,9 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categoriesNews = Category::orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->get();
-
-        $newsByCats = Category::sortBy()->where('status', 1)->take(2)->get()->map(function ($cat) {
+        $categoriesNews = Category::orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->take(1)->get();
+      
+        $newsByCats = Category::sortBy()->where('status', 1)->take(1)->get()->map(function ($cat) {
             return $cat->articles()->where('status', 1)->sortBy()->first();
         });
 
@@ -181,7 +181,7 @@ class HomeController extends Controller
 
         // Get other articles
         $cats = Category::where('type', 'news')->where('status', 1)->pluck('id')->toArray();
-        $otherArticles = Article::whereIn('category_id', $cats)->where('status', 1)->sortBy()->get();
+        $otherArticles = Article::whereIn('category_id', $cats)->where('status', 1)->sortBy()->take(5)->get();
 
         return view('client.term-and-policy', [
             'data' => $term, 

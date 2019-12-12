@@ -48,15 +48,17 @@ class VerificationController extends Controller
      */
     public function verify(Request $request)
     {
-        $user = User::find($request->id);
-
-        if ($request->route('id') != $user->getKey()) {
-            throw new AuthorizationException;
-        }
-
-        if ($user->markEmailAsVerified()) {
-            event(new Verified($user));
-        }
+        // $user = User::find($request->id);
+        // dd($user);
+        // if($user) {
+        //     if ($request->route('id') != $user->getKey()) {
+        //         throw new AuthorizationException;
+        //     }
+    
+        //     if ($user->markEmailAsVerified()) {
+        //         event(new Verified($user));
+        //     }
+        // }
 
         return redirect($this->redirectPath())->with('verified', true);
     }

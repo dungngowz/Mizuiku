@@ -49,10 +49,10 @@ class ModelObserver
      */
     public function deleting(Base $model)
     {
-        if(Auth::user()) {
-            $query = $model->newQueryWithoutScopes()->where($model->getKeyName(), $model->getKey());
-            $query->update(['deleted_user_id' => Auth::user()->id]);
-        }
+        // if(Auth::user()) {
+        //     $query = $model->newQueryWithoutScopes()->where($model->getKeyName(), $model->getKey());
+        //     $query->update(['deleted_user_id' => Auth::user()->id]);
+        // }
     }
 
     public function saved(Base $model)
