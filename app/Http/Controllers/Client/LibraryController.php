@@ -43,6 +43,10 @@ class LibraryController extends Controller
             return redirect('/thu-vien/' . $keyword);
         }
 
+        //Update Views
+        $record->views = $record->views + 1;
+        $record->save();
+
         $ortherArticles = Article::where('keyword', $keyword)
             ->where('id', '<>', $record->id)
             ->orderBy('priority', 'desc')

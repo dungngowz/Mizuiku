@@ -24,6 +24,7 @@
                     <div class="baiviet">
                         <div class="thongke">
                             <a class="thongke_ngay">{{trans('client.date-submitted')}}: {{$record->updated_at->format('H:i d-m-Y')}}</a>
+                            <a class="thongke_luotxem">{{trans('client.views')}}: {{number_format($record->views)}}</a>
                             <div class="cochu">
                                 <a class="NormalSize" href="javascript:ResetTextSize()">{{trans('client.size')}}</a>
                                 <a class="SmallSize" href="javascript:DecreaseTextSize()"></a>

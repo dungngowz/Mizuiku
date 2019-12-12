@@ -43,7 +43,7 @@ class Article extends SoftModelBase
     /**
      * @var array
      */
-    protected $fillable = ['ref_id', 'category_id', 'title', 'slug', 'thumbnail', 'description', 'content', 'keyword', 'status', 'url', 'priority', 'language', 'created_at', 'created_user_id', 'updated_at', 'updated_user_id', 'deleted_at', 'deleted_user_id'];
+    protected $fillable = ['ref_id', 'category_id', 'title', 'slug', 'thumbnail', 'description', 'content', 'keyword', 'status', 'url', 'priority', 'language', 'views', 'created_at', 'created_user_id', 'updated_at', 'updated_user_id', 'deleted_at', 'deleted_user_id'];
 
     /**
      * The "booting" method of the model.

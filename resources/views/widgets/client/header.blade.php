@@ -82,7 +82,7 @@
         <img src="{{ asset('client/css/Common/menuactive.png') }}" /></i>
         <ul id='CommonMenuMain' class='main'>
             <li data='1' class='litop {{$segments[0] == '' ? 'active' : ''}}'>
-                <a href="{{config('app.url')}}" title='{{ __('client.home') }}'>{{ __('client.home') }}</a>
+                <a href="/" title='{{ __('client.home') }}'>{{ __('client.home') }}</a>
             </li>
             
             {{-- About Us --}}
