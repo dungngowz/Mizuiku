@@ -117,7 +117,7 @@ class LibraryController extends Controller
                 foreach ($files as $item) {
                     $element = json_decode($item);
                     $gallery = Gallery::create([
-                        'file_path' => 'library/'. $element->file_path,
+                        'file_path' => $element->file_path,
                         'file_name' => $element->file_name,
                         'post_id' => $record->id
                     ]);
