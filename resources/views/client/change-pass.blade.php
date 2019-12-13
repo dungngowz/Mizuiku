@@ -5,7 +5,7 @@
    <div id="pageroad">
       <div class="wrp">
          <ul>
-         <li><a href="{{ config('app.url') }}" title="{{ __('client.home') }}">{{ __('client.home') }}</a></li>
+         <li><a href="{{ url('') }}" title="{{ __('client.home') }}">{{ __('client.home') }}</a></li>
                <li><a href='{{ route('showManageAccount') }}' title='{{ __('client.member') }}'>{{ __('client.member') }}</a></li>
          </ul>
          <div class="cb"></div>
@@ -17,7 +17,7 @@
             <div class="left">
                <div class="khungAnh">
                   <a class="khungAnhCrop" href="javascript:;" title="Avatar">
-                  <img alt="helen.hoa1103@gmail.com" class="" src="https://mizuiku-emyeunuocsach.vn/pic/icon/no_image.gif" />
+                  <img alt="{{ $user->email }}" class="" src="{{ \Storage::url($user->avatar) ?? asset('client/pic/icon/no_image.gif') }}" />
                   </a>
                   <div class="input">
                      <input type="file" name="DisplayLoadControl$ctl00$ctl00$flImage" id="DisplayLoadControl_ctl00_ctl00_flImage" />
@@ -25,13 +25,13 @@
                </div>
             </div>
             <div id="changePassForm" class="mid">
-               <p class="fiCielGotham c109ce3 fs14 ttu pb20">Đổi mật khẩu</p>
+               <p class="fiCielGotham c109ce3 fs14 ttu pb20">{{ trans('client.change_pass') }}</p>
                <div>
                   <div class="ip changepass">
-                     <input name="DisplayLoadControl$ctl00$ctl00$tbPassOld" type="password" id="DisplayLoadControl_ctl00_ctl00_tbPassOld" class="required" placeholder="Mật khẩu cũ" />
-                     <input name="DisplayLoadControl$ctl00$ctl00$tbPassNew" type="password" id="DisplayLoadControl_ctl00_ctl00_tbPassNew" class="required" placeholder="Mật khẩu mới" />
-                     <input name="DisplayLoadControl$ctl00$ctl00$tbPassNew2" type="password" id="DisplayLoadControl_ctl00_ctl00_tbPassNew2" class="required" placeholder="Nhập lại mật khẩu mới" />
-                     <a class="btnupdateinfo" href="javascript:;" onclick="changePass();">Cập nhật mật khẩu</a>
+                     <input name="DisplayLoadControl$ctl00$ctl00$tbPassOld" type="password" id="DisplayLoadControl_ctl00_ctl00_tbPassOld" class="required" placeholder="{{ trans('client.old_pass') }}" />
+                     <input name="DisplayLoadControl$ctl00$ctl00$tbPassNew" type="password" id="DisplayLoadControl_ctl00_ctl00_tbPassNew" class="required" placeholder="{{ trans('client.new_pass') }}" />
+                     <input name="DisplayLoadControl$ctl00$ctl00$tbPassNew2" type="password" id="DisplayLoadControl_ctl00_ctl00_tbPassNew2" class="required" placeholder="{{ trans('client.re_new_pass') }}" />
+                     <a class="btnupdateinfo" href="javascript:;" onclick="changePass();">{{ trans('client.update_pass') }}</a>
                   </div>
                   <div class="cb"></div>
                </div>
@@ -54,34 +54,37 @@
                      passNew = $("#DisplayLoadControl_ctl00_ctl00_tbPassNew").val();
                      passNew2 = $("#DisplayLoadControl_ctl00_ctl00_tbPassNew2").val();
                      loading(true);
-                     jQuery.ajax({
-                        url: weburl + "cms/display/Member/Ajax/Ajax.aspx",
+                     $.ajax({
+                        url: '/change-password',
                         type: "POST",
                         dataType: "json",
                         data: {
-                           "action": "changePass",
-                           "passOld": passOld,
-                           "passNew": passNew,
-                           "passNew2": passNew2
+                           "_token": '{{ csrf_token() }}',
+                           "old_password": passOld,
+                           "new_password": passNew,
+                           "confirm_new_password": passNew2
                         },
                         success: function (res) {
+                           console.log(res);
                            loading(false);
-                           alert(res[0]);
+                           alert(res.message);
+                           location.reload();
                         },
                         error: function (error) {//Lỗi xảy ra
                            loading(false);
-                           alert("Hệ thống đang bận, bạn vui lòng thử lại sau!");
+                           var mesError = jQuery.parseJSON(error.responseText).message;
+                           alert(mesError);
                         }
                      });
                }
             </script>
             <div class="right">
-               <div class="title">Quản lý tài khoản</div>
+               <div class="title">{{ trans('client.manage_acc') }}</div>
                <ul>
-                  <li class="normal"><a href="https://mizuiku-emyeunuocsach.vn/quan-ly-tai-khoan.htm" title="Thông tin tài khoản">Thông tin tài khoản</a></li>
-                  <li class="active"><a href="https://mizuiku-emyeunuocsach.vn/doi-mat-khau.htm" title="">Đổi mật khẩu</a></li>
-                  <li class="normal"><a href="https://mizuiku-emyeunuocsach.vn/quan-ly-khoa-hoc.htm" title="Khoá học của tôi">Khoá học của tôi</a></li>
-                  <li><a href="javascript:;" title="Thoát" class="logout_open">Thoát</a></li>
+                  <li class="normal"><a href="{{ route('showManageAccount') }}" title="{{ trans('client.info_acc') }}">{{ trans('client.info_acc') }}</a></li>
+                  <li class="active"><a href="{{ route('showChangePassword') }}" title="{{ trans('client.change_pass') }}">{{ trans('client.change_pass') }}</a></li>
+                  <li class="normal"><a href="{{ route('showMyCourse') }}" title="{{ trans('client.my_course') }}">{{ trans('client.my_course') }}</a></li>
+                  <li><a href="javascript:;" title="{{ trans('client.log_out') }}" class="logout_open">{{ trans('client.log_out') }}</a></li>
                </ul>
             </div>
             <div class="cb"></div>

@@ -157,7 +157,8 @@ function registerMember() {
         },
         error: function(error) { //Lỗi xảy ra
             loading(false);
-            alert("Hệ thống đang bận, bạn vui lòng thử lại sau!");
+            var mesError = jQuery.parseJSON(error.responseText).email[0];
+            alert(mesError);
         }
     });
 }
@@ -549,6 +550,7 @@ $('.uploadFile input').change(function () {
 
     reader.onloadend = function () {
        preview.src = reader.result;
+       console.log(reader)
     }
 
     if (file) {

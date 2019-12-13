@@ -19,7 +19,7 @@
                                 <li style="line-height: normal;">
                                     <span class="fOfficinaSanITCBold">{{ __('client.tel')}}:&nbsp;</span>(84 28) 3 821 9437 (ext 242)</li>
                                 <li style="line-height: normal;">
-                                <span class="fOfficinaSanITCBold">Website:&nbsp;</span>{{ config('app.url') }}</li>
+                                <span class="fOfficinaSanITCBold">Website:&nbsp;</span>{{ url('') }}</li>
                             </ul>
 
                         </div>

@@ -156,5 +156,9 @@ return [
     'ignore' => 'Ignore',
     'manage_acc' => 'Manage Account',
     'choose_link' => 'Link',
-    'update_success' => 'Update Infomation Successfully!'
+    'update_success' => 'Update Infomation Successfully!',
+    'update_pass' => 'Update Password',
+    'old_pass' => 'Old password',
+    'new_pass' => 'New password',
+    're_new_pass' => 'Re-enter new password'
 ];

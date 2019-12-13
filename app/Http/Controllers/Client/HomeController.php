@@ -14,6 +14,7 @@ use App\Http\Requests\RegisterClient;
 use App\Models\User;
 use App\Http\Requests\LoginClient;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\ChangePassword;
 
 class HomeController extends Controller
 {
@@ -206,6 +207,7 @@ class HomeController extends Controller
 
         $user->city_name = Province::where('id' , $user->city)->first()->$findColumn;
         $user->district_name = Province::where('id' , $user->district)->first()->$findColumn;
+        $user->avatar = \Storage::url($user->avatar);
 
         $city = Province::where('parent_id' , 0)->get();
         $disctrict = Province::where('parent_id' , $user->city)->get();
@@ -231,7 +233,57 @@ class HomeController extends Controller
      */
     public function updateInfo(Request $request)
     {
-        $user = auth()->user()->update($request->all());
+        $user = auth()->user();
+        $params = $request->all();
+        
+        // upload avatar
+        if($request->avatar){
+            $image = $request->file('avatar');
+            $image->move(storage_path('app/public/avatar'), $image->getClientOriginalName());
+            $params['avatar'] = 'avatar/'.$image->getClientOriginalName();
+        }
+
+        // update data user
+        $user->update($params);
+        
         return redirect()->route('showManageAccount')->with('showAlertSuccess' , true);
     }
+
+    /**
+     * Show Change Password
+     */
+    public function showChangePassword()
+    {
+        return view('client.change-pass', [
+            'user' => auth()->user(),
+        ]);
+    }
+
+    /**
+     * Update Password
+     */
+    public function updateChangePassword(ChangePassword $request)
+    {
+        $user = auth()->user();
+        if(Hash::check($request->old_password, $user->password)) {
+            if($request->new_password == $request->confirm_new_password) {
+                $user->update(['password'=> Hash::make($request->new_password)]);
+                return $this->response(200,false,true, trans('Change password successfully!'));
+            }
+            return $this->response(500,false,null, trans('New password not like re-new password!'));
+        }
+
+        return $this->response(500,false,null, trans('Old password wrong!'));
+    }
+
+    /**
+     * Show My Course
+     */
+    public function showMyCourse()
+    {
+        return view('client.my-course', [
+            'user' => auth()->user(),
+        ]);
+    }
+
 }

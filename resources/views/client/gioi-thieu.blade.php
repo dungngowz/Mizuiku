@@ -5,7 +5,7 @@
     <div id="pageroad">
         <div class="wrp">
             <ul>
-            <li><a href="{{ config('app.url') }}" title="{{ __('client.home') }}">{{ __('client.home') }}</a></li>
+            <li><a href="{{ url('') }}" title="{{ __('client.home') }}">{{ __('client.home') }}</a></li>
                 <li><a href='{{ route('introduction') }}' title='{{ __('client.introduction') }}'>{{ __('client.introduction') }}</a></li>
             </ul>
             <div class="cb"></div>

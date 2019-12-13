@@ -156,6 +156,9 @@ return [
     'ignore' => 'Bỏ qua',
     'manage_acc' => 'Quản lý tài khoản',
     'choose_link' => 'Chọn liên kết',
-    'update_success' => 'Cập nhật thông tin thành công!'
-
+    'update_success' => 'Cập nhật thông tin thành công!',
+    'update_pass' => 'Cập nhật mật khẩu',
+    'old_pass' => 'Mật khẩu cũ',
+    'new_pass' => 'Mật khẩu mới',
+    're_new_pass' => 'Nhập lại mật khẩu mới'
 ];

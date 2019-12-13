@@ -20,7 +20,7 @@
     <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
     
     <script type="text/javascript">
-		var weburl = "{{ config('app.url') }}";
+		var weburl = "{{ url('') }}";
 		// if (document.URL.indexOf("www.") > -1) window.location = document.URL.replace("www.", "");
 
 		// if (window.location.protocol === "http:" && document.URL.indexOf("localhost") < 0) {

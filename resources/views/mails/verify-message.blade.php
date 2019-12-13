@@ -7,7 +7,7 @@
 </head>
 <body>
     <p>Hi {{ $name }}</p>
-    <p>Email của bạn vừa được sử dụng đăng ký thành viên tại website {{ config('app.url') }}</p>
+    <p>Email của bạn vừa được sử dụng đăng ký thành viên tại website {{ url('') }}</p>
     {{-- <p>Thông tin tài khoản:</p>
     <ul class="mx-2">
         <li>Tài khoản: {{ $email }}</li>
