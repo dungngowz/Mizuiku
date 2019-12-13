@@ -124,6 +124,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="document">Photo Gallery</label>
+                                <a class="fancybox-preview-gallery" data-fancybox="gallery" href=""></a>
                                 <form action="{{ route('admin.library.storeFileUpload') }}" name="upload-file" enctype="multipart/form-data" class="dropzone" id="dropzone" method="post">
                                     @csrf   
                                 </form>
@@ -264,5 +265,9 @@
                return false;
             }
         };
+
+        $(document).on("click", ".dz-image-preview", function(){
+            $('.fancybox-preview-gallery').attr('href', $(this).find('img').attr('src')).trigger('click');
+        });
     </script>
 @endpush

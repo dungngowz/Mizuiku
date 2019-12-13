@@ -117,7 +117,7 @@ class LibraryController extends Controller
                 foreach ($files as $item) {
                     $element = json_decode($item);
                     $gallery = Gallery::create([
-                        'file_path' => 'library/'. $element->file_path,
+                        'file_path' => $element->file_path,
                         'file_name' => $element->file_name,
                         'post_id' => $record->id
                     ]);
@@ -222,7 +222,7 @@ class LibraryController extends Controller
                 foreach ($filesUploads as $item) {
                     $element = json_decode($item);
                     $gallery = Gallery::create([
-                        'file_path' => 'library/'. $element->file_path,
+                        'file_path' => $element->file_path,
                         'file_name' => $element->file_name,
                         'post_id' => $record->id
                     ]);
@@ -230,20 +230,22 @@ class LibraryController extends Controller
             }
             // remove
             $filesRemoves = $request->fileRemove;
+
             if($filesRemoves) {
                 foreach ($filesRemoves as $item) {
                     $element = json_decode($item);
+                    
                     // from storage
                     if(!empty($element->path)) {
-                        $path = str_replace(url('storage/library').'/', '', $element->path);
-                        // dd($path);
-                        if( Storage::disk('local')->exists('/public/library/'.$path)) {
-                            unlink(storage_path('app/public/library/'.$path));
+                        $path = str_replace('/storage/', '', $element->path);
+                        
+                        if( Storage::exists($path)) {
+                            Storage::delete($path);
                         }
 
                         // from DB
                         if(!empty($element->name)) {
-                            $remove = Gallery::where('file_path', 'library/'.$path)->delete();
+                            $remove = Gallery::where('file_path', $path)->delete();
                         }
                     }
 
@@ -257,13 +259,10 @@ class LibraryController extends Controller
 
     public function storeFileUpload(Request $request)
     {
-        $image = $request->file('file');
-        $imageName = $image->getClientOriginalName();
-
-        // store image to storage
-        $image->move(storage_path('app/public/library'), $imageName);
-
-        return response()->json(['file_path'=>$imageName]);
+        $file = $request->file;
+        $filePath = 'library/' . date("Y") . '/' . date("m") . '/' . uniqid() . '.' . $file->getClientOriginalExtension();
+        Storage::put($filePath, $file->get());
+        return response()->json(['file_path'=>$filePath]);
     }
 
     /**
