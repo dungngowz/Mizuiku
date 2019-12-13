@@ -25,6 +25,9 @@
                             <table id="datatable" class="table table-striped table-no-bordered table-hover" cellspacing="0">
                                 <thead>
                                     <tr>
+                                        <th>
+                                            <input type="checkbox" id="all-banner" name="all-banner">
+                                        </th>
                                         <th>ID</th>
                                         <th>{{trans('admin.title')}}</th>
                                         <th>Banner</th>
@@ -55,6 +58,13 @@
                 ...optionDataTable,
                 ajax: '/admin/banners/data',
                 columns: [{
+                        data: 'id',
+                        orderable: false,
+                        className: 'text-center',
+                        render: function(data, type, row, meta){
+                            return '<input type="checkbox" name="" id="'+ row.id +'">';
+                        } 
+                    },{
                         data: 'id',
                         name: 'id'
                     },{
