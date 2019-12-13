@@ -234,6 +234,9 @@
                     thisDropzone.options.addedfile.call(thisDropzone, mockFile);
                     thisDropzone.options.thumbnail.call(thisDropzone, mockFile, mockFile.path);
                 }
+                thisDropzone.on("removedfile", function (file) {
+                    $("#form-library").append("<input type='hidden' name='fileRemove[]' value='"+JSON.stringify(file)+"'>");
+                });
             },
             maxFilesize: 16,
             dictFileTooBig: 'Image is larger than 16MB',

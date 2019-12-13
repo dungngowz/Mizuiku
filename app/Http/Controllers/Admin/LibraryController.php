@@ -175,7 +175,7 @@ class LibraryController extends Controller
             if($recordsGallery){
                 foreach($recordsGallery as $item){
                     $gallery[] = (object)[
-                        'name' => '',
+                        'name' => $item->file_name,
                         'path' => Storage::url($item->file_path),
                         'size' => 1000
                     ];
@@ -214,11 +214,12 @@ class LibraryController extends Controller
 
         $record->save();
 
-        // store data to table gallery
+        // store and remove data to table gallery
         if($request->keyword == 'photo'){
-            $files = $request->fileUpload;
-            if($files) {
-                foreach ($files as $item) {
+            // store
+            $filesUploads = $request->fileUpload;
+            if($filesUploads) {
+                foreach ($filesUploads as $item) {
                     $element = json_decode($item);
                     $gallery = Gallery::create([
                         'file_path' => 'library/'. $element->file_path,
@@ -227,6 +228,28 @@ class LibraryController extends Controller
                     ]);
                 }
             }
+            // remove
+            $filesRemoves = $request->fileRemove;
+            if($filesRemoves) {
+                foreach ($filesRemoves as $item) {
+                    $element = json_decode($item);
+                    // from storage
+                    if(!empty($element->path)) {
+                        $path = str_replace(url('storage/library').'/', '', $element->path);
+                        // dd($path);
+                        if( Storage::disk('local')->exists('/public/library/'.$path)) {
+                            unlink(storage_path('app/public/library/'.$path));
+                        }
+
+                        // from DB
+                        if(!empty($element->name)) {
+                            $remove = Gallery::where('file_path', 'library/'.$path)->delete();
+                        }
+                    }
+
+                }
+            }
+
         }
 
         return redirect('admin/library?keyword=' . $record->keyword);
@@ -235,7 +258,7 @@ class LibraryController extends Controller
     public function storeFileUpload(Request $request)
     {
         $image = $request->file('file');
-        $imageName = time().'.'.$image->extension();
+        $imageName = $image->getClientOriginalName();
 
         // store image to storage
         $image->move(storage_path('app/public/library'), $imageName);
