@@ -26,7 +26,8 @@ class SideBar extends AbstractWidget
 
         return view('widgets.admin.side_bar', [
             'config' => $this->config,
-            'cats'   => $cats
+            'cats'   => $cats,
+            'segments' => request()->segments()
         ]);
     }
 }
