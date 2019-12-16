@@ -53,5 +53,6 @@ return [
     'tearm_of_use'=> 'Team Of Use',
     'private_policy' => 'Private Policy',
     'co_organizingboard' => 'Co-organizing Board',
-    'e_learning' => 'E-Learning'
+    'e_learning' => 'E-Learning',
+    'delete_selected_item' => 'Delete selected items'
 ];

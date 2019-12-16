@@ -51,5 +51,7 @@ return [
     'tearm_of_use'=> 'Điều khoản sử dụng',
     'private_policy' => 'Chính sách bảo mật',
     'co_organizingboard' => 'Giới thiệu đối tác',
-    'e_learning' => 'E-Learning'
+    'e_learning' => 'E-Learning',
+    'delete_selected_item' => 'Xóa banner đã chọn'
+
 ];

@@ -192,4 +192,24 @@ class BannerController extends Controller
         }
         return $this->response(500);
     }
+
+    /**
+     * Remove banner multiple
+     *
+     * @param  array  $arraySelected
+     */
+    public function deleteMultiple(Request $request)
+    {
+        // dd($request->arraySelected);
+        $params = array_map('intval', explode(',', $request->arraySelected));
+        foreach ($params as $item) {
+            $banner = Banner::where('id', $item)->first();
+            if(!$banner) {
+                return $this->response(500,false,true, trans('Banner Not Found!'));
+            }
+            $banner->delete();
+        }
+        return $this->response(200,true,true, trans('Delete Successfully!'));
+
+    }
 }

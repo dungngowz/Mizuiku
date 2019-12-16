@@ -268,7 +268,7 @@ class HomeController extends Controller
         if(Hash::check($request->old_password, $user->password)) {
             if($request->new_password == $request->confirm_new_password) {
                 $user->update(['password'=> Hash::make($request->new_password)]);
-                return $this->response(200,false,true, trans('Change password successfully!'));
+                return $this->response(200,true,true, trans('Change password successfully!'));
             }
             return $this->response(500,false,null, trans('New password not like re-new password!'));
         }

@@ -7,6 +7,7 @@
             <div class="col-12 d-flex no-block align-items-center">
                 <h4 class="page-title">@yield('title')</h4>
                 <div class="ml-auto text-right">
+                    <button type="button" id="btn-remove-all" data-url="{{url('admin/banners/delete-multiple')}}" class="btn btn-danger">{{trans('admin.delete_selected_item')}}</button>
                     <a href="{{url('admin/banners/create?type=home')}}">
                         <button type="button" class="btn btn-success">{{trans('admin.add_new')}}</button>
                     </a>
@@ -53,8 +54,8 @@
 
 @push('scripts')
     <script>
-        $(function() {
-            $('#datatable').DataTable({
+        // $(function() {
+            var table = $('#datatable').DataTable({
                 ...optionDataTable,
                 ajax: '/admin/banners/data',
                 columns: [{
@@ -62,7 +63,7 @@
                         orderable: false,
                         className: 'text-center',
                         render: function(data, type, row, meta){
-                            return '<input type="checkbox" name="" id="'+ row.id +'">';
+                            return '<input type="checkbox" name="remove[]" id="'+ row.id +'">';
                         } 
                     },{
                         data: 'id',
@@ -92,8 +93,48 @@
                         orderable: false
                     }
                 ],
+                success: function(res){
+                    $(".preloader").fadeOut();
+                }
             });
-            $(".preloader").fadeOut();
+        // });
+
+        // action check all
+        $('#all-banner').on('change', function(){
+            $(this).is(':checked') ? checked=true : checked=false ;
+            $('tr td input:checkbox').prop('checked', checked);
+        }).trigger('change');
+
+        // change checked button all-banner when change any checkbox in datatable
+        $('#datatable').on('change',"tr td input:checkbox", function(){
+            var countSelect = 0;
+            table.rows().every(function () {
+                var data = this.node();
+                if($(data).find('input').prop('checked') == false)
+                {
+                    countSelect++;
+                }
+                // console.log($(data).find('input').prop('checked'));
+            });
+            var check = countSelect != 0 ? false : true ;
+            $('#all-banner').prop('checked', check);
         });
+
+        $('#btn-remove-all').on('click', function(){
+            var arraySelected = $("#datatable input:checkbox:checked").map(function(){
+                return $(this).attr('id');
+            }).get();
+            var allBanner = arraySelected.indexOf('all-banner');
+            if(allBanner >= 0) {
+                arraySelected.splice(allBanner, 1);
+            }
+            let url = $(this).attr('data-url');
+
+            // $('#modal-delete .btn-submit-delete').attr('data-ids', arraySelected);
+            $('#modal-delete .btn-submit-delete').attr('data-array-selected', arraySelected);
+            $('#modal-delete .btn-submit-delete').attr('data-url', url);
+            $('#modal-delete').modal('show');
+        });
+
     </script>
 @endpush

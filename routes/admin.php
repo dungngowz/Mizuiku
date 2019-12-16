@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth'], function(){
     // Banners
     Route::get('/banners/data', 'BannerController@data');
     Route::resource('/banners', 'BannerController');
+    Route::post('/banners/delete-multiple', 'BannerController@deleteMultiple');
 
     // About Us
     Route::get('/post/data', 'PostController@data');

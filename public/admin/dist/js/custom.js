@@ -127,22 +127,24 @@ $(function() {
     $( document ).on( "click", ".btn-delete", function() {
         let id = parseInt($(this).attr('data-id'));
         let url = $(this).attr('data-url');
-        alert(url);
+        // alert(url);
         $('#modal-delete .btn-submit-delete').attr('data-id', id);
         $('#modal-delete .btn-submit-delete').attr('data-url', url);
         $('#modal-delete').modal('show');
     });
 
     $( document ).on( "click", ".btn-submit-delete", function() {
-        let id = parseInt($(this).attr('data-id'));
+        let id = parseInt($(this).attr('data-id')) ? parseInt($(this).attr('data-id')) : '';
         let url = $(this).attr('data-url');
+        let arraySelected = $(this).attr('data-array-selected');
 
         $.ajax({
             type: "POST",
             url: url + '/' + id,
             data: { 
                 _token: _token,
-                _method: 'DELETE'
+                _method: id ? 'DELETE' : null,
+                arraySelected: arraySelected
             },  
             complete:function(data){
                 $('#modal-delete').modal('hide');
