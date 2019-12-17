@@ -32,7 +32,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <div class="form-group m-t-20">
                                         <label>{{trans('admin.title')}}</label>
                                         <input type="text" name="title" class="form-control"value="{{old('title', $record->title)}}" placeholder="{{trans('admin.enter_title')}}">
@@ -94,6 +94,21 @@
                                         @endif
                                     </div>
                                 </div>
+
+                                <div class="col-md-1"></div>
+
+                                @if ($record->url)
+                                    <div class="col-md-6">
+                                        <div class="form-group m-t-20 wrap-thumbnail">
+                                            <label>Video Preview</label>
+                                            <div>
+                                                @php
+                                                    echo preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","<iframe width='100%' height='450px' src=\"//www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>",$record->url);
+                                                @endphp
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
 
                             <div class="border-top">
