@@ -24,7 +24,7 @@
                         <input type="hidden" name="id" value="{{$record->id}}">
                         {{ method_field('PUT') }}
                     @else
-                        <input type="hidden" name="type" value="{{request()->type}}">
+                        <input type="hidden" name="keyword" value="{{request()->keyword}}">
                         <input type="hidden" name="language" value="{{request()->language ? request()->language : 'vi'}}">
                         <input type="hidden" name="ref_id" value="{{request()->ref_id}}">    
                     @endif

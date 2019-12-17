@@ -65,13 +65,20 @@ class CourseVideoController extends Controller
         $record = new Article;
 
         $urlTrans = url('/admin/course-video/create?keyword='. $request->keyword . '&language=');
-        $urlTrans .= (empty($request->language) || $request->language == 'vi') ? 'en' : 'vi';
+        $currentLang = empty($request->language) ? 'vi' : $request->language;
+        $urlTrans .= ($currentLang == 'vi') ? 'en' : 'vi';
+
+        $courseCategories = Category::withoutGlobalScope(LanguageScope::class)
+            ->where('language', $currentLang)
+            ->orderBy('id', 'desc')
+            ->where('type', 'course')
+            ->get();
         
         return view('admin.course-video.edit', [
             'title' => $title,
             'record' => $record,
             'urlTrans' => $urlTrans,
-            'gallery' => []
+            'courseCategories' => $courseCategories
         ]);
     }
 
@@ -95,7 +102,7 @@ class CourseVideoController extends Controller
             $record->save();
         }
         
-        return redirect('admin/library?keyword=' . $request->keyword);
+        return redirect('admin/course-video?keyword=' . $request->keyword);
     }
 
     /**
@@ -126,22 +133,26 @@ class CourseVideoController extends Controller
         }
 
         //Get url translate category
+        $currentLang = empty($request->language) ? 'vi' : $request->language;
         $langNeedTrans = ($record->language == 'vi') ? 'en' : 'vi';
-        $chkRecord = Article::withoutGlobalScope(LanguageScope::class)
-            ->where('ref_id', $record->ref_id)
-            ->where('language', $langNeedTrans)
-            ->first();
-
+        $chkRecord = Article::where('ref_id', $record->ref_id)->where('language', $langNeedTrans)->first();
         if($chkRecord){
             $urlTrans = url('/admin/course-video/'.$chkRecord->id.'/edit');
         }else{
             $urlTrans = url('/admin/course-video/create?keyword='. $record->keyword . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
         }
 
-        return view('admin.library.edit', [
+        $courseCategories = Category::withoutGlobalScope(LanguageScope::class)
+            ->where('language', $currentLang)
+            ->where('type', 'course')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('admin.course-video.edit', [
             'title' => $title,
             'record' => $record,
-            'urlTrans' => $urlTrans
+            'urlTrans' => $urlTrans,
+            'courseCategories' => $courseCategories
         ]);
     }
 

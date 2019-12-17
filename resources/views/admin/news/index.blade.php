@@ -7,7 +7,7 @@
             <div class="col-12 d-flex no-block align-items-center">
                 <h4 class="page-title">@yield('title')</h4>
                 <div class="ml-auto text-right">
-                    <a href="{{url('admin/news/create?type=news')}}">
+                    <a href="{{url('admin/news/create?keyword=news')}}">
                         <button type="button" class="btn btn-success">{{trans('admin.add_new')}}</button>
                     </a>
                 </div>

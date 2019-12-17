@@ -69,7 +69,7 @@ class NewsController extends Controller
         $title = trans('admin.news') . ' - ' . trans('admin.create');
         $record = new Article;
 
-        $urlTrans = url('/admin/news/create?type='. $request->type . '&language=');
+        $urlTrans = url('/admin/news/create?keyword='. $request->keyword . '&language=');
         $currentLang = empty($request->language) ? 'vi' : $request->language;
         $urlTrans .= ($currentLang == 'vi') ? 'en' : 'vi';
 
@@ -112,7 +112,7 @@ class NewsController extends Controller
             $record->save();
         }
         
-        return redirect('admin/news?type=' . $request->type);
+        return redirect('admin/news?keyword=' . $request->keyword);
     }
 
     /**
@@ -147,7 +147,7 @@ class NewsController extends Controller
         if($chkRecord){
             $urlTrans = url('/admin/news/'.$chkRecord->id.'/edit');
         }else{
-            $urlTrans = url('/admin/news/create?type='. $record->type . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
+            $urlTrans = url('/admin/news/create?keyword='. $record->keyword . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
         }
 
         $articleCategories = Category::withoutGlobalScope(LanguageScope::class)
@@ -185,7 +185,7 @@ class NewsController extends Controller
 
         $record->fill($params);
         $record->save();
-        return redirect('admin/news?type=' . $record->type);
+        return redirect('admin/news?keyword=' . $record->keyword);
     }
 
     /**

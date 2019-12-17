@@ -17,9 +17,9 @@
         {{-- Form Edit --}}
         <div class="row">
             <div class="col-12">
-                <form action="{{url('admin/library/' . $record->id)}}" id="form-library" method="post">
+                <form action="{{url('admin/course-video/' . $record->id)}}" method="post">
                     {{ csrf_field() }}
-                    <input type="hidden" name="keyword" value="{{request()->keyword}}">
+                    <input type="hidden" name="keyword" value="course">
                     @if ($record->id)
                         <input type="hidden" name="id" value="{{$record->id}}">
                         {{ method_field('PUT') }}
@@ -38,6 +38,21 @@
                                         <input type="text" name="title" class="form-control"value="{{old('title', $record->title)}}" placeholder="{{trans('admin.enter_title')}}">
                                         @if($errors->has('title'))
                                             <span class="error-msg">{{$errors->first('title')}}</span>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group m-t-20">
+                                        <label>{{trans('admin.category')}}</label>
+                                        <select name="category_id" class="select2 form-control custom-select">
+                                            @php
+                                                $category_id = old('category_id', $record->category_id);
+                                            @endphp
+                                            @foreach ($courseCategories as $item)
+                                                <option value="{{$item->id}}" {{ ($item->id == $category_id) ? 'selected' : '' }}>{{$item->title}}</option>    
+                                            @endforeach
+                                        </select>
+                                        @if($errors->has('category_id'))
+                                            <span class="error-msg">{{$errors->first('category_id')}}</span>
                                         @endif
                                     </div>
 
@@ -83,10 +98,10 @@
 
                             <div class="border-top">
                                 <div class="card-body text-right">
-                                    <a href="{{url('admin/library/?keyword=' . request()->keyword)}}">
+                                    <a href="{{url('admin/course-video/?keyword=' . request()->keyword)}}">
                                         <button type="button" class="btn">{{trans('admin.cancel')}}</button>
                                     </a>
-                                    <button type="button" class="btn btn-submit-gallery btn-success">{{trans('admin.submit')}}</button>
+                                    <button type="submit" class="btn btn-success">{{trans('admin.submit')}}</button>
                                 </div>
                             </div>
                         </div>
