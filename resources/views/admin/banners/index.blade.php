@@ -54,50 +54,48 @@
 
 @push('scripts')
     <script>
-        // $(function() {
-            var table = $('#datatable').DataTable({
-                ...optionDataTable,
-                ajax: '/admin/banners/data',
-                columns: [{
-                        data: 'id',
-                        orderable: false,
-                        className: 'text-center',
-                        render: function(data, type, row, meta){
-                            return '<input type="checkbox" name="remove[]" id="'+ row.id +'">';
-                        } 
-                    },{
-                        data: 'id',
-                        name: 'id'
-                    },{
-                        data: 'title',
-                        name: 'title'
-                    },{
-                        data: 'thumbnail',
-                        name: 'thumbnail',
-                        className: 'text-center'
-                    },{
-                        data: 'priority',
-                        name: 'priority',
-                        className: 'text-center'
-                    },{
-                        data: 'language',
-                        name: 'language',
-                        className: 'text-center'
-                    },{
-                        data: 'created_at',
-                        name: 'created_at'
-                    },{
-                        data: 'actions',
-                        name: 'actions',
-                        className: 'text-right',
-                        orderable: false
-                    }
-                ],
-                success: function(res){
-                    $(".preloader").fadeOut();
+        var table = $('#datatable').DataTable({
+            ...optionDataTable,
+            ajax: '/admin/banners/data',
+            columns: [{
+                    data: 'id',
+                    orderable: false,
+                    className: 'text-center',
+                    render: function(data, type, row, meta){
+                        return '<input type="checkbox" name="remove[]" id="'+ row.id +'">';
+                    } 
+                },{
+                    data: 'id',
+                    name: 'id'
+                },{
+                    data: 'title',
+                    name: 'title'
+                },{
+                    data: 'thumbnail',
+                    name: 'thumbnail',
+                    className: 'text-center'
+                },{
+                    data: 'priority',
+                    name: 'priority',
+                    className: 'text-center'
+                },{
+                    data: 'language',
+                    name: 'language',
+                    className: 'text-center'
+                },{
+                    data: 'created_at',
+                    name: 'created_at'
+                },{
+                    data: 'actions',
+                    name: 'actions',
+                    className: 'text-right',
+                    orderable: false
                 }
-            });
-        // });
+            ],
+            success: function(res){
+                $(".preloader").fadeOut();
+            }
+        });
 
         // action check all
         $('#all-banner').on('change', function(){
@@ -124,6 +122,10 @@
             var arraySelected = $("#datatable input:checkbox:checked").map(function(){
                 return $(this).attr('id');
             }).get();
+            if(arraySelected.length <= 0) {
+                alert("{{ trans('admin.pls-choose-item') }}");
+                return;
+            }
             var allBanner = arraySelected.indexOf('all-banner');
             if(allBanner >= 0) {
                 arraySelected.splice(allBanner, 1);

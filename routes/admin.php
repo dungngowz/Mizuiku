@@ -33,18 +33,22 @@ Route::group(['middleware' => 'auth'], function(){
     // Categories
     Route::get('/categories/data', 'CategoryController@data');
     Route::resource('/categories', 'CategoryController');
+    Route::post('/categories/delete-multiple', 'CategoryController@deleteMultiple');
 
     // News
     Route::get('/news/data', 'NewsController@data');
     Route::resource('/news', 'NewsController');
+    Route::post('/news/delete-multiple', 'NewsController@deleteMultiple');
 
     // Video Library
     Route::get('/library/data', 'LibraryController@data');
     Route::resource('/library', 'LibraryController');
+    Route::post('/library/delete-multiple', 'LibraryController@deleteMultiple');
 
     // Video Course
     Route::get('/course-video/data', 'CourseVideoController@data');
     Route::resource('/course-video', 'CourseVideoController');
+    Route::post('/course-video/delete-multiple', 'CourseVideoController@deleteMultiple');
 
     // Programs-timeline
     Route::get('/program-timeline/data', 'ProgramTimelineController@data');

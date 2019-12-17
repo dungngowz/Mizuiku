@@ -55,7 +55,8 @@ return [
     'private_policy' => 'Chính sách bảo mật',
     'co_organizingboard' => 'Giới thiệu đối tác',
     'e_learning' => 'E-Learning',
-    'delete_selected_item' => 'Xóa banner đã chọn',
+    'delete_selected_item' => 'Xóa dòng đã chọn',
     'video_duration' => 'Thời lượng Video',
-    'enter_video_duration' => 'Nhập thời lượng Video'
+    'enter_video_duration' => 'Nhập thời lượng Video',
+    'pls-choose-item' => 'Xin hãy chọn dòng muốn xóa'
 ];

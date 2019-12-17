@@ -194,13 +194,13 @@ class BannerController extends Controller
     }
 
     /**
-     * Remove banner multiple
+     * Remove multiple
      *
      * @param  array  $arraySelected
+     * @return \Illuminate\Http\Response
      */
     public function deleteMultiple(Request $request)
     {
-        // dd($request->arraySelected);
         $params = array_map('intval', explode(',', $request->arraySelected));
         foreach ($params as $item) {
             $banner = Banner::where('id', $item)->first();
@@ -210,6 +210,5 @@ class BannerController extends Controller
             $banner->delete();
         }
         return $this->response(200,true,true, trans('Delete Successfully!'));
-
     }
 }
