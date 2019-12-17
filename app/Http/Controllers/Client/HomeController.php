@@ -205,8 +205,11 @@ class HomeController extends Controller
         $locale = $_COOKIE[config('const.key_locale_client')] ?? 'vi';
         $findColumn = 'name_' . $locale;
 
-        $user->city_name = Province::where('id' , $user->city)->first()->$findColumn;
-        $user->district_name = Province::where('id' , $user->district)->first()->$findColumn;
+        $cityName = Province::where('id' , $user->city)->first();
+        $user->city_name = $cityName ? $cityName->$findColumn : null;
+
+        $disctrictName = Province::where('id' , $user->district)->first();
+        $user->district_name = $disctrictName ? $disctrictName->$findColumn : null;
         $user->avatar = \Storage::url($user->avatar);
 
         $city = Province::where('parent_id' , 0)->get();
@@ -281,8 +284,11 @@ class HomeController extends Controller
      */
     public function showMyCourse()
     {
+        $user = auth()->user();
+        $course = $user->with(['articles'])->first();
+        // dd($course);
         return view('client.my-course', [
-            'user' => auth()->user(),
+            'user' => $user,
         ]);
     }
 

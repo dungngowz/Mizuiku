@@ -87,6 +87,14 @@ class Article extends SoftModelBase
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User', 'learning_outcomes', 'user_id', 'video_id');
+    }
+
+    /**
      * Return the custom thumbnail
      *
      * @return string

@@ -1,3 +1,6 @@
+@php
+    $courseListHeader = \App\Models\Category::where('type', 'course')->orderBy('id', 'desc')->get();
+@endphp
 <div id="headerTop">
     <div class="wrp">
         <a class='slogan dnmobile' title='' href='/'><img alt="" src="{{ asset('client/pic/banner/mizuiku_n_636687337648333192.png') }}" /></a>
@@ -41,10 +44,13 @@
 <div id="header">
     <div class="wrp">
         <div class="buton">
-            <div class='hocngay'><a href='https://mizuiku-emyeunuocsach.vn/e-learning.htm' class='btnhocngay' title='>{{ __('client.learn-now') }}'>{{ __('client.learn-now') }}</a>
+            <div class='hocngay'><a href='' class='btnhocngay' title='>{{ __('client.learn-now') }}'>{{ __('client.learn-now') }}</a>
                 <ul class='subloginx sublogin2'>
-                    <li><a href='https://mizuiku-emyeunuocsach.vn/e-learning.htm' title={{ __('client.e-learning') }}'>{{ __('client.e-learning') }}</a></li>
-                    <li><a href='/thong-ke.htm' title='{{ __('client.statistical') }}'>{{ __('client.statistical') }}</a></li>
+                    @foreach ($courseListHeader as $item)
+                        <li><a href='{{ url("course/$item->slug") }}' title='{{ $item->title }}'>{{ $item->title }}</a></li>
+                    @endforeach
+                    
+                    <li><a href='/thong-ke' title='{{ __('client.statistical') }}'>{{ __('client.statistical') }}</a></li>
                 </ul>
             </div>
             <div class="regis">

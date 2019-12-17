@@ -53,7 +53,12 @@ Route::group(['namespace' => 'Client'], function(){
         Route::put('/update-info', 'HomeController@updateInfo')->name('updateInfo');
         Route::post('/change-password', 'HomeController@updateChangePassword')->name('updateChangePassword');
 
+        // course
+        // Route::get('/course/{keyword}', 'HomeController@showTermOrPolicy')->name('showPolicy');
+
     });
+
+
 });
 
 Auth::routes(['verify' => true]);
