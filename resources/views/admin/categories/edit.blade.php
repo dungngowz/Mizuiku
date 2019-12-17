@@ -16,7 +16,7 @@
 
         {{-- Form Edit --}}
         <div class="row">
-            <div class="col-6">
+            <div class="col-12">
                 <form action="{{url('admin/categories/' . $record->id)}}" method="post">
                     {{ csrf_field() }}
 
@@ -46,6 +46,16 @@
                                     <span class="error-msg">{{$errors->first('priority')}}</span>
                                 @endif
                             </div>
+
+                            @if ($record->type == 'course' || request()->type == 'course')
+                                <div class="form-group m-t-20">
+                                    <label>{{trans('admin.content')}}</label>
+                                    <textarea rows="15" name="content" class="form-control editor">{!! $record->content !!}</textarea>
+                                    @if($errors->has('content'))
+                                        <span class="error-msg">{{$errors->first('content')}}</span>
+                                    @endif
+                                </div>
+                            @endif
                         </div>
                         <div class="border-top">
                             <div class="card-body text-right">
@@ -61,3 +71,7 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    @include('admin.components.editor-config')
+@endpush

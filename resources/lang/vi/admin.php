@@ -3,7 +3,10 @@ return [
     'dashboard' => 'Trang Chủ',
     'news_management' => 'Quản lý tin tức',
     'list_of_news' => 'Danh sách tin tức',
-    'news_categories' => 'Thể loại tin tức',
+    'news_categories' => 'Danh mục tin tức',
+    'courses_management' => 'Quản lý khoá học',
+    'course_categories' => 'Chủ đề khoá học',
+    'course_video' => 'Video khoá học',
     'title' => 'Tiêu đề',
     'language' => 'Ngôn ngữ',
     'created_at' => 'Ngày tạo',
@@ -52,6 +55,7 @@ return [
     'private_policy' => 'Chính sách bảo mật',
     'co_organizingboard' => 'Giới thiệu đối tác',
     'e_learning' => 'E-Learning',
-    'delete_selected_item' => 'Xóa banner đã chọn'
-
+    'delete_selected_item' => 'Xóa banner đã chọn',
+    'video_duration' => 'Thời lượng Video',
+    'enter_video_duration' => 'Nhập thời lượng Video'
 ];

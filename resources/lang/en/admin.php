@@ -4,6 +4,9 @@ return [
     'news_management' => 'News management',
     'list_of_news' => 'List of news',
     'news_categories' => 'News categories',
+    'courses_management' => 'Courses management',
+    'course_categories' => 'Course categories',
+    'course_video' => 'Course videos',
     'title' => 'Title',
     'language' => 'Language',
     'created_at' => 'Created At',
@@ -54,5 +57,7 @@ return [
     'private_policy' => 'Private Policy',
     'co_organizingboard' => 'Co-organizing Board',
     'e_learning' => 'E-Learning',
-    'delete_selected_item' => 'Delete selected items'
+    'delete_selected_item' => 'Delete selected items',
+    'video_duration' => 'Video Duration',
+    'enter_video_duration' => 'Enter Video Duration'
 ];

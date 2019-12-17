@@ -1,8 +1,3 @@
-@php
-    // $seg2 = Request::segment(2);
-    // $seg3 = Request::segment(3);
-@endphp
-
 <aside class="left-sidebar" data-sidebarbg="skin5">
     <!-- Sidebar scroll-->
     <div class="scroll-sidebar">
@@ -15,6 +10,37 @@
                         <i class="mdi mdi-view-dashboard"></i>
                         <span class="hide-menu">{{trans('admin.dashboard')}}</span>
                     </a>
+                </li>
+
+                {{-- Course --}}
+                @php
+                    $activeTreeCourse = false;
+                    if($segments[1] == 'course-video'){
+                        $activeTreeCourse = true;
+                    }else if($segments[1] == 'categories'){
+                        $activeTreeCourse = (request()->type == 'course' || request()->keyword == 'course');
+                    }
+                @endphp
+                <li class="sidebar-item {{$activeTreeCourse ? 'selected' : ''}}"> 
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-receipt"></i>
+                        <span class="hide-menu">{{trans('admin.courses_management')}}</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level {{$activeTreeCourse ? 'in' : ''}}">
+                        <li class="sidebar-item {{$segments[1] == 'course-video' ? 'active' : ''}}">
+                            <a href="{{ url('admin/course-video') }}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu">{{trans('admin.course_video')}}</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item {{($segments[1] == 'categories' && request()->type == 'course') ? 'active' : ''}}">
+                            <a href="{{ url('admin/categories?type=course') }}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu">{{trans('admin.course_categories')}}</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 {{-- Banners --}}
@@ -48,12 +74,20 @@
                 </li>
 
                 {{-- News --}}
-                <li class="sidebar-item {{in_array($segments[1], ['news', 'categories']) ? 'selected' : ''}}"> 
+                @php
+                    $activeTreeNews = false;
+                    if($segments[1] == 'news'){
+                        $activeTreeNews = true;
+                    }else if($segments[1] == 'categories'){
+                        $activeTreeNews = (request()->type == 'news' || request()->keyword == 'news');
+                    }
+                @endphp
+                <li class="sidebar-item {{$activeTreeNews ? 'selected' : ''}}"> 
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="mdi mdi-receipt"></i>
                         <span class="hide-menu">{{trans('admin.news_management')}}</span>
                     </a>
-                    <ul aria-expanded="false" class="collapse first-level {{in_array($segments[1], ['news', 'categories']) ? 'in' : ''}}">
+                    <ul aria-expanded="false" class="collapse first-level {{$activeTreeNews ? 'in' : ''}}">
                         <li class="sidebar-item {{$segments[1] == 'news' ? 'active' : ''}}">
                             <a href="{{ url('admin/news/?keyword=news') }}" class="sidebar-link">
                                 <i class="mdi mdi-note-outline"></i>
@@ -61,7 +95,7 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item {{$segments[1] == 'categories' ? 'active' : ''}}">
+                        <li class="sidebar-item {{($segments[1] == 'categories' && request()->type == 'news') ? 'active' : ''}}">
                             <a href="{{ url('admin/categories?type=news') }}" class="sidebar-link">
                                 <i class="mdi mdi-note-outline"></i>
                                 <span class="hide-menu">{{trans('admin.news_categories')}}</span>

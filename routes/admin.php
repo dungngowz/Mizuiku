@@ -42,6 +42,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/library/data', 'LibraryController@data');
     Route::resource('/library', 'LibraryController');
 
+    // Video Course
+    Route::get('/course-video/data', 'CourseVideoController@data');
+    Route::resource('/course-video', 'CourseVideoController');
+
     // Programs-timeline
     Route::get('/program-timeline/data', 'ProgramTimelineController@data');
     Route::resource('/program-timeline', 'ProgramTimelineController');

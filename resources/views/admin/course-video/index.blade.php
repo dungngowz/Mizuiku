@@ -7,7 +7,7 @@
             <div class="col-12 d-flex no-block align-items-center">
                 <h4 class="page-title">@yield('title')</h4>
                 <div class="ml-auto text-right">
-                    <a href="{{url('admin/categories/create?type=' . request()->type)}}">
+                    <a href="{{url('admin/course-video/create')}}">
                         <button type="button" class="btn btn-success">{{trans('admin.add_new')}}</button>
                     </a>
                 </div>
@@ -53,7 +53,7 @@
             $('#datatable').DataTable({
                 ...optionDataTable,
                 ajax: {
-                    url: '/admin/categories/data',
+                    url: '/admin/course-video/data',
                     data : JSON.parse('<?php echo json_encode(request()->all()) ?>')
                 },
                 columns: [{

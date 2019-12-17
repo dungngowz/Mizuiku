@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App\Models\Article;
 use App\Models\Category;
-use App\Http\Requests\StoreCategory;
+use App\Http\Requests\StoreCourseVideo;
 use App\Scopes\LanguageScope;
+use App\Helpers\CommonHelper;
+use Illuminate\Support\Facades\Storage;
 
-class CategoryController extends Controller
+class CourseVideoController extends Controller
 {
     public function __construct()
     {
@@ -23,10 +26,8 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $title = ($request->type == 'news') ? trans('admin.news_categories') : trans('admin.course_categories');
-
-        return view('admin.categories.index', [
-            'title' => $title
+        return view('admin.course-video.index', [
+            'title' => trans('admin.course_video')
         ]);
     }
 
@@ -36,7 +37,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(Request $request) {
-        $records = Category::where('type', $request->type)->get();
+        $records = Article::where('keyword', 'course')->get();
 
         return DataTables::of($records)
             ->RawColumns(['actions'])
@@ -46,7 +47,7 @@ class CategoryController extends Controller
                 ]);
             })
             ->addColumn('actions', function($item) {
-                return view('admin.categories.cols-actions', [
+                return view('admin.course-video.cols-actions', [
                     'item' => $item
                 ]);
             })
@@ -60,17 +61,17 @@ class CategoryController extends Controller
      */
     public function create(Request $request)
     {
-        $title = ($request->type == 'news') ? trans('admin.news_categories') : trans('admin.course_categories');
-        $title = $title . ' - ' . trans('admin.create');
-        $record = new Category;
+        $title = trans('admin.course_video') . ' - ' . trans('admin.create');
+        $record = new Article;
 
-        $urlTrans = url('/admin/categories/create?type='. $request->type . '&language=');
+        $urlTrans = url('/admin/course-video/create?keyword='. $request->keyword . '&language=');
         $urlTrans .= (empty($request->language) || $request->language == 'vi') ? 'en' : 'vi';
-
-        return view('admin.categories.edit', [
+        
+        return view('admin.course-video.edit', [
             'title' => $title,
             'record' => $record,
-            'urlTrans' => $urlTrans
+            'urlTrans' => $urlTrans,
+            'gallery' => []
         ]);
     }
 
@@ -80,9 +81,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCategory $request)
+    public function store(StoreCourseVideo $request)
     {
-        $record = new Category;
+        $record = new Article;
         $record->fill($request->all());
 
         if($request->ref_id){
@@ -94,7 +95,7 @@ class CategoryController extends Controller
             $record->save();
         }
         
-        return redirect('admin/categories?type=' . $request->type);
+        return redirect('admin/library?keyword=' . $request->keyword);
     }
 
     /**
@@ -114,30 +115,30 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $title = trans('admin.news_categories') . ' - ' . trans('admin.edit');
+        $title = trans('admin.course_video') . ' - ' . trans('admin.edit');
         
         //Get detail category
-        $record = Category::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
+        $record = Article::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if(!$record){
             return redirect()->route('admin.dashboard');
         }
 
         //Get url translate category
         $langNeedTrans = ($record->language == 'vi') ? 'en' : 'vi';
-        $chkRecord = Category::withoutGlobalScope(LanguageScope::class)
+        $chkRecord = Article::withoutGlobalScope(LanguageScope::class)
             ->where('ref_id', $record->ref_id)
             ->where('language', $langNeedTrans)
             ->first();
 
         if($chkRecord){
-            $urlTrans = url('/admin/categories/'.$chkRecord->id.'/edit');
+            $urlTrans = url('/admin/course-video/'.$chkRecord->id.'/edit');
         }else{
-            $urlTrans = url('/admin/categories/create?type='. $record->type . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
+            $urlTrans = url('/admin/course-video/create?keyword='. $record->keyword . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
         }
 
-        return view('admin.categories.edit', [
+        return view('admin.library.edit', [
             'title' => $title,
             'record' => $record,
             'urlTrans' => $urlTrans
@@ -151,9 +152,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCategory $request, $id)
+    public function update(StoreCourseVideo $request, $id)
     {
-        $record = Category::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
+        $record = Article::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
 
         if(!$record){
             return redirect()->route('admin.dashboard');
@@ -161,7 +162,8 @@ class CategoryController extends Controller
 
         $record->fill($request->all());
         $record->save();
-        return redirect('admin/categories?type=' . $record->type);
+
+        return redirect('admin/course-video?keyword=' . $record->keyword);
     }
 
     /**
@@ -172,7 +174,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $record = Category::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
+        $record = Article::withoutGlobalScope(LanguageScope::class)->where('id', $id)->first();
         if($record && $record->delete()){
             return $this->response(200);
         }

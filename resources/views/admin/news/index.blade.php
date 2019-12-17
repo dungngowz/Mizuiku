@@ -52,7 +52,10 @@
         $(function() {
             $('#datatable').DataTable({
                 ...optionDataTable,
-                ajax: '/admin/news/data',
+                ajax: {
+                    url: '/admin/news/data',
+                    data : JSON.parse('<?php echo json_encode(request()->all()) ?>')
+                },
                 columns: [{
                         data: 'id',
                         name: 'id'
