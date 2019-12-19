@@ -44,7 +44,9 @@
 <div id="header">
     <div class="wrp">
         <div class="buton">
-            <div class='hocngay'><a href='' class='btnhocngay' title='>{{ __('client.learn-now') }}'>{{ __('client.learn-now') }}</a>
+            <div class='hocngay'>
+                <a href='#' class='btnhocngay' title='>{{ __('client.learn-now') }}'>{{ __('client.learn-now') }}</a>
+                @if ( \Auth::check() )
                 <ul class='subloginx sublogin2'>
                     @foreach ($courseListHeader as $item)
                         <li><a href='{{ url("course/$item->slug") }}' title='{{ $item->title }}'>{{ $item->title }}</a></li>
@@ -52,6 +54,13 @@
                     
                     <li><a href='/thong-ke' title='{{ __('client.statistical') }}'>{{ __('client.statistical') }}</a></li>
                 </ul>
+                @else
+                    <script>
+                        $('.btnhocngay').on('click', function() {
+                            $('#loginForm').popup('show');
+                        });
+                    </script>
+                @endif
             </div>
             <div class="regis">
                 <div class="regis1">

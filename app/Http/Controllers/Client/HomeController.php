@@ -132,16 +132,26 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function ajaxRegister(RegisterClient $request)
+    public function ajaxRegister(Request $request)
     {
-        $data = $request->all();
-        $data['password'] = Hash::make($data['password']);
-        $user = User::create($data);
-        
-        // Send Email Verify
-        $user->sendEmailVerificationNotification();
+        $validation = \Validator::make($request->all(),[ 
+            'name' => 'required',
+            'email' => "required|unique:users,email",
+            'password' => "required"
+        ]);
+        if($validation->fails()){
+            return $this->response(500,false,null, $validation->messages());
+        } 
+        else {
+            $data = $request->all();
+            $data['password'] = Hash::make($data['password']);
+            $user = User::create($data);
+            
+            // Send Email Verify
+            $user->sendEmailVerificationNotification();
 
-        return $this->response(200,true,$user, trans('Created User Successfully!'));
+            return $this->response(200,true,$user, trans('Created User Successfully!'));
+        }
     }
 
     /**

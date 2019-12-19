@@ -128,6 +128,7 @@ function registerMember() {
         return;
     }
     loading(true);
+    
     $.ajax({
         url: '/ajax-register',
         type: "POST",
@@ -144,27 +145,27 @@ function registerMember() {
             "district": quanhuyen,
             "work_place": noicongtac,
         },
-        success: function(res) {
-            loading(false);
-            if (res[0] === "Exists") {
-                $("label.username").html("Email đã được sử dụng, vui lòng chọn tài khoản khác.").addClass("cRed");
-            } else if (res[0] === "SpecialChar") {
-                $("label.username").html("Tên đăng nhập không được chứa ký tự đặc biệt.").addClass("cRed");
-            } else if (res[0] === "Space") {
-                $("label.username").html("Tên đăng nhập và mật khẩu không được có khoảng trống.").addClass("cRed");
-            } else if (res[0] === "LenghtLow") {
-                $("label.username").html("Tên đăng nhập phải có độ dài trên 8 ký tự.").addClass("cRed");
-            } else if (res[0] === "NotSecure") {
-                $("label.passw").html("Mật khẩu phải chứa chữ hoa, chữ thường, số, ký tự đặc biệt và độ dài trên 8 ký tự.").addClass("cRed");
-            } else {
-                ResetAllTextBox("#regisForm");
-                $("#success .tac").html("Đăng ký thành công, vui lòng kiểm tra thư hộp thư đến và hộp thư rác để kích hoạt tài khoản! Trường hợp không nhận được email gửi tới, vui lòng gửi yêu cầu trong mục Liên hệ");
-                $(".success_open").click();
-            }
+        success: function(res, textStatus) {
+            // loading(false);
+            // if (res[0] === "Exists") {
+            //     $("label.username").html("Email đã được sử dụng, vui lòng chọn tài khoản khác.").addClass("cRed");
+            // } else if (res[0] === "SpecialChar") {
+            //     $("label.username").html("Tên đăng nhập không được chứa ký tự đặc biệt.").addClass("cRed");
+            // } else if (res[0] === "Space") {
+            //     $("label.username").html("Tên đăng nhập và mật khẩu không được có khoảng trống.").addClass("cRed");
+            // } else if (res[0] === "LenghtLow") {
+            //     $("label.username").html("Tên đăng nhập phải có độ dài trên 8 ký tự.").addClass("cRed");
+            // } else if (res[0] === "NotSecure") {
+            //     $("label.passw").html("Mật khẩu phải chứa chữ hoa, chữ thường, số, ký tự đặc biệt và độ dài trên 8 ký tự.").addClass("cRed");
+            // } else {
+            ResetAllTextBox("#regisForm");
+            $("#success .tac").html("Đăng ký thành công, vui lòng kiểm tra thư hộp thư đến và hộp thư rác để kích hoạt tài khoản! Trường hợp không nhận được email gửi tới, vui lòng gửi yêu cầu trong mục Liên hệ");
+            $(".success_open").click();
         },
         error: function(error) { //Lỗi xảy ra
             loading(false);
-            var mesError = jQuery.parseJSON(error.responseText).email[0];
+            console.log(error)
+            var mesError = jQuery.parseJSON(error.responseText).message.email[0];
             alert(mesError);
         }
     });
