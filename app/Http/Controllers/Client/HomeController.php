@@ -145,8 +145,8 @@ class HomeController extends Controller
         else {
             $data = $request->all();
             $data['password'] = Hash::make($data['password']);
+            $data['email_verify_at'] = '2019-12-10 07:15:50';
             $user = User::create($data);
-            
             // Send Email Verify
             $user->sendEmailVerificationNotification();
 
@@ -220,7 +220,7 @@ class HomeController extends Controller
 
         $disctrictName = Province::where('id' , $user->district)->first();
         $user->district_name = $disctrictName ? $disctrictName->$findColumn : null;
-        $user->avatar = \Storage::url($user->avatar);
+        $user->avatar;
 
         $city = Province::where('parent_id' , 0)->get();
         $disctrict = Province::where('parent_id' , $user->city)->get();

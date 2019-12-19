@@ -21,7 +21,7 @@
                <div class="left">
                   <div class="khungAnh">
                      <a class="khungAnhCrop" href="javascript:;" title="Avatar">
-                     <img alt="{{ $user->email }}" class="Avatar" src="{{ $user->avatar ?? asset('client/pic/icon/no_image.gif') }}" />
+                     <img alt="{{ $user->email }}" class="Avatar" src="{{ $user->avatar }}" />
                      </a>
                      <div class="input uploadFile">
                         <p>Thay đổi ảnh đại diện</p>

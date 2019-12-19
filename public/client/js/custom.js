@@ -158,6 +158,7 @@ function registerMember() {
             // } else if (res[0] === "NotSecure") {
             //     $("label.passw").html("Mật khẩu phải chứa chữ hoa, chữ thường, số, ký tự đặc biệt và độ dài trên 8 ký tự.").addClass("cRed");
             // } else {
+            loading(false);
             ResetAllTextBox("#regisForm");
             $("#success .tac").html("Đăng ký thành công, vui lòng kiểm tra thư hộp thư đến và hộp thư rác để kích hoạt tài khoản! Trường hợp không nhận được email gửi tới, vui lòng gửi yêu cầu trong mục Liên hệ");
             $(".success_open").click();

@@ -50,4 +50,13 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new ResetPassword($token));
     }
+
+    /**
+     * Return the custom avatar
+     *
+     * @return string
+     */
+    public function getAvatarAttribute(){
+       return $this->attributes['avatar'] ? \Storage::url($this->attributes['avatar']) : asset('client/pic/icon/no_image.gif');
+    }
 }
