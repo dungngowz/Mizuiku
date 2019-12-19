@@ -15,8 +15,9 @@ function ResetLabel3() {
     $("label.loginnote").hide();
 }
 
-function ForgotPass() {
+function ForgotPass(url) {
     var email = $("#DisplayLoadControl_Login_TextBox1").val();
+    var token = $('#token_forgot').val();
     if (!CheckEmailValue($("#DisplayLoadControl_Login_TextBox1").val())) {
         $("#DisplayLoadControl_Login_TextBox1").focus();
         alert("Bạn đã nhập email chưa chính xác, vui lòng nhập lại email.");
@@ -24,31 +25,37 @@ function ForgotPass() {
     }
     loading(true);
     jQuery.ajax({
-        url: weburl + "cms/display/Member/Ajax/Ajax.aspx",
+        url: url,
         type: "POST",
         dataType: "json",
         data: {
-            "action": "ForgotPass",
+            "_token": token,
             "email": email
         },
         success: function(res) {
             loading(false);
-            if (res[0] === "unActive") {
-                $("#success .tac").html("Tài khoản của bạn chưa được kích hoạt!");
-                $(".success_open").click();
-            } else if (res[0] === "LockUser") {
-                $("#success .tac").html("Tài khoản của bạn đang tạm khóa!");
-                $(".success_open").click();
-            } else if (res[0] === "Error") {
-                $("#success .tac").html("Hệ thống đang bận, bạn vui lòng thử lại sau!");
-                $(".success_open").click();
-            } else {
-                $("#success .tac").html("Reset mật khẩu thành công, vui lòng kiểm tra email để nhận mật khẩu mới!");
-                $(".success_open").click();
-            }
+            // if (res[0] === "unActive") {
+            //     $("#success .tac").html("Tài khoản của bạn chưa được kích hoạt!");
+            //     $(".success_open").click();
+            // } else if (res[0] === "LockUser") {
+            //     $("#success .tac").html("Tài khoản của bạn đang tạm khóa!");
+            //     $(".success_open").click();
+            // } else if (res[0] === "Error") {
+            //     $("#success .tac").html("Hệ thống đang bận, bạn vui lòng thử lại sau!");
+            //     $(".success_open").click();
+            // } else {
+            //     $("#success .tac").html("Reset mật khẩu thành công, vui lòng kiểm tra email để nhận mật khẩu mới!");
+            //     $(".success_open").click();
+            // }
+            console.log('Success')
         },
         error: function(error) { //Lỗi xảy ra
             loading(false);
+            console.log(error)
+            if(error.status == 200) {
+                $("#success .tac").html("Reset mật khẩu thành công, vui lòng kiểm tra email để nhận mật khẩu mới!");
+                $(".success_open").click();
+            }
         }
     });
 }
@@ -290,6 +297,11 @@ $(document).ready(function() {
         vertical: 'top'
     });
     $('#success').popup({
+        focusdelay: 400,
+        outline: true,
+        vertical: 'top'
+    });
+    $('#resetForm').popup({
         focusdelay: 400,
         outline: true,
         vertical: 'top'

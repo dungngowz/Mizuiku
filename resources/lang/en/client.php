@@ -160,5 +160,7 @@ return [
     'update_pass' => 'Update Password',
     'old_pass' => 'Old password',
     'new_pass' => 'New password',
-    're_new_pass' => 'Re-enter new password'
+    're_new_pass' => 'Re-enter new password',
+    'reset_pass' => 'Reset Password'
+
 ];

@@ -173,5 +173,8 @@
             alert('Kích hoạt thành công! Vui lòng đăng nhập để bắt đầu khóa học')
             $('#loginForm').popup('show');
         }
+        if({{ request()->showResetForm ?? 0 }}) {
+            $('#resetForm').popup('show');
+        }
     </script>
 @endsection

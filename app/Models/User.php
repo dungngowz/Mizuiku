@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\ResetPassword;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -43,5 +44,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function articles()
     {
         return $this->belongsToMany('App\Models\Article', 'learning_outcomes', 'video_id', 'user_id');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
     }
 }

@@ -149,10 +149,11 @@
         <div class="main">
             <p class="lh22 fs16">{{ __('client.note-forgot') }}</p>
             <div class="ip">
+                <input type="text" name="token_forgot" hidden id="token_forgot" value="{{ csrf_token() }}">
                 <input name="DisplayLoadControl$Login$TextBox1" type="text" id="DisplayLoadControl_Login_TextBox1" class="required" onkeydown="CheckLogin(event)" placeholder="{{ __('client.enter-email') }} *" />
             </div>
             <div class="buton tac mt5">
-                <a href="javascript:;" onclick="ForgotPass();" title="{{ __('client.send') }}" class="btnform">{{ __('client.send') }}</a>
+                <a href="javascript:;" onclick="ForgotPass('{{ route('password.email') }}');"  title="{{ __('client.send') }}" class="btnform">{{ __('client.send') }}</a>
             </div>
             <div class="cb"></div>
         </div>
@@ -188,5 +189,31 @@
         </div>
     </div>
     <a class="btnclose loginForm2_close"></a>
+    <div class="cb"></div>
+</div>
+
+<div id="resetForm" class="alertpopup">
+    <div class="formloginx">
+        <div class="title">{{ __('client.reset_pass') }}</div>
+        <div class="main">
+            <div class="boxbox">
+                <form action="{{ route('password.update') }}" method="post">
+                    @csrf
+                    <p class="tde">{{ __('client.reset_pass') }}</p>
+                    <div class="ip">
+                        <input name="token" type="hidden" id="token_reset" value="{{ request()->token ?? null }}" hidden />
+                        <input name="email" type="text" id="email_reset" class="required" placeholder="Email"/>
+                        <input name="password" type="password" id="new_password" placeholder="{{ trans('client.new_pass') }}"/>
+                        <input name="password_confirmation" type="password" id="re_new_password" placeholder="{{ trans('client.re_new_pass') }}"/>
+                    </div>
+                    <div class="buton">
+                        <button type="submit"  class="btnform" style="border-radius:10px; width:180px;">{{ __('client.reset_pass') }}</button>
+                    </div>
+                </form>
+            </div>
+            <div class="cb"></div>
+        </div>
+    </div>
+    <a class="btnclose loginForm_close"></a>
     <div class="cb"></div>
 </div>

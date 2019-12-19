@@ -160,5 +160,6 @@ return [
     'update_pass' => 'Cập nhật mật khẩu',
     'old_pass' => 'Mật khẩu cũ',
     'new_pass' => 'Mật khẩu mới',
-    're_new_pass' => 'Nhập lại mật khẩu mới'
+    're_new_pass' => 'Nhập lại mật khẩu mới',
+    'reset_pass' => 'Đặt Lại Mật Khẩu'
 ];

@@ -39,6 +39,7 @@ Route::group(['namespace' => 'Client'], function(){
 
     Route::post('/ajax-register', 'HomeController@ajaxRegister')->name('ajaxRegister');
     Route::post('/ajax-login', 'HomeController@ajaxLogin')->name('ajaxLogin');
+    Route::get('/reset-password/{showResetForm}/{token}', 'HomeController@index')->name('form-reset-pass');
 
     Route::get('/get-provinces', 'HomeController@getProvinces')->name('getProvinces');
 
