@@ -161,6 +161,12 @@ return [
     'old_pass' => 'Old password',
     'new_pass' => 'New password',
     're_new_pass' => 'Re-enter new password',
-    'reset_pass' => 'Reset Password'
-
+    'reset_pass' => 'Reset Password',
+    'completed' => 'Complete',
+    'lesson' => 'Lesson',
+    'discuss' => 'Discuss',
+    'document' => 'Document',
+    'test_knowl' => 'Test your knowledge',
+    'comment' => 'Comment',
+    'back' => 'Back'
 ];

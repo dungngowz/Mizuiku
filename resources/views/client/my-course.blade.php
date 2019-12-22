@@ -17,7 +17,7 @@
             <div class="left">
                <div class="khungAnh">
                   <a class="khungAnhCrop" href="javascript:;" title="Avatar">
-                     <img alt="{{ $user->email }}" class="" src="{{ \Storage::url($user->avatar) ?? asset('client/pic/icon/no_image.gif') }}" />
+                     <img alt="{{ $user->email }}" class="" src="{{ $user->avatar }}" />
                   </a>
                   <div class="input">
                      <input type="file" name="DisplayLoadControl$ctl00$ctl00$flImage" id="DisplayLoadControl_ctl00_ctl00_flImage" />
@@ -29,10 +29,12 @@
                <div class="Frame1">
                   <div class="mykhoahoc">
                      <ul>
+                        @foreach ($course as $item)
                         <li>
-                           <a href='https://mizuiku-emyeunuocsach.vn/bai-hoc/e-learning.htm' title='E-learning'>E-learning</a>
-                           <div class='progres'>Hoàn thành: <span>0 %</span></div>
+                        <a href='{{ url("/bai-hoc/$item->slug") }}' title='{{ $item->title }}'>{{ $item->title }}</a>
+                           <div class='progres'>{{ trans('client.completed') }}: <span>0 %</span></div>
                         </li>
+                        @endforeach
                      </ul>
                   </div>
                   <div class="cb"></div>

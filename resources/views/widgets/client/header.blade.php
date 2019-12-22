@@ -1,5 +1,5 @@
 @php
-    $courseListHeader = \App\Models\Category::where('type', 'course')->orderBy('id', 'desc')->get();
+    $courseListHeader = \App\Models\Category::where('type', 'course')->orderBy('created_at', 'desc')->get();
 @endphp
 <div id="headerTop">
     <div class="wrp">

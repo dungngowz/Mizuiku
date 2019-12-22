@@ -23,3 +23,109 @@
     border: none;
     padding: 0 !important;
 }
+
+.popup_A {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    opacity: 0;
+    transition: 0.7s;
+    pointer-events: none;
+}
+.popup_A.active {
+    pointer-events: auto;
+    opacity: 1;
+}
+.popup_A .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: right;
+    transition: 0.3s;
+    display: inline-block;
+    width: 90%;
+    min-height: 550px;
+    box-sizing: border-box;
+}
+.popup_A .content iframe {
+    min-height: 550px;
+    width: 100%;
+    height: 90vh;
+}
+.noidungNhung {
+    overflow-y: scroll;
+}
+@media (max-width: 767px) {
+    .popup_A .content {
+        width: 90%;
+        max-width: 500px;
+        height: auto;
+   }
+}
+.popup_A .content a.closed {
+    color: #d3d3d3;
+    font-size: 16px;
+    display: inline-block;
+    background: #fff;
+    text-align: center;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+   /* display: block;
+    */
+    position: absolute;
+    top: -34px;
+    right: -34px;
+    z-index: 100000;
+}
+.popup_A .content a.closed:hover {
+    color: #109ce3;
+}
+@media (max-width: 767px) {
+    .popup_A .content a.closed {
+        margin-bottom: 7px;
+   }
+    .popup_A .content .khungAnh1.pc {
+        display: none;
+   }
+    .popup_A .content .khungAnh1.mobile {
+        display: block !important;
+   }
+}
+.popup_A .content .khungAnh1.pc {
+    margin: 0 auto;
+    overflow: hidden;
+}
+.popup_A .content .khungAnh.pc:before {
+    padding-bottom: 100%;
+}
+.popup_A .content .khungAnh1.mobile {
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 0;
+    display: none;
+}
+.popup_A .content .khungAnh.mobile:before {
+    padding-bottom: 125%;
+}
+.kiemtra {
+    background: #109ce3;
+    color: #fff;
+    line-height: 35px;
+    margin-top: -3px;
+    padding: 0 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px 100px;
+}
+.kiemtradiv {
+    margin-top: 20px;
+    text-align: center;
+}

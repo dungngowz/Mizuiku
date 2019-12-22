@@ -17,7 +17,7 @@
             <div class="left">
                <div class="khungAnh">
                   <a class="khungAnhCrop" href="javascript:;" title="Avatar">
-                     <img alt="{{ $user->email }}" class="" src="{{ \Storage::url($user->avatar) ?? asset('client/pic/icon/no_image.gif') }}" />
+                     <img alt="{{ $user->email }}" class="" src="{{ $user->avatar }}" />
                   </a>
                   <div class="input">
                      <input type="file" name="DisplayLoadControl$ctl00$ctl00$flImage" id="DisplayLoadControl_ctl00_ctl00_flImage" />

@@ -91,6 +91,7 @@
 
     <script src="{{ asset('client/js/custom.js?t=' . time()) }}"></script>
     <link rel="stylesheet" href="{{ asset('client/css/custom.css?t=' . time()) }}">
+    <script src="{{ asset('client/js/custom-course.js') }}"></script>
 
     @yield('custom-js')
 </body>

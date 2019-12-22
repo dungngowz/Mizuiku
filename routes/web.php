@@ -55,7 +55,7 @@ Route::group(['namespace' => 'Client'], function(){
         Route::post('/change-password', 'HomeController@updateChangePassword')->name('updateChangePassword');
 
         // course
-        // Route::get('/course/{keyword}', 'HomeController@showTermOrPolicy')->name('showPolicy');
+        Route::get('/bai-hoc/{slug}', 'HomeController@showCourse')->name('showCourse');
 
     });
 

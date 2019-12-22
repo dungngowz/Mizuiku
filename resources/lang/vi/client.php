@@ -161,5 +161,12 @@ return [
     'old_pass' => 'Mật khẩu cũ',
     'new_pass' => 'Mật khẩu mới',
     're_new_pass' => 'Nhập lại mật khẩu mới',
-    'reset_pass' => 'Đặt Lại Mật Khẩu'
+    'reset_pass' => 'Đặt Lại Mật Khẩu',
+    'completed' => 'Hoàn thành',
+    'lesson' => 'Bài học',
+    'discuss' => 'Thảo luận',
+    'document' => 'Tài liệu',
+    'test_knowl' => 'Kiểm tra kiến thức',
+    'comment' => 'Bình luận',
+    'back' => 'Quay lại'
 ];

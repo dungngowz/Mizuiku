@@ -295,12 +295,25 @@ class HomeController extends Controller
     public function showMyCourse()
     {
         $user = auth()->user();
-        $course = $user->with(['articles'])->first();
-        // dd($course);
+        $course = Category::where('type', 'course')->orderBy('created_at', 'desc')->get();
         return view('client.my-course', [
             'user' => $user,
+            'course' => $course
         ]);
     }
 
-    
+    /**
+     * Show Course
+     */
+    public function showCourse($slug)
+    {
+        $course = Category::with(['articles'])->where('slug', $slug)->first();
+        // dd();
+        return view('client.detail-course', [
+            'title' => $course->title,
+            'course' => $course,
+            'listArticle' => $course->articles
+        ]);
+    }
+
 }
