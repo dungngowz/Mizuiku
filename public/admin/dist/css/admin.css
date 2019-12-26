@@ -60,3 +60,7 @@ table.dataTable tbody td {
   max-width: 100px;
 }
 
+#datatable {
+  width: 100% !important;
+}
+
