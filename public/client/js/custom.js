@@ -47,11 +47,11 @@ function ForgotPass(url) {
             //     $("#success .tac").html("Reset mật khẩu thành công, vui lòng kiểm tra email để nhận mật khẩu mới!");
             //     $(".success_open").click();
             // }
-            console.log('Success')
+            console.log('success', res)
         },
         error: function(error) { //Lỗi xảy ra
             loading(false);
-            console.log(error)
+            console.log('error', error)
             if(error.status == 200) {
                 $("#success .tac").html("Reset mật khẩu thành công, vui lòng kiểm tra email để nhận mật khẩu mới!");
                 $(".success_open").click();
