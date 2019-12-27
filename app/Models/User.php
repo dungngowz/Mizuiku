@@ -62,4 +62,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getAvatarAttribute(){
        return $this->attributes['avatar'] ? \Storage::url($this->attributes['avatar']) : asset('client/pic/icon/no_image.gif');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
 }

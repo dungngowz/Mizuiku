@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Http\Requests\LoginClient;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ChangePassword;
+use App\Models\Comment;
 
 class HomeController extends Controller
 {
@@ -308,11 +309,13 @@ class HomeController extends Controller
     public function showCourse($slug)
     {
         $course = Category::with(['articles'])->where('slug', $slug)->first();
-        // dd();
+        $comments = Comment::with(['user'])->where('post_id', $course->id)->get();
+        dd($comments);
         return view('client.detail-course', [
             'title' => $course->title,
             'course' => $course,
-            'listArticle' => $course->articles
+            'listArticle' => $course->articles,
+            'comments' => $comments
         ]);
     }
 
