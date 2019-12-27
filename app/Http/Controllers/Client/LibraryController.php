@@ -21,7 +21,7 @@ class LibraryController extends Controller
             ->orderBy('priority', 'desc')
             ->orderBy('id', 'desc')
             ->where('status', 1)
-            ->paginate(15);
+            ->paginate(12);
         
         return view('client.library', [
             'articles' => $articles,

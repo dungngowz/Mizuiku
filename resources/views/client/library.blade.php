@@ -29,7 +29,7 @@
                                 <div class="item">
                                     <div class="khungAnh {{request()->keyword == 'video' ? 'khungVideo' : ''}}">
                                         <a class="khungAnhCrop" href="{{$item->url_detail_library}}" title="{{$item->title}}">
-                                            <img src="{{$item->thumbnail_display}}" class="tall" style="opacity: 1;">
+                                            <img src="{{asset($item->thumbnail_display)}}" class="tall" style="opacity: 1;">
                                         </a>
 
                                         @if (request()->keyword == 'video')
@@ -51,12 +51,13 @@
                             <div class="cb"></div>
                         </div>
                     </div>
-
-                    <div class='wrap-pagination'>
-                        {{ $articles->links() }}
-                    </div>
                 @endif
             </div>
+        </div>
+
+        <div style="clear: both"></div>
+        <div class='wrap-pagination'>
+            {{ $articles->links() }}
         </div>
     </div>
 @endsection

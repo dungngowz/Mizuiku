@@ -58,5 +58,7 @@ return [
     'delete_selected_item' => 'Xóa dòng đã chọn',
     'video_duration' => 'Thời lượng Video',
     'enter_video_duration' => 'Nhập thời lượng Video',
-    'pls-choose-item' => 'Xin hãy chọn dòng muốn xóa'
+    'pls-choose-item' => 'Xin hãy chọn dòng muốn xóa',
+    'views' => 'Lượt xem',
+    'enter_views' => 'Nhập lượt xem'
 ];

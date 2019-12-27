@@ -60,5 +60,7 @@ return [
     'delete_selected_item' => 'Delete selected items',
     'video_duration' => 'Video Duration',
     'enter_video_duration' => 'Enter Video Duration',
-    'pls-choose-item' => 'Please choose item you want to delete'
+    'pls-choose-item' => 'Please choose item you want to delete',
+    'views' => 'Views',
+    'enter_views' => 'Enter views'
 ];

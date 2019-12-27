@@ -5,17 +5,8 @@ var optionDataTable = {
     pageLength: 10,
     lengthMenu: [[10, 20, 50], [10, 20, 50]],
     order: [
-        [0, 'desc']
+        [1, 'desc']
     ],
-    // columnDefs: [{
-    //     targets: 0,
-    //     searchable: false,
-    //     orderable: false,
-    //     className: 'dt-body-center',
-    //     render: function (data){
-    //         return '<input type="checkbox" name="id[]" value="' + $('<div/>').text(data).html() + '">';
-    //     }
-    // }],
     responsive: true,
     processing: true,
     serverSide: true,
