@@ -47,7 +47,7 @@
                     <table align="center" border="1" cellpadding="0" cellspacing="0" class="c-f1bud4" style="border: 0 none; border-collapse: separate;">
                         <tbody>
                             <tr align="center" class="c-1p7a68j" style="border: 0 none; border-collapse: separate; padding: 16px 0 15px;">
-                                <td style="border: 0 none; border-collapse: separate; vertical-align: middle;" valign="middle"><img alt="" src="https://kokotachi.com/images/assets/logo-bottom.png" class="c-1shuxio" style="border: 0 none; line-height: 100%; outline: none; text-decoration: none" width="170"></td>
+                                <td style="border: 0 none; border-collapse: separate; vertical-align: middle;" valign="middle"><img alt="" src="https://mizuiku-emyeunuocsach.vn/pic/banner/mizuiku_n_636691527138114778.png" class="c-1shuxio" style="border: 0 none; line-height: 100%; outline: none; text-decoration: none" width="170"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -67,7 +67,7 @@
                                             </tr>
                                             <tr style="border: 0 none; border-collapse: separate;">
                                                 <td class="c-eitm3s c-16v5f34" style="border: 0 none; border-collapse: separate; vertical-align: middle; font-family: 'Pangolin', cursive;font-weight: 500; font-size: 13.63636px; padding-top: 12px;"
-                                                    valign="middle">Bạn đã lỡ quên mật khẩu đăng nhập vào kokotachi? <br/>Hãy để chúng tôi giúp bạn!</td>
+                                                    valign="middle">Bạn đã lỡ quên mật khẩu đăng nhập vào mizuiku? <br/>Hãy để chúng tôi giúp bạn!</td>
                                             </tr>
                                             <tr style="border: 0 none; border-collapse: separate;">
                                                 <td class="c-46vhq4 c-4w6eli" style="border: 0 none; border-collapse: separate; vertical-align: middle; font-family: 'Pangolin', cursive;font-weight: 400; color: #7F8FA4; font-size: 15.45455px; padding-top: 20px;"
