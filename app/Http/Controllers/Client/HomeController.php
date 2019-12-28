@@ -96,7 +96,16 @@ class HomeController extends Controller
             exit();
         }
 
-        return view('client.detail', ['introDetail' => $introDetail]);
+        $keywords = ['program-introduction', 'co-organizingboard', 'suntory-group', 'suntory-pepsico', 'vietNam-national-student-union', 'pioneer-organization'];
+        $ortherArticles = Article::whereIn('keyword', $keywords)
+            ->where('id', '<>', $introDetail->id)
+            ->orderBy('priority', 'desc')
+            ->orderBy('id', 'desc')
+            ->where('status', 1)
+            ->limit(5)
+            ->get();
+        
+        return view('client.detail-intro', ['introDetail' => $introDetail, 'ortherArticles' => $ortherArticles]);
     }
 
     //

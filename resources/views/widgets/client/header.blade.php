@@ -110,11 +110,12 @@
             @if (count($articlesAboutUs) > 0)
                 <li data='2' class="litop hassub {{$segments && $segments[0] == 'gioi-thieu' ? 'active' : ''}}"><a href='{{ route('introduction', ['path' => 'program-introduction']) }}' title='{{ __('client.about-us') }}'>{{ __('client.about-us') }}</a>
                     <ul>
-                        @foreach ($articlesAboutUs as $item)
-                            <li>
-                                <a title='{{$item->title}}' href='{{ route('introduction', ['path' => $item->keyword]) }}'>{{$item->title}}</a>
-                            </li>    
-                        @endforeach
+                        <li>
+                            <a title='{{ __('client.program_introduction') }}' href="{{ route('introduction', ['path' => $articlesAboutUs[0]->keyword]) }}">{{ __('client.program_introduction') }}</a>
+                        </li>
+                        <li>
+                            <a title='{{ __('client.partner_introduction') }}' href="{{ route('introduction', ['path' => $articlesAboutUs[1]->keyword]) }}">{{ __('client.partner_introduction') }}</a>
+                        </li>
                     </ul>
                 </li>
             @endif

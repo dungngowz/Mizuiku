@@ -38,7 +38,7 @@
                                 {!! $introDetail->content !!}
                             @endif
                         </div>
-                    </div>
+                    
                         <div id="CommonCuoiChiTietTin">
                             <div class="fl apd">
                                 <a class="prevDBT" href="javascript:history.go(-1)">{{ __('client.prev') }}</a>
@@ -100,6 +100,18 @@
 
                     </div>
 
+                    @if (count($ortherArticles) > 0)
+                        <div class="other">
+                            <p class="fs24 c0e9ee6 fiCielGotham pb10">{{trans('client.other_articles')}}</p>
+                            <ul>
+                                @foreach ($ortherArticles as $item)
+                                    <li>
+                                        <a href="{{ $item->url_detail_about_us }}" title="{{$item->title}}"><h2>{{$item->title}}</h2> (<span class="c999">{{$item->views}} {{trans('client.views')}}</span>)</a>
+                                    </li>    
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             @endif
         </div>
