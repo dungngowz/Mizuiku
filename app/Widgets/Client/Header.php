@@ -29,6 +29,8 @@ class Header extends AbstractWidget
 
         $categoriesNews = Category::orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->get();
 
+        $courseListHeader = Category::where('type', 'course')->orderBy('priority', 'desc')->orderBy('created_at', 'desc')->get();
+
         return view('widgets.client.header', [
             'config' => $this->config,
             'segments' => empty($request->segments()) ? [''] : $request->segments(),

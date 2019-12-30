@@ -1,6 +1,4 @@
-@php
-    $courseListHeader = \App\Models\Category::where('type', 'course')->orderBy('created_at', 'desc')->get();
-@endphp
+
 <div id="headerTop">
     <div class="wrp">
         <a class='slogan dnmobile' title='' href='/'><img alt="" src="{{ asset('client/pic/banner/mizuiku_n_636687337648333192.png') }}" /></a>
