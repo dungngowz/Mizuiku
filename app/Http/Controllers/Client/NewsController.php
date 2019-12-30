@@ -17,7 +17,7 @@ class NewsController extends Controller
      */
     public function index(Request $request, $slugCategory)
     {
-        $categoriesNews = Category::orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->get();
+        $categoriesNews = Category::where('type', 'news')->orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->get();
         $detailCategory = Category::where('ref_id', $request->ref_id)->first();
 
         if(!$detailCategory || !$categoriesNews){
@@ -47,7 +47,7 @@ class NewsController extends Controller
     {
         $record = Article::where('ref_id', $request->ref_id)->first();
         
-        $categoriesNews = Category::orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->get();
+        $categoriesNews = Category::where('type', 'news')->orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->get();
 
         if(!$record){
             return redirect('/');
