@@ -60,3 +60,11 @@ table.dataTable tbody td {
   max-width: 100px;
 }
 
+#datatable {
+  width: 100% !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0;
+}
+

@@ -72,6 +72,14 @@
                                             <span class="error-msg">{{$errors->first('priority')}}</span>
                                         @endif
                                     </div>
+
+                                    <div class="form-group m-t-20">
+                                        <label>{{trans('admin.views')}}</label>
+                                        <input type="number" name="views" class="form-control" value="{{old('views', $record->views ? $record->views : 0)}}" placeholder="{{trans('admin.enter_views')}}">
+                                        @if($errors->has('views'))
+                                            <span class="error-msg">{{$errors->first('views')}}</span>
+                                        @endif
+                                    </div>
                                 </div>
                                 
                                 <div class="col-md-2"></div>
@@ -111,7 +119,7 @@
                     @if (request()->keyword == 'photo')
                         <div class="form-group m-t-20">
                             <label>{{trans('admin.content')}}</label>
-                            <textarea name="content" class="form-control editor">{!! $record->content !!}</textarea>
+                            <textarea rows="10"name="content" class="form-control editor">{!! $record->content !!}</textarea>
                             @if($errors->has('content'))
                                 <span class="error-msg">{{$errors->first('content')}}</span>
                             @endif

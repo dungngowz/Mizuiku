@@ -43,9 +43,6 @@
 </head>
 
 <body>
-    @php
-        setcookie(config('const.key_locale_admin'), 'vi', time() + (86400 * 30), "/");
-    @endphp
     <!-- Preloader - style you can find in spinners.css -->
     <div class="preloader">
         <div class="lds-ripple">

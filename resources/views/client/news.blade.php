@@ -38,7 +38,7 @@
                                         <a class='khungAnhCrop' href='{{$item->url_detail_news}}' title='{{$item->title}}'>
                                         <img alt="{{$item->title}}" class="" src="{{$item->thumbnail_display}}" />
                                         </a>
-                                        <div class='date'>{{$item->updated_at->format('d-m-Y')}}</div>
+                                        <div class='date'>{{$item->created_at->format('d-m-Y')}}</div>
                                         <a href='{{$item->url_detail_news}}' title='{{$item->title}}' class='over'></a>
                                     </div>
                                     <a href='{{$item->url_detail_news}}' title='{{$item->title}}' class='name'>{{$item->title}}</a>

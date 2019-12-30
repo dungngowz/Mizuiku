@@ -58,5 +58,11 @@ return [
     'delete_selected_item' => 'Xóa dòng đã chọn',
     'video_duration' => 'Thời lượng Video',
     'enter_video_duration' => 'Nhập thời lượng Video',
-    'pls-choose-item' => 'Xin hãy chọn dòng muốn xóa'
+    'pls-choose-item' => 'Xin hãy chọn dòng muốn xóa',
+    'views' => 'Lượt xem',
+    'enter_views' => 'Nhập lượt xem',
+    'suntory_group' => 'Tập đoàn Suntory',
+    'suntory_pepsico' => 'Suntory PepsiCo Việt Nam',
+    'vietNam_national_student_union' => 'Trung ương Hội sinh viên VN',
+    'pioneer_organization' => 'Hội đồng Đội Trung ương Đội TNTP Hồ Chí Minh'
 ];

@@ -28,7 +28,7 @@
                         <div class='catename'>{{ $course->title }}</div>
                         <ul>
                             @foreach ($listArticle as $key => $item)
-                            <li class='item {{ $key == 0 ? "first ac" : "other" }}' iid='{{ $item->id }}' seen='true'>
+                                <li class='item {{ $key == 0 ? "first ac" : "other" }}' iid='{{ $item->id }}' seen='true'>
                                     <div class='ico'></div>
                                     <div class='info'>
                                         <a datavideo='{{ $item->url }}' title='' class='name first'>{{ $item->title }}</a>
@@ -54,23 +54,25 @@
                             <a href="javascript:;" onclick="SendComment()" title="" class="btnques">{{ trans('client.comment') }}</a>
                         </div>
                         <div class='ans'>
-                            <div class='item'>
-                                <div class='khungAnh'>
-                                    <a class='khungAnhCrop' href='Tran Bich Thuy' title='Tran Bich Thuy'>
-                                    <img alt="Tran Bich Thuy" class="" src="https://mizuiku-emyeunuocsach.vn/pic/icon/no_image.gif" />
-                                    </a>
-                                </div>
-                                <div class='info'>
-                                    <div class='pb3'>
-                                    <span class='c257bbc fs16 fOfficinaSanITCBold'></span>
-                                    <span class='c999 fs16'><span title='15/03/2019 - 17:38:12'>15/03/2019 - 17:38:12</span></span>
+                            {{-- @foreach ($comments as $item) --}}
+                                <div class='item'>
+                                    <div class='khungAnh'>
+                                        <a class='khungAnhCrop' href='Tran Bich Thuy' title='Tran Bich Thuy'>
+                                        <img alt="Tran Bich Thuy" class="" src="https://mizuiku-emyeunuocsach.vn/pic/icon/no_image.gif" />
+                                        </a>
                                     </div>
-                                    <div class='cont'>
-                                    Tôi muốn hiểu thêm về chủ đề 2
+                                    <div class='info'>
+                                        <div class='pb3'>
+                                        <span class='c257bbc fs16 fOfficinaSanITCBold'></span>
+                                        <span class='c999 fs16'><span title='15/03/2019 - 17:38:12'>15/03/2019 - 17:38:12</span></span>
+                                        </div>
+                                        <div class='cont'>
+                                        Tôi muốn hiểu thêm về chủ đề 2
+                                        </div>
                                     </div>
+                                    <div class='cb'></div>
                                 </div>
-                                <div class='cb'></div>
-                            </div>
+                            {{-- @endforeach --}}
                         </div>
                     </div>
                     <div id="view2" class="tabcont">
@@ -96,7 +98,7 @@
                 <div class='tenbai'>
                     <a href='javascript:;' title='' class='backstudy'></a>
                     <div class='name'>
-                    {{ $listArticle[0]->title }}
+                    {{ !empty($listArticle) ? $listArticle[0]->title : null }}
                     </div>
                     <a href='javascript:history.go(-1)' title='' class='backpage'>{{ trans('client.back') }}</a>
                     <div class='cb'></div>
@@ -107,7 +109,7 @@
                 <script type='text/javascript'>
                     var iid = 276;
                     jwplayer('videoPlayer').setup({
-                        file: '{{ $listArticle[0]->url }}',
+                        file: '{{ !empty($listArticle) ? $listArticle[0]->url : null }}',
                         width: '100%',
                         aspectratio: '16:9',
                         mute: 'false',

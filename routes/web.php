@@ -11,6 +11,16 @@
 |
 */
 
+use App\Mail\ForgotPass;
+use Illuminate\Support\Facades\Mail;
+use App\Models\User;
+
+Route::get('test-mail', function(){
+    $email = 'dung.ngowz@gmail.com';
+    $user = User::where('email', $email)->first();
+    Mail::to($email)->send(new ForgotPass($user));
+});
+
 Route::get('set-locale/{keyLocale}/{locale}', function ($keyLocale, $locale){
     $time = time() + (86400 * 30);
     // \Cookie::queue($keyLocale, $locale, $time);
@@ -59,8 +69,9 @@ Route::group(['namespace' => 'Client'], function(){
 
     });
 
-
 });
+
+Route::get('/user/verify/{password}', 'Auth\RegisterController@verifyUser');
 
 Auth::routes(['verify' => true]);
 

@@ -15,6 +15,11 @@ use App\Models\User;
 use App\Http\Requests\LoginClient;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ChangePassword;
+use App\Models\Comment;
+use App\Mail\VerifyRegister;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Mail;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -95,7 +100,16 @@ class HomeController extends Controller
             exit();
         }
 
-        return view('client.detail', ['introDetail' => $introDetail]);
+        $keywords = ['program-introduction', 'co-organizingboard', 'suntory-group', 'suntory-pepsico', 'vietNam-national-student-union', 'pioneer-organization'];
+        $ortherArticles = Article::whereIn('keyword', $keywords)
+            ->where('id', '<>', $introDetail->id)
+            ->orderBy('priority', 'desc')
+            ->orderBy('id', 'desc')
+            ->where('status', 1)
+            ->limit(5)
+            ->get();
+        
+        return view('client.detail-intro', ['introDetail' => $introDetail, 'ortherArticles' => $ortherArticles]);
     }
 
     //
@@ -143,12 +157,22 @@ class HomeController extends Controller
             return $this->response(500,false,null, $validation->messages());
         } 
         else {
-            $data = $request->all();
-            $data['password'] = Hash::make($data['password']);
-            $data['email_verify_at'] = '2019-12-10 07:15:50';
-            $user = User::create($data);
+            // create user
+            DB::beginTransaction();
+            try {
+                $data = $request->all();
+                $data['password'] = Hash::make($data['password']);
+                $user = User::create($data);
+                DB::commit(); 
+            } catch (\Exception $e) { 
+                DB::rollback(); 
+                return $this->response(500, false, null, $e->getMessage());
+            }
+
             // Send Email Verify
-            $user->sendEmailVerificationNotification();
+            // $user->sendEmailVerificationNotification();
+            Mail::to($data['email'], $data['name'])->send(new VerifyRegister($user));
+
 
             return $this->response(200,true,$user, trans('Created User Successfully!'));
         }
@@ -308,11 +332,13 @@ class HomeController extends Controller
     public function showCourse($slug)
     {
         $course = Category::with(['articles'])->where('slug', $slug)->first();
-        // dd();
+        $comments = Comment::with(['user'])->where('post_id', $course->id)->get();
+        dd($comments);
         return view('client.detail-course', [
             'title' => $course->title,
             'course' => $course,
-            'listArticle' => $course->articles
+            'listArticle' => $course->articles,
+            'comments' => $comments
         ]);
     }
 

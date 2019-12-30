@@ -60,5 +60,11 @@ return [
     'delete_selected_item' => 'Delete selected items',
     'video_duration' => 'Video Duration',
     'enter_video_duration' => 'Enter Video Duration',
-    'pls-choose-item' => 'Please choose item you want to delete'
+    'pls-choose-item' => 'Please choose item you want to delete',
+    'views' => 'Views',
+    'enter_views' => 'Enter views',
+    'suntory_group' => 'Suntory Group',
+    'suntory_pepsico' => 'Suntory PepsiCo Việt Nam',
+    'vietNam_national_student_union' => 'VietNam National Student Unions',
+    'pioneer_organization'
 ];

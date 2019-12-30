@@ -28,17 +28,17 @@ class AppServiceProvider extends ServiceProvider
     public function boot(Request $request)
     {
         // Send Email Verify
-        VerifyEmail::toMailUsing(function ($notifiable, $url) {
-            $user = $notifiable->toArray();
+        // VerifyEmail::toMailUsing(function ($notifiable, $url) {
+        //     $user = $notifiable->toArray();
 
-            return (new MailMessage)
-                ->subject(config('app.name'))
-                ->markdown('mails.verify-message', [
-                    'name' => $user['name'],
-                    // 'email' => $user['email'],
-                    // 'password' => $user['password'],
-                    'url_verify' => $url
-            ]);
-        });
+        //     return (new MailMessage)
+        //         ->subject(config('app.name'))
+        //         ->markdown('mails.verify-message', [
+        //             'name' => $user['name'],
+        //             // 'email' => $user['email'],
+        //             // 'password' => $user['password'],
+        //             'url_verify' => $url
+        //     ]);
+        // });
     }
 }

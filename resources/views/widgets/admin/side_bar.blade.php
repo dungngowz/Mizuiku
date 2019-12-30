@@ -51,12 +51,13 @@
                 </li>
 
                 {{-- About Us --}}
-                <li class="sidebar-item {{in_array(request()->keyword, ['program-introduction', 'co-organizingboard']) ? 'selected' : ''}}"> 
+                <?php $keywordsIntro = ['program-introduction', 'co-organizingboard', 'suntory-group', 'suntory-pepsico', 'vietNam-national-student-union', 'pioneer-organization']; ?>
+                <li class="sidebar-item {{in_array(request()->keyword, $keywordsIntro) ? 'selected' : ''}}"> 
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="mdi mdi-receipt"></i>
                         <span class="hide-menu">{{trans('admin.about_us')}}</span>
                     </a>
-                    <ul aria-expanded="false" class="collapse first-level {{in_array(request()->keyword, ['program-introduction', 'co-organizingboard']) ? 'in' : ''}}">
+                    <ul aria-expanded="false" class="collapse first-level {{in_array(request()->keyword, $keywordsIntro) ? 'in' : ''}}">
                         <li class="sidebar-item {{request()->keyword == 'program-introduction' ? 'active' : ''}}">
                             <a href="{{ url('admin/post/?keyword='. config('const.keywords.program_introduction')) }}" class="sidebar-link">
                                 <i class="mdi mdi-note-outline"></i>
@@ -68,6 +69,34 @@
                             <a href="{{ url('admin/post/?keyword=' . config('const.keywords.co_organizingboard')) }}" class="sidebar-link">
                                 <i class="mdi mdi-note-outline"></i>
                                 <span class="hide-menu">{{trans('admin.co_organizing_board')}}</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item {{request()->keyword == 'suntory-group' ? 'active' : ''}}">
+                            <a href="{{ url('admin/post/?keyword=suntory-group') }}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu">{{trans('admin.suntory_group')}}</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item {{request()->keyword == 'suntory-pepsico' ? 'active' : ''}}">
+                            <a href="{{ url('admin/post/?keyword=suntory-pepsico') }}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu">{{trans('admin.suntory_pepsico')}}</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item {{request()->keyword == 'vietNam-national-student-union' ? 'active' : ''}}">
+                            <a href="{{ url('admin/post/?keyword=vietNam-national-student-union') }}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu">{{trans('admin.vietNam_national_student_union')}}</span>
+                            </a>
+                        </li> 
+
+                        <li class="sidebar-item {{request()->keyword == 'pioneer-organization' ? 'active' : ''}}">
+                            <a href="{{ url('admin/post/?keyword=pioneer-organization') }}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu" style="width: 80%; overflow: hidden;">{{trans('admin.pioneer_organization')}}</span>
                             </a>
                         </li>
                     </ul>

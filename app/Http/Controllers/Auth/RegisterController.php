@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -68,5 +69,17 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function verifyUser($password)
+    {
+        $verifyUser = User::where('password', $password)->first();
+        if(isset($verifyUser) ){
+            $verifyUser->email_verified_at = Carbon::now()->timestamp;
+            $verifyUser->save();
+        } else {
+            return redirect('/')->with('warning', true);
+        }
+        return redirect('/')->with('verified', true);
     }
 }

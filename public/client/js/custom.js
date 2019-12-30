@@ -1,21 +1,15 @@
-
-// function ResetLabel() {
-//     if ($("#DisplayLoadControl_Login_tbUser").next().text() !== "Tên đăng nhập cần có ít nhất 8 ký tự. Ví dụ: Mizuiku123") {
-//         $("#DisplayLoadControl_Login_tbUser").next().text("Tên đăng nhập cần có ít nhất 8 ký tự. Ví dụ: Mizuiku123").removeClass("cRed");
-//     }
-// }
-
-// function ResetLabel2() {
-//     if ($("#DisplayLoadControl_Login_tbPass").next().text() !== "Mật khẩu cần có ít nhất 8 ký tự bao gồm: Chữ, số, chữ in hoa và kí tự đặc biệt. Ví dụ: Mizuiku12@") {
-//         $("#DisplayLoadControl_Login_tbPass").next().text("Mật khẩu cần có ít nhất 8 ký tự bao gồm: Chữ, số, chữ in hoa và kí tự đặc biệt. Ví dụ: Mizuiku12@").removeClass("cRed");
-//     }
-// }
+var loadingAjax = false;
 
 function ResetLabel3() {
     $("label.loginnote").hide();
 }
 
 function ForgotPass(url) {
+    if(loadingAjax){
+        return false;
+    }
+    loadingAjax = true;
+
     var email = $("#DisplayLoadControl_Login_TextBox1").val();
     var token = $('#token_forgot').val();
     if (!CheckEmailValue($("#DisplayLoadControl_Login_TextBox1").val())) {
@@ -34,24 +28,13 @@ function ForgotPass(url) {
         },
         success: function(res) {
             loading(false);
-            // if (res[0] === "unActive") {
-            //     $("#success .tac").html("Tài khoản của bạn chưa được kích hoạt!");
-            //     $(".success_open").click();
-            // } else if (res[0] === "LockUser") {
-            //     $("#success .tac").html("Tài khoản của bạn đang tạm khóa!");
-            //     $(".success_open").click();
-            // } else if (res[0] === "Error") {
-            //     $("#success .tac").html("Hệ thống đang bận, bạn vui lòng thử lại sau!");
-            //     $(".success_open").click();
-            // } else {
-            //     $("#success .tac").html("Reset mật khẩu thành công, vui lòng kiểm tra email để nhận mật khẩu mới!");
-            //     $(".success_open").click();
-            // }
-            console.log('Success')
+            loadingAjax = false;
+            $("#DisplayLoadControl_Login_TextBox1").val('');
         },
         error: function(error) { //Lỗi xảy ra
             loading(false);
-            console.log(error)
+            loadingAjax = false;
+            $("#DisplayLoadControl_Login_TextBox1").val('');
             if(error.status == 200) {
                 $("#success .tac").html("Reset mật khẩu thành công, vui lòng kiểm tra email để nhận mật khẩu mới!");
                 $(".success_open").click();

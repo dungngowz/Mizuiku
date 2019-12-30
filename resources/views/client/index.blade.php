@@ -173,6 +173,10 @@
             alert('Kích hoạt thành công! Vui lòng đăng nhập để bắt đầu khóa học')
             $('#loginForm').popup('show');
         }
+        if({{ session()->has('warning') ? session()->get('warning') : 0 }}) {
+            alert('Xin lỗi, email của bạn không thể xác định.')
+            $('#slide').popup('show');
+        }
         if({{ request()->showResetForm ?? 0 }}) {
             $('#resetForm').popup('show');
         }
