@@ -157,7 +157,7 @@ class NewsController extends Controller
         }
 
         $articleCategories = Category::withoutGlobalScope(LanguageScope::class)
-            ->where('language', $currentLang)
+            ->where('language', $record->language)
             ->where('type', 'news')
             ->get();
 
