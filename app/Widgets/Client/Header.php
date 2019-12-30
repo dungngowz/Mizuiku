@@ -35,7 +35,8 @@ class Header extends AbstractWidget
             'config' => $this->config,
             'segments' => empty($request->segments()) ? [''] : $request->segments(),
             'categoriesNews' => $categoriesNews,
-            'articlesAboutUs' => $articlesAboutUs
+            'articlesAboutUs' => $articlesAboutUs,
+            'courseListHeader' => $courseListHeader
         ]);
     }
 }
