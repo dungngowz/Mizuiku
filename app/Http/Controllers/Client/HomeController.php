@@ -331,8 +331,13 @@ class HomeController extends Controller
      */
     public function showCourse($slug)
     {
-        $course = Category::with(['articles'])->where('slug', $slug)->first();
-        $comments = Comment::with(['user'])->where('post_id', $course->id)->get();
+        $course = Category::where('slug', $slug)->first();
+
+        if(!$course){
+            return redirect('/');
+        }
+
+        $comments = Comment::where('post_id', $course->id)->get();
 
         return view('client.detail-course', [
             'title' => $course->title,
