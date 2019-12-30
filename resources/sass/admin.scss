@@ -53,3 +53,6 @@ table.dataTable tbody th, table.dataTable tbody td{
 #datatable{
     width: 100% !important;
 }
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    padding: 0;
+}
