@@ -333,7 +333,7 @@ class HomeController extends Controller
     {
         $course = Category::where('slug', $slug)->first();
 
-        if(!$course){
+        if(!$course || !empty($course->articles)){
             return redirect('/');
         }
 

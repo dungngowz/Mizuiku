@@ -6,20 +6,23 @@
         <div class="top">
             <div class="left">
                 <ul class="tabs" data-persist="true">
-                    <li><a href="#view1">
-                    <span class="ico" style="background: url(../client/css/KhoaHoc/icotab1.png) top center no-repeat"></span>
-                    <span class="text">{{ trans('client.lesson') }}</span>
-                    </a>
+                    <li>
+                        <a href="#view1">
+                            <span class="ico" style="background: url(../client/css/KhoaHoc/icotab1.png) top center no-repeat"></span>
+                            <span class="text">{{ trans('client.lesson') }}</span>
+                        </a>
                     </li>
-                    <li><a href="#view3">
-                    <span class="ico" style="background: url(../client/css/KhoaHoc/icotab3.png) top center no-repeat"></span>
-                    <span class="text">{{ trans('client.discuss') }}</span>
-                    </a>
+                    <li>
+                        <a href="#view3">
+                            <span class="ico" style="background: url(../client/css/KhoaHoc/icotab3.png) top center no-repeat"></span>
+                            <span class="text">{{ trans('client.discuss') }}</span>
+                        </a>
                     </li>
-                    <li><a href="#view2">
-                    <span class="ico" style="background: url(../client/css/KhoaHoc/icotab2.png) top center no-repeat"></span>
-                    <span class="text">{{ trans('client.document') }}</span>
-                    </a>
+                    <li>
+                        <a href="#view2">
+                            <span class="ico" style="background: url(../client/css/KhoaHoc/icotab2.png) top center no-repeat"></span>
+                            <span class="text">{{ trans('client.document') }}</span>
+                        </a>
                     </li>
                 </ul>
                 <div class="tabcontents">
