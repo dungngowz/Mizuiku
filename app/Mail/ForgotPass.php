@@ -13,15 +13,16 @@ class ForgotPass extends Mailable
     use Queueable, SerializesModels;
 
     public $user;
-
+    public $token;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, $token)
     {
         $this->user = $user;
+        $this->token = $token;
     }
 
     /**
@@ -31,6 +32,11 @@ class ForgotPass extends Mailable
      */
     public function build()
     {
-        return $this->subject('Xác nhận lấy lại mật khẩu')->view('mails.forgot-pass');
+        return $this->subject('Xác nhận lấy lại mật khẩu')
+                    ->view('mails.forgot-pass')
+                    ->with([
+                        'user' => $this->user,
+                        'token' => $this->token
+                    ]);
     }
 }

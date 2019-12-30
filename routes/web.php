@@ -69,8 +69,9 @@ Route::group(['namespace' => 'Client'], function(){
 
     });
 
-
 });
+
+Route::get('/user/verify/{password}', 'Auth\RegisterController@verifyUser');
 
 Auth::routes(['verify' => true]);
 

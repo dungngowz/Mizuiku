@@ -50,8 +50,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function sendPasswordResetNotification($token)
     {
-        Mail::to($this->email)->send(new ForgotPass($this));
-        //$this->notify(new ResetPassword($token));
+        Mail::to($this->email)->send(new ForgotPass($this, $token));
+        // $this->notify(new ResetPassword($token));
     }
 
     /**

@@ -46,7 +46,6 @@ class ResetPassword extends Notification
             ->action('Đặt Lại Mật Khẩu', url('/reset-password/true', $this->token))
             ->line('Liên kết đặt lại mật khẩu này sẽ hết hạn sau 60 phút.')
             ->line('Nếu bạn không yêu cầu đặt lại mật khẩu, không cần thực hiện thêm hành động nào.');
-        //dd($a);
         return $a;
     }
 
