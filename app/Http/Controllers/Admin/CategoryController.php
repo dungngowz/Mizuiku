@@ -83,16 +83,7 @@ class CategoryController extends Controller
     public function store(StoreCategory $request)
     {
         $record = new Category;
-
-        $params = $request->all();
-
-        if(isset($params['created_at']) && strpos($params['created_at'], '/') !== false){
-            $created_at = explode('-', $params['created_at']);
-            list($d, $m, $y) = explode('/', trim($created_at[1]));
-            $params['created_at'] = strtotime($y . '-' . $m . '-' . $d . ' ' . trim($created_at[0]));
-        }
-
-        $record->fill($params);
+        $record->fill($request->all());
 
         if($request->ref_id){
             $record->ref_id = $request->ref_id;
@@ -168,14 +159,7 @@ class CategoryController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
-        $params = $request->all();
-        if(isset($params['created_at']) && strpos($params['created_at'], '/') !== false){
-            $created_at = explode('-', $params['created_at']);
-            list($d, $m, $y) = explode('/', trim($created_at[1]));
-            $params['created_at'] = strtotime($y . '-' . $m . '-' . $d . ' ' . trim($created_at[0]));
-        }
-
-        $record->fill($params);
+        $record->fill($request->all());
         $record->save();
         return redirect('admin/categories?type=' . $record->type);
     }

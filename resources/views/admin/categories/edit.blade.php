@@ -57,13 +57,6 @@
                                 </div>
 
                                 <div class="form-group m-t-20">
-                                    <label>Created At</label>
-                                    <input type="text" name="created_at" class="form-control" value="{{old('created_at', $record->created_at ? $record->created_at : '')}}" placeholder="{{trans('admin.enter_created_at')}}">
-                                    @if($errors->has('created_at'))
-                                        <span class="error-msg">{{$errors->first('created_at')}}</span>
-                                    @endif
-                                </div>
-                                <div class="form-group m-t-20">
                                     <label>{{trans('admin.content')}}</label>
                                     <textarea rows="15" name="content" class="form-control editor">{!! $record->content !!}</textarea>
                                     @if($errors->has('content'))
