@@ -66,6 +66,7 @@ Route::group(['namespace' => 'Client'], function(){
 
         // course
         Route::get('/bai-hoc/{slug}', 'HomeController@showCourse')->name('showCourse');
+        Route::post('/add-comment', 'HomeController@addComment')->name('addComment');
 
     });
 

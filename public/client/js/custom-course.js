@@ -1,20 +1,20 @@
+var _token = $('meta[name="csrf-token"]').attr('content');
+
 function SendComment() {
-    var iid = $("#DisplayLoadControl_ctl00_ctl00_hdIGID").val();
-    var idItem = $("#DisplayLoadControl_ctl00_ctl00_hdIid").val();
     var content = $("#tbComment").val();
+    var post_id = $("#post_id").val();
     if (content === "") {
         $("#tbComment").focus();
         return;
     }
     loading(true);
     jQuery.ajax({
-        url: weburl + "cms/display/KhoaHoc/Ajax/Ajax.aspx",
+        url: '/add-comment',
         type: "POST",
         dataType: "json",
         data: {
-            "action": "comment",
-            "iidCmt": iid,
-            "idItem": idItem,
+            "_token": _token,
+            "post_id": post_id,
             "content": content
         },
         success: function (res) {
@@ -25,6 +25,7 @@ function SendComment() {
         },
         error: function (error) {//Lỗi xảy ra
             loading(false);
+            console.log(error)
             alert("Hệ thống đang bận, bạn vui lòng thử lại sau!");
         }
     });

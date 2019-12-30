@@ -19,6 +19,6 @@ class Comment extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'created_user_id', 'updated_user_id', 'delete_user_id');
+        return $this->belongsTo('App\Models\User', 'created_user_id');
     }
 }

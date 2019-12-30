@@ -333,7 +333,7 @@ class HomeController extends Controller
     {
         $course = Category::with(['articles'])->where('slug', $slug)->first();
         $comments = Comment::with(['user'])->where('post_id', $course->id)->get();
-        dd($comments);
+
         return view('client.detail-course', [
             'title' => $course->title,
             'course' => $course,
@@ -342,4 +342,24 @@ class HomeController extends Controller
         ]);
     }
 
+     /**
+     * Add Comment
+     */
+    public function addComment(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $comments = Comment::create([
+                'post_id' => $request->post_id,
+                'content' => $request->content,
+                'created_user_id' => $request->user()->id,
+                'updated_user_id' => $request->user()->id,
+            ]);
+            DB::commit(); 
+            return $this->response(200,true,true, trans('Create comment successfully!'));
+        } catch (\Exception $e) { 
+            DB::rollback(); 
+            return $this->response(500,false,null, $e->getMessage());
+        }
+    }
 }

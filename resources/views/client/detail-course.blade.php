@@ -43,36 +43,36 @@
                             @endforeach
                         </ul>
                     </div>
-                    <input type="hidden" name="DisplayLoadControl$ctl00$ctl00$hdIid" id="DisplayLoadControl_ctl00_ctl00_hdIid" value="276" />
                     <div class="kiemtradiv">
                         <a href="javascript:void(0)" onclick="popup_AA()" title="" class="kiemtra">{{ trans('client.test_knowl') }}</a>
                     </div>
                     </div>
                     <div id="view3" class="tabcont">
                         <div class="ques">
+                            <input type="hidden" name="post_id" id="post_id" value="{{ $course->id }}" />
                             <textarea id="tbComment" class="tartl"></textarea>
                             <a href="javascript:;" onclick="SendComment()" title="" class="btnques">{{ trans('client.comment') }}</a>
                         </div>
                         <div class='ans'>
-                            {{-- @foreach ($comments as $item) --}}
+                            @foreach ($comments as $item)
                                 <div class='item'>
                                     <div class='khungAnh'>
-                                        <a class='khungAnhCrop' href='Tran Bich Thuy' title='Tran Bich Thuy'>
-                                        <img alt="Tran Bich Thuy" class="" src="https://mizuiku-emyeunuocsach.vn/pic/icon/no_image.gif" />
+                                        <a class='khungAnhCrop' href='' title='{{ $item->user->name }}'>
+                                        <img alt="{{ $item->user->name }}" src="{{ $item->user->avatar }}" />
                                         </a>
                                     </div>
                                     <div class='info'>
                                         <div class='pb3'>
                                         <span class='c257bbc fs16 fOfficinaSanITCBold'></span>
-                                        <span class='c999 fs16'><span title='15/03/2019 - 17:38:12'>15/03/2019 - 17:38:12</span></span>
+                                        <span class='c999 fs16'><span title='{{ date('d/m/Y - H:i:s', strtotime($item->created_at)) }}'>{{ date('d/m/Y - H:i:s', strtotime($item->created_at)) }}</span></span>
                                         </div>
                                         <div class='cont'>
-                                        Tôi muốn hiểu thêm về chủ đề 2
+                                            {{ $item->content }}
                                         </div>
                                     </div>
                                     <div class='cb'></div>
                                 </div>
-                            {{-- @endforeach --}}
+                            @endforeach
                         </div>
                     </div>
                     <div id="view2" class="tabcont">
