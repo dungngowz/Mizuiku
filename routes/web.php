@@ -16,9 +16,10 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 
 Route::get('test-mail', function(){
-    $email = 'dung.ngowz@gmail.com';
+    $email = 'dung.ngopax19@gmail.com';
     $user = User::where('email', $email)->first();
-    Mail::to($email)->send(new ForgotPass($user));
+    $a = Mail::to($email)->send(new ForgotPass($user, '$tokena'));
+    dd($a);
 });
 
 Route::get('set-locale/{keyLocale}/{locale}', function ($keyLocale, $locale){

@@ -64,3 +64,7 @@ table.dataTable tbody td {
   width: 100% !important;
 }
 
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0;
+}
+

@@ -4,6 +4,8 @@ return [
     'home' => 'Home',
     'about-us' => 'About us',
     'news' => 'News',
+    'program_introduction' => '"Mizuiku - I love clean water" program introduction',
+    'partner_introduction' => 'Co-organizing Board',
     'about-us-1' => 'Mizuiku - I love clean water" program introduction',
     'about-us-2' => 'Co-organizing Board',
     'gallery' => 'Gallery',

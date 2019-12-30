@@ -80,7 +80,7 @@
 
                                     <div class="form-group m-t-20">
                                         <label>{{trans('admin.views')}}</label>
-                                        <input type="number" name="views" class="form-control" value="{{old('views', $record->views ? $record->views : 0)}}" placeholder="{{trans('admin.enter_views')}}">
+                                        <input type="number" name="views" class="form-control" value="{{old('views', $record->views ? $record->views : '')}}" placeholder="{{trans('admin.enter_views')}}">
                                         @if($errors->has('views'))
                                             <span class="error-msg">{{$errors->first('views')}}</span>
                                         @endif
