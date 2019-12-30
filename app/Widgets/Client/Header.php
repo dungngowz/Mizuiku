@@ -27,7 +27,7 @@ class Header extends AbstractWidget
             ->orderBy('id', 'desc')
             ->where('status', 1)->get();
 
-        $categoriesNews = Category::orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->get();
+        $categoriesNews = Category::where('type', 'news')->orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->get();
 
         $courseListHeader = Category::where('type', 'course')->orderBy('priority', 'desc')->orderBy('created_at', 'desc')->get();
 
