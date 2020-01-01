@@ -37,7 +37,7 @@ class CourseVideoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(Request $request) {
-        $records = Article::where('keyword', 'course')->get();
+        $records = Article::with('category')->where('keyword', 'course')->get();
 
         return DataTables::of($records)
             ->RawColumns(['actions'])
