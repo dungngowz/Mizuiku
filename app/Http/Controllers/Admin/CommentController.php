@@ -41,6 +41,11 @@ class CommentController extends Controller
                     'item' => $item
                 ]);
             })
+            ->addColumn('status', function($item) {
+                return view('admin.comment.cols-status', [
+                    'item' => $item
+                ]);
+            })
             ->make(true);
     }
 

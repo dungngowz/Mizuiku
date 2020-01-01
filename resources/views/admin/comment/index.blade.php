@@ -60,6 +60,7 @@
                     },{
                         data: 'status',
                         name: 'status',
+                        className: 'text-center',
                     },{
                         data: 'ip',
                         name: 'ip',
