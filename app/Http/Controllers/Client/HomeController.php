@@ -30,9 +30,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categoriesNews = Category::orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->take(2)->get();
+        $categoriesNews = Category::where('type', 'news')->orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->take(2)->get();
       
-        $newsByCats = Category::sortBy()->where('status', 1)->take(2)->get()->map(function ($cat) {
+        $newsByCats = Category::where('type', 'news')->sortBy()->where('status', 1)->take(2)->get()->map(function ($cat) {
             return $cat->articles()->where('status', 1)->sortBy()->first();
         })->filter(function ($value, $key) {
             return $value;
@@ -40,7 +40,7 @@ class HomeController extends Controller
 
         // find article is "news"
         $cats = Category::where('type', 'news')->where('status', 1)->pluck('id')->toArray();
-        $news = Article::whereIn('category_id', $cats)->where('status', 1)->sortBy()->get();
+        $news = Article::whereIn('category_id', $cats)->where('keyword', 'news')->where('status', 1)->sortBy()->get();
         $compare = $news->diff($newsByCats)->take(5);
 
         $intro = Article::where('keyword', 'program-introduction')->sortBy()->first();

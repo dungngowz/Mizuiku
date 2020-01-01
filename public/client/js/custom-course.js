@@ -261,7 +261,6 @@ $('#baihoc .right .tenbai .backstudy').click(function () {
     $('#baihoc .right').toggleClass('ac');
 });
 function luotXem(iid) {
-    console.log(iid);
     if (iid !== "") {
         jQuery.ajax({
             url: weburl + "cms/display/Learning/Ajax/Ajax.aspx",
