@@ -111,12 +111,14 @@
                 </div>
                 <script type='text/javascript'>
                     var iid = 276;
+                    var auto = "false";
+                    if ($('#AutoPlay').hasClass('ac')) auto = 'true';
                     jwplayer('videoPlayer').setup({
                         file: '{{ !empty($listArticle) ? $listArticle[0]->url : null }}',
                         width: '100%',
                         aspectratio: '16:9',
                         mute: 'false',
-                        autostart: 'true',
+                        autostart: auto,
                         repeat: 'false',
                         primary: 'html5',
                         preload: 'auto',
@@ -127,6 +129,9 @@
                                     luotXem(iid);
                                     iid = '';
                                 }
+                            },
+                            onComplete: function() {
+                                return alert("End Video");
                             }
                         }
                     });

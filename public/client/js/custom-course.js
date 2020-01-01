@@ -56,6 +56,7 @@ $('#baihoc .left .name').click(function () {
     var iid = $(".tabcontents li.ac").attr("iid");
     var auto = "false";
     if ($('#AutoPlay').hasClass('ac')) auto = 'true';
+    
     jwplayer('videoPlayer').setup({
         file: a,
         //image: '/pic/video/video2.jpg', 
@@ -68,6 +69,7 @@ $('#baihoc .left .name').click(function () {
         preload: 'auto',
         events: {
             onTime: function (event) {
+                console.log(event);
                 timeAction = '30';
                 if (jwplayer().getDuration()< 30) {
                     luotXem(iid);
@@ -78,7 +80,9 @@ $('#baihoc .left .name').click(function () {
                         iid = "";
                     }
                 }
-                
+            },
+            onComplete: function() {
+                return alert("End Video");
             }
         }
     });
@@ -130,6 +134,9 @@ $('#nextvideo').click(function () {
                             luotXem(iid);
                             iid = "";
                         }
+                    },
+                    onComplete: function() {
+                        return alert("End Video");
                     }
                 }
             });
@@ -161,11 +168,17 @@ $('#nextvideo').click(function () {
                             luotXem(iid);
                             iid = "";
                         }
+                    },
+                    onComplete: function() {
+                        return alert("End Video");
                     }
                 }
             });
         }
     }
+});
+$('#AutoPlay').click(function(){
+    $(this).toggleClass('ac');
 });
 $('#prevvideo').click(function () {
     if ($('#view1 ul li.ac.fvideo').parents('.parent').hasClass('fpa')) {
@@ -199,6 +212,9 @@ $('#prevvideo').click(function () {
                             luotXem(iid);
                             iid = "";
                         }
+                    },
+                    onComplete: function() {
+                        return alert("End Video");
                     }
                 }
             });
@@ -230,6 +246,9 @@ $('#prevvideo').click(function () {
                             luotXem(iid);
                             iid = "";
                         }
+                    },
+                    onComplete: function() {
+                        return alert("End Video");
                     }
                 }
             });
