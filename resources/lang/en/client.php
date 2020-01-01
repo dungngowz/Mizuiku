@@ -170,5 +170,6 @@ return [
     'document' => 'Document',
     'test_knowl' => 'Test your knowledge',
     'comment' => 'Comment',
-    'back' => 'Back'
+    'back' => 'Back',
+    'course-elearning' => 'general-introduction-about-e-learning-course'
 ];

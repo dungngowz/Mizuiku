@@ -36,10 +36,16 @@
                             {!! $eLearning->content !!}
                         </div>
                     @endif
-                    <div class='nav'>
-                    <a href='javascript:;' class='nowbt loginForm_open'>{{ __('client.sign-in-for-learn') }}</a>
-                    </div>
 
+                    @if ( \Auth::check() )
+                        <div class='nav'>
+                            <a href='{{ url("khoa-hoc") . '/' . trans('client.course-elearning') }}' class='nowbt'>{{ __('client.sign-in-for-learn') }}</a>
+                        </div>    
+                    @else
+                        <div class='nav'>
+                            <a href='javascript:;' class='nowbt loginForm_open'>{{ __('client.sign-in-for-learn') }}</a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

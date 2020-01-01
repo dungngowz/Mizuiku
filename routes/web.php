@@ -11,17 +11,6 @@
 |
 */
 
-use App\Mail\ForgotPass;
-use Illuminate\Support\Facades\Mail;
-use App\Models\User;
-
-Route::get('test-mail', function(){
-    $email = 'dung.ngopax19@gmail.com';
-    $user = User::where('email', $email)->first();
-    $a = Mail::to($email)->send(new ForgotPass($user, '$tokena'));
-    dd($a);
-});
-
 Route::get('set-locale/{keyLocale}/{locale}', function ($keyLocale, $locale){
     $time = time() + (86400 * 30);
     // \Cookie::queue($keyLocale, $locale, $time);
@@ -66,7 +55,7 @@ Route::group(['namespace' => 'Client'], function(){
         Route::post('/change-password', 'HomeController@updateChangePassword')->name('updateChangePassword');
 
         // course
-        Route::get('/bai-hoc/{slug}', 'HomeController@showCourse')->name('showCourse');
+        Route::get('/khoa-hoc/{slug}', 'HomeController@showCourse')->name('showCourse');
         Route::post('/add-comment', 'HomeController@addComment')->name('addComment');
 
     });

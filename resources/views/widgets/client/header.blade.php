@@ -47,7 +47,7 @@
                 @if ( \Auth::check() )
                 <ul class='subloginx sublogin2'>
                     @foreach ($courseListHeader as $item)
-                        <li><a href='{{ url("bai-hoc/$item->slug") }}' title='{{ $item->title }}'>{{ $item->title }}</a></li>
+                        <li><a href='{{ url("khoa-hoc/$item->slug") }}' title='{{ $item->title }}'>{{ $item->title }}</a></li>
                     @endforeach
                     
                     <li><a href='/thong-ke' title='{{ __('client.statistical') }}'>{{ __('client.statistical') }}</a></li>

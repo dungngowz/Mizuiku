@@ -331,9 +331,9 @@ class HomeController extends Controller
      */
     public function showCourse($slug)
     {
-        $course = Category::where('slug', $slug)->first();
-
-        if(!$course || !empty($course->articles)){
+        $course = Category::where('type', 'course')->where('slug', $slug)->first();
+        
+        if(!$course || empty($course->articles)){
             return redirect('/');
         }
 
