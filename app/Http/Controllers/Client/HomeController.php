@@ -329,7 +329,7 @@ class HomeController extends Controller
     /**
      * Show Course
      */
-    public function showCourse($slug)
+    public function showCourse(Request $request, $slug)
     {
         $course = Category::where('type', 'course')->where('slug', $slug)->first();
         
@@ -357,6 +357,7 @@ class HomeController extends Controller
             $comments = Comment::create([
                 'post_id' => $request->post_id,
                 'content' => $request->content,
+                'ip' => $request->ip(),
                 'created_user_id' => $request->user()->id,
                 'updated_user_id' => $request->user()->id,
             ]);

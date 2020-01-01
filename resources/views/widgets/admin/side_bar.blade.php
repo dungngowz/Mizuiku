@@ -15,7 +15,7 @@
                 {{-- Course --}}
                 @php
                     $activeTreeCourse = false;
-                    if($segments[1] == 'course-video'){
+                    if($segments[1] == 'course-video' || $segments[1] == 'comment'){
                         $activeTreeCourse = true;
                     }else if($segments[1] == 'categories'){
                         $activeTreeCourse = (request()->type == 'course' || request()->keyword == 'course');
@@ -38,6 +38,13 @@
                             <a href="{{ url('admin/categories?type=course') }}" class="sidebar-link">
                                 <i class="mdi mdi-note-outline"></i>
                                 <span class="hide-menu">{{trans('admin.course_categories')}}</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item {{($segments[1] == 'comment') ? 'active' : ''}}">
+                            <a href="{{ url('admin/comment') }}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu">{{trans('admin.comment')}}</span>
                             </a>
                         </li>
                     </ul>

@@ -14,25 +14,30 @@
 
         {{-- Form Edit --}}
         <div class="row">
-            <div class="col-6">
-                <form action="{{url('admin/contact-us/' . $record->id)}}" method="post">
+            <div class="col-12">
+                <form action="{{url('admin/comment/' . $record->id)}}" method="post">
                     {{ csrf_field() }}
+
+                    @if ($record->id)
+                        <input type="hidden" name="id" value="{{$record->id}}">
+                        {{ method_field('PUT') }}
+                    @endif
 
                     <div class="card">
                         <div class="card-body">
-                            <div class="form-group m-t-20">
-                                <label>{{trans('admin.fullname')}}</label>
-                                <input type="text" name="fullname" class="form-control" value="{{$record->fullname}}">
-                            </div>
 
                             <div class="form-group m-t-20">
-                                <label>{{trans('admin.phone')}}</label>
-                                <input type="text" name="phone" class="form-control" value="{{$record->phone}}">
-                            </div>
-
-                            <div class="form-group m-t-20">
-                                <label>{{trans('admin.email')}}</label>
-                                <input type="text" name="email" class="form-control" value="{{$record->email}}">
+                                <label>{{trans('admin.status')}}</label>
+                                <select name="category" class="select2 form-control custom-select">
+                                    @php
+                                        $status = old('status', $record->status ? $record->status : 1);
+                                    @endphp
+                                    <option {{ ($status == 0) ? 'selected' : '' }}>{{trans('admin.hide')}}</option>
+                                    <option {{ ($status == 1) ? 'selected' : '' }}>{{trans('admin.show')}}</option>
+                                </select>
+                                @if($errors->has('status'))
+                                    <span class="error-msg">{{$errors->first('status')}}</span>
+                                @endif
                             </div>
 
                             <div class="form-group m-t-20">
@@ -42,14 +47,15 @@
 
                             <div class="form-group m-t-20">
                                 <label>{{trans('admin.content')}}</label>
-                                <textarea name="content" class="form-control">{!! $record->content !!}</textarea>
+                                <textarea rows="8" name="content" class="form-control">{!! $record->content !!}</textarea>
                             </div>
                         </div>
                         <div class="border-top">
                             <div class="card-body text-right">
-                                <a href="{{url('admin/contact-us')}}">
+                                <a href="{{url('admin/comment')}}">
                                     <button type="button" class="btn">{{trans('admin.back')}}</button>
                                 </a>
+                                <button type="submit" class="btn btn-submit-gallery btn-success">{{trans('admin.submit')}}</button>
                             </div>
                         </div>
                     </div>

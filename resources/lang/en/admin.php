@@ -66,5 +66,6 @@ return [
     'suntory_group' => 'Suntory Group',
     'suntory_pepsico' => 'Suntory PepsiCo Việt Nam',
     'vietNam_national_student_union' => 'VietNam National Student Unions',
-    'pioneer_organization'
+    'pioneer_organization'=> 'Central Team Council Ho Chi Minh TNTP Team',
+    'comment' => 'Comment'
 ];
