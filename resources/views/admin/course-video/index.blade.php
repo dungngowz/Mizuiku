@@ -31,6 +31,7 @@
                                         </th>
                                         <th>ID</th>
                                         <th>{{trans('admin.title')}}</th>
+                                        <th>{{trans('admin.category')}}</th>
                                         <th>{{trans('admin.priority')}}</th>
                                         <th>{{trans('admin.language')}}</th>
                                         <th>{{trans('admin.created_at')}}</th>
@@ -72,6 +73,9 @@
                 },{
                     data: 'title',
                     name: 'title'
+                },{
+                    data: 'category.title',
+                    name: 'category.title',
                 },{
                     data: 'priority',
                     name: 'priority',
