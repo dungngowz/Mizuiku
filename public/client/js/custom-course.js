@@ -92,7 +92,7 @@ $('#view1 .parent:last-child').addClass('lpa');
 $('#view1 ul li.ac').parents('.parent').addClass('current');
 
 $('#nextvideo').click(function () {
-    if ($('#view1 ul li.ac.lvideo').parents('.parent').hasClass('lpa')) {
+    if ($('#view1 ul li.ac').next().length == 0) {
         $("#success .tac").html("Không có video nào tiếp theo!");
         $(".success_open").click();
     } else {

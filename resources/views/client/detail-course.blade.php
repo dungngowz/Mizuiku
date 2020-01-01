@@ -29,7 +29,7 @@
                     <div id="view1" class="tabcont">
                     <div class='parent'>
                         <div class='catename'>{{ $course->title }}</div>
-                        <ul>
+                        <ul class="list-video">
                             @foreach ($listArticle as $key => $item)
                                 <li class='item {{ $key == 0 ? "first ac" : "other" }}' iid='{{ $item->id }}' seen='true'>
                                     <div class='ico'></div>
