@@ -111,7 +111,7 @@
                 </div>
                 <script type='text/javascript'>
                     var iid = 276;
-                    var auto = "false";
+                    var auto = true;
                     if ($('#AutoPlay').hasClass('ac')) auto = 'true';
                     jwplayer('videoPlayer').setup({
                         file: '{{ !empty($listArticle) ? $listArticle[0]->url : null }}',
