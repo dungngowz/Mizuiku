@@ -29,9 +29,9 @@
                <div class="Frame1">
                   <div class="mykhoahoc">
                      <ul>
-                        @foreach ($course as $item)
+                        @foreach ($courses as $item)
                         <li>
-                        <a href='{{ url("/bai-hoc/$item->slug") }}' title='{{ $item->title }}'>{{ $item->title }}</a>
+                        <a href='{{ url("/khoa-hoc/$item->slug") }}' title='{{ $item->title }}'>{{ $item->title }}</a>
                            <div class='progres'>{{ trans('client.completed') }}: <span>0 %</span></div>
                         </li>
                         @endforeach
@@ -41,6 +41,23 @@
                </div>
                <p class="fiCielGotham c109ce3 fs14 ttu pb20">Tài liệu khóa học</p>
                <div class="Frame2">
+                  @foreach ($documents as $item)
+                     <div class="item">
+                        <div class="ico">
+                           <img src="{{asset('client/css/KhoaHoc/icon.png')}}" alt="">
+                        </div>
+                        <div class="info">
+                           <a target="_blank" href="javascript://" onclick="showPopupdownload('{{Storage::url($item->file_path)}}')" title="{{$item->file_name}}" class="name download_open" data-popup-ordinal="0" id="open_88736612">
+                              <h3>{{$item->file_name}}</h3>
+                           </a>
+                           <div>
+                              <a target="_blank" href="javascript://" onclick="showPopupdownload('{{Storage::url($item->file_path)}}')" title="{{$item->file_name}}" class="xct download_open" data-popup-ordinal="1" id="open_82092273">{{trans('client.detail')}}</a>
+                              <a target="_blank" href="javascript://" onclick="showPopupdownload('{{Storage::url($item->file_path)}}')" title="download" class="download_open download" data-popup-ordinal="2" id="open_27838032">{{trans('client.download')}}</a>
+                           </div>
+                           <div class="cb"></div>
+                        </div>
+                     </div>
+                  @endforeach
                   <div class="cb"></div>
                </div>
             </div>

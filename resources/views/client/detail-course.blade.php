@@ -101,11 +101,13 @@
                     </div>
                 </div>
             </div>
+
+            
             <div class='right'>
                 <div class='tenbai'>
                     <a href='javascript:;' title='' class='backstudy'></a>
                     <div class='name'>
-                    {{ !empty($listArticle) ? $listArticle[0]->title : null }}
+                        {{ count($listArticle) ? $listArticle[0]->title : null }}
                     </div>
                     <a href='javascript:history.go(-1)' title='' class='backpage'>{{ trans('client.back') }}</a>
                     <div class='cb'></div>
@@ -117,7 +119,7 @@
                     var auto = true;
                     if ($('#AutoPlay').hasClass('ac')) auto = 'true';
                     jwplayer('videoPlayer').setup({
-                        file: '{{ !empty($listArticle) ? $listArticle[0]->url : null }}',
+                        file: '{{ count($listArticle) ? $listArticle[0]->url : null }}',
                         width: '100%',
                         aspectratio: '16:9',
                         mute: 'false',

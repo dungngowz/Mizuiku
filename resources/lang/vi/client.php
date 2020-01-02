@@ -172,5 +172,6 @@ return [
     'course-elearning' => 'gioi-thieu-chung-ve-khoa-hoc-e-learning',
     'have_learned' => 'Đã học',
     'student' => 'học viên',
-    'download' => 'Tải xuống'
+    'download' => 'Tải xuống',
+    'detail' => 'Chi tiết'
 ];

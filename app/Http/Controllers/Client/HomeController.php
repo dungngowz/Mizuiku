@@ -254,7 +254,7 @@ class HomeController extends Controller
             'user' => $user,
             'city' => $city,
             'findColumn' => $findColumn,
-            'district' => $disctrict,
+            'district' => $disctrict
         ]);
     }
 
@@ -320,10 +320,14 @@ class HomeController extends Controller
     public function showMyCourse()
     {
         $user = auth()->user();
-        $course = Category::where('type', 'course')->orderBy('created_at', 'desc')->get();
+        $courses = Category::where('type', 'course')->orderBy('priority', 'desc')->orderBy('created_at', 'desc')->get();
+        $courseIds = Category::where('type', 'course')->pluck('id')->toArray();
+        $documents = Gallery::whereIn('post_id', $courseIds)->where('table_name', 'categories')->get();
+        
         return view('client.my-course', [
             'user' => $user,
-            'course' => $course
+            'courses' => $courses,
+            'documents' => $documents
         ]);
     }
 
@@ -341,7 +345,7 @@ class HomeController extends Controller
 
         $videoLearned = $user->learningOutcomes()->pluck('video_id')->toArray();
         $comments = Comment::where('post_id', $course->id)->get();
-
+        
         return view('client.detail-course', [
             'title' => $course->title,
             'course' => $course,
