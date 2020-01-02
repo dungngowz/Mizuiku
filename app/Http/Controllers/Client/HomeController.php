@@ -337,11 +337,22 @@ class HomeController extends Controller
      */
     public function showCourse(Request $request, $slug)
     {
+        $courses = Category::where('type', 'course')->orderBy('priority', 'desc')->orderBy('id', 'desc')->pluck('ref_id')->toArray();
         $course = Category::where('type', 'course')->where('slug', $slug)->first();
         $user = Auth::user();
         
-        if(!$user || !$course || empty($course->articles)){
+        if(!$user || !$courses || !$course || empty($course->articles)){
             return redirect('/');
+        }
+
+        $indexCourse = array_search($course->ref_id, $courses);
+        $isAllowSee = true;
+        if($indexCourse > 0){
+            $course_ref_id = $courses[$indexCourse - 1];
+            $learning_process = empty($user->learning_process) ? [] : (array)json_decode($user->learning_process);
+            if(!isset($learning_process[$course_ref_id]) || $learning_process[$course_ref_id] < 100){
+                $isAllowSee = false;
+            }
         }
 
         $videoLearned = $user->learningOutcomes()->where('course_ref_id', $course->ref_id)->pluck('video_ref_id')->toArray();
@@ -352,6 +363,7 @@ class HomeController extends Controller
             'course' => $course,
             'listArticle' => $course->articles()->orderBy('priority', 'desc')->orderBy('id', 'desc')->get(),
             'comments' => $comments,
+            'isAllowSee' => $isAllowSee,
             'videoLearned' => $videoLearned
         ]);
     }
