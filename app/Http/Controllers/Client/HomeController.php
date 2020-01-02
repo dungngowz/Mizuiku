@@ -350,7 +350,7 @@ class HomeController extends Controller
         return view('client.detail-course', [
             'title' => $course->title,
             'course' => $course,
-            'listArticle' => $course->articles()->orderBy('priority', 'desc')->get(),
+            'listArticle' => $course->articles()->orderBy('priority', 'desc')->orderBy('id', 'desc')->get(),
             'comments' => $comments,
             'videoLearned' => $videoLearned
         ]);
