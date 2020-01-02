@@ -48,6 +48,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany('App\Models\Article', 'learning_outcomes', 'video_id', 'user_id');
     }
 
+    public function learningOutcomes()
+    {
+        return $this->hasMany('App\Models\LearningOutcomes');
+    }
+
     public function sendPasswordResetNotification($token)
     {
         Mail::to($this->email)->send(new ForgotPass($this, $token));

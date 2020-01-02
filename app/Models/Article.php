@@ -94,6 +94,11 @@ class Article extends SoftModelBase
         return $this->belongsToMany('App\Models\User', 'learning_outcomes', 'user_id', 'video_id');
     }
 
+    public function learningOutcomes()
+    {
+        return $this->hasMany('App\Models\LearningOutcomes', 'video_id');
+    }
+
     /**
      * Return the custom thumbnail
      *

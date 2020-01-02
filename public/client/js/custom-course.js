@@ -1,4 +1,5 @@
 var _token = $('meta[name="csrf-token"]').attr('content');
+var loadingAjax = false;
 
 function SendComment() {
     var content = $("#tbComment").val();
@@ -82,7 +83,7 @@ $('#baihoc .left .name').click(function () {
                 }
             },
             onComplete: function() {
-                return alert("End Video");
+                updateViews();
             }
         }
     });
@@ -136,7 +137,7 @@ $('#nextvideo').click(function () {
                         }
                     },
                     onComplete: function() {
-                        return alert("End Video");
+                        updateViews();
                     }
                 }
             });
@@ -170,7 +171,7 @@ $('#nextvideo').click(function () {
                         }
                     },
                     onComplete: function() {
-                        return alert("End Video");
+                        updateViews();
                     }
                 }
             });
@@ -214,7 +215,7 @@ $('#prevvideo').click(function () {
                         }
                     },
                     onComplete: function() {
-                        return alert("End Video");
+                        updateViews();
                     }
                 }
             });
@@ -248,7 +249,7 @@ $('#prevvideo').click(function () {
                         }
                     },
                     onComplete: function() {
-                        return alert("End Video");
+                        updateViews();
                     }
                 }
             });
@@ -278,6 +279,34 @@ function luotXem(iid) {
         });
     }
 }
+
+function updateViews(){
+    if(loadingAjax){
+        return false;
+    }
+    loadingAjax = true;
+
+    let iid = $('#view1 ul.list-video li.ac').attr('iid');
+
+    $.ajax({
+        url: weburl + "/update-views-course",
+        type: "POST",
+        dataType: "json",
+        data: {
+            "iid": iid,
+            "_token": _token,
+        },
+        success: function (res) {
+            console.log(res);
+            loadingAjax = false;
+            
+        },
+        error: function (error) {//Lỗi xảy ra
+            loadingAjax = false;
+        }
+    });
+}
+
 
 function loadPercent() {
   var  total = $("ul li.item").length;

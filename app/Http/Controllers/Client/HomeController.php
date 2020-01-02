@@ -20,7 +20,8 @@ use App\Mail\VerifyRegister;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Mail;
 use Illuminate\Support\Facades\DB;
-
+use Auth;
+use App\Models\LearningOutcomes;
 class HomeController extends Controller
 {
 
@@ -332,10 +333,13 @@ class HomeController extends Controller
     public function showCourse(Request $request, $slug)
     {
         $course = Category::where('type', 'course')->where('slug', $slug)->first();
-        
-        if(!$course || empty($course->articles)){
+        $user = Auth::user();
+
+        if(!$user || !$course || empty($course->articles)){
             return redirect('/');
         }
+
+        $videoLearned = $user->learningOutcomes()->pluck('video_id')->toArray();
 
         $comments = Comment::where('post_id', $course->id)->get();
 
@@ -343,7 +347,8 @@ class HomeController extends Controller
             'title' => $course->title,
             'course' => $course,
             'listArticle' => $course->articles,
-            'comments' => $comments
+            'comments' => $comments,
+            'videoLearned' => $videoLearned
         ]);
     }
 
@@ -367,5 +372,28 @@ class HomeController extends Controller
             DB::rollback(); 
             return $this->response(500,false,null, $e->getMessage());
         }
+    }
+
+    public function updateViewsCourse(Request $request){
+        $video_id = $request->iid;
+        $user = Auth::user();
+
+        if(!$user){
+            return $this->response(500,false,null, 'Bạn chưa đăng nhập');
+        }
+
+        $learning = LearningOutcomes::where('user_id', $user->id)->where('video_id', $video_id)->first();
+        if(!$learning){
+            $learning = new LearningOutcomes;
+            $learning->fill([
+                'video_id' => $video_id,
+                'user_id' => $user->id
+            ]);
+            $learning->save();
+        }
+
+        return $this->response(200, false, null, [
+            'user' => $user
+        ]);
     }
 }

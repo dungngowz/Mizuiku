@@ -169,5 +169,7 @@ return [
     'test_knowl' => 'Kiểm tra kiến thức',
     'comment' => 'Bình luận',
     'back' => 'Quay lại',
-    'course-elearning' => 'gioi-thieu-chung-ve-khoa-hoc-e-learning'
+    'course-elearning' => 'gioi-thieu-chung-ve-khoa-hoc-e-learning',
+    'have_learned' => 'Đã học',
+    'student' => 'học viên'
 ];

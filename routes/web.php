@@ -46,6 +46,8 @@ Route::group(['namespace' => 'Client'], function(){
     Route::get('/dieu-khoan/{keyword}', 'HomeController@showTermOrPolicy')->name('showTerm');
     Route::get('/chinh-sach/{keyword}', 'HomeController@showTermOrPolicy')->name('showPolicy');
 
+    Route::post('/update-views-course', 'HomeController@updateViewsCourse');
+
     Route::group(['middleware' => 'client'], function(){
         Route::get('/quan-ly-tai-khoan', 'HomeController@showManageAccount')->name('showManageAccount');
         Route::get('/doi-mat-khau', 'HomeController@showChangePassword')->name('showChangePassword');

@@ -31,12 +31,12 @@
                         <div class='catename'>{{ $course->title }}</div>
                         <ul class="list-video">
                             @foreach ($listArticle as $key => $item)
-                                <li class='item {{ $key == 0 ? "first ac" : "other" }}' iid='{{ $item->id }}' seen='true'>
+                            <li class='item {{ $key == 0 ? "first ac" : "other" }}' iid='{{ $item->id }}' {{in_array($item->id, $videoLearned) ? 'seen=true': ''}}>
                                     <div class='ico'></div>
                                     <div class='info'>
                                         <a datavideo='{{ $item->url }}' title='' class='name first'>{{ $item->title }}</a>
                                         <span class='time'>{{ $item->video_duration }}</span>
-                                        <span class='totalview time'>Đã học: xxx học viên</span>
+                                        <span class='totalview time'>{{trans('client.have_learned')}}: {{number_format(count($item->learningOutcomes))}} {{trans('client.student')}}</span>
                                         <span class='lock time'></span>
                                     </div>
                                     <div class='cb'></div>
@@ -110,7 +110,6 @@
                     <div id='videoPlayer'></div>
                 </div>
                 <script type='text/javascript'>
-                    var iid = 276;
                     var auto = true;
                     if ($('#AutoPlay').hasClass('ac')) auto = 'true';
                     jwplayer('videoPlayer').setup({
@@ -123,15 +122,9 @@
                         primary: 'html5',
                         preload: 'auto',
                         events: {
-                            onTime: function (event) {
-                                timeAction = '5';
-                                if (event.position > timeAction) {
-                                    luotXem(iid);
-                                    iid = '';
-                                }
-                            },
+                            onTime: function (event) {},
                             onComplete: function() {
-                                return alert("End Video");
+                                updateViews();
                             }
                         }
                     });
