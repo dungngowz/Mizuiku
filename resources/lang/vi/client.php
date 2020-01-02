@@ -171,5 +171,6 @@ return [
     'back' => 'Quay lại',
     'course-elearning' => 'gioi-thieu-chung-ve-khoa-hoc-e-learning',
     'have_learned' => 'Đã học',
-    'student' => 'học viên'
+    'student' => 'học viên',
+    'download' => 'Tải xuống'
 ];

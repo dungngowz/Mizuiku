@@ -165,8 +165,12 @@
                 timeout: 2000,
                 success: function(file, response) 
                 {
+                    var filename = file.name;
+                    var fileExt = file.name.split('.').pop();
+                    
                     paramObj = {
-                        'file_name': file.name,
+                        'file_name': filename.replace('.'+fileExt, ''),
+                        'size': file.size,
                         'file_path': response.file_path
                     };
                     

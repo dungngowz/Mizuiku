@@ -80,19 +80,23 @@
                     </div>
                     <div id="view2" class="tabcont">
                         <div class="parent">
-                            <ul>
-                                <li>
-                                    <div class='ico'></div>
-                                    <div class='info'>
-                                        <a href='javascript:;' title='' class='name'>Tài liệu Hướng dẫn dạy và học về tiết kiệm và bảo vệ nước</a>
-                                        <div>
-                                            <a class='totalview'>279 KB</a>
-                                            <a href='https://mizuiku-emyeunuocsach.vn/pic/Service/Mizuiku-T_636725449496517001.pdf' title='' class='totaldown'>Tải xuống</a>
-                                        </div>
-                                    </div>
-                                    <div class='cb'></div>
-                                </li>
-                            </ul>
+                            @if (count($course->gallery) > 0)
+                                <ul>
+                                    @foreach ($course->gallery as $item)
+                                        <li>
+                                            <div class='ico'></div>
+                                            <div class='info'>
+                                                <a href='javascript:;' title='' class='name'>{{$item->file_name}}</a>
+                                                <div>
+                                                    <a class='totalview'>{{$item->size}} KB</a>
+                                                    <a target="_blank" href='{{Storage::url($item->file_path)}}' title='' class='totaldown'>{{trans('client.download')}}</a>
+                                                </div>
+                                            </div>
+                                            <div class='cb'></div>
+                                        </li>      
+                                    @endforeach
+                                </ul>
+                            @endif
                         </div>
                     </div>
                 </div>

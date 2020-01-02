@@ -173,5 +173,6 @@ return [
     'back' => 'Back',
     'course-elearning' => 'general-introduction-about-e-learning-course',
     'have_learned' => 'Have learned',
-    'student' => 'student'
+    'student' => 'student',
+    'download' => 'Download'
 ];

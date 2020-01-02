@@ -69,6 +69,14 @@ class Category extends SoftModelBase
         return $this->hasMany('App\Models\Article');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function gallery()
+    {
+        return $this->hasMany('App\Models\Gallery', 'post_id');
+    }
+
     public function getUrlDetailNewsAttribute() {
         return url('tin-tuc/' . $this->slug . '/?ref_id=' . $this->ref_id);
     }

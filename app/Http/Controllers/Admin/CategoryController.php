@@ -108,6 +108,7 @@ class CategoryController extends Controller
                         'table_name' => 'categories',
                         'file_path' => $element->file_path,
                         'file_name' => $element->file_name,
+                        'size' => $element->size,
                         'post_id' => $record->id
                     ]);
                 }
@@ -189,7 +190,7 @@ class CategoryController extends Controller
                     $gallery[] = (object)[
                         'name' => $item->file_name,
                         'path' => Storage::url($item->file_path),
-                        'size' => 1000
+                        'size' => $item->size
                     ];
                 }
             }
@@ -225,6 +226,7 @@ class CategoryController extends Controller
         if($request->type == 'course' || $record->type == 'course'){
             // store
             $filesUploads = $request->fileUpload;
+            
             if($filesUploads) {
                 foreach ($filesUploads as $item) {
                     $element = json_decode($item);
@@ -232,6 +234,7 @@ class CategoryController extends Controller
                         'table_name' => 'categories',
                         'file_path' => $element->file_path,
                         'file_name' => $element->file_name,
+                        'size' => $element->size,
                         'post_id' => $record->id
                     ]);
                 }
