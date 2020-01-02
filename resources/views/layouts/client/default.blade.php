@@ -41,7 +41,7 @@
     <link href="{{ asset('client/css/Common/HeadFoot.css') }}" rel="stylesheet" />
     <link href="{{ asset('client/css/ContactUs/ContactUs.css') }}" rel="stylesheet" />
     <link href="{{ asset('client/css/Filelibrary/Filelibrary.css') }}" rel="stylesheet" />
-    <link href="{{ asset('client/css/KhoaHoc/KhoaHoc.css') }}" rel="stylesheet" />
+    <link href="{{ asset('client/css/KhoaHoc/KhoaHoc.css?t=' . time()) }}" rel="stylesheet" />
     <link href="{{ asset('client/css/News/News.css') }}" rel="stylesheet" />
     <link href="{{ asset('client/css/PhotoAlbum/PhotoAlbum.css') }}" rel="stylesheet" />
     <link href="{{ asset('client/css/Video/Video.css') }}" rel="stylesheet" />
@@ -91,7 +91,7 @@
 
     <script src="{{ asset('client/js/custom.js?t=' . time()) }}"></script>
     <link rel="stylesheet" href="{{ asset('client/css/custom.css?t=' . time()) }}">
-    <script src="{{ asset('client/js/custom-course.js') }}"></script>
+    <script src="{{ asset('client/js/custom-course.js?t=' .time()) }}"></script>
 
     @yield('custom-js')
 </body>
