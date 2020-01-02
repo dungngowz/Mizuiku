@@ -110,7 +110,7 @@
                     <div class='name'>
                         {{ count($listArticle) ? $listArticle[0]->title : null }}
                     </div>
-                    <a href='javascript:history.go(-1)' title='' class='backpage'>{{ trans('client.back') }}</a>
+                    <a href="{{url('')}}" title='' class='backpage'>{{ trans('client.back') }}</a>
                     <div class='cb'></div>
                 </div>
                 <div class='overvideo'>
