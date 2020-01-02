@@ -285,14 +285,15 @@ function updateViews(){
     }
     loadingAjax = true;
 
-    let iid = $('#view1 ul.list-video li.ac').attr('iid');
+    let video_ref_id = $('#view1 ul.list-video li.ac').attr('video_ref_id');
 
     $.ajax({
         url: weburl + "/update-views-course",
         type: "POST",
         dataType: "json",
         data: {
-            "iid": iid,
+            "video_ref_id": video_ref_id,
+            "course_ref_id": $('input[name=course_ref_id]').val(),
             "_token": _token,
         },
         success: function (res) {
@@ -313,6 +314,22 @@ function loadPercent() {
     var perc = (cr / total) * 100;
     $("#baihoc .bot ul li.percent .box .inbox").css("width", perc + "%");
     $("#Perc").html(parseInt(perc) + "%");
+
+    let course_ref_id = $('input[name=course_ref_id]').val();
+    $.ajax({
+        url: weburl + "/update-percent-finish-course",
+        type: "POST",
+        dataType: "json",
+        data: {
+            "course_ref_id": course_ref_id,
+            "perc": perc,
+            "_token": _token,
+        },
+        success: function (res) {
+            console.log(res);
+        },
+        error: function (error) {}
+    });
 }
 loadPercent();
 

@@ -46,8 +46,6 @@ Route::group(['namespace' => 'Client'], function(){
     Route::get('/dieu-khoan/{keyword}', 'HomeController@showTermOrPolicy')->name('showTerm');
     Route::get('/chinh-sach/{keyword}', 'HomeController@showTermOrPolicy')->name('showPolicy');
 
-    Route::post('/update-views-course', 'HomeController@updateViewsCourse');
-
     Route::group(['middleware' => 'client'], function(){
         Route::get('/quan-ly-tai-khoan', 'HomeController@showManageAccount')->name('showManageAccount');
         Route::get('/doi-mat-khau', 'HomeController@showChangePassword')->name('showChangePassword');
@@ -59,7 +57,8 @@ Route::group(['namespace' => 'Client'], function(){
         // course
         Route::get('/khoa-hoc/{slug}', 'HomeController@showCourse')->name('showCourse');
         Route::post('/add-comment', 'HomeController@addComment')->name('addComment');
-
+        Route::post('/update-views-course', 'HomeController@updateViewsCourse');
+        Route::post('/update-percent-finish-course', 'HomeController@updatePercentFinishCourse');
     });
 
 });

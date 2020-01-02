@@ -327,7 +327,8 @@ class HomeController extends Controller
         return view('client.my-course', [
             'user' => $user,
             'courses' => $courses,
-            'documents' => $documents
+            'documents' => $documents,
+            'learning_process' => empty($user->learning_process) ? [] : (array)json_decode($user->learning_process)
         ]);
     }
 
@@ -338,12 +339,12 @@ class HomeController extends Controller
     {
         $course = Category::where('type', 'course')->where('slug', $slug)->first();
         $user = Auth::user();
-
+        
         if(!$user || !$course || empty($course->articles)){
             return redirect('/');
         }
 
-        $videoLearned = $user->learningOutcomes()->pluck('video_id')->toArray();
+        $videoLearned = $user->learningOutcomes()->where('course_ref_id', $course->ref_id)->pluck('video_ref_id')->toArray();
         $comments = Comment::where('post_id', $course->id)->get();
         
         return view('client.detail-course', [
@@ -378,18 +379,21 @@ class HomeController extends Controller
     }
 
     public function updateViewsCourse(Request $request){
-        $video_id = $request->iid;
+        
+        $video_ref_id = $request->video_ref_id;
+        $course_ref_id = $request->course_ref_id;
         $user = Auth::user();
 
         if(!$user){
             return $this->response(500,false,null, 'Bạn chưa đăng nhập');
         }
 
-        $learning = LearningOutcomes::where('user_id', $user->id)->where('video_id', $video_id)->first();
+        $learning = LearningOutcomes::where('user_id', $user->id)->where('course_ref_id', $course_ref_id)->where('video_ref_id', $video_ref_id)->first();
         if(!$learning){
             $learning = new LearningOutcomes;
             $learning->fill([
-                'video_id' => $video_id,
+                'video_ref_id' => $video_ref_id,
+                'course_ref_id' => $course_ref_id,
                 'user_id' => $user->id
             ]);
             $learning->save();
@@ -397,6 +401,30 @@ class HomeController extends Controller
 
         return $this->response(200, false, null, [
             'user' => $user
+        ]);
+    }
+
+    public function updatePercentFinishCourse(Request $request){
+        $course_ref_id = $request->course_ref_id;
+        $perc = intval($request->perc);
+        $user = Auth::user();
+
+        if(!$user){
+            return $this->response(500, false, null, 'Bạn chưa đăng nhập');
+        }
+
+        if(empty($user->learning_process)){
+            $learning_process = [];
+        }else{
+            $learning_process = (array)json_decode($user->learning_process);
+        }
+
+        $learning_process[$course_ref_id] = $perc;
+        $user->learning_process = json_encode($learning_process);
+        $user->save();
+
+        return $this->response(200, false, null, [
+            'data' => $learning_process
         ]);
     }
 }

@@ -29,9 +29,10 @@
                     <div id="view1" class="tabcont">
                     <div class='parent'>
                         <div class='catename'>{{ $course->title }}</div>
+                        <input type="hidden" value="{{$course->ref_id}}" name="course_ref_id"/>
                         <ul class="list-video">
                             @foreach ($listArticle as $key => $item)
-                            <li class='item {{ $key == count($videoLearned) ? "first ac" : "other" }}' iid='{{ $item->id }}' seen="{{in_array($item->id, $videoLearned) ? 'true': 'false'}}">
+                            <li class='item {{ $key == count($videoLearned) ? "first ac" : "other" }}' video_ref_id='{{ $item->ref_id }}' seen="{{in_array($item->id, $videoLearned) ? 'true': 'false'}}">
                                     <div class='ico'></div>
                                     <div class='info'>
                                         <a datavideo='{{ $item->url }}' title='' class='name first'>{{ $item->title }}</a>

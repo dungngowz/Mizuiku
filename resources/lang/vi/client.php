@@ -173,5 +173,6 @@ return [
     'have_learned' => 'Đã học',
     'student' => 'học viên',
     'download' => 'Tải xuống',
-    'detail' => 'Chi tiết'
+    'detail' => 'Chi tiết',
+    'course_document' => 'Tài liệu khóa học'
 ];

@@ -30,16 +30,16 @@
                   <div class="mykhoahoc">
                      <ul>
                         @foreach ($courses as $item)
-                        <li>
-                        <a href='{{ url("/khoa-hoc/$item->slug") }}' title='{{ $item->title }}'>{{ $item->title }}</a>
-                           <div class='progres'>{{ trans('client.completed') }}: <span>0 %</span></div>
-                        </li>
+                           <li>
+                              <a href='{{ url("/khoa-hoc/$item->slug") }}' title='{{ $item->title }}'>{{ $item->title }}</a>
+                              <div class='progres'>{{ trans('client.completed') }}: <span>{{isset($learning_process[$item->ref_id]) ? $learning_process[$item->ref_id] : 0}} %</span></div>
+                           </li>
                         @endforeach
                      </ul>
                   </div>
                   <div class="cb"></div>
                </div>
-               <p class="fiCielGotham c109ce3 fs14 ttu pb20">Tài liệu khóa học</p>
+            <p class="fiCielGotham c109ce3 fs14 ttu pb20">{{trans('client.course_document')}}</p>
                <div class="Frame2">
                   @foreach ($documents as $item)
                      <div class="item">

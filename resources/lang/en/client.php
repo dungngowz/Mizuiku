@@ -175,5 +175,6 @@ return [
     'have_learned' => 'Have learned',
     'student' => 'student',
     'download' => 'Download',
-    'detail' => 'Detail'
+    'detail' => 'Detail',
+    'course_document' => 'Course document'
 ];

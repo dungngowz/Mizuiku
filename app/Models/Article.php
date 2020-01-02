@@ -96,7 +96,7 @@ class Article extends SoftModelBase
 
     public function learningOutcomes()
     {
-        return $this->hasMany('App\Models\LearningOutcomes', 'video_id');
+        return $this->hasMany('App\Models\LearningOutcomes', 'video_ref_id');
     }
 
     /**
