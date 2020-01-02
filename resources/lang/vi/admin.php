@@ -65,5 +65,6 @@ return [
     'suntory_pepsico' => 'Suntory PepsiCo Việt Nam',
     'vietNam_national_student_union' => 'Trung ương Hội sinh viên VN',
     'pioneer_organization' => 'Hội đồng Đội Trung ương Đội TNTP Hồ Chí Minh',
-    'comment' => 'Bình luận'
+    'comment' => 'Bình luận',
+    'document' => 'Tài liệu'
 ];

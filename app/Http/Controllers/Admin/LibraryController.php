@@ -260,9 +260,9 @@ class LibraryController extends Controller
     public function storeFileUpload(Request $request)
     {
         $file = $request->file;
-        $filePath = 'library/' . date("Y") . '/' . date("m") . '/' . uniqid() . '.' . $file->getClientOriginalExtension();
-        Storage::put($filePath, $file->get());
-        return response()->json(['file_path'=>$filePath]);
+        $filePath = 'library/' . date("Y") . '/' . date("m");
+        $file_path = $file->store($filePath);
+        return response()->json(['file_path'=>$file_path]);
     }
 
     /**

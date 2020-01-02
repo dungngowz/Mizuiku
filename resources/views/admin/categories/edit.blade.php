@@ -17,7 +17,7 @@
         {{-- Form Edit --}}
         <div class="row">
             <div class="col-12">
-                <form action="{{url('admin/categories/' . $record->id)}}" method="post">
+                <form action="{{url('admin/categories/' . $record->id)}}" id="form-library" method="post">
                     {{ csrf_field() }}
 
                     @if ($record->id)
@@ -65,21 +65,97 @@
                                 </div>
                             @endif
                         </div>
+
+                        @if (request()->type == 'course' || $record->type == 'course')
+                            <button type="submit" class="btn btn-success btn-submit-library hide">{{trans('admin.submit')}}</button>    
+                        @else
+                            <div class="border-top">
+                                <div class="card-body text-right">
+                                    <a href="{{url('admin/categories/')}}">
+                                        <button type="button" class="btn">{{trans('admin.cancel')}}</button>
+                                    </a>
+                                    <button type="submit" class="btn btn-success">{{trans('admin.submit')}}</button>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </form>
+
+                @if (request()->type == 'course' || $record->type == 'course')
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="document">{{trans('admin.document')}}</label>
+                                <a class="fancybox-preview-gallery" data-fancybox="gallery" href=""></a>
+                                <form action="{{ route('admin.library.storeFileUpload') }}" name="upload-file" enctype="multipart/form-data" class="dropzone" id="dropzone" method="post">
+                                    @csrf   
+                                </form>
+                            </div>
+                        </div>
                         <div class="border-top">
                             <div class="card-body text-right">
-                                <a href="{{url('admin/categories/')}}">
+                                <a href="{{url('admin/library/?keyword=' . request()->keyword)}}">
                                     <button type="button" class="btn">{{trans('admin.cancel')}}</button>
                                 </a>
-                                <button type="submit" class="btn btn-success">{{trans('admin.submit')}}</button>
+                                <button type="button" class="btn btn-submit-gallery btn-success">{{trans('admin.submit')}}</button>
                             </div>
                         </div>
                     </div>
-                </form>
+                @endif
             </div>
         </div>
     </div>
 @endsection
 
-@push('scripts')
-    @include('admin.components.editor-config')
-@endpush
+
+@if (request()->type == 'course' || $record->type == 'course')
+    @push('scripts')
+        @include('admin.components.editor-config')
+        <script>
+            var gallery = <?php echo json_encode($gallery); ?>;
+
+            $('.btn-submit-gallery').on('click', function (ev) {
+                $('.btn-submit-library').trigger('click');
+            });
+
+            Dropzone.options.dropzone = {
+                init: function() {
+                    thisDropzone = this;
+
+                    var i; var mockFile;
+                    for (i = 0; i < gallery.length; i++) {
+                        mockFile = gallery[i];
+                        thisDropzone.options.addedfile.call(thisDropzone, mockFile);
+                        thisDropzone.options.thumbnail.call(thisDropzone, mockFile, mockFile.path);
+                    }
+                    thisDropzone.on("removedfile", function (file) {
+                        $("#form-library").append("<input type='hidden' name='fileRemove[]' value='"+JSON.stringify(file)+"'>");
+                    });
+                },
+                maxFilesize: 16,
+                dictFileTooBig: 'File is larger than 16MB',
+                renameFile: function(file) {
+                    var dt = new Date();
+                    var time = dt.getTime();
+                return time+file.name;
+                },
+                //acceptedFiles: ".doc, .docx, .pdf",
+                addRemoveLinks: true,
+                timeout: 2000,
+                success: function(file, response) 
+                {
+                    paramObj = {
+                        'file_name': file.name,
+                        'file_path': response.file_path
+                    };
+                    
+                    $("#form-library").append("<input type='hidden' name='fileUpload[]' value='"+JSON.stringify(paramObj)+"'>");
+                },
+                error: function(file, response)
+                {
+                    return false;
+                }
+            };
+        </script>
+    @endpush
+@endif

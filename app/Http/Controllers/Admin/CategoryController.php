@@ -8,6 +8,9 @@ use Yajra\DataTables\DataTables;
 use App\Models\Category;
 use App\Http\Requests\StoreCategory;
 use App\Scopes\LanguageScope;
+use App\Helpers\CommonHelper;
+use App\Models\Gallery;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -93,6 +96,47 @@ class CategoryController extends Controller
             $record->ref_id = $record->id;
             $record->save();
         }
+
+        // store and remove data to table gallery
+        if($request->type == 'course' || $record->type == 'course'){
+            // store
+            $filesUploads = $request->fileUpload;
+            if($filesUploads) {
+                foreach ($filesUploads as $item) {
+                    $element = json_decode($item);
+                    $gallery = Gallery::create([
+                        'table_name' => 'categories',
+                        'file_path' => $element->file_path,
+                        'file_name' => $element->file_name,
+                        'post_id' => $record->id
+                    ]);
+                }
+            }
+            // remove
+            $filesRemoves = $request->fileRemove;
+
+            if($filesRemoves) {
+                foreach ($filesRemoves as $item) {
+                    $element = json_decode($item);
+                    
+                    // from storage
+                    if(!empty($element->path)) {
+                        $path = str_replace('/storage/', '', $element->path);
+                        
+                        if( Storage::exists($path)) {
+                            Storage::delete($path);
+                        }
+
+                        // from DB
+                        if(!empty($element->name)) {
+                            $remove = Gallery::where('file_path', $path)->delete();
+                        }
+                    }
+
+                }
+            }
+
+        }
         
         return redirect('admin/categories?type=' . $request->type);
     }
@@ -114,7 +158,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         $title = trans('admin.news_categories') . ' - ' . trans('admin.edit');
         
@@ -137,10 +181,25 @@ class CategoryController extends Controller
             $urlTrans = url('/admin/categories/create?type='. $record->type . '&language=' . $langNeedTrans . '&ref_id='.$record->ref_id);
         }
 
+        $gallery = [];
+        if($request->type == 'course' || $record->type == 'course'){
+            $recordsGallery = Gallery::where('post_id', $record->id)->get();
+            if($recordsGallery){
+                foreach($recordsGallery as $item){
+                    $gallery[] = (object)[
+                        'name' => $item->file_name,
+                        'path' => Storage::url($item->file_path),
+                        'size' => 1000
+                    ];
+                }
+            }
+        }
+
         return view('admin.categories.edit', [
             'title' => $title,
             'record' => $record,
-            'urlTrans' => $urlTrans
+            'urlTrans' => $urlTrans,
+            'gallery' => $gallery
         ]);
     }
 
@@ -161,6 +220,48 @@ class CategoryController extends Controller
 
         $record->fill($request->all());
         $record->save();
+
+        // store and remove data to table gallery
+        if($request->type == 'course' || $record->type == 'course'){
+            // store
+            $filesUploads = $request->fileUpload;
+            if($filesUploads) {
+                foreach ($filesUploads as $item) {
+                    $element = json_decode($item);
+                    $gallery = Gallery::create([
+                        'table_name' => 'categories',
+                        'file_path' => $element->file_path,
+                        'file_name' => $element->file_name,
+                        'post_id' => $record->id
+                    ]);
+                }
+            }
+            // remove
+            $filesRemoves = $request->fileRemove;
+
+            if($filesRemoves) {
+                foreach ($filesRemoves as $item) {
+                    $element = json_decode($item);
+                    
+                    // from storage
+                    if(!empty($element->path)) {
+                        $path = str_replace('/storage/', '', $element->path);
+                        
+                        if( Storage::exists($path)) {
+                            Storage::delete($path);
+                        }
+
+                        // from DB
+                        if(!empty($element->name)) {
+                            $remove = Gallery::where('file_path', $path)->delete();
+                        }
+                    }
+
+                }
+            }
+
+        }
+
         return redirect('admin/categories?type=' . $record->type);
     }
 
