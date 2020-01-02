@@ -122,14 +122,35 @@
                 init: function() {
                     thisDropzone = this;
 
-                    var i; var mockFile;
+                    var i; var mockFile; var thumbnail; var ext;
                     for (i = 0; i < gallery.length; i++) {
                         mockFile = gallery[i];
                         thisDropzone.options.addedfile.call(thisDropzone, mockFile);
-                        thisDropzone.options.thumbnail.call(thisDropzone, mockFile, mockFile.path);
+
+                        ext = mockFile.path.split('.').pop();
+                        if (ext == "pdf") {
+                           thumbnail = "/admin/assets/images/pdf.jpeg";
+                        } else if (ext.indexOf("doc") != -1) {
+                           thumbnail = "/admin/assets/images/word.png";
+                        } else if (ext.indexOf("xls") != -1) {
+                           thumbnail = "/admin/assets/images/excel.png";
+                        }
+
+                        thisDropzone.options.thumbnail.call(thisDropzone, mockFile, thumbnail);
                     }
                     thisDropzone.on("removedfile", function (file) {
                         $("#form-library").append("<input type='hidden' name='fileRemove[]' value='"+JSON.stringify(file)+"'>");
+                    });
+
+                    thisDropzone.on('addedfile', function(file) {
+                        var ext = file.name.split('.').pop();
+                        if (ext == "pdf") {
+                            $(file.previewElement).find(".dz-image img").attr("src", "/admin/assets/images/pdf.jpeg");
+                        } else if (ext.indexOf("doc") != -1) {
+                            $(file.previewElement).find(".dz-image img").attr("src", "/admin/assets/images/word.png");
+                        } else if (ext.indexOf("xls") != -1) {
+                            $(file.previewElement).find(".dz-image img").attr("src", "/admin/assets/images/excel.png");
+                        }
                     });
                 },
                 maxFilesize: 16,
