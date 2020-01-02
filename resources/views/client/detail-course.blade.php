@@ -32,7 +32,14 @@
                         <input type="hidden" value="{{$course->ref_id}}" name="course_ref_id"/>
                         <ul class="list-video">
                             @foreach ($listArticle as $key => $item)
-                            <li class='item {{ $key == count($videoLearned) ? "first ac" : "other" }}' video_ref_id='{{ $item->ref_id }}' seen="{{in_array($item->id, $videoLearned) ? 'true': 'false'}}">
+                                @php
+                                    $className = 'other';
+                                    if(($key == count($videoLearned)) || ((count($videoLearned) == count($listArticle) && ($key == 0)))){
+                                        $className = 'first ac';
+                                    }
+                                    
+                                @endphp
+                                <li class='item {{$className}}' video_ref_id='{{ $item->ref_id }}' seen="{{in_array($item->id, $videoLearned) ? 'true': 'false'}}">
                                     <div class='ico'></div>
                                     <div class='info'>
                                         <a datavideo='{{ $item->url }}' title='' class='name first'>{{ $item->title }}</a>
