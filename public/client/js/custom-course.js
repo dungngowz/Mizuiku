@@ -26,7 +26,6 @@ function SendComment() {
         },
         error: function (error) {//Lỗi xảy ra
             loading(false);
-            console.log(error)
             alert("Hệ thống đang bận, bạn vui lòng thử lại sau!");
         }
     });
@@ -43,13 +42,14 @@ $(window).resize(function () {
 
 
 $('#baihoc .left .name').click(function () {
-    if ($(this).parent().parent().prev().attr("seen") === "false" && $(this).hasClass("other")) {
+    if ($(this).parent().parent().prev().attr("seen") === "false") {
         var chudetruoc = $(this).parent().parent().prev().find(".name").text();
         var chudechon = $(this).text();
         $("#success .tac").html("Bạn cần hoàn thành bài học <b>" + chudetruoc + "</b> mới có thể học <b>" + chudechon + "</b>");
         $(".success_open").click();
         return;
     }
+
     $('body,html').animate({ scrollTop: 0 }, 1600);
     $('#baihoc .left #view1 ul li').removeClass('ac');
     $(this).parents('li').addClass('ac');
@@ -70,7 +70,6 @@ $('#baihoc .left .name').click(function () {
         preload: 'auto',
         events: {
             onTime: function (event) {
-                console.log(event);
                 timeAction = '30';
                 if (jwplayer().getDuration()< 30) {
                     luotXem(iid);
@@ -297,9 +296,8 @@ function updateViews(){
             "_token": _token,
         },
         success: function (res) {
-            console.log(res);
             loadingAjax = false;
-            
+            location.reload();
         },
         error: function (error) {//Lỗi xảy ra
             loadingAjax = false;

@@ -340,7 +340,6 @@ class HomeController extends Controller
         }
 
         $videoLearned = $user->learningOutcomes()->pluck('video_id')->toArray();
-
         $comments = Comment::where('post_id', $course->id)->get();
 
         return view('client.detail-course', [

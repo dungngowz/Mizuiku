@@ -31,7 +31,7 @@
                         <div class='catename'>{{ $course->title }}</div>
                         <ul class="list-video">
                             @foreach ($listArticle as $key => $item)
-                            <li class='item {{ $key == 0 ? "first ac" : "other" }}' iid='{{ $item->id }}' {{in_array($item->id, $videoLearned) ? 'seen=true': ''}}>
+                            <li class='item {{ $key == count($videoLearned) ? "first ac" : "other" }}' iid='{{ $item->id }}' seen="{{in_array($item->id, $videoLearned) ? 'true': 'false'}}">
                                     <div class='ico'></div>
                                     <div class='info'>
                                         <a datavideo='{{ $item->url }}' title='' class='name first'>{{ $item->title }}</a>
