@@ -50,7 +50,7 @@
                         <li><a href='{{ url("khoa-hoc/$item->slug") }}' title='{{ $item->title }}'>{{ $item->title }}</a></li>
                     @endforeach
                     
-                    <li><a href='/thong-ke' title='{{ __('client.statistical') }}'>{{ __('client.statistical') }}</a></li>
+                    <li><a href='{{ route('statistical') }}' title='{{ __('client.statistical') }}'>{{ __('client.statistical') }}</a></li>
                 </ul>
                 @else
                     <script>

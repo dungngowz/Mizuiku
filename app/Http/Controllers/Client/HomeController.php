@@ -443,4 +443,10 @@ class HomeController extends Controller
             'data' => $learning_process
         ]);
     }
+
+    public function statistical(Request $request){
+        return view('client.statistical', [
+            'title' => trans('client.statistical')
+        ]);
+    }
 }

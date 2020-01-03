@@ -53,6 +53,7 @@ Route::group(['namespace' => 'Client'], function(){
         Route::post('/logout-client', 'HomeController@logoutClient')->name('logoutClient');
         Route::put('/update-info', 'HomeController@updateInfo')->name('updateInfo');
         Route::post('/change-password', 'HomeController@updateChangePassword')->name('updateChangePassword');
+        Route::get('/thong-ke', 'HomeController@statistical')->name('statistical');
 
         // course
         Route::get('/khoa-hoc/{slug}', 'HomeController@showCourse')->name('showCourse');
