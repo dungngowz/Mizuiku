@@ -162,6 +162,10 @@ class HomeController extends Controller
             DB::beginTransaction();
             try {
                 $data = $request->all();
+
+                $data['province_id'] = $data['city'];
+                $data['district_id'] = $data['district'];
+
                 $data['password'] = Hash::make($data['password']);
                 $user = User::create($data);
                 DB::commit(); 
@@ -171,9 +175,7 @@ class HomeController extends Controller
             }
 
             // Send Email Verify
-            // $user->sendEmailVerificationNotification();
             Mail::to($data['email'], $data['name'])->send(new VerifyRegister($user));
-
 
             return $this->response(200,true,$user, trans('Created User Successfully!'));
         }
@@ -240,15 +242,15 @@ class HomeController extends Controller
         $locale = $_COOKIE[config('const.key_locale_client')] ?? 'vi';
         $findColumn = 'name_' . $locale;
 
-        $cityName = Province::where('id' , $user->city)->first();
+        $cityName = Province::where('id' , $user->province_id)->first();
         $user->city_name = $cityName ? $cityName->$findColumn : null;
 
-        $disctrictName = Province::where('id' , $user->district)->first();
+        $disctrictName = Province::where('id' , $user->district_id)->first();
         $user->district_name = $disctrictName ? $disctrictName->$findColumn : null;
         $user->avatar;
 
         $city = Province::where('parent_id' , 0)->get();
-        $disctrict = Province::where('parent_id' , $user->city)->get();
+        $disctrict = Province::where('parent_id' , $user->province_id)->get();
         
         return view('client.info-user', [
             'user' => $user,
@@ -280,6 +282,8 @@ class HomeController extends Controller
             $image->move(storage_path('app/public/avatar'), $image->getClientOriginalName());
             $params['avatar'] = 'avatar/'.$image->getClientOriginalName();
         }
+
+        $params['receive_emails'] = empty($params['receive_emails']) ? 0 : 1;
 
         // update data user
         $user->update($params);

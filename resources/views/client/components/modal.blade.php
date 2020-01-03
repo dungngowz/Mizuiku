@@ -70,11 +70,9 @@
                     </select>
                     <select name="DisplayLoadControl$Login$ddlCity" id="DisplayLoadControl_Login_ddlCity" class="w50pc fl">
                         <option value="0">{{ __('client.choose-city') }}</option>
-
                     </select>
                     <select name="DisplayLoadControl$Login$ddlDistric" id="DisplayLoadControl_Login_ddlDistric" class="w50pc fr">
                         <option value="0">{{ __('client.choose-contry') }}</option>
-
                     </select>
                     <input name="DisplayLoadControl$Login$ddlSchool" type="text" id="DisplayLoadControl_Login_ddlSchool" placeholder="{{ __('client.work-place') }}" />
                     <label>

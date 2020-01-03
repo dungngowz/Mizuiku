@@ -520,7 +520,7 @@ $('#DisplayLoadControl_Login_ddlCity, #DisplayLoadControl_ctl00_ctl00_ddlCity').
             'id': this.value
         },
         success: function(res) {
-            $('#DisplayLoadControl_Login_ddlDistric, #DisplayLoadControl_ctl00_ctl00_ddlDistrict').find('option').not(':first').remove();
+            $('#DisplayLoadControl_Login_ddlDistric, #DisplayLoadControl_ctl00_ctl00_ddlDistrict').find('option').remove();
             $.each(res.data, function (){
                 $('#DisplayLoadControl_Login_ddlDistric, #DisplayLoadControl_ctl00_ctl00_ddlDistrict').append("<option value='"+ this.id +"' >"+ this.name_vi +"</option>");
             });

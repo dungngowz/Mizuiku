@@ -51,6 +51,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/course-video/delete-multiple', 'CourseVideoController@deleteMultiple');
     Route::resource('/comment', 'CommentController');
     Route::get('/get-comment/data', 'CommentController@data');
+    Route::resource('/user', 'UserController');
+    Route::get('/get-user/data', 'UserController@data');
+    Route::post('/get-districts-by-province', 'UserController@getDistrictsByProvince');
 
     // Programs-timeline
     Route::get('/program-timeline/data', 'ProgramTimelineController@data');

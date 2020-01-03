@@ -1,4 +1,5 @@
 var _token = $('meta[name="csrf-token"]').attr('content');
+var loading = false;
 
 $(function() {
     "use strict";
@@ -159,7 +160,33 @@ $(function() {
         });
     });
 
+    $('select[name=province_id]').on('change', function () {
+        if(loading){
+            return false;
+        }
+        loading = true;
+
+        $.ajax({
+            type: "POST",
+            url: SITE_URL + 'get-districts-by-province',
+            data: {
+                _token: _token,
+                province_id: $(this).val(),
+                lang: $(this).attr('lang')
+            },  
+            complete:function(data){
+                loading = false;
+            },
+            success: function(data){
+                $('.wrap-districts').html(data.message.html);
+                $('.select2').select2();
+            },
+            error: function(data) {}
+        });
+    });
+
     $(document).ready(function() {
-		$(".fancybox").fancybox();
+        $(".fancybox").fancybox();
+        $('.select2').select2();
 	});
 });

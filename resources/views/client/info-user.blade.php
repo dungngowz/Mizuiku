@@ -21,10 +21,10 @@
                <div class="left">
                   <div class="khungAnh">
                      <a class="khungAnhCrop" href="javascript:;" title="Avatar">
-                     <img alt="{{ $user->email }}" class="Avatar" src="{{ $user->avatar }}" />
+                     <img alt="{{ $user->email }}" class="Avatar" src="{{ $user->avatar_display }}" />
                      </a>
                      <div class="input uploadFile">
-                        <p>Thay đổi ảnh đại diện</p>
+                        <p>{{trans('client.change_avatar')}}</p>
                         <input type="file" name="avatar" id="DisplayLoadControl_ctl00_ctl00_flImage" />
                      </div>
                   </div>
@@ -44,7 +44,7 @@
                            <li>{{ trans('client.district') }}: {{ $user->district_name }}</li>
                            <li>{{ trans('client.work-place') }}: {{ $user->work_place }}</li>
                            <li>
-                              <input id="DisplayLoadControl_ctl00_ctl00_ckNhanEmail" type="checkbox" name="DisplayLoadControl$ctl00$ctl00$ckNhanEmail" />
+                              <input {{$user->receive_emails ? 'checked' : ''}} id="DisplayLoadControl_ctl00_ctl00_ckNhanEmail" type="checkbox" name="receive_emails" value="1" />
                               <label for='DisplayLoadControl_ctl00_ctl00_ckNhanEmail'>{{ trans('client.receive-email') }}</label>
                            </li>
                         </ul>
@@ -64,14 +64,14 @@
                                  <option {{ $user->career == $i ? 'selected' : null }} value="{{ $i }}">{{ trans('client.career-list.'.$i) }}</option>
                               @endfor
                            </select>
-                           <select name="city" id="DisplayLoadControl_ctl00_ctl00_ddlCity" class="w50pc fl">
+                           <select name="province_id" id="DisplayLoadControl_ctl00_ctl00_ddlCity" class="w50pc fl">
                               @foreach ($city as $item)
-                                 <option {{ $user->city == $item->id ? 'selected' : null }} value="{{ $item->id }}">{{ $item->$findColumn }}</option>
+                                 <option {{ $user->province_id == $item->id ? 'selected' : null }} value="{{ $item->id }}">{{ $item->$findColumn }}</option>
                               @endforeach
                            </select>
-                           <select name="district" id="DisplayLoadControl_ctl00_ctl00_ddlDistrict" class="w50pc fr">
+                           <select name="district_id" id="DisplayLoadControl_ctl00_ctl00_ddlDistrict" class="w50pc fr">
                               @foreach ($district as $item)
-                                 <option {{ $user->district == $item->id ? 'selected' : null }} value="{{ $item->id }}">{{ $item->$findColumn }}</option>
+                                 <option {{ $user->district_id == $item->id ? 'selected' : null }} value="{{ $item->id }}">{{ $item->$findColumn }}</option>
                               @endforeach
                            </select>
                            <input name="work_place" type="text" value="{{ $user->work_place }}" id="DisplayLoadControl_ctl00_ctl00_ddlSchool" />

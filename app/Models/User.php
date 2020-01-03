@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Notifications\ResetPassword;
 use App\Mail\ForgotPass;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -19,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'sex', 'career', 'city', 'district', 'work_place', 'avatar', 'learning_process'
+        'name', 'email', 'password', 'phone', 'sex', 'career', 'province_id', 'district_id', 'work_place', 'avatar', 'learning_process', 'status', 'receive_emails'
     ];
 
     /**
@@ -64,7 +65,11 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @return string
      */
-    public function getAvatarAttribute(){
-       return $this->attributes['avatar'] ? \Storage::url($this->attributes['avatar']) : asset('client/pic/icon/no_image.gif');
+    public function getAvatarDisplayAttribute(){
+        $parsed = parse_url($this->avatar);
+        if (empty($parsed['scheme'])) {
+            return $this->avatar ? Storage::url($this->avatar) : 'client/pic/icon/no_image.gif';
+        }
+        return $this->avatar;
     }
 }

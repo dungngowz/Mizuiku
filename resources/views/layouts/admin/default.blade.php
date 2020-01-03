@@ -26,7 +26,7 @@
     
     <!--Dropzone -->
     <link rel="stylesheet" href="{{ asset('admin/dist/css/dropzone/dropzone.css') }}">
-    
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -99,6 +99,8 @@
 
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+    
     <!--Custom JavaScript -->
     <script src="{{asset('admin/dist/js/custom.js?t=' . time())}}"></script>
 

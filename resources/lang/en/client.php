@@ -64,11 +64,11 @@ return [
     'female' => 'Female',
     'other' => 'Other',
     'phone' => 'Phone Number',
-    'you-are' => 'You are *',
+    'you-are' => 'You are',
     'teacher' => 'Primary school teacher (if not a primary school teacher, please select Other)',
-    'choose-city' => 'Select Province / City *',
+    'choose-city' => 'Select Province / City',
     'choose-contry' => 'Choose County / District / Town',
-    'work-place' => 'Work place *',
+    'work-place' => 'Work place',
     'note-4' => 'Please write in full in accented Vietnamese. For example: Ngo Thi Nham Primary School / Suntory Pepsico Vietnam Beverage Co., Ltd.',
     'note-5' => 'If you have difficulty registering please send your request to the address',
     'note-6' => ' for support',
@@ -176,5 +176,6 @@ return [
     'student' => 'student',
     'download' => 'Download',
     'detail' => 'Detail',
-    'course_document' => 'Course document'
+    'course_document' => 'Course document',
+    'change_avatar' => 'Change avatar'
 ];
