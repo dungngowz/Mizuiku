@@ -175,5 +175,7 @@ return [
     'download' => 'Tải xuống',
     'detail' => 'Chi tiết',
     'course_document' => 'Tài liệu khóa học',
-    'change_avatar' => 'Thay đổi ảnh đại diện'
+    'change_avatar' => 'Thay đổi ảnh đại diện',
+    'required_login_to_view' => 'Vui lòng đăng nhập để xem bài giảng!',
+    'auto_play' => 'Tự động phát'
 ];

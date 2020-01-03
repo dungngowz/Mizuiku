@@ -539,7 +539,7 @@ $('.uploadFile input').change(function () {
        filename = filename.substring(lastIndex + 1);
     }
     //$(this).parent().find(".show_file").text(filename);
-    console.log(filename);
+    
     // Hiển thị ảnh sau khi select
     var preview = document.querySelector('.Avatar');
     var file = document.querySelector('#DisplayLoadControl_ctl00_ctl00_flImage').files[0];

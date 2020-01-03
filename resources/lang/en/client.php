@@ -177,5 +177,7 @@ return [
     'download' => 'Download',
     'detail' => 'Detail',
     'course_document' => 'Course document',
-    'change_avatar' => 'Change avatar'
+    'change_avatar' => 'Change avatar',
+    'required_login_to_view' => 'Please log in to view the lecture!',
+    'auto_play' => 'Auto Play'
 ];
