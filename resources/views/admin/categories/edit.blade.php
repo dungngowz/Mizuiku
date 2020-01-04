@@ -153,14 +153,15 @@
                         }
                     });
                 },
-                maxFilesize: 16,
-                dictFileTooBig: 'File is larger than 16MB',
+                maxFilesize: 50,
+                dictFileTooBig: 'File is larger than 50MB',
                 renameFile: function(file) {
                     var dt = new Date();
                     var time = dt.getTime();
                 return time+file.name;
                 },
                 //acceptedFiles: ".doc, .docx, .pdf",
+                acceptedFiles: ".mp4,.mkv,.avi, .doc, .docx, .pdf, .csv, .xlsx"
                 addRemoveLinks: true,
                 timeout: 2000,
                 success: function(file, response) 
