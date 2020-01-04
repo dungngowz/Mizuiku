@@ -11,7 +11,7 @@ return [
     'language' => 'Ngôn ngữ',
     'created_at' => 'Ngày tạo',
     'delete' => 'Xóa',
-    'edit' => 'Sửa',
+    'edit' => 'Cập nhật',
     'add_new' => 'Thêm mới',
     'create' => 'Tạo Mới',
     'enter_title' => 'Nhập tiêu đề',
@@ -84,5 +84,9 @@ return [
     'province' => 'Tỉnh/Thành phố',
     'district' => 'Quận/Huyện/Thị xã',
     'password' => 'Mật khẩu',
-    'enter_password' => 'Nhập mật khẩu'
+    'enter_password' => 'Nhập mật khẩu',
+    'my_profile' => 'Thông tin cá nhân',
+    'logout' => 'Đăng xuất',
+    'invalid_credentials' => 'Bạn đã nhập thông tin không khả dụng',
+    'not_actived_account' => 'Tài khoản này chưa được kích hoạt'
 ];

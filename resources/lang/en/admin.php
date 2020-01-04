@@ -86,5 +86,9 @@ return [
     'province' => 'Province',
     'district' => 'District',
     'password' => 'Password',
-    'enter_password' => 'Enter Password'
+    'enter_password' => 'Enter Password',
+    'my_profile' => 'My Profile',
+    'logout' => 'Logout',
+    'invalid_credentials' => 'Oppes! You have entered invalid credentials',
+    'not_actived_account' => 'This account has not been activated'
 ];

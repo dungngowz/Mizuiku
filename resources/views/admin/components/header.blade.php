@@ -42,8 +42,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('admin/assets/images/users/1.jpg') }}" alt="user" class="rounded-circle" width="31"></a>
                     <div class="dropdown-menu dropdown-menu-right user-dd animated" style="">
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                        <a class="dropdown-item" href="{{ url('admin/logout') }}"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+                        <a class="dropdown-item" href="{{url('admin/user/'. Auth::user()->id .'/edit')}}"><i class="ti-user m-r-5 m-l-5"></i> {{trans('admin.my_profile')}}</a>
+                        <a class="dropdown-item" href="{{ url('admin/logout') }}"><i class="fa fa-power-off m-r-5 m-l-5"></i> {{trans('admin.logout')}}</a>
                     </div>
                 </li>
             </ul>
