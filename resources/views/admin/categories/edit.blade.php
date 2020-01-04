@@ -148,6 +148,7 @@
                     });
 
                     thisDropzone.on('addedfile', function(file) {
+                        console.log('file', file);
                         var ext = file.name.split('.').pop();
                         if (ext == "pdf") {
                             $(file.previewElement).find(".dz-image img").attr("src", "/admin/assets/images/pdf.jpeg");
