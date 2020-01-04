@@ -147,7 +147,7 @@ class NewsController extends Controller
             return redirect()->route('admin.dashboard');
         }
 
-        $currentLang = empty($request->language) ? 'vi' : $request->language;
+        $currentLang = empty($request->language) ? $record->language : $request->language;
         $langNeedTrans = ($record->language == 'vi') ? 'en' : 'vi';
         $chkRecord = Article::where('ref_id', $record->ref_id)->where('language', $langNeedTrans)->first();
         if($chkRecord){
