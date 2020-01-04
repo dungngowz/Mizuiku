@@ -53,6 +53,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/get-comment/data', 'CommentController@data');
     Route::resource('/user', 'UserController');
     Route::get('/get-user/data', 'UserController@data');
+    Route::post('/user/delete-multiple', 'UserController@deleteMultiple');
+
     Route::post('/get-districts-by-province', 'UserController@getDistrictsByProvince');
 
     // Programs-timeline
