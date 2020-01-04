@@ -161,7 +161,7 @@
                 return time+file.name;
                 },
                 //acceptedFiles: ".doc, .docx, .pdf",
-                acceptedFiles: ".mp4,.mkv,.avi, .doc, .docx, .pdf, .csv, .xlsx"
+                acceptedFiles: ".mp4,.mkv,.avi, .doc, .docx, .pdf, .csv, .xlsx",
                 addRemoveLinks: true,
                 timeout: 2000,
                 success: function(file, response) 

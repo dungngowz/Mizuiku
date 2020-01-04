@@ -259,6 +259,10 @@ class LibraryController extends Controller
 
     public function storeFileUpload(Request $request)
     {
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+        
         $file = $request->file;
         $filePath = 'library/' . date("Y") . '/' . date("m");
         $file_path = $file->store($filePath);
