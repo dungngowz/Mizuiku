@@ -71,9 +71,11 @@
                 },{
                     data: 'title',
                     name: 'title'
+                    width: "25%"
                 },{
                     data: 'category.title',
                     name: 'category.title',
+                    width: "25%"
                 },{
                     data: 'language',
                     name: 'language',
