@@ -47,7 +47,7 @@
                                 @endif
                             </div>
 
-                            @if (0 && $record->type == 'course' || request()->type == 'course')
+                            @if (0 && ($record->type == 'course' || request()->type == 'course'))
                                 <div class="form-group m-t-20">
                                     <label>{{trans('admin.views')}}</label>
                                     <input type="number" name="views" class="form-control" value="{{old('views', $record->views ? $record->views : '')}}" placeholder="{{trans('admin.enter_views')}}">
