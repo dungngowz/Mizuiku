@@ -134,6 +134,10 @@
                            thumbnail = "/admin/assets/images/word.png";
                         } else if (ext.indexOf("xls") != -1) {
                            thumbnail = "/admin/assets/images/excel.png";
+                        } else if (ext.indexOf("mp4") != -1) {
+                            thumbnail = "/admin/assets/images/mp4.png";
+                        }else{
+                            thumbnail = "/admin/assets/images/icon.png";
                         }
 
                         thisDropzone.options.thumbnail.call(thisDropzone, mockFile, thumbnail);
