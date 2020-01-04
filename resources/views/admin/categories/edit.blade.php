@@ -125,6 +125,7 @@
                     var i; var mockFile; var thumbnail; var ext;
                     for (i = 0; i < gallery.length; i++) {
                         mockFile = gallery[i];
+                        console.log('mockFile', mockFile);
                         thisDropzone.options.addedfile.call(thisDropzone, mockFile);
 
                         ext = mockFile.path.split('.').pop();
@@ -186,6 +187,10 @@
                     return false;
                 }
             };
+
+            $(document).on("click", ".dz-image-preview", function(){
+                $('.fancybox-preview-gallery').attr('href', $(this).find('img').attr('src')).trigger('click');
+            });
         </script>
     @endpush
 @endif
