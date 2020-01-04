@@ -125,7 +125,6 @@
                     var i; var mockFile; var thumbnail; var ext;
                     for (i = 0; i < gallery.length; i++) {
                         mockFile = gallery[i];
-                        console.log('mockFile', mockFile);
                         thisDropzone.options.addedfile.call(thisDropzone, mockFile);
 
                         ext = mockFile.path.split('.').pop();
@@ -141,7 +140,6 @@
                             thumbnail = "/admin/assets/images/icon.png";
                         }
 
-                        thisDropzone.options.addedfile.call(thisDropzone, mockFile);
                         thisDropzone.options.thumbnail.call(thisDropzone, mockFile, thumbnail);
                     }
                     thisDropzone.on("removedfile", function (file) {
