@@ -70,7 +70,7 @@
                     name: 'id'
                 },{
                     data: 'title',
-                    name: 'title'
+                    name: 'title',
                     width: "25%"
                 },{
                     data: 'category.title',
