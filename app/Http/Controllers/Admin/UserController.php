@@ -193,6 +193,8 @@ class UserController extends Controller
 
         if(!empty($params['password'])){
             $params['password'] = Hash::make($request->password);
+        }else{
+            $params['password'] = $record->password;
         }
 
         $record->fill($params);
