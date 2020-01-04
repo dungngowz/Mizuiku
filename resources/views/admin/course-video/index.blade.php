@@ -32,9 +32,7 @@
                                         <th>ID</th>
                                         <th>{{trans('admin.title')}}</th>
                                         <th>{{trans('admin.category')}}</th>
-                                        <th>{{trans('admin.priority')}}</th>
                                         <th>{{trans('admin.language')}}</th>
-                                        <th>{{trans('admin.created_at')}}</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -77,16 +75,9 @@
                     data: 'category.title',
                     name: 'category.title',
                 },{
-                    data: 'priority',
-                    name: 'priority',
-                    className: 'text-center'
-                },{
                     data: 'language',
                     name: 'language',
                     className: 'text-center'
-                },{
-                    data: 'created_at',
-                    name: 'created_at'
                 },{
                     data: 'actions',
                     name: 'actions',
