@@ -71,7 +71,7 @@
                         @else
                             <div class="border-top">
                                 <div class="card-body text-right">
-                                    <a href="{{url('admin/categories/')}}">
+                                    <a href="{{url('admin/categories/?type=' . request()->type)}}">
                                         <button type="button" class="btn">{{trans('admin.cancel')}}</button>
                                     </a>
                                     <button type="submit" class="btn btn-success">{{trans('admin.submit')}}</button>
@@ -94,7 +94,7 @@
                         </div>
                         <div class="border-top">
                             <div class="card-body text-right">
-                                <a href="{{url('admin/library/?keyword=' . request()->keyword)}}">
+                                <a href="{{url('admin/categories/?type=' . request()->type)}}">
                                     <button type="button" class="btn">{{trans('admin.cancel')}}</button>
                                 </a>
                                 <button type="button" class="btn btn-submit-gallery btn-success">{{trans('admin.submit')}}</button>
