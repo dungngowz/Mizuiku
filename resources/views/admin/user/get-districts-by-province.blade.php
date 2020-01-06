@@ -1,5 +1,6 @@
 <label>{{trans('admin.district')}}</label>
 <select name="district_id" class="select2 form-control custom-select">
+    <option value=''>----</option>
     @foreach ($districts as $item)
         <option value="{{$item->id}}">{{$item->name}}</option>    
     @endforeach

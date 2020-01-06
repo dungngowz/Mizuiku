@@ -453,20 +453,35 @@ class HomeController extends Controller
             ->orderBy('name_' . $currentLang, 'asc')
             ->get();
 
-        $cities = Province::where('parent_id', $provinces[0]->id)
+        $province_id = empty($request->province_id) ? $provinces[0]->id : $request->province_id;
+        $districts = Province::where('parent_id', $province_id)
             ->select('name_' . $currentLang . ' as name', 'id')
             ->orderBy('priority', 'desc')
             ->orderBy('name_' . $currentLang, 'asc')
             ->get();
 
-        $reports = User::select('province_id', 'district_id', 'work_place', \DB::raw('count(*) as total_participants'), \DB::raw('sum(complete_courses) as complete_courses'))
-            ->groupBy('province_id', 'district_id', 'work_place')->get();
+        $query = User::select('province_id', 'district_id', 'work_place', \DB::raw('count(*) as total_participants'), \DB::raw('sum(complete_courses) as complete_courses'))
+            ->groupBy('province_id', 'district_id', 'work_place');
+
+        if(!empty($request->province_id)){
+            $query = $query->where('province_id', $request->province_id);
+        }
+
+        if(!empty($request->district_id)){
+            $query = $query->where('district_id', $request->district_id);
+        }
+
+        if(!empty($request->work_place)){
+            $query = $query->where('work_place', 'like' , '%' . $request->district_id . '%');
+        }
+
+        $reports = $query->get();
 
         return view('client.statistical', [
             'title' => trans('client.statistical'),
             'currentLang' => $currentLang,
             'provinces' => $provinces,
-            'cities' => $cities,
+            'districts' => $districts,
             'reports' => $reports
         ]);
     }

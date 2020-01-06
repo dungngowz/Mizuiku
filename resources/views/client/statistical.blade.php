@@ -16,32 +16,42 @@
     <div id="Analytisc">
         <div class="tit">{{trans('client.student_statistics')}}</div>
         <div class="Filter">
-            <div class="item">
-                <label>{{trans('client.city')}}</label>
-                <select name="province_id" lang="{{$currentLang}}" class="select2 form-control custom-select">
-                    @foreach ($provinces as $item)
-                        <option value="{{$item->id}}">{{$item->name}}</option>    
-                    @endforeach
-                </select>
-            </div>
+            <form>
+                <div class="item">
+                    <label>{{trans('client.city')}}</label>
+                    <select name="province_id" lang="{{$currentLang}}" class="select2 form-control custom-select">
+                        <option value="">----</option>
+                        @php
+                            $province_id = request()->province_id;
+                        @endphp
+                        @foreach ($provinces as $item)
+                            <option {{($province_id == $item->id) ? 'selected' : ''}} value="{{$item->id}}">{{$item->name}}</option>    
+                        @endforeach
+                    </select>
+                </div>
 
-            <div class="item">
-                <label>{{trans('client.district')}}</label>
-                <select name="city_id" class="select2 form-control custom-select wrap-districts">
-                    @foreach ($cities as $item)
-                        <option value="{{$item->id}}">{{$item->name}}</option>    
-                    @endforeach
-                </select>
-            </div>
+                <div class="item wrap-districts">
+                    <label>{{trans('client.district')}}</label>
+                    <select name="district_id" class="select2 form-control custom-select">
+                        <option value=''>----</option>
+                        @php
+                            $district_id = request()->district_id;
+                        @endphp
+                        @foreach ($districts as $item)
+                            <option {{($district_id == $item->id) ? 'selected' : ''}} value="{{$item->id}}">{{$item->name}}</option>    
+                        @endforeach
+                    </select>
+                </div>
 
-            <div class="item">
-                <label>{{trans('client.work-place')}}</label>
-                <input id="work_place" name="work_place" type="text" id="ddlSchool">
-            </div>
+                <div class="item">
+                    <label>{{trans('client.work-place')}}</label>
+                    <input id="work_place" value="{{request()->work_place}}" name="work_place" type="text" id="ddlSchool" />
+                </div>
 
-            <div class="btn">
-                <a href="javascript:void(0)" class="btn-search-statistical">{{trans('client.statistical')}}</a>
-            </div>
+                <div class="btn">
+                    <button class="btn-search-statistical" type="submit">{{trans('client.statistical')}}</button>
+                </div>
+            </form>
         </div>
 
         @if ($reports)

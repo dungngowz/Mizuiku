@@ -173,7 +173,7 @@
 #Analytisc .Filter .item{ width: calc((100% - 10px) / 3); display: inline-block}
 #Analytisc .Filter .item label{ font-weight: bold;display: block}
 #Analytisc .Filter .item select{ width: 100%;padding:0 10px;box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;-o-box-sizing: border-box;height: 32px;border-radius: 4px;border: 1px solid #d2d2d2;margin-top: 8px;margin-bottom: 15px;outline: none}
-#Analytisc .Filter .btn a{ display: table;margin: auto;padding: 0 150px;font-size: 18px;font-family: iCielCadena;line-height: 40px;color: #fff;background: #0e9ee6;border-radius: 5px}
+#Analytisc .Filter .btn .btn-search-statistical{cursor: pointer; display: table;margin: auto;padding: 0 150px;font-size: 18px;font-family: iCielCadena;line-height: 40px;color: #fff;background: #0e9ee6;border-radius: 5px}
 #Analytisc .tit2{font-family: iCielCadena;font-size: 28px;color: #109ce3;margin-bottom: 15px}
 #Analytisc .groupItems .item.head{ background: #0e9ee6;color: #fff;font-weight: bold;text-transform: uppercase}
 #Analytisc .groupItems .item{ padding: 10px 0;background: #eefbff;border: 1px solid #cdeeff;border-top:none}
