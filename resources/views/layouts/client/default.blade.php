@@ -46,7 +46,8 @@
     <link href="{{ asset('client/css/PhotoAlbum/PhotoAlbum.css') }}" rel="stylesheet" />
     <link href="{{ asset('client/css/Video/Video.css') }}" rel="stylesheet" />
     <link href="{{ asset('client/css/Member/Member.css') }}" rel="stylesheet" />
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+    
     {{-- JS --}}
     <link href="{{ asset('client/js/Owl2/owl.carousel.css') }}" rel="stylesheet" />
     <link href="{{ asset('client/js/Nivoslide/nivo-slider.css') }}" rel="stylesheet" />
@@ -77,7 +78,10 @@
     <script src="{{ asset('client/js/loading.js') }}" type="text/javascript"></script>
     <script src="{{ asset('client/js/slick/slick.js') }}" type="text/javascript"></script>
 
-
+    <script>
+        const SITE_URL_ADMIN = "<?php echo url('admin')?>/";
+        const CSRF_TOKEN = "<?php echo csrf_token()?>";
+    </script>
 </head>
 
 <body>
@@ -89,11 +93,14 @@
 
     @include('client.components.modal')
 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
     <script src="{{ asset('client/js/custom.js?t=' . time()) }}"></script>
     <link rel="stylesheet" href="{{ asset('client/css/custom.css?t=' . time()) }}">
     <script src="{{ asset('client/js/custom-course.js?t=' .time()) }}"></script>
 
     @yield('custom-js')
+
+    @stack('scripts')
 </body>
 
 </html>

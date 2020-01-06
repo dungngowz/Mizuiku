@@ -561,3 +561,32 @@ $('.uploadFile input').change(function () {
 function reFresh() {
     location.href = location.href;
 }
+
+$(document).ready(function() {
+    $('.select2').select2();
+
+    $('select[name=province_id]').on('change', function () {
+        if(loadingAjax){
+            return false;
+        }
+        loadingAjax = true;
+
+        $.ajax({
+            type: "POST",
+            url: SITE_URL_ADMIN + 'get-districts-by-province',
+            data: {
+                _token: _token,
+                province_id: $(this).val(),
+                lang: $(this).attr('lang')
+            },  
+            complete:function(data){
+                loadingAjax = false;
+            },
+            success: function(data){
+                $('.wrap-districts').html(data.message.html);
+                $('.select2').select2();
+            },
+            error: function(data) {}
+        });
+    });
+});

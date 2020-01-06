@@ -49,6 +49,22 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany('App\Models\Article', 'learning_outcomes', 'video_id', 'user_id');
     }
 
+    /**
+     * Get the user that owns the province.
+     */
+    public function province()
+    {
+        return $this->belongsTo('App\Models\Province', 'province_id');
+    }
+
+    /**
+     * Get the user that owns the district.
+     */
+    public function district()
+    {
+        return $this->belongsTo('App\Models\Province', 'district_id');
+    }
+
     public function learningOutcomes()
     {
         return $this->hasMany('App\Models\LearningOutcomes');

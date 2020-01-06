@@ -22,6 +22,7 @@ use Mail;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Models\LearningOutcomes;
+
 class HomeController extends Controller
 {
 
@@ -445,8 +446,28 @@ class HomeController extends Controller
     }
 
     public function statistical(Request $request){
+        $currentLang = app()->getLocale();
+        $provinces = Province::where('parent_id', 0)
+            ->select('name_' . $currentLang . ' as name', 'id')
+            ->orderBy('priority', 'desc')
+            ->orderBy('name_' . $currentLang, 'asc')
+            ->get();
+
+        $cities = Province::where('parent_id', $provinces[0]->id)
+            ->select('name_' . $currentLang . ' as name', 'id')
+            ->orderBy('priority', 'desc')
+            ->orderBy('name_' . $currentLang, 'asc')
+            ->get();
+
+        $reports = User::select('province_id', 'district_id', 'work_place', \DB::raw('count(*) as total_participants'), \DB::raw('sum(complete_courses) as complete_courses'))
+            ->groupBy('province_id', 'district_id', 'work_place')->get();
+
         return view('client.statistical', [
-            'title' => trans('client.statistical')
+            'title' => trans('client.statistical'),
+            'currentLang' => $currentLang,
+            'provinces' => $provinces,
+            'cities' => $cities,
+            'reports' => $reports
         ]);
     }
 }

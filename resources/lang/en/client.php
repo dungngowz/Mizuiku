@@ -99,6 +99,13 @@ return [
     'address-2' => 'Address',
     'contact-2'=> 'Contact Program',
     'send-contact' => 'Send us your contact',
+    'student_statistics' => 'Student statistics',
+    'number_of_participants' => 'Number of participants',
+    'student_finished' => 'Number of students completed',
+    'no_results' => 'There are no matches',
+    'statistical_results' => 'Statistical results',
+    'student' => 'students',
+    'student_finished' => 'students completed',
     'location' => 'Location',
     'introduction' => 'Introduction',
     'months' => [

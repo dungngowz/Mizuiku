@@ -23,7 +23,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <div id="custom-filter-datatable">
+                            <div id="custom-filter-datatable" class="hide">
                                 <input type="text" id="max" name="category_id">
                             </div>
 
