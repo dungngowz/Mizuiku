@@ -161,7 +161,7 @@
                     </li>
                     <li>
                         <div class="pt2">
-                        <span>{{trans('clien.auto_play')}}</span>
+                        <span>{{trans('client.auto_play')}}</span>
                         <div id="AutoPlay" class="check ac">
                             <input type="checkbox" value="" />
                         </div>
