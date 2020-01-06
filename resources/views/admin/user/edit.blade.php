@@ -87,8 +87,8 @@
                                             @php
                                                 $status = old('status', $record->status);
                                             @endphp
-                                            <option value="0" {{ ($status == 0) ? 'selected' : '' }}>{{trans('admin.not_activated')}}</option>
-                                            <option value="1" {{ ($status == 1) ? 'selected' : '' }}>{{trans('admin.activated')}}</option>
+                                            <option value="0" {{ ($status == 0) ? 'selected' : '' }}>{{trans('admin.temporarily_locked')}}</option>
+                                            <option value="1" {{ ($status == 1) ? 'selected' : '' }}>{{trans('admin.allow_login')}}</option>
                                         </select>
                                         @if($errors->has('status'))
                                             <span class="error-msg">{{$errors->first('status')}}</span>
