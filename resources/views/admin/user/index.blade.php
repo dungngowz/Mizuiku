@@ -36,7 +36,6 @@
                                         <th>{{trans('admin.phone')}}</th>
                                         <th>{{trans('admin.actived')}}</th>
                                         <th>{{trans('admin.status')}}</th>
-                                        <th>{{trans('admin.created_at')}}</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -91,9 +90,6 @@
                     },{
                         data: 'status',
                         name: 'status'
-                    },{
-                        data: 'created_at',
-                        name: 'created_at'
                     },{
                         data: 'actions',
                         name: 'actions',

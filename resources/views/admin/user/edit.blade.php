@@ -174,6 +174,13 @@
                                         @endif
                                     </div>
 
+                                    @if ($record->id)
+                                        <div class="form-group m-t-20">
+                                            <label>{{trans('admin.created_at')}}</label>
+                                            <input type="text" readonly class="form-control" value="{{$record->created_at}}">
+                                        </div>
+                                    @endif
+
                                     <div class="form-group m-t-20 wrap-thumbnail">
                                         <label>Avatar</label>
                                         <div id="upload-file">
