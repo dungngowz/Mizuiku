@@ -95,5 +95,7 @@ return [
     'allow_login' => 'Allow login',
     'temporarily_locked' => 'Temporarily locked',
     'birthday' => 'Date of birth',
-    'enter_birthday' => 'Enter Date of birth'
+    'enter_birthday' => 'Enter Date of birth',
+    'male' => 'Male',
+    'female' => 'Female'
 ];

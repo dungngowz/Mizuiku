@@ -93,5 +93,7 @@ return [
     'allow_login' => 'Cho phép đăng nhập',
     'temporarily_locked' => 'Tạm khoá',
     'birthday' => 'Ngày sinh',
-    'enter_birthday' => 'Nhập ngày sinh'
+    'enter_birthday' => 'Nhập ngày sinh',
+    'male' => 'Nam',
+    'female' => 'Nữ'
 ];

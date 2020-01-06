@@ -94,6 +94,20 @@
                                             <span class="error-msg">{{$errors->first('status')}}</span>
                                         @endif
                                     </div>
+
+                                    <div class="form-group m-t-20">
+                                        <label>{{trans('admin.sex')}}</label>
+                                        <select name="sex" class="select2 form-control custom-select">
+                                            @php
+                                                $sex = old('sex', $record->sex);
+                                            @endphp
+                                            <option value="0" {{ ($sex == 0) ? 'selected' : '' }}>{{trans('admin.male')}}</option>
+                                            <option value="1" {{ ($sex == 1) ? 'selected' : '' }}>{{trans('admin.female')}}</option>
+                                        </select>
+                                        @if($errors->has('sex'))
+                                            <span class="error-msg">{{$errors->first('sex')}}</span>
+                                        @endif
+                                    </div>
                                 </div>
                                 
                                 <div class="col-md-2"></div>
