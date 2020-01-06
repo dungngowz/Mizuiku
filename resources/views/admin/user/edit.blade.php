@@ -34,6 +34,15 @@
                                             <span class="error-msg">{{$errors->first('name')}}</span>
                                         @endif
                                     </div>
+
+                                    <div class="form-group m-t-20">
+                                        <label>{{trans('admin.username')}}</label>
+                                        <input type="text" {{$record->id ? 'readonly' : ''}} name="username" class="form-control" value="{{old('username', $record->username)}}" placeholder="{{trans('admin.enter_username')}}">
+                                        @if($errors->has('username'))
+                                            <span class="error-msg">{{$errors->first('username')}}</span>
+                                        @endif
+                                    </div>
+
                                     <div class="form-group m-t-20">
                                         <label>{{trans('admin.email')}}</label>
                                         <input type="text" {{$record->id ? 'readonly' : ''}} name="email" class="form-control" value="{{old('email', $record->email)}}" placeholder="{{trans('admin.enter_email')}}">
@@ -44,7 +53,7 @@
 
                                     <div class="form-group m-t-20">
                                         <label>{{trans('admin.password')}}</label>
-                                        <input type="password" name="password" class="form-control" value="{{old('password')}}" placeholder="{{trans('admin.enter_password')}}">
+                                        <input type="password" name="password" class="form-control" value="{{old('password', '123456')}}" placeholder="{{trans('admin.enter_password')}}">
                                         @if($errors->has('password'))
                                             <span class="error-msg">{{$errors->first('password')}}</span>
                                         @endif

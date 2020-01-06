@@ -23,6 +23,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
+                            <div id="custom-filter-datatable">
+                                <input type="text" id="max" name="category_id">
+                            </div>
+
                             <table id="datatable" class="table table-striped table-no-bordered table-hover" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -52,11 +56,16 @@
 
 @push('scripts')
     <script>
+        var paramsSearch = JSON.parse('<?php echo json_encode(request()->all()) ?>');
+        
+        var paramsSearch = JSON.stringify($('#custom-filter-datatable').serializeArray());
+        console.log(paramsSearch);
+
         var table = $('#datatable').DataTable({
             ...optionDataTable,
             ajax: {
                 url: '/admin/course-video/data',
-                data : JSON.parse('<?php echo json_encode(request()->all()) ?>')
+                data : paramsSearch
             },
             columns: [{
                     data: 'id',
@@ -90,6 +99,10 @@
             success: function(res){
                 $(".preloader").fadeOut();
             }
+        });
+
+        $('#min, #max').keyup( function() {
+            table.draw();
         });
 
         // action check all

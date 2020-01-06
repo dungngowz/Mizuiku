@@ -31,6 +31,7 @@
                                         </th>
                                         <th>ID</th>
                                         <th>{{trans('admin.fullname')}}</th>
+                                        <th>{{trans('admin.username')}}</th>
                                         <th>{{trans('admin.email')}}</th>
                                         <th>{{trans('admin.phone')}}</th>
                                         <th>{{trans('admin.status')}}</th>
@@ -74,6 +75,9 @@
                     },{
                         data: 'name',
                         name: 'name'
+                    },{
+                        data: 'username',
+                        name: 'username'
                     },{
                         data: 'email',
                         name: 'email'
