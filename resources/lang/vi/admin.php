@@ -88,5 +88,10 @@ return [
     'my_profile' => 'Thông tin cá nhân',
     'logout' => 'Đăng xuất',
     'invalid_credentials' => 'Bạn đã nhập thông tin không khả dụng',
-    'not_actived_account' => 'Tài khoản này chưa được kích hoạt'
+    'not_actived_account' => 'Tài khoản này chưa được kích hoạt',
+    'actived' => 'Kích hoạt',
+    'allow_login' => 'Cho phép đăng nhập',
+    'temporarily_locked' => 'Tạm khoá',
+    'birthday' => 'Ngày sinh',
+    'enter_birthday' => 'Nhập ngày sinh'
 ];

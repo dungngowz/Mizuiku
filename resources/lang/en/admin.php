@@ -90,5 +90,10 @@ return [
     'my_profile' => 'My Profile',
     'logout' => 'Logout',
     'invalid_credentials' => 'Oppes! You have entered invalid credentials',
-    'not_actived_account' => 'This account has not been activated'
+    'not_actived_account' => 'This account has not been activated',
+    'actived' => 'Actived',
+    'allow_login' => 'Allow login',
+    'temporarily_locked' => 'Temporarily locked',
+    'birthday' => 'Date of birth',
+    'enter_birthday' => 'Enter Date of birth'
 ];

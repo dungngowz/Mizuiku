@@ -50,6 +50,11 @@ class UserController extends Controller
 
         return DataTables::of($records)
             ->RawColumns(['actions'])
+            ->addColumn('actived', function($item) {
+                return view('admin.user.cols-actived', [
+                    'item' => $item
+                ]);
+            })
             ->addColumn('status', function($item) {
                 return view('admin.user.cols-status', [
                     'item' => $item

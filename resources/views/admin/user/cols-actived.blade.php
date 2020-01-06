@@ -1,0 +1,1 @@
+{{$item->actived ? trans('admin.activated') : trans('admin.not_activated')}}

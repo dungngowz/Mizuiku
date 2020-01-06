@@ -34,6 +34,7 @@
                                         <th>{{trans('admin.username')}}</th>
                                         <th>{{trans('admin.email')}}</th>
                                         <th>{{trans('admin.phone')}}</th>
+                                        <th>{{trans('admin.actived')}}</th>
                                         <th>{{trans('admin.status')}}</th>
                                         <th>{{trans('admin.created_at')}}</th>
                                         <th></th>
@@ -84,6 +85,9 @@
                     },{
                         data: 'phone',
                         name: 'phone'
+                    },{
+                        data: 'actived',
+                        name: 'actived'
                     },{
                         data: 'status',
                         name: 'status'

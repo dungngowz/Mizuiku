@@ -152,6 +152,14 @@
                                         @endif
                                     </div>
 
+                                    <div class="form-group m-t-20">
+                                        <label>{{trans('admin.birthday')}}</label>
+                                        <input type="text" name="birthday" class="form-control" value="{{old('birthday', $record->birthday ? $record->birthday : '1990-01-01')}}" placeholder="{{trans('admin.enter_birthday')}}">
+                                        @if($errors->has('birthday'))
+                                            <span class="error-msg">{{$errors->first('birthday')}}</span>
+                                        @endif
+                                    </div>
+
                                     <div class="form-group m-t-20 wrap-thumbnail">
                                         <label>Avatar</label>
                                         <div id="upload-file">
