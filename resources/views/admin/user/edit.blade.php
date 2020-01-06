@@ -68,6 +68,20 @@
                                     </div>
 
                                     <div class="form-group m-t-20">
+                                        <label>{{trans('admin.actived')}}</label>
+                                        <select name="actived" class="select2 form-control custom-select">
+                                            @php
+                                                $actived = old('actived', $record->actived);
+                                            @endphp
+                                            <option value="0" {{ ($actived == 0) ? 'selected' : '' }}>{{trans('admin.not_activated')}}</option>
+                                            <option value="1" {{ ($actived == 1) ? 'selected' : '' }}>{{trans('admin.activated')}}</option>
+                                        </select>
+                                        @if($errors->has('actived'))
+                                            <span class="error-msg">{{$errors->first('actived')}}</span>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group m-t-20">
                                         <label>{{trans('admin.status')}}</label>
                                         <select name="status" class="select2 form-control custom-select">
                                             @php
