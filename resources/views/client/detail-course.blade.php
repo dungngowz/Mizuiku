@@ -70,7 +70,7 @@
                                     <div class='item'>
                                         <div class='khungAnh'>
                                             <a class='khungAnhCrop' href='' title='{{ $item->user['name'] }}'>
-                                                <img alt="{{ $item->user['name'] }}" src="{{ $item->user->avatar_display }}" />
+                                                <img alt="{{ $item->user['name'] }}" src="{{ $item->user['avatar_display'] }}" />
                                             </a>
                                         </div>
                                         <div class='info'>
