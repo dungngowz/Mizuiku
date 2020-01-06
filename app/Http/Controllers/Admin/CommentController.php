@@ -130,4 +130,23 @@ class CommentController extends Controller
         }
         return $this->response(500);
     }
+
+    /**
+     * Remove multiple
+     *
+     * @param  array  $arraySelected
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteMultiple(Request $request)
+    {
+        $params = array_map('intval', explode(',', $request->arraySelected));
+        foreach ($params as $item) {
+            $record = Comment::where('id', $item)->first();
+            if(!$record) {
+                return $this->response(500,false,true, trans('Comment Not Found!'));
+            }
+            $record->delete();
+        }
+        return $this->response(200,true,true, trans('Delete Successfully!'));
+    }
 }

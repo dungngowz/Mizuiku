@@ -28,12 +28,12 @@
 
                             <div class="form-group m-t-20">
                                 <label>{{trans('admin.status')}}</label>
-                                <select name="category" class="select2 form-control custom-select">
+                                <select name="status" class="select2 form-control custom-select">
                                     @php
-                                        $status = old('status', $record->status ? $record->status : 1);
+                                        $status = old('status', $record->status);
                                     @endphp
-                                    <option {{ ($status == 0) ? 'selected' : '' }}>{{trans('admin.hide')}}</option>
-                                    <option {{ ($status == 1) ? 'selected' : '' }}>{{trans('admin.show')}}</option>
+                                    <option value="0" {{ ($status == 0) ? 'selected' : '' }}>{{trans('admin.hide')}}</option>
+                                    <option value="1" {{ ($status == 1) ? 'selected' : '' }}>{{trans('admin.show')}}</option>
                                 </select>
                                 @if($errors->has('status'))
                                     <span class="error-msg">{{$errors->first('status')}}</span>

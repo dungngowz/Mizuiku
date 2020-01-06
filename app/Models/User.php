@@ -68,7 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getAvatarDisplayAttribute(){
         $parsed = parse_url($this->avatar);
         if (empty($parsed['scheme'])) {
-            return $this->avatar ? Storage::url($this->avatar) : 'client/pic/icon/no_image.gif';
+            return $this->avatar ? Storage::url($this->avatar) : asset('client/pic/icon/no_image.gif');
         }
         return $this->avatar;
     }

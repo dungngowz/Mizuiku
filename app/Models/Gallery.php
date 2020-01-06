@@ -37,4 +37,12 @@ class Gallery extends SoftModelBase
         }
         return $this->file_path;
     }
+
+    public function getFormatBytesAttribute() { 
+        $bytes = $this->size;
+        $i = floor(log($bytes) / log(1024));
+        $sizes = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+
+        return sprintf('%.02F', $bytes / pow(1024, $i)) * 1 . ' ' . $sizes[$i];
+    }
 }

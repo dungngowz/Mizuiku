@@ -49,8 +49,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/course-video/data', 'CourseVideoController@data');
     Route::resource('/course-video', 'CourseVideoController');
     Route::post('/course-video/delete-multiple', 'CourseVideoController@deleteMultiple');
+    
     Route::resource('/comment', 'CommentController');
     Route::get('/get-comment/data', 'CommentController@data');
+    Route::post('/comment/delete-multiple', 'CommentController@deleteMultiple');
+
     Route::resource('/user', 'UserController');
     Route::get('/get-user/data', 'UserController@data');
     Route::post('/user/delete-multiple', 'UserController@deleteMultiple');

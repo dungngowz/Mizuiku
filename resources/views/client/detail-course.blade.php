@@ -70,7 +70,7 @@
                                     <div class='item'>
                                         <div class='khungAnh'>
                                             <a class='khungAnhCrop' href='' title='{{ $item->user['name'] }}'>
-                                                <img alt="{{ $item->user['name'] }}" src="{{ $item->user['avatar_display'] }}" />
+                                                <img alt="{{ $item->user['name'] }}" src="{{ $item->user->avatar_display }}" />
                                             </a>
                                         </div>
                                         <div class='info'>
@@ -97,7 +97,7 @@
                                                 <div class='info'>
                                                     <a href='javascript:;' title='' class='name'>{{$item->file_name}}</a>
                                                     <div>
-                                                        <a class='totalview'>{{$item->size}} KB</a>
+                                                        <a class='totalview'>{{$item->formatBytes}}</a>
                                                         <a target="_blank" href='{{Storage::url($item->file_path)}}' title='' class='totaldown'>{{trans('client.download')}}</a>
                                                     </div>
                                                 </div>
