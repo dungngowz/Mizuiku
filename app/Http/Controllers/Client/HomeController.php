@@ -97,9 +97,8 @@ class HomeController extends Controller
     {
         $introDetail = Article::where('ref_id', $request->ref_id)->first();
 
-        if($request->fullUrl() != $introDetail->url_detail_about_us){
-            header('Location: '.$introDetail->url_detail_about_us);
-            exit();
+        if(!$introDetail){
+            return redirect('/');
         }
 
         $keywords = ['program-introduction', 'co-organizingboard', 'suntory-group', 'suntory-pepsico', 'vietNam-national-student-union', 'pioneer-organization'];
