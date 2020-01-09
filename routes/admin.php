@@ -54,6 +54,15 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/get-comment/data', 'CommentController@data');
     Route::post('/comment/delete-multiple', 'CommentController@deleteMultiple');
 
+    Route::get('/quiz/data', 'QuizCourseController@getData');
+    Route::resource('/quiz', 'QuizCourseController');
+    
+    Route::post('/quiz/delete-multiple', 'QuizCourseController@deleteMultiple');
+
+    Route::resource('/result-evaluation-course', 'ResultEvaluationCourseController');
+    Route::get('/get-result-evaluation-course/data', 'ResultEvaluationCourseController@data');
+    Route::post('/result-evaluation-course/delete-multiple', 'ResultEvaluationCourseController@deleteMultiple');
+
     Route::resource('/user', 'UserController');
     Route::get('/get-user/data', 'UserController@data');
     Route::post('/user/delete-multiple', 'UserController@deleteMultiple');

@@ -97,5 +97,8 @@ return [
     'birthday' => 'Date of birth',
     'enter_birthday' => 'Enter Date of birth',
     'male' => 'Male',
-    'female' => 'Female'
+    'female' => 'Female',
+    'evaluation-course' => 'Form Evaluation the course',
+    'result-evaluation-course' => 'Evaluation results of the course',
+    'question' => 'Question'
 ];

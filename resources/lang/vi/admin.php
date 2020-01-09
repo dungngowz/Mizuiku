@@ -95,5 +95,8 @@ return [
     'birthday' => 'Ngày sinh',
     'enter_birthday' => 'Nhập ngày sinh',
     'male' => 'Nam',
-    'female' => 'Nữ'
+    'female' => 'Nữ',
+    'evaluation-course' => 'Form Đánh giá khoá học',
+    'result-evaluation-course' => 'Kết quả đánh giá',
+    'question' => 'Câu hỏi'
 ];

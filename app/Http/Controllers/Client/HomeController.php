@@ -110,6 +110,10 @@ class HomeController extends Controller
             ->where('status', 1)
             ->limit(5)
             ->get();
+
+        //Update Views
+        $introDetail->views = $introDetail->views + 1;
+        $introDetail->save();
         
         return view('client.detail-intro', ['introDetail' => $introDetail, 'ortherArticles' => $ortherArticles]);
     }

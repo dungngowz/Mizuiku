@@ -27,13 +27,6 @@
                         <span class="hide-menu">{{trans('admin.courses_management')}}</span>
                     </a>
                     <ul aria-expanded="false" class="collapse first-level {{$activeTreeCourse ? 'in' : ''}}">
-                        <li class="sidebar-item {{$segments[1] == 'course-video' ? 'active' : ''}}">
-                            <a href="{{ url('admin/course-video') }}" class="sidebar-link">
-                                <i class="mdi mdi-note-outline"></i>
-                                <span class="hide-menu">{{trans('admin.course_video')}}</span>
-                            </a>
-                        </li>
-
                         <li class="sidebar-item {{($segments[1] == 'categories' && request()->type == 'course') ? 'active' : ''}}">
                             <a href="{{ url('admin/categories?type=course') }}" class="sidebar-link">
                                 <i class="mdi mdi-note-outline"></i>
@@ -41,10 +34,10 @@
                             </a>
                         </li>
 
-                        <li class="sidebar-item {{($segments[1] == 'comment') ? 'active' : ''}}">
-                            <a href="{{ url('admin/comment') }}" class="sidebar-link">
+                        <li class="sidebar-item {{$segments[1] == 'course-video' ? 'active' : ''}}">
+                            <a href="{{ url('admin/course-video') }}" class="sidebar-link">
                                 <i class="mdi mdi-note-outline"></i>
-                                <span class="hide-menu">{{trans('admin.comment')}}</span>
+                                <span class="hide-menu">{{trans('admin.course_video')}}</span>
                             </a>
                         </li>
 
@@ -52,6 +45,29 @@
                             <a href="{{ url('admin/user') }}" class="sidebar-link">
                                 <i class="mdi mdi-note-outline"></i>
                                 <span class="hide-menu">{{trans('admin.user')}}</span>
+                            </a>
+                        </li>
+
+                        @if (0)
+                        <li class="sidebar-item {{($segments[1] == 'quiz') ? 'active' : ''}}">
+                            <a href="{{ url('admin/quiz') }}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu">{{trans('admin.evaluation-course')}}</span>
+                            </a>
+                        </li>
+                        
+                        <li class="sidebar-item {{($segments[1] == 'result-evaluation-course') ? 'active' : ''}}">
+                            <a href="{{ url('admin/result-evaluation-course') }}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu">{{trans('admin.result-evaluation-course')}}</span>
+                            </a>
+                        </li>
+                        @endif
+
+                        <li class="sidebar-item {{($segments[1] == 'comment') ? 'active' : ''}}">
+                            <a href="{{ url('admin/comment') }}" class="sidebar-link">
+                                <i class="mdi mdi-note-outline"></i>
+                                <span class="hide-menu">{{trans('admin.comment')}}</span>
                             </a>
                         </li>
                     </ul>
