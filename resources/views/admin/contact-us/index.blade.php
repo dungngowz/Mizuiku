@@ -24,7 +24,7 @@
                                         <th>{{trans('admin.fullname')}}</th>
                                         <th>{{trans('admin.phone')}}</th>
                                         <th>{{trans('admin.email')}}</th>
-                                        <th>IP</th>
+                                        <th>{{trans('admin.content')}}</th>
                                         <th>{{trans('admin.created_at')}}</th>
                                         <th></th>
                                     </tr>
@@ -65,8 +65,8 @@
                         data: 'email',
                         name: 'email',
                     },{
-                        data: 'ip',
-                        name: 'ip',
+                        data: 'content',
+                        name: 'content',
                     },{
                         data: 'created_at',
                         name: 'created_at'

@@ -42,7 +42,7 @@
 
                             <div class="form-group m-t-20">
                                 <label>{{trans('admin.content')}}</label>
-                                <textarea name="content" class="form-control">{!! $record->content !!}</textarea>
+                                <textarea rows="7" name="content" class="form-control">{!! $record->content !!}</textarea>
                             </div>
                         </div>
                         <div class="border-top">
