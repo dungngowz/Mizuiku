@@ -201,7 +201,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 function checkViewCourse(){
-                    $("#success .tac").html("{{client.required_prev_course}}");
+                    $("#success .tac").html("{{trans('client.required_prev_course')}}");
                     $(".success_open").click();
                     $('.success_close').click(function(){
                         location.href = "{{url('')}}";
