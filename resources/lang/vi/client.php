@@ -185,5 +185,8 @@ return [
     'change_avatar' => 'Thay đổi ảnh đại diện',
     'required_login_to_view' => 'Vui lòng đăng nhập để xem bài giảng!',
     'auto_play' => 'Tự động phát',
-    'required_prev_course' => 'Để có thể học khoá học này. Bạn cần hoàn thành khoá học trước đó!'
+    'required_prev_course' => 'Để có thể học khoá học này. Bạn cần hoàn thành khoá học trước đó!',
+    'send_contact' => 'Gửi liên hệ',
+    'reset_data' => 'Nhập lại',
+    'name' => 'Họ tên'
 ];

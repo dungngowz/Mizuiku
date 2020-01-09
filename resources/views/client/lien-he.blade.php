@@ -27,17 +27,17 @@
                             <div id="contact_input" class="contact-input">
                                 <div class="fs18 pb8 fiCielCadena c109ce3">{{ __('client.send-contact')}}</div>
                                 <div class="ct-ip">
-                                    <input id="tbName_CT" type="text" value="" class="ct-ipt required" placeholder="Name *" />
-                                    <input id="tbPhone_CT" type="text" value="" class="ct-ipt required" placeholder="Phone *" />
+                                    <input id="tbName_CT" type="text" value="" class="ct-ipt required" placeholder="{{trans('client.name')}} *" />
+                                    <input id="tbPhone_CT" type="text" value="" class="ct-ipt required" placeholder="{{trans('client.phone')}} *" />
                                     <input id="tbEmail_CT" type="text" value="" class="ct-ipt required" placeholder="Email *" />
                                     <select name="DisplayLoadControl$ctl00$Index$dllCT" id="DisplayLoadControl_ctl00_Index_dllCT" class="ct-sl dn">
                                         <option value="60">&quot;Mizuiku - I love clean water&quot; program</option>
 
                                     </select>
-                                    <textarea id="tbContent_CT" class="ct-tare required" placeholder="Content *"></textarea>
+                                    <textarea id="tbContent_CT" class="ct-tare required" placeholder="{{trans('client.content')}} *"></textarea>
                                     <div>
-                                        <a href="javascript:;" title="" class="ct-btn" onclick="SendContact();">{{ __('client.send')}}</a>
-                                        <a href="javascript:;" title="" class="ct-btn" onclick="ResetAllTextBox('#contact_input');">{{ __('client.content')}}</a>
+                                        <a href="javascript:;" title="" class="ct-btn" onclick="SendContact();">{{ __('client.send_contact')}}</a>
+                                        <a href="javascript:;" title="" class="ct-btn" onclick="ResetAllTextBox('#contact_input');">{{ __('client.reset_data')}}</a>
                                         <div class="cb"></div>
                                     </div>
                                 </div>

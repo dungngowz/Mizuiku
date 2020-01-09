@@ -187,5 +187,8 @@ return [
     'change_avatar' => 'Change avatar',
     'required_login_to_view' => 'Please log in to view the lecture!',
     'auto_play' => 'Auto Play',
-    'required_prev_course' => 'To be able to study this course. You need to complete the previous course!'
+    'required_prev_course' => 'To be able to study this course. You need to complete the previous course!',
+    'send_contact' => 'Send Contact',
+    'reset_data' => 'Clear Data',
+    'name' => 'Name'
 ];
