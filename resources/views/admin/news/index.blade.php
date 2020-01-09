@@ -46,7 +46,6 @@
                                         <th>{{trans('admin.category')}}</th>
                                         <th>{{trans('admin.title')}}</th>
                                         <th>{{trans('admin.language')}}</th>
-                                        <th>{{trans('admin.created_at')}}</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -89,14 +88,12 @@
                     name: 'category.title',
                 },{
                     data: 'title',
-                    name: 'title'
+                    name: 'title',
+                    width: '30%'
                 },{
                     data: 'language',
                     name: 'language',
                     className: 'text-center'
-                },{
-                    data: 'created_at',
-                    name: 'created_at'
                 },{
                     data: 'actions',
                     name: 'actions',
