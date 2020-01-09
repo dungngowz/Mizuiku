@@ -76,3 +76,11 @@ table.dataTable tbody td {
   line-height: 33px;
 }
 
+#custom-filter .row {
+  position: absolute;
+  width: 100%;
+  z-index: 9999;
+  width: 30%;
+  right: 33%;
+}
+

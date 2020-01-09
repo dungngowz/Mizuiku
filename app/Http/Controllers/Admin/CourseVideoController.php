@@ -26,8 +26,11 @@ class CourseVideoController extends Controller
      */
     public function index(Request $request)
     {
+        $courseCategories = Category::where('type', 'course')->orderBy('priority', 'desc')->orderBy('id', 'desc')->get();
+
         return view('admin.course-video.index', [
-            'title' => trans('admin.course_video')
+            'title' => trans('admin.course_video'),
+            'courseCategories' => $courseCategories
         ]);
     }
 
@@ -37,7 +40,13 @@ class CourseVideoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(Request $request) {
-        $records = Article::with('category')->where('keyword', 'course')->get();
+        $records = Article::with('category')->where('keyword', 'course');
+
+        if($request->category_id){
+            $records = $records->where('category_id', $request->category_id);
+        }
+
+        $records = $records->get();
 
         return DataTables::of($records)
             ->RawColumns(['actions'])

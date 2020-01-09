@@ -26,8 +26,11 @@ class NewsController extends Controller
      */
     public function index()
     {
+        $newsCategories = Category::where('type', 'news')->orderBy('priority', 'desc')->orderBy('id', 'desc')->get();
+
         return view('admin.news.index', [
-            'title' => trans('admin.news')
+            'title' => trans('admin.news'),
+            'newsCategories' => $newsCategories
         ]);
     }
 
@@ -37,7 +40,13 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function data(Request $request) {
-        $records = Article::with('category')->where('keyword', $request->keyword)->get();
+        $query = Article::with('category')->where('keyword', $request->keyword);
+        
+        if($request->category_id){
+            $query = $query->where('category_id', $request->category_id);
+        }
+
+        $records = $query->get();
 
         return DataTables::of($records)
             ->RawColumns(['actions'])

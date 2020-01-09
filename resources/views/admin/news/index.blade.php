@@ -23,6 +23,18 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
+                            <form id="custom-filter">
+                                <div class="row">
+                                    <input type="hidden" name="keyword" value="{{request()->keyword}}"/>
+                                    <select name="category_id" class="select2 form-control custom-select">
+                                        <option value="">----</option>
+                                        @foreach ($newsCategories as $item)
+                                            <option value="{{$item->id}}" {{request()->category_id == $item->id ? 'selected' : ''}}>{{$item->title}}</option>    
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </form>
+
                             <table id="datatable" class="table table-striped table-no-bordered table-hover" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -136,6 +148,10 @@
             $('#modal-delete .btn-submit-delete').attr('data-array-selected', arraySelected);
             $('#modal-delete .btn-submit-delete').attr('data-url', url);
             $('#modal-delete').modal('show');
+        });
+
+        $('#custom-filter').on('change',"select[name=category_id]", function(){
+            $('#custom-filter')[0].submit();
         });
     </script>
 @endpush

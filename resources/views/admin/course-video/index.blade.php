@@ -23,9 +23,16 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <div id="custom-filter-datatable" class="hide">
-                                <input type="text" id="max" name="category_id">
-                            </div>
+                            <form id="custom-filter">
+                                <div class="row">
+                                    <select name="category_id" class="select2 form-control custom-select">
+                                        <option value="">----</option>
+                                        @foreach ($courseCategories as $item)
+                                            <option value="{{$item->id}}" {{request()->category_id == $item->id ? 'selected' : ''}}>{{$item->title}}</option>    
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </form>
 
                             <table id="datatable" class="table table-striped table-no-bordered table-hover" cellspacing="0">
                                 <thead>
@@ -56,16 +63,11 @@
 
 @push('scripts')
     <script>
-        var paramsSearch = JSON.parse('<?php echo json_encode(request()->all()) ?>');
-        
-        var paramsSearch = JSON.stringify($('#custom-filter-datatable').serializeArray());
-        console.log(paramsSearch);
-
         var table = $('#datatable').DataTable({
             ...optionDataTable,
             ajax: {
                 url: '/admin/course-video/data',
-                data : paramsSearch
+                data : JSON.parse('<?php echo json_encode(request()->all()) ?>')
             },
             columns: [{
                     data: 'id',
@@ -101,8 +103,8 @@
             }
         });
 
-        $('#min, #max').keyup( function() {
-            table.draw();
+        $('#custom-filter').on('change',"select[name=category_id]", function(){
+            $('#custom-filter')[0].submit();
         });
 
         // action check all
