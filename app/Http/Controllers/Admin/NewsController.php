@@ -110,12 +110,6 @@ class NewsController extends Controller
             CommonHelper::updateFileRecord($params['thumbnail'], $record->thumbnail, 'news');
         }
 
-        if(isset($params['created_at']) && strpos($params['created_at'], '/') !== false){
-            $created_at = explode('-', $params['created_at']);
-            list($d, $m, $y) = explode('/', trim($created_at[1]));
-            $params['created_at'] = strtotime($y . '-' . $m . '-' . $d . ' ' . trim($created_at[0]));
-        }
-
         $record->fill($params);
 
         if($request->ref_id){
@@ -196,13 +190,6 @@ class NewsController extends Controller
         $params = $request->all();
         if(!empty($params['thumbnail']) && $params['thumbnail'] != $record->thumbnail){
             CommonHelper::updateFileRecord($params['thumbnail'], $record->thumbnail, 'news');
-        }
-
-        
-        if(isset($params['created_at']) && strpos($params['created_at'], '/') !== false){
-            $created_at = explode('-', $params['created_at']);
-            list($d, $m, $y) = explode('/', trim($created_at[1]));
-            $params['created_at'] = strtotime($y . '-' . $m . '-' . $d . ' ' . trim($created_at[0]));
         }
 
         $record->fill($params);
