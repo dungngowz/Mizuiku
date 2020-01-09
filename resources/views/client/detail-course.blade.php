@@ -56,7 +56,7 @@
                             </ul>
                         </div>
                         <div class="kiemtradiv">
-                            <a href="javascript:void(0)" onclick="popup_AA()" title="" class="kiemtra">{{ trans('client.test_knowl') }}</a>
+                            <a href="{{$course->url}}" target="_blank" title="" class="kiemtra">{{ trans('client.test_knowl') }}</a>
                         </div>
                         </div>
                         <div id="view3" class="tabcont">
@@ -210,7 +210,7 @@
 
                     setTimeout(() => {
                         location.href = "{{url('')}}";
-                    }, 2000);
+                    }, 5000);
                 }
 
                 setTimeout(() => {

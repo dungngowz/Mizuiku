@@ -47,20 +47,12 @@
                                 @endif
                             </div>
 
-                            @if (0 && ($record->type == 'course' || request()->type == 'course'))
+                            @if ($record->type == 'course' || request()->type == 'course')
                                 <div class="form-group m-t-20">
-                                    <label>{{trans('admin.views')}}</label>
-                                    <input type="number" name="views" class="form-control" value="{{old('views', $record->views ? $record->views : '')}}" placeholder="{{trans('admin.enter_views')}}">
-                                    @if($errors->has('views'))
-                                        <span class="error-msg">{{$errors->first('views')}}</span>
-                                    @endif
-                                </div>
-
-                                <div class="form-group m-t-20">
-                                    <label>{{trans('admin.content')}}</label>
-                                    <textarea rows="15" name="content" class="form-control editor">{!! $record->content !!}</textarea>
-                                    @if($errors->has('content'))
-                                        <span class="error-msg">{{$errors->first('content')}}</span>
+                                    <label>Url Google Form</label>
+                                    <input type="text" name="url" class="form-control" value="{{old('url', $record->url ? $record->url : '')}}" placeholder="{{trans('admin.enter_url')}}">
+                                    @if($errors->has('url'))
+                                        <span class="error-msg">{{$errors->first('url')}}</span>
                                     @endif
                                 </div>
                             @endif
