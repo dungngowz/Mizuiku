@@ -40,7 +40,7 @@
                                         }
                                         
                                     @endphp
-                                    <li class='item {{$className}}' video_ref_id='{{ $item->ref_id }}' seen="{{in_array($item->id, $videoLearned) ? 'true': 'false'}}">
+                                    <li class='item {{$className}}' video_ref_id='{{ $item->ref_id }}' seen="{{in_array($item->ref_id, $videoLearned) ? 'true': 'false'}}">
                                         <div class='ico'></div>
                                         <div class='info'>
                                             <a datavideo='{{ $item->url }}' title='' class='name first'>{{ $item->title }}</a>
