@@ -342,8 +342,8 @@ class HomeController extends Controller
      */
     public function showCourse(Request $request, $slug)
     {
-        $courses = Category::where('type', 'course')->orderBy('priority', 'desc')->orderBy('id', 'desc')->pluck('ref_id')->toArray();
-        $course = Category::where('type', 'course')->where('slug', $slug)->first();
+        $courses = Category::where('type', 'course')->where('status', 1)->orderBy('priority', 'desc')->orderBy('id', 'desc')->pluck('ref_id')->toArray();
+        $course = Category::where('type', 'course')->where('status', 1)->where('slug', $slug)->first();
         $user = Auth::user();
         
         if(!$user || !$courses || !$course || empty($course->articles)){
@@ -431,12 +431,27 @@ class HomeController extends Controller
         }
 
         if(empty($user->learning_process)){
-            $learning_process = [];
+            $learning_process = array(
+                $course_ref_id => $perc
+            );
         }else{
             $learning_process = (array)json_decode($user->learning_process);
+            $learning_process[$course_ref_id] = $perc;
         }
 
-        $learning_process[$course_ref_id] = $perc;
+        $finished = 1;
+        $courseCategories = Category::where('type', 'course')->where('status', 1)->count();
+        if($courseCategories != count($learning_process)){
+            $finished = 0;
+        }else{
+            foreach($learning_process as $item){
+                if($item < 100){
+                    $finished = 0;
+                }
+            }
+        }
+        $user->complete_courses = $finished;
+        
         $user->learning_process = json_encode($learning_process);
         $user->save();
 
