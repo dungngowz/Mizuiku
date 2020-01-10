@@ -30,7 +30,7 @@
                                             <input type="checkbox" id="all-category" name="all-category">
                                         </th>
                                         <th>ID</th>
-                                        <th>{{trans('admin.question')}}</th>
+                                        <th>{{trans('admin.title')}}</th>
                                         <th>{{trans('admin.priority')}}</th>
                                         <th>{{trans('admin.language')}}</th>
                                         <th>{{trans('admin.created_at')}}</th>
@@ -70,8 +70,9 @@
                         data: 'id',
                         name: 'id'
                     },{
-                        data: 'question',
-                        name: 'question'
+                        data: 'title',
+                        name: 'title',
+                        width: '30%'
                     },{
                         data: 'priority',
                         name: 'priority',

@@ -83,7 +83,15 @@ class QuizCourseController extends Controller
     {
         $record = new Quiz;
         $record->fill($request->all());
-        $record->save();
+
+        if($request->ref_id){
+            $record->ref_id = $request->ref_id;
+            $record->save();
+        }else{
+            $record->save();
+            $record->ref_id = $record->id;
+            $record->save();
+        }
         
         return redirect('admin/quiz');
     }

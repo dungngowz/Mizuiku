@@ -24,7 +24,7 @@ class StoreQuiz extends FormRequest
     public function rules()
     {
         return [
-            'question' => 'required|max:255',
+            'title' => 'required|max:255',
             'priority' => 'required|digits_between:0,999999'
         ];
     }

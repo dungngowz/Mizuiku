@@ -31,10 +31,42 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group m-t-20">
-                                <label>{{trans('admin.question')}}</label>
-                                <input type="text" name="question" class="form-control"value="{{old('question', $record->question)}}" placeholder="{{trans('admin.enter_question')}}">
-                                @if($errors->has('question'))
-                                    <span class="error-msg">{{$errors->first('question')}}</span>
+                                <label>{{trans('admin.title')}}</label>
+                                <input type="text" name="title" class="form-control"value="{{old('title', $record->title)}}" placeholder="{{trans('admin.enter_title')}}">
+                                @if($errors->has('title'))
+                                    <span class="error-msg">{{$errors->first('title')}}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group m-t-20">
+                                <label>{{trans('Option1')}}</label>
+                                <input type="text" name="option1" class="form-control"value="{{old('option1', $record->option1)}}">
+                                @if($errors->has('option1'))
+                                    <span class="error-msg">{{$errors->first('option1')}}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group m-t-20">
+                                <label>{{trans('Option2')}}</label>
+                                <input type="text" name="option2" class="form-control"value="{{old('option2', $record->option2)}}">
+                                @if($errors->has('option2'))
+                                    <span class="error-msg">{{$errors->first('option2')}}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group m-t-20">
+                                <label>{{trans('Option3')}}</label>
+                                <input type="text" name="option3" class="form-control"value="{{old('option3', $record->option3)}}">
+                                @if($errors->has('option3'))
+                                    <span class="error-msg">{{$errors->first('option3')}}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group m-t-20">
+                                <label>{{trans('Option4')}}</label>
+                                <input type="text" name="option4" class="form-control"value="{{old('option4', $record->option4)}}">
+                                @if($errors->has('option4'))
+                                    <span class="error-msg">{{$errors->first('option4')}}</span>
                                 @endif
                             </div>
 

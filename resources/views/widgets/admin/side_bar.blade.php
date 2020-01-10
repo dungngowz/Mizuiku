@@ -48,7 +48,6 @@
                             </a>
                         </li>
 
-                        @if (0)
                         <li class="sidebar-item {{($segments[1] == 'quiz') ? 'active' : ''}}">
                             <a href="{{ url('admin/quiz') }}" class="sidebar-link">
                                 <i class="mdi mdi-note-outline"></i>
@@ -62,7 +61,6 @@
                                 <span class="hide-menu">{{trans('admin.result-evaluation-course')}}</span>
                             </a>
                         </li>
-                        @endif
 
                         <li class="sidebar-item {{($segments[1] == 'comment') ? 'active' : ''}}">
                             <a href="{{ url('admin/comment') }}" class="sidebar-link">
