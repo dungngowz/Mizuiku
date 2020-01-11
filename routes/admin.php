@@ -59,8 +59,8 @@ Route::group(['middleware' => 'auth'], function(){
     
     Route::post('/quiz/delete-multiple', 'QuizCourseController@deleteMultiple');
 
+    Route::get('/result-evaluation-course/get-data', 'ResultEvaluationCourseController@getData');
     Route::resource('/result-evaluation-course', 'ResultEvaluationCourseController');
-    Route::get('/get-result-evaluation-course/data', 'ResultEvaluationCourseController@data');
     Route::post('/result-evaluation-course/delete-multiple', 'ResultEvaluationCourseController@deleteMultiple');
 
     Route::resource('/user', 'UserController');

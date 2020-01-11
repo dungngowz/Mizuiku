@@ -98,5 +98,6 @@ return [
     'female' => 'Nữ',
     'evaluation-course' => 'Form Đánh giá khoá học',
     'result-evaluation-course' => 'Kết quả đánh giá',
-    'question' => 'Câu hỏi'
+    'question' => 'Câu hỏi',
+    'updated_at' => 'Ngày cập nhật'
 ];

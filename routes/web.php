@@ -60,6 +60,7 @@ Route::group(['namespace' => 'Client'], function(){
         Route::post('/add-comment', 'HomeController@addComment')->name('addComment');
         Route::post('/update-views-course', 'HomeController@updateViewsCourse');
         Route::post('/update-percent-finish-course', 'HomeController@updatePercentFinishCourse');
+        Route::post('/submit-review', 'HomeController@submitReview');
     });
 
 });

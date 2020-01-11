@@ -100,5 +100,6 @@ return [
     'female' => 'Female',
     'evaluation-course' => 'Form Evaluation the course',
     'result-evaluation-course' => 'Evaluation results of the course',
-    'question' => 'Question'
+    'question' => 'Question',
+    'updated_at' => 'Updated At'
 ];

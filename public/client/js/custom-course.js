@@ -344,3 +344,28 @@ function popup_AA() {
         }
     });
 }
+
+$('.btnSubmitReview').click(function () {
+    if(loadingAjax){
+        return false;
+    }
+    loadingAjax = true;
+
+    let content = $('#form-review').html();
+    $.ajax({
+        url: weburl + "/submit-review",
+        type: "POST",
+        dataType: "json",
+        data: {
+            "content": content,
+            "_token": _token,
+        },
+        success: function (res) {
+            console.log(res);
+            loadingAjax = fase;
+        },
+        error: function (error) {
+            loadingAjax = fase;
+        }
+    });
+});

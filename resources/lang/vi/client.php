@@ -188,5 +188,6 @@ return [
     'required_prev_course' => 'Để có thể học khoá học này. Bạn cần hoàn thành khoá học trước đó!',
     'send_contact' => 'Gửi liên hệ',
     'reset_data' => 'Nhập lại',
-    'name' => 'Họ tên'
+    'name' => 'Họ tên',
+    'send_review' => 'Gửi đánh giá cho chúng tôi'
 ];

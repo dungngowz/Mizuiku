@@ -153,3 +153,95 @@
 .btn-search-statistical{
     margin-top: 20px !important
 }
+.popup-evaluation .content{
+    background-color: #fff;
+    text-align: left;
+    
+}
+.popup-evaluation .content .khungAnh1{
+    height: 500px;
+    overflow-y: scroll !important;
+}
+.popup-evaluation .cols{
+    float: left;
+}
+.popup-evaluation .left,
+.popup-evaluation .right{
+    width: 20%
+}
+.popup-evaluation .right{
+    float: right;
+}
+.popup-evaluation .center{
+    width: 60%
+}
+.popup-evaluation ul.icons{
+    list-style: none;
+    margin-top: 0;
+    position: relative;
+    top: -25px;
+}
+.popup-evaluation ul li{
+}
+.popup-evaluation img{
+    width: 150px;
+}
+.popup_A .content a.closed{
+    color: white;
+    font-size: 30px;
+    display: inline-block;
+    background: #399EE6;
+    text-align: center;
+    border-radius: 0%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100000;
+}
+.popup-evaluation .content a.closed:hover {
+    color: gray;
+}
+.popup-evaluation .header{
+    text-align: center;
+    font-size: 27px;
+    width: 100%;
+    color: #399EE6;
+    font-weight: bold;
+    margin-top: 20px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.popup-evaluation .radios{
+    list-style: none;
+    padding-left: 0px;
+    margin-bottom: 30px;
+}
+.popup-evaluation .title{
+    font-weight: bold;
+}
+.popup-evaluation .radios li{
+    list-style: none;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.popup-evaluation .radios li label{
+    cursor: pointer;
+}
+.popup-evaluation .btnSubmitReview {
+    width: 235px;
+    height: 35px;
+    display: block;
+    background: #109ce3;
+    font-size: 16px;
+    text-transform: uppercase;
+    float: left;
+    color: #fff;
+    line-height: 35px;
+    text-align: center;
+    margin-top: 10px;
+    border-radius: 3px;
+    font-weight: bold;
+}

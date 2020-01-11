@@ -22,6 +22,8 @@ use Mail;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Models\LearningOutcomes;
+use App\Models\Quiz;
+use App\Models\ResultReview;
 
 class HomeController extends Controller
 {
@@ -366,13 +368,17 @@ class HomeController extends Controller
         $videoLearned = $user->learningOutcomes()->where('course_ref_id', $course->ref_id)->pluck('video_ref_id')->toArray();
         $comments = Comment::where('post_id', $course->id)->get();
         
+        $evaluations = Quiz::where('status', 1)->orderBy('priority', 'desc')->orderBy('created_at', 'desc')->get();
+
         return view('client.detail-course', [
             'title' => $course->title,
             'course' => $course,
             'listArticle' => $course->articles()->orderBy('priority', 'desc')->orderBy('id', 'desc')->get(),
             'comments' => $comments,
             'isAllowSee' => $isAllowSee,
-            'videoLearned' => $videoLearned
+            'videoLearned' => $videoLearned,
+            'evaluations' => $evaluations,
+            'user' => $user
         ]);
     }
 
@@ -501,6 +507,23 @@ class HomeController extends Controller
             'provinces' => $provinces,
             'districts' => $districts,
             'reports' => $reports
+        ]);
+    }
+
+    public function submitReview(Request $request){
+        $user = Auth::user();
+        $resultReview = ResultReview::where('user_id', $user->id)->first();
+
+        if(!$resultReview){
+            $resultReview = new ResultReview();
+            $resultReview->user_id = $user->id;
+        }
+
+        $resultReview->content = $request->content;
+        $resultReview->save();
+
+        return $this->response(200, false, null, [
+            'data' => $request->all()
         ]);
     }
 }

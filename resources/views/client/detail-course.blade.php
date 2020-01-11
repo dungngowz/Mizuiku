@@ -167,19 +167,72 @@
                         </div>
                         </div>
                     </li>
-                    <li>
-                        <a href="https://mizuiku-emyeunuocsach.vn/danh-gia/956.htm" title="" class="rate">Đánh giá khóa học</a>
-                    </li>
+
+                    @if (1 || $user->complete_courses)
+                        <li style="display: block !important">
+                            <a href="javascript:void(0)" onclick="popup_AA()" title="" class="rate">Đánh giá khóa học</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>
-        <div class='popup_A'>
+        <div class='popup_A popup-evaluation'>
             <div class='content'>
-                <a href='javascript://' class='closed'><i class='fa fa-times-o fa-lg' aria-hidden='true'></i></a>
                 <div class="noidungNhung">
+                    <a href='javascript://' class='closed'>X</a>
                     <div class='khungAnh1 pc'>
-                        {{-- iframe form google --}}
-                        <iframe src='https://forms.gle/XgNMQj29ivmbQjfcA&output=embed' frameborder='0' width='400'  ></iframe>
+                        <h1 class="header">Đánh giá khóa học</h1>
+                        <table width="100%">
+                            <tr>
+                                <td width="20%">
+                                    <ul class="icons">
+                                        @for ($i = 1; $i < 12; $i++)
+                                            <li><img src="/client/pic/icon/{{$i}}.png"/></li>
+                                        @endfor
+                                    </ul>
+                                </td>
+                                <td width="60%" style="vertical-align: text-bottom;">
+                                    <table width="100%" id="form-review">
+                                        @foreach ($evaluations as $k => $item)
+                                            <tr>
+                                                <td>
+                                                    <div class="title">{{$k + 1}}. {{$item->title}}</div>
+                                                    <ul class="radios">
+                                                        @for ($i = 1; $i < 5; $i++)
+                                                            @php
+                                                                $optionx = 'option' . $i;
+                                                            @endphp
+
+                                                            @if (!empty($item->$optionx))
+                                                                <li>
+                                                                    <input type="radio" name="option{{$k}}" id="option{{$k}}{{$i}}" value="option{{$k}}">
+                                                                    <label for="option{{$k}}{{$i}}">{{$item->$optionx}}</label>
+                                                                </li>
+                                                            @endif
+                                                        @endfor
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+
+                                    <table width="100%">
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:void(0);" class="btnSubmitReview ignore">{{trans('client.send_review')}}</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td width="20%">
+                                    <ul class="icons">
+                                        @for ($i = 1; $i < 12; $i++)
+                                            <li><img src="/client/pic/icon/{{$i}}.png"/></li>
+                                        @endfor
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
