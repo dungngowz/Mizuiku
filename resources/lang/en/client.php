@@ -191,5 +191,7 @@ return [
     'send_contact' => 'Send Contact',
     'reset_data' => 'Clear Data',
     'name' => 'Name',
-    'send_review' => 'Send Review'
+    'send_review' => 'Send Review',
+    'evaluation_course' => 'Evaluation course',
+    'back_course' => 'Back to the course'
 ];

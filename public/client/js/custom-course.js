@@ -345,13 +345,36 @@ function popup_AA() {
     });
 }
 
+$('.popup-evaluation .radios li input').click(function () {
+    $(this).parent().parent().find('input').removeAttr('check');
+    $(this).attr('check', true);
+
+    if($('input:radio:checked').length == $('#total_checked').val()){
+        $('.btnSubmitReview').removeClass('disable');
+    }else{
+        $('.btnSubmitReview').addClass('disable');
+    }
+});
+
+$('.popup-evaluation .radios li label').click(function () {
+    $(this).parent().parent().find('input').removeAttr('check');
+    $(this).parent().find('input').attr('check', true);
+
+    if($('input:radio:checked').length == $('#total_checked').val()){
+        $('.btnSubmitReview').removeClass('disable');
+    }else{
+        $('.btnSubmitReview').addClass('disable');
+    }
+});
+
 $('.btnSubmitReview').click(function () {
-    if(loadingAjax){
+    if(loadingAjax || $(this).hasClass('disable')){
         return false;
     }
     loadingAjax = true;
 
     let content = $('#form-review').html();
+    content = content.replace(/check=/g, "checked=");
     $.ajax({
         url: weburl + "/submit-review",
         type: "POST",
@@ -361,8 +384,8 @@ $('.btnSubmitReview').click(function () {
             "_token": _token,
         },
         success: function (res) {
-            console.log(res);
-            loadingAjax = fase;
+            loadingAjax = false;
+            location.href = weburl + "/chung-chi-hoan-thanh-khoa-hoc";
         },
         error: function (error) {
             loadingAjax = fase;

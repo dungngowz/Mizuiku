@@ -58,6 +58,8 @@
 
     <link href="{{ asset('client/css/client.css') }}" rel="stylesheet" />
 
+    @stack('styles')
+
     <!--Js-->
     <script src="{{ asset('client/js/Lightbox/lightbox-plus-jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('client/js/jquery-1.9.1.min.js') }}" type="text/javascript"></script>

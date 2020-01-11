@@ -61,6 +61,7 @@ Route::group(['namespace' => 'Client'], function(){
         Route::post('/update-views-course', 'HomeController@updateViewsCourse');
         Route::post('/update-percent-finish-course', 'HomeController@updatePercentFinishCourse');
         Route::post('/submit-review', 'HomeController@submitReview');
+        Route::get('/chung-chi-hoan-thanh-khoa-hoc', 'HomeController@certificate');
     });
 
 });

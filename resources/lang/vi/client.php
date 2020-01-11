@@ -189,5 +189,7 @@ return [
     'send_contact' => 'Gửi liên hệ',
     'reset_data' => 'Nhập lại',
     'name' => 'Họ tên',
-    'send_review' => 'Gửi đánh giá cho chúng tôi'
+    'send_review' => 'Gửi đánh giá cho chúng tôi',
+    'evaluation_course' => 'Đánh giá khóa học',
+    'back_course' => 'Quay về khóa học'
 ];

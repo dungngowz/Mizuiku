@@ -526,4 +526,11 @@ class HomeController extends Controller
             'data' => $request->all()
         ]);
     }
+
+    public function certificate(Request $request){
+        $user = Auth::user();
+        return view('client.certificate', [
+            'user' => $user
+        ]);
+    }
 }

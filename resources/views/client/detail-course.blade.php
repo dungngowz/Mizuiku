@@ -168,9 +168,9 @@
                         </div>
                     </li>
 
-                    @if (1 || $user->complete_courses)
+                    @if ($user->complete_courses)
                         <li style="display: block !important">
-                            <a href="javascript:void(0)" onclick="popup_AA()" title="" class="rate">Đánh giá khóa học</a>
+                            <a href="javascript:void(0)" onclick="popup_AA()" title="" class="rate">{{trans('client.evaluation_course')}}</a>
                         </li>
                     @endif
                 </ul>
@@ -181,7 +181,7 @@
                 <div class="noidungNhung">
                     <a href='javascript://' class='closed'>X</a>
                     <div class='khungAnh1 pc'>
-                        <h1 class="header">Đánh giá khóa học</h1>
+                        <h1 class="header">{{trans('client.evaluation_course')}}</h1>
                         <table width="100%">
                             <tr>
                                 <td width="20%">
@@ -193,6 +193,7 @@
                                 </td>
                                 <td width="60%" style="vertical-align: text-bottom;">
                                     <table width="100%" id="form-review">
+                                        <input type="hidden" id="total_checked" value="{{count($evaluations)}}"/>
                                         @foreach ($evaluations as $k => $item)
                                             <tr>
                                                 <td>
@@ -205,7 +206,7 @@
 
                                                             @if (!empty($item->$optionx))
                                                                 <li>
-                                                                    <input type="radio" name="option{{$k}}" id="option{{$k}}{{$i}}" value="option{{$k}}">
+                                                                    <input type="radio" name="option{{$k}}" id="option{{$k}}{{$i}}" value="option{{$k}}{{$i}}">
                                                                     <label for="option{{$k}}{{$i}}">{{$item->$optionx}}</label>
                                                                 </li>
                                                             @endif
@@ -219,7 +220,7 @@
                                     <table width="100%">
                                         <tr>
                                             <td>
-                                                <a href="javascript:void(0);" class="btnSubmitReview ignore">{{trans('client.send_review')}}</a>
+                                                <a href="javascript:void(0);" class="btnSubmitReview disable ignore">{{trans('client.send_review')}}</a>
                                             </td>
                                         </tr>
                                     </table>
@@ -239,6 +240,14 @@
         </div>
     @endif
 @endsection
+
+@push('styles')
+<style>
+    .btnSubmitReview.disable{
+        opacity: 0.5;
+    }
+</style>
+@endpush
 
 @section('custom-js')
     <script type="text/javascript">
