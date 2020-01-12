@@ -15,7 +15,7 @@
                 {{-- Course --}}
                 @php
                     $activeTreeCourse = false;
-                    if($segments[1] == 'course-video' || $segments[1] == 'comment' || $segments[1] == 'user' || $segments[1] == 'result-evaluation-course'){
+                    if($segments[1] == 'course-video' || $segments[1] == 'comment' || $segments[1] == 'user' || $segments[1] == 'quiz' || $segments[1] == 'result-evaluation-course'){
                         $activeTreeCourse = true;
                     }else if($segments[1] == 'categories'){
                         $activeTreeCourse = (request()->type == 'course' || request()->keyword == 'course');
