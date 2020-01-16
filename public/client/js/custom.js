@@ -377,8 +377,9 @@ $('#video.hp .groups_items').slick({
     focusOnSelect: true
 });
 
-var a = $(this).find('iframe').attr('src');
 $('#video.hp .item .img').click(function() {
+    var a = $(this).find('iframe').attr('src');
+    
     if ($(this).hasClass('ac')) {
         $(this).find('.play').fadeIn();
         $(this).find('.khungAnh img').fadeIn();
