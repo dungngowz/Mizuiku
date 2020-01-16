@@ -15,7 +15,7 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function(){
     // dashboard
     Route::get('/dashboard', function(){
-        return view('admin.dashboard.index');
+        return redirect('/admin/course-video');
     })->name('admin.dashboard');
 
     // auth

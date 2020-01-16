@@ -191,5 +191,12 @@ return [
     'name' => 'Họ tên',
     'send_review' => 'Gửi đánh giá cho chúng tôi',
     'evaluation_course' => 'Đánh giá khóa học',
-    'back_course' => 'Quay về khóa học'
+    'back_course' => 'Quay về khóa học',
+    'link1' => 'Trung ương Hội sinh viên Việt Nam',
+    'link2' => 'Hội đồng Đội Trung ương',
+    'link3' => 'Suntory Holdings Limited',
+    'link4' => 'Chương trình Mizuiku tại Nhật Bản ',
+    'link5' => 'Suntory PepsiCo Việt Nam',
+    'link6' => 'Trung tâm Sống và Học tập vì Môi trường và Cộng đồng (Live & Learn)',
+    'link7' => 'Trung tâm Giáo dục Sức khỏe và Phát triển Cộng đồng Tương Lai '
 ];

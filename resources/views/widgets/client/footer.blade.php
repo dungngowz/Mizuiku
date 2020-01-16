@@ -42,13 +42,13 @@
                 <div class='lienket'><span class='c005286 fOfficinaSanITCMedium'>{{ __('client.web-link') }}</span>
                     <select onchange='navigation(this.value);'>
                         <option value=''>{{trans('client.choose_link')}}</option>
-                        <option value='http://hoisinhvien.com.vn/'>Student Union of Vietnam</option>
-                        <option value='http://www.thieunhivietnam.vn/'>Central Council for Ho Chi Minh Young Pioneer Organization</option>
-                        <option value='http://www.suntory.com'>Suntory Holdings Limited </option>
-                        <option value='http://www.suntory.com/csr/activity/environment/eco/education/'> Mizuiku Program in Japan</option>
-                        <option value='http://www.suntorypepsico.vn/'>Suntory PepsiCo Vietnam Beverage</option>
-                        <option value='http://www.livelearn.org/'>Center of Live & Learn for Environment and Community </option>
-                        <option value='http://tuonglaicentre.org/'>Tuong Lai Centre for Health Education and Community Development </option>
+                        <option value='http://hoisinhvien.com.vn/'>{{trans('client.link1')}}</option>
+                        <option value='http://www.thieunhivietnam.vn/'>{{trans('client.link2')}}</option>
+                        <option value='http://www.suntory.com'>{{trans('client.link3')}}</option>
+                        <option value='http://www.suntory.com/csr/activity/environment/eco/education/'>{{trans('client.link4')}}</option>
+                        <option value='http://www.suntorypepsico.vn/'>{{trans('client.link5')}}</option>
+                        <option value='http://www.livelearn.org/'>{{trans('client.link6')}}</option>
+                        <option value='http://tuonglaicentre.org/'>{{trans('client.link7')}}</option>
                     </select>
                 </div>
                 <div class='cb'></div>

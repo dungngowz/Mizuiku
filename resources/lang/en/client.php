@@ -193,5 +193,12 @@ return [
     'name' => 'Name',
     'send_review' => 'Send Review',
     'evaluation_course' => 'Evaluation course',
-    'back_course' => 'Back to the course'
+    'back_course' => 'Back to the course',
+    'link1' => 'Student Union of Vietnam',
+    'link2' => 'Central Council for Ho Chi Minh Young Pioneer Organization',
+    'link3' => 'Suntory Holdings Limited',
+    'link4' => 'Mizuiku Program in Japan',
+    'link5' => 'Suntory PepsiCo Vietnam Beverage',
+    'link6' => 'Center of Live & Learn for Environment and Community',
+    'link7' => 'Tuong Lai Centre for Health Education and Community Development'
 ];
