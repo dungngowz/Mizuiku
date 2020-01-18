@@ -149,7 +149,7 @@
                                     <a title='{{$item->title}}' class='over'></a>
                                     <a title='{{$item->title}}' class='play'></a>
                                     @php
-                                        echo preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","<iframe src=\"//www.youtube.com/embed/$1\" frameborder=\"0\" allowfullscreen></iframe>",$item->url);
+                                        echo preg_replace("/\s*[a-zA-Z\/\/:\.]*youtube.com\/watch\?v=([a-zA-Z0-9\-_]+)([a-zA-Z0-9\/\*\-\_\?\&\;\%\=\.]*)/i","<iframe src=\"//www.youtube.com/embed/$1\" allow=\"autoplay\" frameborder=\"0\" allowfullscreen></iframe>",$item->url);
                                     @endphp
                                 </div>
                                 <div class='bgname'>

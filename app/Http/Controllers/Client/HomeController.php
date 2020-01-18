@@ -444,7 +444,7 @@ class HomeController extends Controller
                 $course_ref_id => $perc
             );
         }else{
-            $learning_process = (array)json_decode($user->learning_process);
+            $learning_process = array_filter((array)json_decode($user->learning_process));
             $learning_process[$course_ref_id] = $perc;
         }
 

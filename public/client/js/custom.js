@@ -379,7 +379,7 @@ $('#video.hp .groups_items').slick({
 
 $('#video.hp .item .img').click(function() {
     var a = $(this).find('iframe').attr('src');
-    
+
     if ($(this).hasClass('ac')) {
         $(this).find('.play').fadeIn();
         $(this).find('.khungAnh img').fadeIn();
@@ -389,7 +389,8 @@ $('#video.hp .item .img').click(function() {
         $(this).addClass('ac');
         $(this).find('.play').fadeOut();
         $(this).find('.khungAnh img').fadeOut();
-        var b = a + '?autoplay=1';
+        a = a.replace("?autoplay=1", "");
+        var b = a + '?autoplay=1&muted=1';
         $(this).find('iframe').attr('src', b);
     }
 });
