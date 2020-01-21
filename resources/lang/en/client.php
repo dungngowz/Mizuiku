@@ -206,5 +206,6 @@ return [
     'txt3' => "You need to complete the lesson",
     "txt4" => "can learn",
     "txt5" => "No next videos!",
-    "txt6" => "Lessons need to complete the current lesson first!"
+    "txt6" => "Lessons need to complete the current lesson first!",
+    'other_comment' => 'Other comments and comments'
 ];

@@ -40,3 +40,9 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $('input:text').removeAttr('hidden');
+    </script>
+@endpush

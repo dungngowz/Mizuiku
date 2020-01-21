@@ -196,7 +196,7 @@
 
                                                             @if (!empty($item->$optionx))
                                                                 <li>
-                                                                    <input type="checkbox" name="option{{$k}}[]" id="option{{$k}}{{$i}}" value="option{{$k}}{{$i}}">
+                                                                    <input type="checkbox" class="check" name="option{{$k}}[]" id="option{{$k}}{{$i}}" value="option{{$k}}{{$i}}">
                                                                     <label for="option{{$k}}{{$i}}">{{$item->$optionx}}</label>
                                                                 </li>
                                                             @endif
@@ -204,10 +204,10 @@
 
                                                         @if ($item->another)
                                                             <li>
-                                                                <input type="checkbox" name="option{{$k}}[]" id="option{{$k}}{{$i}}" value="option{{$k}}{{$i}}">
-                                                                <label for="option{{$k}}{{$i}}">Another</label>
+                                                                <input type="checkbox" class="check" onclick="show_input({{$k}}, {{$i}})" name="option{{$k}}[]" id="option{{$k}}{{$i}}" value="option{{$k}}{{$i}}">
+                                                                <label for="option{{$k}}{{$i}}">{{ trans('client.other') }}</label>
                                                                 <br/>
-                                                                <input type="text" style="margin-top: 10px; padding: 5px 10px; font-size: 14px; width: 400px;"/>
+                                                                <input type="text" id="text-input-{{$k}}" onchange="setDataValue(this)" hidden placeholder="{{ trans('client.other_comment') }}" style="margin-top: 10px; padding: 5px 10px; font-size: 14px; width: 400px;"/>
                                                             </li>
                                                         @endif
                                                     </ul>

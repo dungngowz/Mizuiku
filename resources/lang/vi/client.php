@@ -204,5 +204,6 @@ return [
     "txt3" => "Bạn cần hoàn thành bài học",
     "txt4" => "mới có thể học",
     "txt5" => "Không có video nào tiếp theo!",
-    "txt6" => "Bài cần hoàn thành bài học hiện tại trước!"
+    "txt6" => "Bài cần hoàn thành bài học hiện tại trước!",
+    'other_comment' => 'Các góp ý, nhận xét khác'
 ];

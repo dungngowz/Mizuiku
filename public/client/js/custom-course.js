@@ -371,28 +371,6 @@ function popup_AA() {
     });
 }
 
-$('.popup-evaluation .radios li input').click(function () {
-    $(this).parent().parent().find('input').removeAttr('check');
-    $(this).attr('check', true);
-
-    if($('input:radio:checked').length == $('#total_checked').val()){
-        $('.btnSubmitReview').removeClass('disable');
-    }else{
-        $('.btnSubmitReview').addClass('disable');
-    }
-});
-
-$('.popup-evaluation .radios li label').click(function () {
-    $(this).parent().parent().find('input').removeAttr('check');
-    $(this).parent().find('input').attr('check', true);
-
-    if($('input:radio:checked').length == $('#total_checked').val()){
-        $('.btnSubmitReview').removeClass('disable');
-    }else{
-        $('.btnSubmitReview').addClass('disable');
-    }
-});
-
 $('.btnSubmitReview').click(function () {
     if(loadingAjax || $(this).hasClass('disable')){
         return false;
@@ -414,7 +392,34 @@ $('.btnSubmitReview').click(function () {
             location.href = weburl + "/chung-chi-hoan-thanh-khoa-hoc";
         },
         error: function (error) {
-            loadingAjax = fase;
+            loadingAjax = false;
         }
     });
 });
+
+function show_input(k,i) {
+    var text = $('#text-input-'+ k);
+    var checkBox = $('#option'+ k + i);
+
+    if (checkBox.is(':checked')){
+        text.show();
+
+    } else {
+        text.hide();
+    }
+}
+
+$(".check").change(function(){
+    $(this).parent().parent().find('input').removeAttr('check');
+    $(this).attr('check', true);
+
+    if($('input:checkbox:checked').length >= $('#total_checked').val()){
+        $('.btnSubmitReview').removeClass('disable');
+    }else{
+        $('.btnSubmitReview').addClass('disable');
+    }
+});
+
+function setDataValue(data) {
+    $(data).attr('value',$(data).val());
+}
