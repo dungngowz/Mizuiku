@@ -101,5 +101,8 @@ return [
     'evaluation-course' => 'Form Evaluation the course',
     'result-evaluation-course' => 'Evaluation results of the course',
     'question' => 'Question',
-    'updated_at' => 'Updated At'
+    'updated_at' => 'Updated At',
+    'another' => 'Another',
+    'yes' => 'Yes',
+    'no' => 'No'
 ];

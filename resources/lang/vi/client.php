@@ -63,7 +63,7 @@ return [
     'password' => 'Mật khẩu',
     'validate-pass' => 'Mật khẩu cần có ít nhất 8 ký tự Ví dụ: Mizuiku123',
     'last-and-fist-name' => 'Họ và tên',
-    'note-3' => 'vui lòng ghi tiếng Việt có dấu',
+    'note-3' => 'Vui lòng ghi tiếng Việt có dấu',
     'sex' => 'Giới tính',
     'male' => 'Nam',
     'female' => 'Nữ',
@@ -198,5 +198,11 @@ return [
     'link4' => 'Chương trình Mizuiku tại Nhật Bản ',
     'link5' => 'Suntory PepsiCo Việt Nam',
     'link6' => 'Trung tâm Sống và Học tập vì Môi trường và Cộng đồng (Live & Learn)',
-    'link7' => 'Trung tâm Giáo dục Sức khỏe và Phát triển Cộng đồng Tương Lai '
+    'link7' => 'Trung tâm Giáo dục Sức khỏe và Phát triển Cộng đồng Tương Lai ',
+    'txt1' => 'Bình luận của bạn sẽ được kiểm duyệt bởi quản trị của Website trước khi được cập nhật. Xin cảm ơn.',
+    'txt2' => 'Hệ thống đang bận, bạn vui lòng thử lại sau!',
+    "txt3" => "Bạn cần hoàn thành bài học",
+    "txt4" => "mới có thể học",
+    "txt5" => "Không có video nào tiếp theo!",
+    "txt6" => "Bài cần hoàn thành bài học hiện tại trước!"
 ];

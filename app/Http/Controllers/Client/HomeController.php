@@ -330,7 +330,7 @@ class HomeController extends Controller
     public function showMyCourse()
     {
         $user = auth()->user();
-        $courses = Category::where('type', 'course')->orderBy('priority', 'desc')->orderBy('created_at', 'desc')->get();
+        $courses = Category::where('status', 1)->where('type', 'course')->orderBy('priority', 'desc')->orderBy('created_at', 'desc')->get();
         $courseIds = Category::where('type', 'course')->pluck('id')->toArray();
         $documents = Gallery::whereIn('post_id', $courseIds)->where('table_name', 'categories')->get();
         
@@ -347,8 +347,8 @@ class HomeController extends Controller
      */
     public function showCourse(Request $request, $slug)
     {
-        $courses = Category::where('type', 'course')->where('status', 1)->orderBy('priority', 'desc')->orderBy('id', 'desc')->pluck('ref_id')->toArray();
-        $course = Category::where('type', 'course')->where('status', 1)->where('slug', $slug)->first();
+        $courses = Category::where('status', 1)->where('type', 'course')->where('status', 1)->orderBy('priority', 'desc')->orderBy('id', 'desc')->pluck('ref_id')->toArray();
+        $course = Category::where('status', 1)->where('type', 'course')->where('status', 1)->where('slug', $slug)->first();
         $user = Auth::user();
         
         if(!$user || !$courses || !$course || empty($course->articles)){
@@ -357,7 +357,7 @@ class HomeController extends Controller
 
         $indexCourse = array_search($course->ref_id, $courses);
         $isAllowSee = true;
-        if($indexCourse > 0){
+        if(($course->required == 1 && !in_array($course->ref_id, [8, 12])) && $indexCourse > 0){
             $course_ref_id = $courses[$indexCourse - 1];
             $learning_process = empty($user->learning_process) ? [] : (array)json_decode($user->learning_process);
             if(!isset($learning_process[$course_ref_id]) || $learning_process[$course_ref_id] < 100){
@@ -370,6 +370,14 @@ class HomeController extends Controller
         
         $evaluations = Quiz::where('status', 1)->orderBy('priority', 'desc')->orderBy('created_at', 'desc')->get();
 
+        $finishThisSubject = false;
+        if(!empty($user->learning_process)){
+            $learning_process = array_filter((array)json_decode($user->learning_process));
+            if(isset($learning_process[$course->id]) && $learning_process[$course->id] == 100){
+                $finishThisSubject = true;
+            }
+        }
+
         return view('client.detail-course', [
             'title' => $course->title,
             'course' => $course,
@@ -378,7 +386,8 @@ class HomeController extends Controller
             'isAllowSee' => $isAllowSee,
             'videoLearned' => $videoLearned,
             'evaluations' => $evaluations,
-            'user' => $user
+            'user' => $user,
+            'finishThisSubject' => $finishThisSubject
         ]);
     }
 
@@ -448,24 +457,42 @@ class HomeController extends Controller
             $learning_process[$course_ref_id] = $perc;
         }
 
+        //Check is finish courses required
         $finished = 1;
-        $courseCategories = Category::where('type', 'course')->where('status', 1)->count();
-        if($courseCategories != count($learning_process)){
-            $finished = 0;
-        }else{
-            foreach($learning_process as $item){
+        $courseCategoriesRefIds = [];
+        $courseCategories = Category::where('required', 1)->where('type', 'course')->where('status', 1)->get();
+
+        if($courseCategories){
+            foreach($courseCategories as $itemCourse){
+                if(!in_array($itemCourse->ref_id, $courseCategoriesRefIds) && count($itemCourse->articles) > 0){
+                    $courseCategoriesRefIds[] = $itemCourse->ref_id;
+                }
+            }
+        }
+
+        $finished = 1;
+        $count = 0;
+        foreach($learning_process as $ref_id => $item){
+            if(in_array($ref_id, $courseCategoriesRefIds)){
+                $count++;
+
                 if($item < 100){
                     $finished = 0;
                 }
             }
         }
+
+        if($count < count($courseCategoriesRefIds)){
+            $finished = 0;
+        }
+
         $user->complete_courses = $finished;
         
         $user->learning_process = json_encode($learning_process);
         $user->save();
 
         return $this->response(200, false, null, [
-            'data' => $learning_process
+            'finished' => $finished
         ]);
     }
 

@@ -21,12 +21,12 @@ function SendComment() {
         success: function (res) {
             loading(false);
             $("#tbComment").val('');
-            $("#success .tac").html("Bình luận của bạn sẽ được kiểm duyệt bởi quản trị của Website trước khi được cập nhật. Xin cảm ơn.");
+            $("#success .tac").html(txt1);
             $(".success_open").click();
         },
         error: function (error) {//Lỗi xảy ra
             loading(false);
-            alert("Hệ thống đang bận, bạn vui lòng thử lại sau!");
+            alert(txt2);
         }
     });
 }
@@ -45,7 +45,7 @@ $('#baihoc .left .name').click(function () {
     if ($(this).parent().parent().prev().attr("seen") === "false") {
         var chudetruoc = $(this).parent().parent().prev().find(".name").text();
         var chudechon = $(this).text();
-        $("#success .tac").html("Bạn cần hoàn thành bài học <b>" + chudetruoc + "</b> mới có thể học <b>" + chudechon + "</b>");
+        $("#success .tac").html(txt3 + " <b>" + chudetruoc + "</b> "+ txt4 +" <b>" + chudechon + "</b>");
         $(".success_open").click();
         return;
     }
@@ -58,6 +58,8 @@ $('#baihoc .left .name').click(function () {
     var auto = "false";
     if ($('#AutoPlay').hasClass('ac')) auto = 'true';
     
+    $('.overvideo').css('position', 'absolute');
+
     jwplayer('videoPlayer').setup({
         file: a,
         //image: '/pic/video/video2.jpg', 
@@ -88,6 +90,10 @@ $('#baihoc .left .name').click(function () {
     });
     var c = $(this).html();
     $('#baihoc .right .tenbai .name').html(c);
+
+    setTimeout(() => {
+        $('.overvideo').css('position', 'static');
+    }, 2000);
 });
 $('#view1 .parent ul li:first-child').addClass('fvideo');
 $('#view1 .parent ul li:last-child').addClass('lvideo');
@@ -97,11 +103,11 @@ $('#view1 ul li.ac').parents('.parent').addClass('current');
 
 $('#nextvideo').click(function () {
     if ($('#view1 ul li.ac').next().length == 0) {
-        $("#success .tac").html("Không có video nào tiếp theo!");
+        $("#success .tac").html(txt5);
         $(".success_open").click();
     } else {
         if ($('#view1 ul li.ac').attr("seen") === "false") {
-            $("#success .tac").html("Bài cần hoàn thành bài học hiện tại trước!");
+            $("#success .tac").html(txt6);
             $(".success_open").click();
             return;
         }
@@ -116,6 +122,8 @@ $('#nextvideo').click(function () {
             var iid = $(".tabcontents li.ac").attr("iid");
             var auto = "false";
             if ($('#AutoPlay').hasClass('ac')) auto = 'true';
+
+            $('.overvideo').css('position', 'absolute');
             jwplayer('videoPlayer').setup({
                 file: b,
                 //image: '/pic/video/video2.jpg', 
@@ -151,6 +159,8 @@ $('#nextvideo').click(function () {
             var iid = $(".tabcontents li.ac").attr("iid");
             var auto = "false";
             if ($('#AutoPlay').hasClass('ac')) auto = 'true';
+
+            $('.overvideo').css('position', 'absolute');
             jwplayer('videoPlayer').setup({
                 file: a,
                 //image: '/pic/video/video2.jpg', 
@@ -176,6 +186,10 @@ $('#nextvideo').click(function () {
             });
         }
     }
+
+    setTimeout(() => {
+        $('.overvideo').css('position', 'static');
+    }, 2000);
 });
 $('#AutoPlay').click(function(){
     $(this).toggleClass('ac');
@@ -195,6 +209,8 @@ $('#prevvideo').click(function () {
             var iid = $(".tabcontents li.ac").attr("iid");
             var auto = "false";
             if ($('#AutoPlay').hasClass('ac')) auto = 'true';
+
+            $('.overvideo').css('position', 'absolute');
             jwplayer('videoPlayer').setup({
                 file: b,
                 //image: '/pic/video/video2.jpg', 
@@ -229,6 +245,8 @@ $('#prevvideo').click(function () {
             var iid = $(".tabcontents li.ac").attr("iid");
             var auto = "false";
             if ($('#AutoPlay').hasClass('ac')) auto = 'true';
+
+            $('.overvideo').css('position', 'absolute');
             jwplayer('videoPlayer').setup({
                 file: a,
                 //image: '/pic/video/video2.jpg', 
@@ -254,6 +272,10 @@ $('#prevvideo').click(function () {
             });
         }
     }
+
+    setTimeout(() => {
+        $('.overvideo').css('position', 'static');
+    }, 2000);
 });
 
 $('#baihoc .right .tenbai .backstudy').click(function () {
@@ -261,22 +283,7 @@ $('#baihoc .right .tenbai .backstudy').click(function () {
     $('#baihoc .right').toggleClass('ac');
 });
 function luotXem(iid) {
-    if (iid !== "") {
-        jQuery.ajax({
-            url: weburl + "cms/display/Learning/Ajax/Ajax.aspx",
-            type: "POST",
-            dataType: "json",
-            data: {
-                "iid": iid
-            },
-            success: function (res) {
-                $('#baihoc .parent ul li[iid=' + iid + ']').attr("seen", "true");
-                HienThiDanhGia02();
-            },
-            error: function (error) {//Lỗi xảy ra
-            }
-        });
-    }
+    
 }
 
 function updateViews(){
@@ -299,6 +306,14 @@ function updateViews(){
         success: function (res) {
             loadingAjax = false;
             location.reload();
+
+            /*$('#view1 ul li.ac').attr("seen", 'true');
+
+            if(!$('#view1 ul li.ac').hasClass('last-video')){
+                $('#nextvideo').trigger('click');
+            }
+
+            loadPercent();*/
         },
         error: function (error) {//Lỗi xảy ra
             loadingAjax = false;
@@ -308,12 +323,19 @@ function updateViews(){
 
 
 function loadPercent() {
+
   var  total = $("ul li.item").length;
   var  cr = $($("ul li.item[seen=true]")).length;
 
     var perc = (cr / total) * 100;
     $("#baihoc .bot ul li.percent .box .inbox").css("width", perc + "%");
     $("#Perc").html(parseInt(perc) + "%");
+
+    if(perc == 100){
+        $('.kiemtradiv').removeClass('hide');
+    }else{
+        $('.kiemtradiv').addClass('hide');
+    }
 
     let course_ref_id = $('input[name=course_ref_id]').val();
     $.ajax({
@@ -326,7 +348,11 @@ function loadPercent() {
             "_token": _token,
         },
         success: function (res) {
-            console.log(res);
+            if(res.message.finished == 1){
+                $('#is_finished').attr('style', 'display: block !important');
+            }else{
+                $('#is_finished').attr('style', 'display: none !important');
+            }
         },
         error: function (error) {}
     });

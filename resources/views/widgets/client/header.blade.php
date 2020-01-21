@@ -47,7 +47,9 @@
                 @if ( \Auth::check() )
                 <ul class='subloginx sublogin2'>
                     @foreach ($courseListHeader as $item)
-                        <li><a href='{{ url("khoa-hoc/$item->slug") }}' title='{{ $item->title }}'>{{ $item->title }}</a></li>
+                        @if (count($item->articles) > 0)
+                            <li><a href='{{ url("khoa-hoc/$item->slug") }}' title='{{ $item->title }}'>{{ $item->title }}</a></li>    
+                        @endif
                     @endforeach
                     
                     <li><a href='{{ route('statistical') }}' title='{{ __('client.statistical') }}'>{{ __('client.statistical') }}</a></li>

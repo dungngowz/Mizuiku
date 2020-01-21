@@ -83,6 +83,12 @@
     <script>
         const SITE_URL_ADMIN = "<?php echo url('admin')?>/";
         const CSRF_TOKEN = "<?php echo csrf_token()?>";
+        const txt1 = "<?php echo trans('client.txt1')?>";
+        const txt2 = "<?php echo trans('client.txt2')?>";
+        const txt3 = "<?php echo trans('client.txt3')?>";
+        const txt4 = "<?php echo trans('client.txt4')?>";
+        const txt5 = "<?php echo trans('client.txt5')?>";
+        const txt6 = "<?php echo trans('client.txt6')?>";
     </script>
 </head>
 

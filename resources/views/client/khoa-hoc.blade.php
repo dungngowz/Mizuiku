@@ -39,7 +39,7 @@
 
                     @if ( \Auth::check() )
                         <div class='nav'>
-                            <a href='{{ url("khoa-hoc") . '/' . trans('client.course-elearning') }}' class='nowbt'>{{ __('client.sign-in-for-learn') }}</a>
+                            <a href='{{ url("khoa-hoc") . '/' . trans('client.course-elearning') }}' class='nowbt'>{{ __('client.learn-now') }}</a>
                         </div>    
                     @else
                         <div class='nav'>

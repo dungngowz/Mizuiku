@@ -15,22 +15,25 @@ class ImageController extends Controller
     public function uploadImageBase64(Request $request)
     {
         $image = $request->image;
-        if($image){
-            $fileExt = $this->get_file_extension($request->file_name);
-            list($type, $image) = explode(';', $image);
-            list(, $image)      = explode(',', $image);
+        try{
+            if($image){
+                $fileExt = $this->get_file_extension($request->file_name);
+                list($type, $image) = explode(';', $image);
+                list(, $image)      = explode(',', $image);
 
-            $image = base64_decode($image);
-            $imagePath= 'tmp/' . uniqid() . '.' . $fileExt;
-            Storage::put($imagePath, $image);
-            //CommonHelper::compress(public_path('storage/').$imagePath);
-            
-            return response()->json([
-                'status' => 200,
-                'pathTmpFile' => $imagePath,
-                'url' => asset(Storage::url($imagePath))
-            ]);
+                $image = base64_decode($image);
+                $imagePath= 'tmp/' . uniqid() . '.' . $fileExt;
+                Storage::put($imagePath, $image);
+                //CommonHelper::compress(public_path('storage/').$imagePath);
+                
+                return response()->json([
+                    'status' => 200,
+                    'pathTmpFile' => $imagePath,
+                    'url' => asset(Storage::url($imagePath))
+                ]);
+            }
+        } catch (Exception $e) {
+            return response()->json(['status' => 500, 'e' => $e]);
         }
-        return response()->json(['status' => 500]);
     }
 }

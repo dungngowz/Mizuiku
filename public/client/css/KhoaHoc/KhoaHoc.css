@@ -1,3 +1,4 @@
+.hide{display: none !important;}
 .hoanthanhchungchi{width: 1170px;height: 887px ;margin: auto;background: url(success.jpg) no-repeat center center}
 .hoanthanhchungchi .name{ font-family: Times New Roman;font-size: 38px;font-weight: bold;text-transform: uppercase ;color: #18499d;position: absolute;bottom: 280px;left: 50%;transform: translateX(-50%);-moz-transform: translateX(-50%);-webkit-transform: translateX(-50%);-o-transform: translateX(-50%)}
 #DanhGia{width:1120px;margin:auto}

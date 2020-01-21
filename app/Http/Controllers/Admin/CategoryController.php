@@ -48,6 +48,11 @@ class CategoryController extends Controller
                     'item' => $item
                 ]);
             })
+            ->addColumn('status', function($item) {
+                return view('admin.categories.cols-status', [
+                    'item' => $item
+                ]);
+            })
             ->addColumn('actions', function($item) {
                 return view('admin.categories.cols-actions', [
                     'item' => $item

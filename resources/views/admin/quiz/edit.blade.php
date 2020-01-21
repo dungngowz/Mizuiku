@@ -71,6 +71,36 @@
                             </div>
 
                             <div class="form-group m-t-20">
+                                <label>{{trans('Option5')}}</label>
+                                <input type="text" name="option5" class="form-control"value="{{old('option5', $record->option5)}}">
+                                @if($errors->has('option5'))
+                                    <span class="error-msg">{{$errors->first('option5')}}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group m-t-20">
+                                <label>{{trans('Option6')}}</label>
+                                <input type="text" name="option6" class="form-control"value="{{old('option6', $record->option6)}}">
+                                @if($errors->has('option6'))
+                                    <span class="error-msg">{{$errors->first('option6')}}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group m-t-20">
+                                <label>{{trans('admin.another')}}</label>
+                                <select name="another" class="select2 form-control custom-select">
+                                    @php
+                                        $another = old('another', $record->another);
+                                    @endphp
+                                    <option value="0" {{ ($another == 0) ? 'selected' : '' }}>{{trans('admin.no')}}</option>
+                                    <option value="1" {{ ($another == 1) ? 'selected' : '' }}>{{trans('admin.yes')}}</option>
+                                </select>
+                                @if($errors->has('another'))
+                                    <span class="error-msg">{{$errors->first('another')}}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group m-t-20">
                                 <label>{{trans('admin.priority')}}</label>
                                 <input type="number" name="priority" class="form-control" value="{{old('priority', $record->priority ? $record->priority : 0)}}" placeholder="{{trans('admin.enter_priority')}}">
                                 @if($errors->has('priority'))

@@ -200,5 +200,11 @@ return [
     'link4' => 'Mizuiku Program in Japan',
     'link5' => 'Suntory PepsiCo Vietnam Beverage',
     'link6' => 'Center of Live & Learn for Environment and Community',
-    'link7' => 'Tuong Lai Centre for Health Education and Community Development'
+    'link7' => 'Tuong Lai Centre for Health Education and Community Development',
+    'txt1' => "Your comment will be moderated by the Website's administrator before being updated. Thank you.",
+    'txt2' => "The system is busy, please try again later!",
+    'txt3' => "You need to complete the lesson",
+    "txt4" => "can learn",
+    "txt5" => "No next videos!",
+    "txt6" => "Lessons need to complete the current lesson first!"
 ];

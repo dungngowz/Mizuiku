@@ -99,5 +99,8 @@ return [
     'evaluation-course' => 'Form Đánh giá khoá học',
     'result-evaluation-course' => 'Kết quả đánh giá',
     'question' => 'Câu hỏi',
-    'updated_at' => 'Ngày cập nhật'
+    'updated_at' => 'Ngày cập nhật',
+    'another' => 'Khác',
+    'yes' => 'Có',
+    'no' => 'Không'
 ];

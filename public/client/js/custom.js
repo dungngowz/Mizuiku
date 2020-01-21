@@ -145,6 +145,10 @@ function registerMember() {
             ResetAllTextBox("#regisForm");
             $("#success .tac").html("Đăng ký thành công, vui lòng kiểm tra thư hộp thư đến và hộp thư rác để kích hoạt tài khoản! Trường hợp không nhận được email gửi tới, vui lòng gửi yêu cầu trong mục Liên hệ");
             $(".success_open").click();
+
+            setTimeout(() => {
+                location.reload(true);
+            }, 3000);
         },
         error: function(error) { //Lỗi xảy ra
             loading(false);
@@ -390,7 +394,7 @@ $('#video.hp .item .img').click(function() {
         $(this).find('.play').fadeOut();
         $(this).find('.khungAnh img').fadeOut();
         a = a.replace("?autoplay=1", "");
-        var b = a + '?autoplay=1&muted=1';
+        var b = a + '?autoplay=1';
         $(this).find('iframe').attr('src', b);
     }
 });

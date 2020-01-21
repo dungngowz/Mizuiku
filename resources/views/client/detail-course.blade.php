@@ -40,7 +40,7 @@
                                         }
                                         
                                     @endphp
-                                    <li class='item {{$className}}' video_ref_id='{{ $item->ref_id }}' seen="{{in_array($item->ref_id, $videoLearned) ? 'true': 'false'}}">
+                                    <li class='item {{$className}} {{($key == (count($listArticle) - 1)) ? 'last-video' : ''}}' video_ref_id='{{ $item->ref_id }}' seen="{{in_array($item->ref_id, $videoLearned) ? 'true': 'false'}}">
                                         <div class='ico'></div>
                                         <div class='info'>
                                             <a datavideo='{{ $item->url }}' title='' class='name first'>{{ $item->title }}</a>
@@ -55,9 +55,11 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <div class="kiemtradiv">
+
+                        <div class="kiemtradiv {{$finishThisSubject ? '' : 'hide'}}">
                             <a href="{{$course->url}}" target="_blank" title="" class="kiemtra">{{ trans('client.test_knowl') }}</a>
                         </div>
+
                         </div>
                         <div id="view3" class="tabcont">
                             <div class="ques">
@@ -110,12 +112,10 @@
                         </div>
                     </div>
                 </div>            
-                <div class='right'>
+                <div class='right' style="background: black;">
                     <div class='tenbai'>
                         <a href='javascript:;' title='' class='backstudy'></a>
-                        <div class='name'>
-                            {{ count($listArticle) ? $listArticle[0]->title : null }}
-                        </div>
+                        <div class='name'></div>
                         <a href="{{url('')}}" title='' class='backpage'>{{ trans('client.back') }}</a>
                         <div class='cb'></div>
                     </div>
@@ -125,22 +125,13 @@
                     <script type='text/javascript'>
                         var auto = true;
                         if ($('#AutoPlay').hasClass('ac')) auto = 'true';
-                        jwplayer('videoPlayer').setup({
-                            file: '{{ count($listArticle) ? $listArticle[0]->url : null }}',
-                            width: '100%',
-                            aspectratio: '16:9',
-                            mute: 'false',
-                            autostart: auto,
-                            repeat: 'false',
-                            primary: 'html5',
-                            preload: 'auto',
-                            events: {
-                                onTime: function (event) {},
-                                onComplete: function() {
-                                    updateViews();
-                                }
-                            }
-                        });
+                        $('.overvideo').css('position', 'absolute');
+
+                        setTimeout(() => {
+                            $('#view1 ul li.ac a').trigger('click');    
+                        }, 500);
+                        
+                        
                     </script>
                 </div>
                 <div class="cb"></div>
@@ -159,6 +150,7 @@
                         <a href="javascript:;" title="" class="prev" id="prevvideo"></a>
                         <a href="javascript:;" title="" class="prev next" id="nextvideo"></a>
                     </li>
+
                     <li>
                         <div class="pt2">
                         <span>{{trans('client.auto_play')}}</span>
@@ -168,11 +160,9 @@
                         </div>
                     </li>
 
-                    @if ($user->complete_courses)
-                        <li style="display: block !important">
-                            <a href="javascript:void(0)" onclick="popup_AA()" title="" class="rate">{{trans('client.evaluation_course')}}</a>
-                        </li>
-                    @endif
+                    <li style="{{$user->complete_courses ? 'display: block !important' : ''}}" id="is_finished"">
+                        <a href="javascript:void(0)" onclick="popup_AA()" title="" class="rate">{{trans('client.evaluation_course')}}</a>
+                    </li>
                 </ul>
             </div>
         </div>

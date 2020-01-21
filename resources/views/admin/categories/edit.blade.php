@@ -40,6 +40,20 @@
                             </div>
 
                             <div class="form-group m-t-20">
+                                <label>{{trans('admin.status')}}</label>
+                                <select name="status" class="select2 form-control custom-select">
+                                    @php
+                                        $status = old('status', $record->status);
+                                    @endphp
+                                    <option value="0" {{ ($status == 0) ? 'selected' : '' }}>{{trans('admin.hide')}}</option>
+                                    <option value="1" {{ ($status == 1) ? 'selected' : '' }}>{{trans('admin.show')}}</option>
+                                </select>
+                                @if($errors->has('status'))
+                                    <span class="error-msg">{{$errors->first('status')}}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group m-t-20">
                                 <label>{{trans('admin.priority')}}</label>
                                 <input type="number" name="priority" class="form-control" value="{{old('priority', $record->priority ? $record->priority : 0)}}" placeholder="{{trans('admin.enter_priority')}}">
                                 @if($errors->has('priority'))
