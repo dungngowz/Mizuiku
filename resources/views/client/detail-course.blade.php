@@ -196,11 +196,20 @@
 
                                                             @if (!empty($item->$optionx))
                                                                 <li>
-                                                                    <input type="radio" name="option{{$k}}" id="option{{$k}}{{$i}}" value="option{{$k}}{{$i}}">
+                                                                    <input type="checkbox" name="option{{$k}}[]" id="option{{$k}}{{$i}}" value="option{{$k}}{{$i}}">
                                                                     <label for="option{{$k}}{{$i}}">{{$item->$optionx}}</label>
                                                                 </li>
                                                             @endif
                                                         @endfor
+
+                                                        @if ($item->another)
+                                                            <li>
+                                                                <input type="checkbox" name="option{{$k}}[]" id="option{{$k}}{{$i}}" value="option{{$k}}{{$i}}">
+                                                                <label for="option{{$k}}{{$i}}">Another</label>
+                                                                <br/>
+                                                                <input type="text" style="margin-top: 10px; padding: 5px 10px; font-size: 14px; width: 400px;"/>
+                                                            </li>
+                                                        @endif
                                                     </ul>
                                                 </td>
                                             </tr>
