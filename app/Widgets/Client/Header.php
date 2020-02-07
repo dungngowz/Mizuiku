@@ -29,7 +29,7 @@ class Header extends AbstractWidget
 
         $categoriesNews = Category::where('type', 'news')->orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->get();
 
-        $courseListHeader = Category::where('type', 'course')->orderBy('priority', 'desc')->orderBy('created_at', 'desc')->get();
+        $courseListHeader = Category::where('status', 1)->where('type', 'course')->orderBy('priority', 'desc')->orderBy('created_at', 'desc')->get();
 
         return view('widgets.client.header', [
             'config' => $this->config,

@@ -9,6 +9,6 @@
     <p>Hi {{ $data->name }}</p>
     <p>Email của bạn vừa được sử dụng đăng ký thành viên tại website {{ url('') }}</p>
     <p>Bạn vui lòng kích hoạt link dưới để sử dụng tài khoản!</p>
-    <a href="{{ url('user/verify/'.$data->password) }}">Kích hoạt tài khoản</a>
+    <a href="{{ url('user/verify/'.$data->remember_token) }}">Kích hoạt tài khoản</a>
 </body>
 </html>

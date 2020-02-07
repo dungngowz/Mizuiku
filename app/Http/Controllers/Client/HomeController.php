@@ -24,6 +24,7 @@ use Auth;
 use App\Models\LearningOutcomes;
 use App\Models\Quiz;
 use App\Models\ResultReview;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -173,6 +174,8 @@ class HomeController extends Controller
                 $data['district_id'] = $data['district'];
 
                 $data['password'] = Hash::make($data['password']);
+                $data['remember_token'] = Str::random(60);
+
                 $user = User::create($data);
                 DB::commit(); 
             } catch (\Exception $e) { 

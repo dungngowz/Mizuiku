@@ -71,9 +71,9 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function verifyUser($password)
+    public function verifyUser($remember_token)
     {
-        $verifyUser = User::where('password', $password)->first();
+        $verifyUser = User::where('remember_token', $remember_token)->first();
         if(isset($verifyUser) ){
             $verifyUser->email_verified_at = Carbon::now()->timestamp;
             $verifyUser->save();
