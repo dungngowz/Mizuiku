@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Models\LearningOutcomes;
 use App\Models\Quiz;
+use App\Models\AboutUs;
 use App\Models\ResultReview;
 use Illuminate\Support\Str;
 
@@ -35,7 +36,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categoriesNews = Category::where('type', 'news')->orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->take(2)->get();
+        $categoriesNews = Category::where('type', 'news')->orderBy('id', 'desc')->where('status', 1)->take(2)->get();
       
         $newsByCats = Category::where('type', 'news')->sortBy()->where('status', 1)->take(2)->get()->map(function ($cat) {
             return $cat->articles()->where('status', 1)->sortBy()->first();
@@ -87,7 +88,7 @@ class HomeController extends Controller
      */
     public function introduction(Request $request)
     {
-        $intro = Article::where('keyword', $request->path)->first();
+        $intro = AboutUs::where('ref_id', $request->ref_id)->first();
 
         return view('client.gioi-thieu', ['intro' => $intro]);
     }
@@ -98,19 +99,14 @@ class HomeController extends Controller
      */
     public function detailIntroduction(Request $request, $slug)
     {
-        $introDetail = Article::where('ref_id', $request->ref_id)->first();
+        $introDetail = AboutUs::where('ref_id', $request->ref_id)->first();
 
         if(!$introDetail){
             return redirect('/');
         }
 
-        $keywords = ['program-introduction', 'co-organizingboard', 'suntory-group', 'suntory-pepsico', 'vietNam-national-student-union', 'pioneer-organization'];
-        $ortherArticles = Article::whereIn('keyword', $keywords)
-            ->where('id', '<>', $introDetail->id)
-            ->orderBy('priority', 'desc')
+        $ortherArticles = AboutUs::where('id', '<>', $introDetail->id)
             ->orderBy('id', 'desc')
-            ->where('status', 1)
-            ->limit(5)
             ->get();
 
         //Update Views
@@ -333,7 +329,7 @@ class HomeController extends Controller
     public function showMyCourse()
     {
         $user = auth()->user();
-        $courses = Category::where('status', 1)->where('type', 'course')->orderBy('priority', 'desc')->orderBy('created_at', 'desc')->get();
+        $courses = Category::where('status', 1)->where('type', 'course')->orderBy('created_at', 'desc')->get();
         $courseIds = Category::where('type', 'course')->pluck('id')->toArray();
         $documents = Gallery::whereIn('post_id', $courseIds)->where('table_name', 'categories')->get();
         
@@ -350,7 +346,7 @@ class HomeController extends Controller
      */
     public function showCourse(Request $request, $slug)
     {
-        $courses = Category::where('status', 1)->where('type', 'course')->where('status', 1)->orderBy('priority', 'desc')->orderBy('id', 'desc')->pluck('ref_id')->toArray();
+        $courses = Category::where('status', 1)->where('type', 'course')->where('status', 1)->orderBy('id', 'desc')->pluck('ref_id')->toArray();
         $course = Category::where('status', 1)->where('type', 'course')->where('status', 1)->where('slug', $slug)->first();
         $user = Auth::user();
         
@@ -371,7 +367,7 @@ class HomeController extends Controller
         $videoLearned = $user->learningOutcomes()->where('course_ref_id', $course->ref_id)->pluck('video_ref_id')->toArray();
         $comments = Comment::where('post_id', $course->id)->get();
         
-        $evaluations = Quiz::where('status', 1)->orderBy('priority', 'desc')->orderBy('created_at', 'desc')->get();
+        $evaluations = Quiz::where('status', 1)->orderBy('created_at', 'desc')->get();
 
         $finishThisSubject = false;
         if(!empty($user->learning_process)){
@@ -384,7 +380,7 @@ class HomeController extends Controller
         return view('client.detail-course', [
             'title' => $course->title,
             'course' => $course,
-            'listArticle' => $course->articles()->orderBy('priority', 'desc')->orderBy('id', 'desc')->get(),
+            'listArticle' => $course->articles()->orderBy('id', 'desc')->get(),
             'comments' => $comments,
             'isAllowSee' => $isAllowSee,
             'videoLearned' => $videoLearned,
@@ -503,14 +499,14 @@ class HomeController extends Controller
         $currentLang = app()->getLocale();
         $provinces = Province::where('parent_id', 0)
             ->select('name_' . $currentLang . ' as name', 'id')
-            ->orderBy('priority', 'desc')
+            
             ->orderBy('name_' . $currentLang, 'asc')
             ->get();
 
         $province_id = empty($request->province_id) ? $provinces[0]->id : $request->province_id;
         $districts = Province::where('parent_id', $province_id)
             ->select('name_' . $currentLang . ' as name', 'id')
-            ->orderBy('priority', 'desc')
+            
             ->orderBy('name_' . $currentLang, 'asc')
             ->get();
 

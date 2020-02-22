@@ -107,15 +107,14 @@
             </li>
             
             {{-- About Us --}}
-            @if (count($articlesAboutUs) > 0)
-                <li data='2' class="litop hassub {{$segments && $segments[0] == 'gioi-thieu' ? 'active' : ''}}"><a href='{{ route('introduction', ['path' => 'program-introduction']) }}' title='{{ __('client.about-us') }}'>{{ __('client.about-us') }}</a>
+            @if (count($aboutUs) > 0)
+                <li data='2' class="litop hassub {{$segments && $segments[0] == 'gioi-thieu' ? 'active' : ''}}"><a href='{{ route('introduction', ['path' => $aboutUs[0]->slug_menu ]) }}' title='{{ __('client.about-us') }}'>{{ __('client.about-us') }}</a>
                     <ul>
-                        <li>
-                            <a title='{{ __('client.program_introduction') }}' href="{{ route('introduction', ['path' => $articlesAboutUs[0]->keyword]) }}">{{ __('client.program_introduction') }}</a>
-                        </li>
-                        <li>
-                            <a title='{{ __('client.partner_introduction') }}' href="{{ route('introduction', ['path' => $articlesAboutUs[1]->keyword]) }}">{{ __('client.partner_introduction') }}</a>
-                        </li>
+                        @foreach ($aboutUs as $item)
+                            <li>
+                                <a href="{{ route('introduction', ['ref_id' => $item->ref_id]) }}">{{ $item->title_menu }}</a>
+                            </li>    
+                        @endforeach
                     </ul>
                 </li>
             @endif

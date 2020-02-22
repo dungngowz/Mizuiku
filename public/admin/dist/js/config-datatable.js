@@ -2,7 +2,7 @@
 /* Datatable*/
 //****************************
 var optionDataTable = {
-    pageLength: 10,
+    pageLength: 20,
     lengthMenu: [[10, 20, 50], [10, 20, 50]],
     order: [
         [1, 'desc']

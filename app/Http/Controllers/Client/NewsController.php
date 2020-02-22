@@ -17,7 +17,7 @@ class NewsController extends Controller
      */
     public function index(Request $request, $slugCategory)
     {
-        $categoriesNews = Category::where('type', 'news')->orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->get();
+        $categoriesNews = Category::where('type', 'news')->orderBy('id', 'desc')->where('status', 1)->get();
         $detailCategory = Category::where('ref_id', $request->ref_id)->first();
 
         if(!$detailCategory || !$categoriesNews){
@@ -25,7 +25,7 @@ class NewsController extends Controller
         }
 
         $articles = Article::where('category_id', $detailCategory->id)
-            ->orderBy('priority', 'desc')
+            
             ->orderBy('id', 'desc')
             ->where('status', 1)
             ->paginate(15);
@@ -47,7 +47,7 @@ class NewsController extends Controller
     {
         $record = Article::where('ref_id', $request->ref_id)->first();
         
-        $categoriesNews = Category::where('type', 'news')->orderBy('priority', 'desc')->orderBy('id', 'desc')->where('status', 1)->get();
+        $categoriesNews = Category::where('type', 'news')->orderBy('id', 'desc')->where('status', 1)->get();
 
         if(!$record){
             return redirect('/');
@@ -59,7 +59,7 @@ class NewsController extends Controller
 
         $ortherArticles = Article::where('category_id', $record->category_id)
             ->where('id', '<>', $record->id)
-            ->orderBy('priority', 'desc')
+            
             ->orderBy('id', 'desc')
             ->where('status', 1)
             ->limit(5)

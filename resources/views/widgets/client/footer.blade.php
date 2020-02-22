@@ -42,13 +42,10 @@
                 <div class='lienket'><span class='c005286 fOfficinaSanITCMedium'>{{ __('client.web-link') }}</span>
                     <select onchange='navigation(this.value);'>
                         <option value=''>{{trans('client.choose_link')}}</option>
-                        <option value='http://hoisinhvien.com.vn/'>{{trans('client.link1')}}</option>
-                        <option value='http://www.thieunhivietnam.vn/'>{{trans('client.link2')}}</option>
-                        <option value='http://www.suntory.com'>{{trans('client.link3')}}</option>
-                        <option value='http://www.suntory.com/csr/activity/environment/eco/education/'>{{trans('client.link4')}}</option>
-                        <option value='http://www.suntorypepsico.vn/'>{{trans('client.link5')}}</option>
-                        <option value='http://www.livelearn.org/'>{{trans('client.link6')}}</option>
-                        <option value='http://tuonglaicentre.org/'>{{trans('client.link7')}}</option>
+
+                        @foreach ($websiteLink as $item)
+                            <option value='{{$item->url}}'>{{$item->title}}</option>    
+                        @endforeach
                     </select>
                 </div>
                 <div class='cb'></div>

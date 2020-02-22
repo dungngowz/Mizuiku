@@ -74,6 +74,16 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('/program-timeline', 'ProgramTimelineController');
     Route::post('/program-timeline/delete-multiple', 'ProgramTimelineController@deleteMultiple');
 
+    // Website Link
+    Route::get('/website-link/data', 'WebsiteLinkController@data');
+    Route::resource('/website-link', 'WebsiteLinkController');
+    Route::post('/website-link/delete-multiple', 'WebsiteLinkController@deleteMultiple');
+
+    // About Us
+    Route::get('/about-us/data', 'AboutUsController@data');
+    Route::resource('/about-us', 'AboutUsController');
+    Route::post('/about-us/delete-multiple', 'AboutUsController@deleteMultiple');
+
     // Contact
     Route::get('/contact-us/data', 'ContactUsController@data');
     Route::resource('/contact-us', 'ContactUsController');
