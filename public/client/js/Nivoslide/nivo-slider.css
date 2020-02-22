@@ -97,8 +97,8 @@
 	cursor:pointer;
     width: 61px; height: 70px; background: url(arr.png) center no-repeat; transition: 0.3s all ease-in-out; -moz-transition: 0.3s all ease-in-out;-webkit-transition: 0.3s all ease-in-out
 }
-.nivo-directionNav .nivo-prevNav:hover { background: url(arrhv.png) center no-repeat;animation: arrmove 1.5s infinite;-webkit-animation: arrmove 1.5s infinite;-moz-animation: arrmove 1.5s infinite}
-.nivo-directionNav .nivo-nextNav:hover { background: url(arrhv.png) center no-repeat;animation: arrmove1 1.5s infinite;-webkit-animation: arrmove1 1.5s infinite;-moz-animation: arrmove1 1.5s infinite}
+/* .nivo-directionNav .nivo-prevNav:hover { background: url(arrhv.png) center no-repeat;animation: arrmove 1.5s infinite;-webkit-animation: arrmove 1.5s infinite;-moz-animation: arrmove 1.5s infinite}
+.nivo-directionNav .nivo-nextNav:hover { background: url(arrhv.png) center no-repeat;animation: arrmove1 1.5s infinite;-webkit-animation: arrmove1 1.5s infinite;-moz-animation: arrmove1 1.5s infinite} */
 .nivo-prevNav {
 	left: 80px
 }

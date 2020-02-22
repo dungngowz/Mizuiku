@@ -170,4 +170,23 @@ class ProgramTimelineController extends Controller
         }
         return $this->response(500);
     }
+
+    /**
+     * Remove multiple
+     *
+     * @param  array  $arraySelected
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteMultiple(Request $request)
+    {
+        $params = array_map('intval', explode(',', $request->arraySelected));
+        foreach ($params as $item) {
+            $item = ProgramTimeline::where('id', $item)->first();
+            if(!$item) {
+                return $this->response(500,false,true, trans('Item Not Found!'));
+            }
+            $item->delete();
+        }
+        return $this->response(200,true,true, trans('Delete Successfully!'));
+    }
 }

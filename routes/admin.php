@@ -72,6 +72,7 @@ Route::group(['middleware' => 'auth'], function(){
     // Programs-timeline
     Route::get('/program-timeline/data', 'ProgramTimelineController@data');
     Route::resource('/program-timeline', 'ProgramTimelineController');
+    Route::post('/program-timeline/delete-multiple', 'ProgramTimelineController@deleteMultiple');
 
     // Contact
     Route::get('/contact-us/data', 'ContactUsController@data');

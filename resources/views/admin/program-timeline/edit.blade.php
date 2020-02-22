@@ -63,7 +63,7 @@
 
                             <div class="form-group m-t-20">
                                 <label>{{trans('admin.content')}}</label>
-                                <textarea name="content" class="form-control editor">{!! $record->content !!}</textarea>
+                                <textarea name="content" rows="20" class="form-control editor">{!! $record->content !!}</textarea>
                                 @if($errors->has('content'))
                                     <span class="error-msg">{{$errors->first('content')}}</span>
                                 @endif

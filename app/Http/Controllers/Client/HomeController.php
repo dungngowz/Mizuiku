@@ -526,7 +526,7 @@ class HomeController extends Controller
         }
 
         if(!empty($request->work_place)){
-            $query = $query->where('work_place', 'like' , '%' . $request->district_id . '%');
+            $query = $query->where('work_place', 'like' , '%' . $request->work_place . '%');
         }
 
         $reports = $query->get();
