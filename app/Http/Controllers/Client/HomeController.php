@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Gallery;
+use App\Models\Partner;
 use App\Models\Banner;
 use App\Models\Province;
 use App\Http\Requests\RegisterClient;
@@ -90,7 +91,10 @@ class HomeController extends Controller
     {
         $intro = AboutUs::where('ref_id', $request->ref_id)->first();
 
-        return view('client.gioi-thieu', ['intro' => $intro]);
+        $partners0 = Partner::where('type', 0)->orderBy('id', 'desc')->get();
+        $partners1 = Partner::where('type', 1)->orderBy('id', 'desc')->get();
+
+        return view('client.gioi-thieu', ['intro' => $intro, 'partners0' => $partners0, 'partners1' => $partners1]);
     }
 
     //

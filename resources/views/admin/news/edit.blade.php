@@ -70,7 +70,7 @@
                                         @endif
                                     </div>
         
-                                    <div class="form-group m-t-20">
+                                    <div class="hide form-group m-t-20">
                                         <label>{{trans('admin.priority')}}</label>
                                         <input type="number" name="priority" class="form-control" value="{{old('priority', $record->priority ? $record->priority : 0)}}" placeholder="{{trans('admin.enter_priority')}}">
                                         @if($errors->has('priority'))

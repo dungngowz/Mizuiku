@@ -7,8 +7,9 @@
             <div class="col-12 d-flex no-block align-items-center">
                 <h4 class="page-title">@yield('title')</h4>
                 <div class="ml-auto text-right">
-                    <button type="button" id="btn-remove-all" data-url="{{url('admin/library/delete-multiple')}}" class="btn btn-danger">{{trans('admin.delete_selected_item')}}</button>
-                    <a href="{{url('admin/library/create?keyword=' . request()->keyword)}}">
+                    <button type="button" id="btn-remove-all" data-url="{{url('admin/static-data/delete-multiple')}}" class="btn btn-danger">{{trans('admin.delete_selected_item')}}</button>
+
+                    <a href="{{url('admin/static-data/create')}}">
                         <button type="button" class="btn btn-success">{{trans('admin.add_new')}}</button>
                     </a>
                 </div>
@@ -27,11 +28,10 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            <input type="checkbox" id="all-library" name="all-library">
+                                            <input type="checkbox" id="all-banner" name="all-banner">
                                         </th>
                                         <th>ID</th>
-                                        <th>Thumbnail</th>
-                                        <th>{{trans('admin.title')}}</th>
+                                        <th>Type</th>
                                         <th>{{trans('admin.language')}}</th>
                                         <th>{{trans('admin.created_at')}}</th>
                                         <th></th>
@@ -53,10 +53,11 @@
 
 @push('scripts')
     <script>
-        var table = $('#datatable').DataTable({
+        $(function() {
+            $('#datatable').DataTable({
                 ...optionDataTable,
                 ajax: {
-                    url: '/admin/library/data',
+                    url: '/admin/static-data/data',
                     data : JSON.parse('<?php echo json_encode(request()->all()) ?>')
                 },
                 columns: [{
@@ -70,12 +71,8 @@
                         data: 'id',
                         name: 'id'
                     },{
-                        data: 'thumbnail',
-                        name: 'thumbnail'
-                    },{
-                        data: 'title',
-                        name: 'title',
-                        width: "20%"
+                        data: 'type',
+                        name: 'type'
                     },{
                         data: 'language',
                         name: 'language',
@@ -90,50 +87,49 @@
                         orderable: false
                     }
                 ],
-                success: function(res){
-                $(".preloader").fadeOut();
-            }
-        });
-        
-         // action check all
-         $('#all-library').on('change', function(){
-            $(this).is(':checked') ? checked=true : checked=false ;
-            $('tr td input:checkbox').prop('checked', checked);
-        }).trigger('change');
-
-        // change checked button all-library when change any checkbox in datatable
-        $('#datatable').on('change',"tr td input:checkbox", function(){
-            var countSelect = 0;
-            table.rows().every(function () {
-                var data = this.node();
-                if($(data).find('input').prop('checked') == false)
-                {
-                    countSelect++;
-                }
-                // console.log($(data).find('input').prop('checked'));
             });
-            var check = countSelect != 0 ? false : true ;
-            $('#all-library').prop('checked', check);
-        });
+            $(".preloader").fadeOut();
 
-        $('#btn-remove-all').on('click', function(){
-            var arraySelected = $("#datatable input:checkbox:checked").map(function(){
-                return $(this).attr('id');
-            }).get();
-            if(arraySelected.length <= 0) {
-                alert("{{ trans('admin.pls-choose-item') }}");
-                return;
-            }
-            var allLibrary = arraySelected.indexOf('all-library');
-            if(allLibrary >= 0) {
-                arraySelected.splice(allLibrary, 1);
-            }
-            let url = $(this).attr('data-url');
+            // action check all
+            $('#all-banner').on('change', function(){
+                $(this).is(':checked') ? checked=true : checked=false ;
+                $('tr td input:checkbox').prop('checked', checked);
+            }).trigger('change');
 
-            // $('#modal-delete .btn-submit-delete').attr('data-ids', arraySelected);
-            $('#modal-delete .btn-submit-delete').attr('data-array-selected', arraySelected);
-            $('#modal-delete .btn-submit-delete').attr('data-url', url);
-            $('#modal-delete').modal('show');
+            // change checked button all-banner when change any checkbox in datatable
+            $('#datatable').on('change',"tr td input:checkbox", function(){
+                var countSelect = 0;
+                table.rows().every(function () {
+                    var data = this.node();
+                    if($(data).find('input').prop('checked') == false)
+                    {
+                        countSelect++;
+                    }
+                    // console.log($(data).find('input').prop('checked'));
+                });
+                var check = countSelect != 0 ? false : true ;
+                $('#all-banner').prop('checked', check);
+            });
+
+            $('#btn-remove-all').on('click', function(){
+                var arraySelected = $("#datatable input:checkbox:checked").map(function(){
+                    return $(this).attr('id');
+                }).get();
+                if(arraySelected.length <= 0) {
+                    alert("{{ trans('admin.pls-choose-item') }}");
+                    return;
+                }
+                var allBanner = arraySelected.indexOf('all-banner');
+                if(allBanner >= 0) {
+                    arraySelected.splice(allBanner, 1);
+                }
+                let url = $(this).attr('data-url');
+
+                // $('#modal-delete .btn-submit-delete').attr('data-ids', arraySelected);
+                $('#modal-delete .btn-submit-delete').attr('data-array-selected', arraySelected);
+                $('#modal-delete .btn-submit-delete').attr('data-url', url);
+                $('#modal-delete').modal('show');
+            });
         });
     </script>
 @endpush

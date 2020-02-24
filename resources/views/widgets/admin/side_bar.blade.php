@@ -85,6 +85,13 @@
                     </a>
                 </li>
 
+                {{-- Partner --}}
+                <li class="sidebar-item {{$segments[1] == 'partners' ? 'selected' : ''}}">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('admin/partners') }}" aria-expanded="false">
+                        <i class="mdi mdi-receipt"></i><span class="hide-menu">{{trans('admin.partner')}}</span>
+                    </a>
+                </li>
+
                 {{-- News --}}
                 @php
                     $activeTreeNews = false;
@@ -178,6 +185,13 @@
                 <li class="sidebar-item {{$segments[1] == 'website-link' ? 'selected' : ''}}">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('admin/website-link') }}" aria-expanded="false">
                     <i class="mdi mdi-receipt"></i><span class="hide-menu">Website Link</span>
+                    </a>
+                </li>
+
+                {{-- Static Data --}}
+                <li class="sidebar-item {{$segments[1] == 'static-data' ? 'selected' : ''}}">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ url('admin/static-data') }}" aria-expanded="false">
+                    <i class="mdi mdi-receipt"></i><span class="hide-menu">Static Data</span>
                     </a>
                 </li>
 

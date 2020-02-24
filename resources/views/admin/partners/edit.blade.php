@@ -17,7 +17,7 @@
         {{-- Form Edit --}}
         <div class="row">
             <div class="col-12">
-                <form action="{{url('admin/banners/' . $record->id)}}" method="post">
+                <form action="{{url('admin/partners/' . $record->id)}}" method="post">
                     {{ csrf_field() }}
 
                     @if ($record->id)
@@ -36,6 +36,20 @@
                                 <input type="text" name="title" class="form-control"value="{{old('title', $record->title)}}" placeholder="{{trans('admin.enter_title')}}">
                                 @if($errors->has('title'))
                                     <span class="error-msg">{{$errors->first('title')}}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group m-t-20">
+                                <label>Type</label>
+                                <select name="type" class="select2 form-control custom-select">
+                                    @php
+                                        $type = old('type', $record->type);
+                                    @endphp
+                                    <option value="0" {{ ($type == 0) ? 'selected' : '' }}>Partner unit</option>
+                                    <option value="1" {{ ($type == 1) ? 'selected' : '' }}>Companion unit</option>
+                                </select>
+                                @if($errors->has('type'))
+                                    <span class="error-msg">{{$errors->first('type')}}</span>
                                 @endif
                             </div>
 
@@ -70,12 +84,12 @@
                             </div>
 
                             <div class="form-group m-t-20 wrap-thumbnail">
-                                <label>Banner</label>
-                                <div id="upload-file">
+                                <label>Logo</label>
+                                <div id="upload-file" style="text-align: left;">
                                     <input id="input_path" type="hidden" name="thumbnail" value="{{$record->thumbnail}}">
                                     <input type="file" accept=".png,.jpg,.jpeg,.gif" id="choose-image" class="hide">
                                     <div id="preview-crop-image">
-                                        <img src="{{asset($record->thumbnailDisplay)}}" alt="">
+                                        <img src="{{asset($record->thumbnailDisplay)}}" style="width: 200px !important" alt="">
                                     </div>
                                     <button type="button" class="mt-3 btn close-img-preview btn-danger {{empty($record->thumbnail) ? 'hide' : ''}}">Remove Image</button>
                                 </div>
@@ -83,7 +97,7 @@
                         </div>
                         <div class="border-top">
                             <div class="card-body text-right">
-                                <a href="{{url('admin/banners/')}}">
+                                <a href="{{url('admin/partners/')}}">
                                     <button type="button" class="btn">{{trans('admin.cancel')}}</button>
                                 </a>
                                 <button type="submit" class="btn btn-success">{{trans('admin.submit')}}</button>
@@ -161,7 +175,7 @@
                         "image": img,
                     },
                     success: function (data) {
-                        html = "<img src='" + data.url + "' alt='' />";
+                        html = "<img style='width: 200px !important' src='" + data.url + "' alt='' />";
                         $('.wrap-thumbnail #input_path').val(data.pathTmpFile);
                         $('.wrap-thumbnail #preview-crop-image').html(html);
                         $('.wrap-thumbnail .close-img-preview').removeClass('hide');

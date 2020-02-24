@@ -37,51 +37,27 @@
                 <div class='content'>
                     <div class='vgName'>{{ __('client.co-partner')}}</div>
                     <div class='groupItem'>
-                        <div class='item'>
-                            <a href='http://hoisinhvien.com.vn/' target='_blank' title='Student Union of Vietnam'>
-                                <img alt='Student Union of Vietnam' src='https://mizuiku-emyeunuocsach.vn/pic/banner/hs_636538_636560181771074555.png' />
-                            </a>
-                            <p class='title fs11'>{{ __('client.title-icon-student')}}</p>
-                        </div>
-
-                        <div class='item'>
-                            <a href='http://www.thieunhivietnam.vn/' target='_blank' title='Young Pioneer Org'>
-                                <img alt='Young Pioneer Org' src='https://mizuiku-emyeunuocsach.vn/pic/banner/hd_636538_636560181837288343.png' />
-                            </a>
-                            <p class='title fs11'>{{ __('client.title-icon-young')}}</p>
-                        </div>
-
-                        <div class='item'>
-                            <a href='https://www.suntory.com/' target='_blank' title=''>
-                                <img alt='' src='https://mizuiku-emyeunuocsach.vn/pic/banner/_-01-For-_636583457827342377.png' />
-                            </a>
-                            <p class='title fs11'></p>
-                        </div>
-
-                        <div class='item'>
-                            <a href='https://suntorypepsico.vn/en' target='_blank' title=''>
-                                <img alt='' src='https://mizuiku-emyeunuocsach.vn/pic/banner/logofinal_636590617481723524.png' />
-                            </a>
-                            <p class='title fs11'></p>
-                        </div>
+                        @foreach ($partners0 as $item)
+                            <div class='item'>
+                                <a href='{{$item->url}}' target='_blank' title='{{$item->title}}'>
+                                    <img alt='{{$item->title}}' src='{{$item->thumbnail_display}}' />
+                                </a>
+                                <p class='title fs11'>{{$item->title}}</p>
+                            </div>    
+                        @endforeach
                     </div>
                 </div>
                 <div class='content'>
                     <div class='vgName'>{{ __('client.edu-partner')}}</div>
                     <div class='groupItem'>
-                        <div class='item'>
-                            <a href='javascript://' target='_blank' title=' '>
-                                <img alt=' ' src='https://mizuiku-emyeunuocsach.vn/pic/banner/lg_636319_636332056275982495.png' />
-                            </a>
-                            <p class='title fs11'> </p>
-                        </div>
-
-                        <div class='item'>
-                            <a href='http://www.livelearn.org/' target='_blank' title=' '>
-                                <img alt=' ' src='https://mizuiku-emyeunuocsach.vn/pic/banner/lg_636319_636332056316264799.png' />
-                            </a>
-                            <p class='title fs11'> </p>
-                        </div>
+                        @foreach ($partners1 as $item)
+                            <div class='item'>
+                                <a href='{{$item->url}}' target='_blank' title='{{$item->title}}'>
+                                    <img alt='{{$item->title}}' src='{{$item->thumbnail_display}}' />
+                                </a>
+                                <p class='title fs11'>{{$item->title}}</p>
+                            </div>    
+                        @endforeach
                     </div>
                 </div>
                 <div class="cb"></div>

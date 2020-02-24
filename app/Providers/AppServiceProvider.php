@@ -17,10 +17,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (in_array($this->app->environment(), ['dev', 'stg', 'prod', 'production'], true)) {
+        /*if (in_array($this->app->environment(), ['dev', 'stg', 'prod', 'production'], true)) {
             \URL::forceScheme('https');
             $this->app['request']->server->set('HTTPS','on');
-        }
+        }*/
     }
 
     /**

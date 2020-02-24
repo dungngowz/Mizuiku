@@ -84,6 +84,16 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('/about-us', 'AboutUsController');
     Route::post('/about-us/delete-multiple', 'AboutUsController@deleteMultiple');
 
+    // About Us
+    Route::get('/static-data/data', 'StaticDataController@data');
+    Route::resource('/static-data', 'StaticDataController');
+    Route::post('/static-data/delete-multiple', 'StaticDataController@deleteMultiple');
+
+    // Partners
+    Route::get('/partners/data', 'PartnerController@data');
+    Route::resource('/partners', 'PartnerController');
+    Route::post('/partners/delete-multiple', 'PartnerController@deleteMultiple');
+
     // Contact
     Route::get('/contact-us/data', 'ContactUsController@data');
     Route::resource('/contact-us', 'ContactUsController');

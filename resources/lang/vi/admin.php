@@ -102,5 +102,6 @@ return [
     'updated_at' => 'Ngày cập nhật',
     'another' => 'Khác',
     'yes' => 'Có',
-    'no' => 'Không'
+    'no' => 'Không',
+    'partner' => 'Đối tác'
 ];

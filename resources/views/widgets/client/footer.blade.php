@@ -21,16 +21,7 @@
                 <li><a class="{{$segments[0] == 'lien-he' ? 'active' : ''}}" href='{{ route('contact') }}' title='{{ __('client.contact-us') }}'>{{ __('client.contact-us') }}</a></li>
             </ul>
             
-            <div style="margin-top: 10px;">
-                <span style="background-image:initial;background-position:initial;background-size:initial;background-repeat:initial;background-attachment:initial;background-origin:initial;background-clip:initial;">{{ __('client.permit-no-1') }}</span>
-                <br/>{{ __('client.permit-no-2') }}
-                <br />{{ __('client.contact') }}</div>
-                <div>{{ __('client.address') }}</div>
-                <div>{{ __('client.tel') }} &nbsp;</div>
-            <div>
-                Website: {{ env('APP_URL', 'http://localhost') }}
-                <br /> &nbsp;
-            </div>
+            {!! $leftFooter->content !!}
 
             <div class='tal cmNav_ft'>
             <a target='_blank' href='https://www.facebook.com/mizuikuemyeunuocsach/' title='fanpage facebook'><span>{{ __('client.follow-us') }}</span><img alt='fb' src='{{ asset('client/css/Common/fb.png') }}' /></a>
@@ -50,11 +41,9 @@
                 </div>
                 <div class='cb'></div>
             </div>
-            <p class='tar lh24 fs16'>{{ __('client.reserved-1') }}</p>
-            <p class='tar lh24 fs16'>{{ __('client.company') }}</p>
-            <p class='tar lh24 fs16'>{{ __('client.site-1') }}</p>
-            <p class='tar lh24 fs16'>{{ __('client.site-2') }}</p>
-            <p class='tar lh24 fs16'>{{ __('client.reserved-2') }}</p>
+            
+            {!! $rightFooter->content !!}
+
             <ul id='CommonMenuBottom' class='main'>
                 <li><a class="{{(isset($segments[1]) && $segments[1] == 'tearm-of-use') ? 'active' : ''}}" href='{{ route('showTerm', ["keyword" => 'tearm-of-use']) }}' title='{{ __('client.term') }}'>{{ __('client.term') }}</a></li>
                 <li><a class="{{(isset($segments[1]) && $segments[1] == 'private-policy') ? 'active' : ''}}" href='{{ route('showPolicy', ["keyword" => 'private-policy']) }}' title='{{ __('client.private-policy') }}'>{{ __('client.private-policy') }}</a></li>

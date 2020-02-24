@@ -7,6 +7,7 @@ use Arrilot\Widgets\AbstractWidget;
 use App\Models\Category;
 use App\Models\Article;
 use App\Models\AboutUs;
+use App\Models\Partner;
 
 class Header extends AbstractWidget
 {
@@ -27,6 +28,7 @@ class Header extends AbstractWidget
         $categoriesNews = Category::where('type', 'news')->orderBy('id', 'desc')->where('status', 1)->get();
         $courseListHeader = Category::where('status', 1)->where('type', 'course')->orderBy('created_at', 'desc')->get();
         $aboutUs = AboutUs::whereNotNull('slug_menu')->orderBy('created_at', 'desc')->get();
+        $partners0 = Partner::where('type', 0)->orderBy('id', 'desc')->get();
 
         return view('widgets.client.header', [
             'config' => $this->config,
@@ -34,7 +36,8 @@ class Header extends AbstractWidget
             'categoriesNews' => $categoriesNews,
             'articlesAboutUs' => $articlesAboutUs,
             'courseListHeader' => $courseListHeader,
-            'aboutUs' => $aboutUs
+            'aboutUs' => $aboutUs,
+            'partners0' => $partners0
         ]);
     }
 }

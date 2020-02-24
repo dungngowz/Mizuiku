@@ -104,5 +104,6 @@ return [
     'updated_at' => 'Updated At',
     'another' => 'Another',
     'yes' => 'Yes',
-    'no' => 'No'
+    'no' => 'No',
+    'partner' => 'Partner'
 ];

@@ -7,6 +7,7 @@ use Arrilot\Widgets\AbstractWidget;
 use App\Models\Category;
 use App\Models\Article;
 use App\Models\WebsiteLink;
+use App\Models\StaticData;
 
 class Footer extends AbstractWidget
 {
@@ -31,12 +32,17 @@ class Footer extends AbstractWidget
 
         $websiteLink = WebsiteLink::orderBy('id', 'desc')->get();
 
+        $leftFooter = StaticData::where('type', 'Left Footer')->first();
+        $rightFooter = StaticData::where('type', 'Right Footer')->first();
+
         return view('widgets.client.footer', [
             'config' => $this->config,
             'segments' => empty($request->segments()) ? [''] : $request->segments(),
             'categoriesNews' => $categoriesNews,
             'articlesAboutUs' => $articlesAboutUs,
-            'websiteLink' => $websiteLink
+            'websiteLink' => $websiteLink,
+            'leftFooter' => $leftFooter,
+            'rightFooter' => $rightFooter
         ]);
     }
 }

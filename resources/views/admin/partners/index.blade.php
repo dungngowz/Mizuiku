@@ -7,8 +7,8 @@
             <div class="col-12 d-flex no-block align-items-center">
                 <h4 class="page-title">@yield('title')</h4>
                 <div class="ml-auto text-right">
-                    <button type="button" id="btn-remove-all" data-url="{{url('admin/library/delete-multiple')}}" class="btn btn-danger">{{trans('admin.delete_selected_item')}}</button>
-                    <a href="{{url('admin/library/create?keyword=' . request()->keyword)}}">
+                    <button type="button" id="btn-remove-all" data-url="{{url('admin/partners/delete-multiple')}}" class="btn btn-danger">{{trans('admin.delete_selected_item')}}</button>
+                    <a href="{{url('admin/partners/create')}}">
                         <button type="button" class="btn btn-success">{{trans('admin.add_new')}}</button>
                     </a>
                 </div>
@@ -27,11 +27,10 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            <input type="checkbox" id="all-library" name="all-library">
+                                            <input type="checkbox" id="all-banner" name="all-banner">
                                         </th>
                                         <th>ID</th>
-                                        <th>Thumbnail</th>
-                                        <th>{{trans('admin.title')}}</th>
+                                        <th>Logo</th>
                                         <th>{{trans('admin.language')}}</th>
                                         <th>{{trans('admin.created_at')}}</th>
                                         <th></th>
@@ -54,54 +53,48 @@
 @push('scripts')
     <script>
         var table = $('#datatable').DataTable({
-                ...optionDataTable,
-                ajax: {
-                    url: '/admin/library/data',
-                    data : JSON.parse('<?php echo json_encode(request()->all()) ?>')
-                },
-                columns: [{
-                        data: 'id',
-                        orderable: false,
-                        className: 'text-center',
-                        render: function(data, type, row, meta){
-                            return '<input type="checkbox" name="remove[]" id="'+ row.id +'">';
-                        } 
-                    },{
-                        data: 'id',
-                        name: 'id'
-                    },{
-                        data: 'thumbnail',
-                        name: 'thumbnail'
-                    },{
-                        data: 'title',
-                        name: 'title',
-                        width: "20%"
-                    },{
-                        data: 'language',
-                        name: 'language',
-                        className: 'text-center'
-                    },{
-                        data: 'created_at',
-                        name: 'created_at'
-                    },{
-                        data: 'actions',
-                        name: 'actions',
-                        className: 'text-right',
-                        orderable: false
-                    }
-                ],
-                success: function(res){
+            ...optionDataTable,
+            ajax: '/admin/partners/data',
+            columns: [{
+                    data: 'id',
+                    orderable: false,
+                    className: 'text-center',
+                    render: function(data, type, row, meta){
+                        return '<input type="checkbox" name="remove[]" id="'+ row.id +'">';
+                    } 
+                },{
+                    data: 'id',
+                    name: 'id'
+                },{
+                    data: 'thumbnail',
+                    name: 'thumbnail',
+                    className: 'text-center'
+                },{
+                    data: 'language',
+                    name: 'language',
+                    className: 'text-center'
+                },{
+                    data: 'created_at',
+                    name: 'created_at'
+                },{
+                    data: 'actions',
+                    name: 'actions',
+                    className: 'text-right',
+                    orderable: false
+                }
+            ],
+            success: function(res){
                 $(".preloader").fadeOut();
             }
         });
-        
-         // action check all
-         $('#all-library').on('change', function(){
+
+        // action check all
+        $('#all-banner').on('change', function(){
             $(this).is(':checked') ? checked=true : checked=false ;
             $('tr td input:checkbox').prop('checked', checked);
         }).trigger('change');
 
-        // change checked button all-library when change any checkbox in datatable
+        // change checked button all-banner when change any checkbox in datatable
         $('#datatable').on('change',"tr td input:checkbox", function(){
             var countSelect = 0;
             table.rows().every(function () {
@@ -113,7 +106,7 @@
                 // console.log($(data).find('input').prop('checked'));
             });
             var check = countSelect != 0 ? false : true ;
-            $('#all-library').prop('checked', check);
+            $('#all-banner').prop('checked', check);
         });
 
         $('#btn-remove-all').on('click', function(){
@@ -124,9 +117,9 @@
                 alert("{{ trans('admin.pls-choose-item') }}");
                 return;
             }
-            var allLibrary = arraySelected.indexOf('all-library');
-            if(allLibrary >= 0) {
-                arraySelected.splice(allLibrary, 1);
+            var allBanner = arraySelected.indexOf('all-banner');
+            if(allBanner >= 0) {
+                arraySelected.splice(allBanner, 1);
             }
             let url = $(this).attr('data-url');
 
@@ -135,5 +128,6 @@
             $('#modal-delete .btn-submit-delete').attr('data-url', url);
             $('#modal-delete').modal('show');
         });
+
     </script>
 @endpush

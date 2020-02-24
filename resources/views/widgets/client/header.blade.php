@@ -6,33 +6,14 @@
 
         <div class="LogoPartner">
 
-            <div class='item'>
-                <a href='http://hoisinhvien.com.vn/' target='_blank' title='Student Union of Vietnam'>
-                    <img alt='Student Union of Vietnam' src='{{ asset('client/pic/banner/hs_636538_636560181771074555.png') }}' />
-                </a>
-                <p class='title fs11'>{{ __('client.title-icon-student')}}</p>
-            </div>
-
-            <div class='item'>
-                <a href='http://www.thieunhivietnam.vn/' target='_blank' title='Young Pioneer Org'>
-                    <img alt='Young Pioneer Org' src='{{ asset('client/pic/banner/hd_636538_636560181837288343.png') }}' />
-                </a>
-                <p class='title fs11'>{{ __('client.title-icon-young')}}</p>
-            </div>
-
-            <div class='item'>
-                <a href='https://www.suntory.com/' target='_blank' title=''>
-                    <img alt='' src='{{ asset('client/pic/banner/_-01-For-_636583457827342377.png') }}' />
-                </a>
-                <p class='title fs11'></p>
-            </div>
-
-            <div class='item'>
-                <a href='https://suntorypepsico.vn/en' target='_blank' title=''>
-                    <img alt='' src='{{ asset('client/pic/banner/logofinal_636590617481723524.png') }}' />
-                </a>
-                <p class='title fs11'></p>
-            </div>
+            @foreach ($partners0 as $item)
+                <div class='item'>
+                    <a href='{{$item->url}}' target='_blank' title='{{$item->title}}'>
+                        <img alt='{{$item->title}}' src='{{$item->thumbnail_display}}' />
+                    </a>
+                    <p class='title fs11'>{{$item->title}}</p>
+                </div>    
+            @endforeach
 
         </div>
 
